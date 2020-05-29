@@ -1,5 +1,8 @@
 package kr.co.service;
 
-public class MyServiceImpl {
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyServiceImpl implements MyService{
 
 }

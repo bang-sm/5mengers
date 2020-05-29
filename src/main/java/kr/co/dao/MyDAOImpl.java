@@ -1,5 +1,8 @@
 package kr.co.dao;
 
-public class MyDAOImpl {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class MyDAOImpl implements MyDAO {
 
 }
