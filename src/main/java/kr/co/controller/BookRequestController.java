@@ -14,19 +14,19 @@ public class BookRequestController {
 		
 		@RequestMapping(value ="/bookRequest", method = RequestMethod.GET)
 		public String test() throws Exception {
-			logger.info("±¸¸Å ¿äÃ» °Ô½ÃÆÇ");
+			logger.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½Ô½ï¿½ï¿½ï¿½");
 			
 			return "/bookRequest/Request";
 		}
 		@RequestMapping(value = "/bookRequestDetail", method = RequestMethod.GET)
 		public String brd() throws Exception {
-			logger.info("±¸¸Å ¿äÃ» »ó¼¼ÆäÀÌÁö");
+			logger.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			
 			return "/bookRequest/Detail";
 		}
 		@RequestMapping(value="/bookRequestWrite", method = RequestMethod.GET)
 		public String brw() throws Exception {
-			logger.info("±¸¸Å ¿äÃ» ÀÛ¼ºÆäÀÌÁö");
+			logger.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			
 			return "/bookRequest/Write";
 		}
