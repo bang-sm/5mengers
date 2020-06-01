@@ -1,24 +1,24 @@
-<%@ page language="java" pageEncoding="UTF-8"
-	contentType="text/html; charset=UTF-8"%>
-
-
-
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>마이페이지</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<title>책관리게시판</title>
 </head>
-<style>
-
-</style>
 <body>
 	<%@ include file="../common/head.jsp"%>
-
+	
 	<div id="content">
-		<%@ include file="../common/sideMenu.jsp"%>	
+		<%@ include file="../common/sideMenu.jsp"%>
+		
 		<div id="request_box">
 			<table class="table table-hover table_css">
-				<caption>QnA 게시판</caption>
+				<caption>판매중 리스트</caption>
 				<colgroup>
 					<col />
 					<col />
@@ -48,7 +48,7 @@
 					</tr>
 					<tr>
 						<td>3</td>
-						<td>긴 제목의 책~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
+						<td>긴 제목의 책</td>
 						<td>2020-05-20</td>
 						<td>Y</td>
 					</tr>
@@ -56,6 +56,5 @@
 			</table>
 		</div>
 	</div>
-
 </body>
 </html>

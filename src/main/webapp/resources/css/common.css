@@ -94,3 +94,107 @@ table {
 .nanumbarungothic * {
 	font-family: 'NanumBarunGothic', sans-serif;
 }
+
+/** 공통 헤드 CSS **/
+#head {
+	overflow:hidden;
+	height: 230px;
+	background: #ff8a3d;
+}
+
+#top_main{
+	width:1000px;
+	margin:0 auto;
+	height: 160px;
+	background: #ff8a3d;
+}
+#top_nav li{
+	float: right;
+}
+
+#haed_nav {
+	width: 1200px;
+	margin: 0 auto;
+	font-family: NanumBarunGothic;
+	font-weight: 400;
+}
+
+#my_info {
+	float: right;
+}
+
+.my_nav_left li {
+	float: left;
+	padding: 0 6px 0 8px;
+	color: #fff;
+	line-height: 70px;
+}
+
+.my_nav_right li {
+	display: inline-block;
+	padding: 0 6px 0 8px;
+	color: #fff;
+	line-height: 70px;
+	float: left;
+}
+
+.book_serach {
+	height: 30px;
+}
+
+#my_info ul li dl.dropdown_menu {
+	background:#1e2329;
+	display: none;
+	position: absolute;
+}
+
+#my_info ul li dl.dropdown_menu dd {
+	height: 50px;
+	width:200px;
+	line-height: 50px;
+}
+
+#my_info ul li dl.dropdown_menu a {
+	color: #fff;
+	padding:15px;
+	text-decoration: none;
+}
+
+#my_info ul li dl.dropdown_menu dd:hover {
+	background: #0074ac;
+}
+
+#my_info ul .dropdown_li:hover .dropdown_menu {
+	display: block;
+}
+
+/** 공통 사이드메뉴 CSS **/
+.menu_left {
+	float: left;
+	width: 230px;
+	position: absolute;
+	left: 0;
+	top: 230px;
+	bottom: 0;
+	border-right: 2px solid #e5e5e5;
+	background: #1e2329;
+}
+
+.menu_left ul li {
+	padding: 15px;
+}
+
+.menu_left ul li:hover {
+	background: #0074AC;
+}
+
+.menu_left ul .on {
+	background: #0074AC;
+}
+
+.menu_left ul li a {
+	font-family: NanumBarunGothic;
+	font-weight: 700px;
+	color: #fff;
+	text-decoration: none;
+}
