@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="kr.co.vo/book_sell_regist">
+
+   <!-- 게시판 글 작성 -->
+   <insert id="insert">
+	   INSERT INTO MP_BOARD(   bsr_id <!-- 책 고유번호, 자동으로 부여됨 -->
+	   						, uuid	<!-- 유저 고유값, 회원을 구분하기 위해 지정 -->
+	   						, bsr_name <!-- 책 이름 -->
+	   						, bsr_price <!-- 판매 희망가격-->
+	   						, bsr_comment <!-- 사용자가 책 소개 등을 입력  -->
+	   						, bsr_regdate <!-- 서버 시간을 기준으로 작성 -->
+	   						, bsr_category <!-- 책 카테고리 분류를 위한 값 -->
+	   						, bsr_check <!-- 판매 상태를 표시한다   0: 판매중, 1: 예약중, 2: 판매완료, 3: 판매중-->
+	   						, bsr_fixed_price <!-- API의 판매 정가를 표시 -->
+	   						, bsr_confirm <!-- Y: 수락  N: 거절 Z: 대기  -->
+	   						, map_x
+	   						, map_y  )
+	                 VALUES(    MP_BOARD_SEQ.NEXTVAL 
+	                 		  , #{uuid}
+	                 		  , #{bsr_name}
+	                 		  , #{bsr_price}
+	                 		  , #{bsr_comment}
+	                 		  , #{bsr_regdate}
+	                 		  , #{bsr_category}
+	                 		  , #{bsr_check}
+	                 		  , #{bsr_fixed_price}
+	                 		  , #{bsr_confirm}
+	                 		  , #{map_x}
+	                 		  , #{map_y}  )
+   
+   </insert>

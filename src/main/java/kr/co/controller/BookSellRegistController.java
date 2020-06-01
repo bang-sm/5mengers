@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class ResistController {
+public class BookSellRegistController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(ResistController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BookSellRegistController.class);
 	
-	@RequestMapping(value = "/resist", method = RequestMethod.GET)
+	@RequestMapping(value = "/booksellregist", method = RequestMethod.GET)
 	public String home() throws Exception {
-		logger.info("resist");
+		logger.info("booksellregist");
 		
 		return "/bookresist/resist";
 	}
