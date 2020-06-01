@@ -15,7 +15,7 @@ public class BookSellRegistController {
 	public String home() throws Exception {
 		logger.info("booksellregist");
 		
-		return "/bookresist/resist";
+		return "/booksellregist/booksellregistPage";
 	}
 
 }
