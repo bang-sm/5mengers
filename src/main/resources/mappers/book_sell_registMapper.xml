@@ -6,7 +6,7 @@
 
    <!-- 게시판 글 작성 -->
    <insert id="insert">
-	   INSERT INTO MP_BOARD(   bsr_id <!-- 책 고유번호, 자동으로 부여됨 -->
+	   INSERT INTO book_sell_regist( bsr_id <!-- 책 고유번호, 자동으로 부여됨 -->
 	   						, uuid	<!-- 유저 고유값, 회원을 구분하기 위해 지정 -->
 	   						, bsr_name <!-- 책 이름 -->
 	   						, bsr_price <!-- 판매 희망가격-->
@@ -32,4 +32,9 @@
 	                 		  , #{map_y}  )
    
    </insert>
+<<<<<<< HEAD
    </mapper>
+=======
+   
+  </mapper>
+>>>>>>> refs/remotes/origin/coding_source
