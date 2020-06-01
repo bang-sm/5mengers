@@ -7,64 +7,47 @@
 <head>
 	<title>Home</title>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="../resources/css/common.css">
+	<link rel="stylesheet" href="../resources/css/mypage.css">
 </head>
-<style>
-#head{
-	height: 50px;
-	background: #e8001e;
-}
-
-#haed_nav{
-	width: 1200px;
-	margin: 0 auto;
-	font-family: NanumBarunGothic;
-	font-weight: 400;
-}
-#my_info{
-	float: right;
-}
-
-.my_nav_left li{
-	float:left;
-	padding: 0 6px 0 8px;
-	color: #fff;
-	line-height: 50px;
-}
-.my_nav_right li{
-	display:inline-block;
-	padding: 0 6px 0 8px;
-	color: #fff;
-	line-height: 50px;
-}
-.book_serach{
-	height: 30px;
-}
-</style>
 <body>
 	<div id="head">
-		<div id="haed_nav"> 
-			<div style="display: inline-block;">
-				<a href="/">
-					<img src="../resources/site_img/logo_umarket.png" height="45px"/>		
-				</a>			
+		<div id="top_main">
+			<div style="font-size: 70px;font-weight: 700">
+				<img src="https://cphoto.asiae.co.kr/listimglink/6/2020042808572299616_1588031843.jpg" height="150px">
 			</div>
+			<ul id="top_nav">
+				<li>관리자페이지</li>
+				<li>로그아웃</li>
+				<li>로그인</li>
+			</ul>
+
+		</div>
+		<div style="clear: both"></div>
+		<div id="haed_nav">
+		<!--<input type="text" name="book_serach" class="book_serach" style="color: #000"/> -->
 			<div style="display: inline-block;">
 				<ul class="my_nav_left">
-					<li>
-						<input type="text" name="book_serach" class="book_serach"/>
-					</li>
+					<li>5mengers</li>
 					<li>거래요청게시판</li>
 					<li>내 책 등록하기</li>
 				</ul>
 			</div>
 			<div id="my_info" style="display: inline-block;">
 				<ul class="my_nav_right">
-					<li>로그인</li>
-					<li>로그아웃</li>
-					<li>관리자페이지</li>
-					<li>
+					<li class="dropdown_li">
 						<a href="http://localhost:8080/my/boardList">마이페이지</a>
+						<dl class="dropdown_menu">
+							<dd><a href="#">거래요청게시판</a></dd>
+							<dd><a href="#">QnA게시판</a></dd>
+							<dd><a href="#">책관리게시판</a></dd>
+							<dd><a href="#">회원정보변경</a></dd>
+							<dd><a href="#">구매내역리스트</a></dd>
+							<dd><a href="#">자주묻는질문</a></dd>
+					    </dl>
 					</li>
 				</ul>
 			</div>
