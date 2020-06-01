@@ -32,3 +32,4 @@
 	                 		  , #{map_y}  )
    
    </insert>
+   </mapper>
