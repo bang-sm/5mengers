@@ -1,0 +1,12 @@
+
+
+#request_box{
+	position: absolute;
+	left:250px;
+	top:280px;
+}
+.table_css{
+	width:800px;
+	border: 1px solid #e5e5e5;
+	max-width: 800px;
+}

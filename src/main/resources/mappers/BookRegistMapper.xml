@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.dao.MyDAO">
+
+    <select id="registList" resultType="kr.co.vo.BookDTO">
+        SELECT 
+      		bsr_id,
+      		uuid,
+      		bsr_name,
+      		bsr_regdate,
+      		bsr_confirm
+        FROM 
+       	book_sell_regist
+    </select>
+</mapper>
