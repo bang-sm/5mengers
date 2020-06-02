@@ -32,11 +32,11 @@ public class UserRegisterController {
 	@RequestMapping(value = "/register" , method = RequestMethod.POST)
 	public String registerPOST(UserVO userVO, RedirectAttributes redirectAttributes	) throws Exception {
 		
-		String hashdPw = BCrypt.hashpw(userVO.getPassword(), BCrypt.gensalt());
-		userVO.setPassword(hashdPw);
+		String hashdPw = BCrypt.hashpw(userVO.getPass(), BCrypt.gensalt());
+		userVO.setPass(hashdPw);
 		userService.register(userVO);
 		redirectAttributes.addFlashAttribute("msg", "REGISTERED");
-		
+						
 		return "redirect:/user/login";
 	}
 	

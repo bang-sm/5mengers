@@ -20,11 +20,11 @@
 				</div>
 				<div class="checkbox icheck">
 					<label>
-						<input type="checkbox" name="auth" class="form-control"> 인증
+						<input type="checkbox" name="auth" value="1" class="form-control"> 인증
 					</label>
 				</div>
 				<div class="form-group has feedback">
-					<input type="password" name="password" class="form-control" placeholder="비밀번호">
+					<input type="password" name="pass" class="form-control" placeholder="비밀번호">
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>	
 				</div>
 				<div class="form-group has feedback">
@@ -36,7 +36,7 @@
 					<span class="glyphicon glyphicon-user form-control-feedback"></span>	
 				</div>
 				<div class="form-group has feedback">
-					<input type="tel" name="phonenum" class="form-control" placeholder="전화번호">
+					<input type="text" name="phonenum" class="form-control" placeholder="전화번호">
 					<span class="glyphicon glyphicon-phone form-control-feedback"></span>	
 				</div>
 				<div>
