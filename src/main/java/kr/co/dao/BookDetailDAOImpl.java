@@ -2,13 +2,13 @@ package kr.co.dao;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.vo.BookCategoryDTO;
 import kr.co.vo.BookDetailDTO;
 
 @Repository
@@ -59,6 +59,13 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 		cmap.put("bsr_check",bsr_check);
 		cmap.put("bsr_id",bsr_id);
 		sqlSession.update("book_check",cmap);
+	}
+	
+	//책 카테고리 리스트
+	@Override
+	public List<BookCategoryDTO> category() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("bc");
 	}
 
 }

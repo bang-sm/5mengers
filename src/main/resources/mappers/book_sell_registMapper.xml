@@ -32,4 +32,12 @@
 	                 		  , #{map_y}  )
    
    </insert>
+   <!-- 책 카테고리 리스트 -->
+    <select id="bc" resultType="kr.co.vo.BookCategoryDTO">
+		SELECT
+			bc_code,
+			bc_name
+		FROM
+			book_category;
+    </select>
 </mapper>

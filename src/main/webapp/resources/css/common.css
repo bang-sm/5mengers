@@ -190,6 +190,10 @@ table {
     padding: 0px 20px;
 }
 
+.position > ul > li a:hover{
+	border-bottom:2px solid #000;	
+}
+
 #cateline {
     clear: both;
     width: 1200px;

@@ -15,25 +15,9 @@
 					class="xans-element- xans-layout xans-layout-category">
 					<div class="position">
 						<ul>
-							<li class="xans-record-"><a href="">1</a></li>
-							<li class="xans-record-"><a href="">2</a></li>
-							<li class="xans-record-"><a href="">3</a></li>
-							<li class="xans-record-"><a href="">4</a></li>
-							<li class="xans-record-"><a href="">5</a></li>
-							<li class="xans-record-"><a href="">6</a></li>
-							<li class="xans-record-"><a href="">7</a></li>
-							<li class="xans-record-"><a href="">8</a></li>
-							<li class="xans-record-"><a href="">9</a></li>
-							<li class="xans-record-"><a href="">10</a></li>
-							<li class="xans-record-"><a href="">11</a></li>
-							<li class="xans-record-"><a href="">12</a></li>
-							<li class="xans-record-"><a href="">13</a></li>
-							<li class="xans-record-"><a href="">14</a></li>
-							<li class="xans-record-"><a href="">15</a></li>
-							<li class="xans-record-"><a href="">16</a></li>
-							<li class="xans-record-"><a href="">17</a></li>
-							<li class="xans-record-"><a href="">18</a></li>
-							<li class="xans-record-"><a href="">19</a></li>
+							<c:forEach var="list" items="${list}">
+								<li class="xans-record-"><a href="" class='${list.bc_code}' >${list.bc_name}</a></li>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>

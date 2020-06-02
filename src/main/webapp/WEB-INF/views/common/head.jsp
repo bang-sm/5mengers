@@ -8,12 +8,6 @@
 <title>Home</title>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../resources/css/common.css">
 <link rel="stylesheet" href="../resources/css/mypage.css">
 </head>
@@ -31,7 +25,7 @@
 					<div class="topbar_right">
 						<ul>
 							<li><a href="http://localhost:8080/my/nav">마이페이지</a>
-							<li><a href="#">로그인</a></li>
+							<li><a href="http://localhost:8080/user/login">로그인</a></li>
 						</ul>
 					</div>
 				</div>
