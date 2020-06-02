@@ -1,5 +1,7 @@
 package kr.co.dao;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,10 +16,15 @@ public class BookSellRegistDAOImpl implements BookSellRegistDAO {
 	@Inject
 	private SqlSession sqlSession;
 
-		// �Խñ� �ۼ�
 	@Override
-	public void write(BookSellRegistDTO bookSellRegistVO) throws Exception {
-		sqlSession.insert("book_sell_registMapper.insert", bookSellRegistVO);
+	public void write(BookSellRegistDTO bookSellRegistDTO) throws Exception {
+		sqlSession.insert("book_sell_registMapper", bookSellRegistDTO);
+		
+	}
+
+	@Override
+	public void insertFile(Map<String, Object> map) {
+		sqlSession.insert("boardMapper.insertFile", map);
 		
 	}
 	

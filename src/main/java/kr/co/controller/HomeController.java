@@ -18,4 +18,13 @@ public class HomeController {
 			
 			return "home";
 		}
+		
+		@RequestMapping(value = "/join", method = RequestMethod.GET)
+		public String test() throws Exception {
+			logger.info("join¿‘¥œ¥Ÿ");
+			
+			return "join/join";
+		}
+		
+		
 }

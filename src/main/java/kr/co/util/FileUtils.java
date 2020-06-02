@@ -24,8 +24,8 @@ public class FileUtils {
 	
 	public List<Map<String, Object>> parseInsertFileInfo(BookSellRegistDTO bookSellRegistVO,
 			MultipartHttpServletRequest mpRequest) throws Exception{
-		
-		Iterator<String> interator = mpRequest.getFileNames();
+		// 데이터들의 집합체에서 컬렉션으로부터 정보를 얻어올 수 있는 인터페이스 ??????????
+		Iterator<String> iterator = mpRequest.getFileNames();
 		
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
@@ -43,8 +43,8 @@ public class FileUtils {
 		} // filePath에 file이 존재하지 않는 경우 위 경로에 디렉토리 생성
 		
 		// list화 된 map을 차례로 뽑아준다. 
-		while(interator.hasNext()) {
-			multipartFile = mpRequest.getFile(interator.next());
+		while(iterator.hasNext()) {
+			multipartFile = mpRequest.getFile(iterator.next());
 			if(multipartFile.isEmpty() == false) {
 				originalFileName = multipartFile.getOriginalFilename(); // 파일의 원래 이름을 저장
 				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일명의 확장자명을 받아온다. 
