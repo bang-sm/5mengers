@@ -32,5 +32,12 @@
 	                 		  , #{map_y}  )
    
    </insert>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers.git
   </mapper>
+<<<<<<< HEAD
+=======
+  
+>>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers.git
