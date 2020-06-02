@@ -18,7 +18,7 @@
   		uuid
   		, '#{name}'
   		, '#{phonenum}'
-  		, #{(Integer)1}
+  		, 1
   		, '#{password}'
   		, '#{userid}'
   	

@@ -10,7 +10,7 @@ import kr.co.vo.UserVO;
 @Repository
 public class UserDAOImpl implements UserDAO {
 
-	private static final String NAMESPACE = "usermapper";
+	private static final String NAMESPACE = "userMapper";
 	
 	private final SqlSession sqlSession;
 	
