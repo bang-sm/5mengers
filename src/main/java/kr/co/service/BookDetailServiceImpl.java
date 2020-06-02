@@ -33,5 +33,31 @@ public class BookDetailServiceImpl implements BookDetailService{
 		
 	}
 
+	@Override
+	public BookDetailDTO cheking() throws Exception {
+		return dao.cheking();
+	}
+
+	@Override
+	public void check_off(int uuid) throws Exception {
+		 dao.check_off(uuid);
+		
+	}
+
+	@Override
+	public void check_on(int uuid, int bsr_id) throws Exception {
+		dao.check_on(uuid,bsr_id);
+	}
+
+	@Override
+	public int check_count(int bsr_id) throws Exception {
+		return dao.check_count(bsr_id);
+	}
+
+	@Override
+	public void book_check(int bsr_check,int bsr_id) throws Exception {
+		dao.book_check(bsr_check,bsr_id);
+	}
+
 
 }
