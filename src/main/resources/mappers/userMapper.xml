@@ -3,12 +3,8 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<<<<<<< HEAD
  <mapper namespace ="userMapper">
-=======
  <mapper namespace = "kr.co.dao.UserDAO">
->>>>>>> refs/remotes/origin/coding_source
- 
  <insert id="register" parameterType="kr.co.vo.UserVO">
   	INSERT INTO user (
   		UUID
@@ -27,10 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		, #{userid}
   	
   	)
-  	
   </insert>
-  
-<<<<<<< HEAD
   	<!-- 회원들의 구매개수 ,판매개수 -->
 	<select id="deal_list" resultType="kr.co.vo.UserVO">
 		SELECT
@@ -74,9 +67,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    AND 
 	    	u.uuid=2;
 	</select>
-=======
-  
-  
   <select id="login" resultType="kr.co.vo.UserVO">
   	
   	SELECT
@@ -84,11 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	FROM user
   	WHERE userid = #{userid}
   	
-  
   </select>
- 
->>>>>>> refs/remotes/origin/coding_source
- 
  </mapper>
  
  
