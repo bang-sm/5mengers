@@ -32,9 +32,4 @@
 	                 		  , #{map_y}  )
    
    </insert>
-<<<<<<< HEAD
-   </mapper>
-=======
-   
-  </mapper>
->>>>>>> refs/remotes/origin/coding_source
+</mapper>

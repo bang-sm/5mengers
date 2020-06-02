@@ -7,55 +7,74 @@
 <html lang="ko">
 <head>
 <title>마이페이지</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
-<style>
-
-</style>
 <body>
 	<%@ include file="../common/head.jsp"%>
+	<div id="container">
+		<div id="contents">
+			<div class="title_top">
+				<h2>
+					MY PAGE <span class="title_sub">내가올린 QnA</span>
+				</h2>
+			</div>
+			<div class="mypage_banner">
+				<div>
+					<a href="http://localhost:8080/my/boardList">구매요청 리스트</a>
+				</div>
+				<div>
+					<a href="http://localhost:8080/my/qnaList">나의QnA 리스트</a>
+				</div>
+				<div>
+					<a href="http://localhost:8080/my/sellbook">판매중인책</a>
+				</div>
+				<div>
+					<a href="http://localhost:8080/my/buybook">구매중인책</a>
+				</div>
+				<div>
+					<a href="http://localhost:8080/my/zzim">찜목록</a>
+				</div>
+				<div>
+					<a href="http://localhost:8080/my/buycomplete">구매내역리스트</a>
+				</div>
+				<div>
+					<a href="http://localhost:8080/my/manyask">자주묻는질문</a>
+				</div>
+			</div>
 
-	<div id="content">
-		<%@ include file="../common/sideMenu.jsp"%>	
-		<div id="request_box">
-			<table class="table table-hover table_css">
-				<caption>QnA 게시판</caption>
-				<colgroup>
-					<col />
-					<col />
-					<col />
-					<col />
-				</colgroup>
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>책 제목</th>
-						<th>등록 날짜</th>
-						<th>댓글여부</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>자바의 정석</td>
-						<td>2020-05-20</td>
-						<td>N</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>씨언어의 정석</td>
-						<td>2020-05-20</td>
-						<td>Y</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>긴 제목의 책~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
-						<td>2020-05-20</td>
-						<td>Y</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="boardList">
+				<table border="1" summary="">
+					<caption>나의 QnA</caption>
+					<thead class="">
+						<tr style="">
+							<th scope="col" style="width: 70px;">NO.</th>
+							<th scope="col" style="width: auto;">게시글제목</th>
+							<th scope="col" style="width: 84px;">원하는책</th>
+							<th scope="col" style="width: 80px;" class="">등록날짜</th>
+							<th scope="col" style="width: 55px;" class="">댓글유무</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="color: #555555;" >
+							<td>5</td>
+							<td class="subject">
+								<a href="#">책 등록할때 사진이 안올라가요</a> 
+							</td>
+							<td>원디자인</td>
+							<td class="txtLess ">2017-12-10</td>
+							<td class="txtLess ">Y</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
 		</div>
 	</div>
-
 </body>
 </html>

@@ -8,7 +8,21 @@ public class UserVO {
 	private Integer auth;
 	private String password;
 	private String userid;
+	private int sell_count;
+	private int buy_count;
 	
+	public int getSell_count() {
+		return sell_count;
+	}
+	public void setSell_count(int sell_count) {
+		this.sell_count = sell_count;
+	}
+	public int getBuy_count() {
+		return buy_count;
+	}
+	public void setBuy_count(int buy_count) {
+		this.buy_count = buy_count;
+	}
 	// getter & setter 
 	public int getUuid() {
 		return uuid;
