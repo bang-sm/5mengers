@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="kr.co.vo/book_sell_regist">
+  <mapper namespace="BookSellRegistDAO">
 
    <!-- 게시판 글 작성 -->
    <insert id="insert">
@@ -19,7 +19,7 @@
 	   						, map_x
 	   						, map_y  )
 	                 VALUES(    MP_BOARD_SEQ.NEXTVAL 
-	                 		  , #{uuid}
+	                 		  , uuid
 	                 		  , #{bsr_name}
 	                 		  , #{bsr_price}
 	                 		  , #{bsr_comment}

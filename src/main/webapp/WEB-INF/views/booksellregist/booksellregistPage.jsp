@@ -16,25 +16,22 @@
 		<hr />
 
 		<section id="container">
-			<form role="form" method="post" action="/board/write">
+			<form role="form" method="post" action="/booksellregist/booksellregistPage">
 				<table>
 					<tbody>
 						<tr>
 							<td><label for="title">책 이름</label>
-							<input type="text" id="title" name="title" /></td>
+							<input type="text" id="title" name="bsr_price" /></td>
 						</tr>
 						<tr>
 							<td><label for="content">소개글</label>
-							<textarea id="content" name="content"></textarea></td>
+							<textarea id="content" name="bsr_comment"></textarea></td>
 						</tr>
 						<tr>
 							<td><label for="price">정가</label>
-							<input type="text" id="writer" name="writer" /></td>
+							<input type="text" id="writer" name="bsr_price" /></td>
 						</tr>
-						<tr>
-							<td><label for="category">소개글</label>
-							<textarea id="content" name="content"></textarea></td>
-						</tr>
+						
 						<tr>
 							<td>
 								<button type="submit">작성</button>

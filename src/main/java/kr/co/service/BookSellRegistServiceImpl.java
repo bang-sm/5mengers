@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kr.co.dao.BookSellRegistDAO;
-import kr.co.vo.BookSellRegistVO;
+import kr.co.vo.BookSellRegistDTO;
 
 @Service
 public class BookSellRegistServiceImpl implements BookSellRegistService{
@@ -13,9 +13,11 @@ public class BookSellRegistServiceImpl implements BookSellRegistService{
 	@Inject
 	private BookSellRegistDAO bookSellRegistdao;
 	
-	//°Ô½Ã±Û ÀÛ¼º 
+	//ï¿½Ô½Ã±ï¿½ ï¿½Û¼ï¿½ 
 	@Override
-	public void write(BookSellRegistVO bookSellRegistVO) throws Exception{
+	public void write(BookSellRegistDTO bookSellRegistVO) throws Exception{
+		
+		
 		bookSellRegistdao.write(bookSellRegistVO);
 	}
 	

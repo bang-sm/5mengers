@@ -1,9 +1,10 @@
 package kr.co.dao;
 
-import kr.co.vo.BookSellRegistVO;
+import kr.co.vo.BookSellRegistDTO;
+
 
 public interface BookSellRegistDAO {
 	
-	public void write(BookSellRegistVO bookSellRegistVO) throws Exception;
+	public void write(BookSellRegistDTO bookSellRegistVO) throws Exception;
 
 }

@@ -8,10 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-<<<<<<< HEAD
 import kr.co.service.MyService;
-=======
->>>>>>> refs/remotes/origin/coding_source
 
 @Controller
 public class MyController {

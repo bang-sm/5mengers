@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import kr.co.vo.BookSellRegistVO;
+import kr.co.vo.BookSellRegistDTO;
 
 
 @Repository
@@ -14,9 +14,9 @@ public class BookSellRegistDAOImpl implements BookSellRegistDAO {
 	@Inject
 	private SqlSession sqlSession;
 
-		// °Ô½Ã±Û ÀÛ¼º
+		// ï¿½Ô½Ã±ï¿½ ï¿½Û¼ï¿½
 	@Override
-	public void write(BookSellRegistVO bookSellRegistVO) throws Exception {
+	public void write(BookSellRegistDTO bookSellRegistVO) throws Exception {
 		sqlSession.insert("book_sell_registMapper.insert", bookSellRegistVO);
 		
 	}

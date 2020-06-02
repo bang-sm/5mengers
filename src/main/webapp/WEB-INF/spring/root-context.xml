@@ -36,9 +36,17 @@
      <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
         <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
     </bean>
+    
+    <!-- MultipartResolver 설정 (img 업로드를 위한 bean by 정인주 -->
+		<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		  <property name="maxUploadSize" value="100000000" />
+		  <property name="maxInMemorySize" value="100000000" />
+		</bean>
 
     <context:component-scan base-package="kr.co.vo"></context:component-scan>
     <context:component-scan base-package="kr.co.dao"></context:component-scan>
     <context:component-scan base-package="kr.co.service"></context:component-scan>
+    <!-- kr.co.utill 패키지 스킨 가능하도록 추가함 by 정인주 -->
+    <context:component-scan base-package="kr.co.util"></context:component-scan>
 		
 </beans>

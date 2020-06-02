@@ -2,11 +2,11 @@ package kr.co.vo;
 
 import java.util.Date;
 
-public class BookSellRegistVO {
+public class BookSellRegistDTO {
 	
 	
 	
-	// Book_sell_registMapper의 데이터
+	// Book_sell_registMapper
 	private int bsr_id;
 	private int uuid;
 	private String bsr_name;
