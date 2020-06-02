@@ -8,13 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.service.BookDetailService;
 
 @Controller
 public class BookDetailController {
 
-	private static final Logger logger = LoggerFactory.getLogger(BookRequestController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BookDetailController.class);
 	
 	
 	@Inject
@@ -26,13 +27,36 @@ public class BookDetailController {
 	    logger.info("책 상세 페이지");
 		model.addAttribute("detail",service.detail());
 		model.addAttribute("zzim",service.like());
+		model.addAttribute("zzim_check",service.cheking());
 		return "bookdetail/detail";
 	}
+	@ResponseBody
+	@RequestMapping(value = "/zzimoff", method = RequestMethod.GET)
+	public void zzimout(int uuid) throws Exception {
+	    logger.info("책 관심목록 해제");
+        service.check_off(uuid);
+	}
 	
-	@RequestMapping(value = "/zzim_on", method = RequestMethod.GET)
-	public String zzim(Model model) throws Exception {
+	@ResponseBody
+	@RequestMapping(value = "/zzimon", method = RequestMethod.GET)
+	public void zzimon(int uuid,int bsr_id) throws Exception {
 	    logger.info("책 관심목록");
-		model.addAttribute("check_on",service.check_on());
-		return "bookdetail/detail";
+		service.check_on(uuid,bsr_id);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/zzimcount", method = RequestMethod.GET)
+	public int zzimcount(int bsr_id) throws Exception {
+	    logger.info("책 관심목록");
+		int count = service.check_count(bsr_id);
+		return count;
+				
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/book_check", method = RequestMethod.GET)
+	public void bookcheck(int bsr_check,int bsr_id) throws Exception {
+	    logger.info("예약중");
+		service.book_check(bsr_check,bsr_id);
 	}
 }

@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="kr.co.dao.BookSellRegistDAO">
+  <mapper namespace="BookSellRegistDAO">
 
    <!-- 게시판 글 작성 -->
-   <insert id="book_sell_registMapper" parameterType="kr.co.vo.BookSellRegistDTO" useGeneratedKeys="true">
+   <insert id="insert">
 	   INSERT INTO book_sell_regist( bsr_id <!-- 책 고유번호, 자동으로 부여됨 -->
 	   						, uuid	<!-- 유저 고유값, 회원을 구분하기 위해 지정 -->
 	   						, bsr_name <!-- 책 이름 -->
@@ -18,8 +18,8 @@
 	   						, bsr_confirm <!-- Y: 수락  N: 거절 Z: 대기  -->
 	   						, map_x
 	   						, map_y  )
-	                 VALUES(    bsr_id
-	                 		  , #{uuid}
+	                 VALUES(    MP_BOARD_SEQ.NEXTVAL 
+	                 		  , uuid
 	                 		  , #{bsr_name}
 	                 		  , #{bsr_price}
 	                 		  , #{bsr_comment}
@@ -32,4 +32,5 @@
 	                 		  , #{map_y}  )
    
    </insert>
-</mapper>
+   
+  </mapper>

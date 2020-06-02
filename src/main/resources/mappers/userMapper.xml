@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<<<<<<< HEAD
  <mapper namespace ="userMapper">
+=======
+ <mapper namespace = "kr.co.dao.UserDAO">
+>>>>>>> refs/remotes/origin/coding_source
  
- <insert id="register">
-  	INSERT INTO 'user' (
+ <insert id="register" parameterType="kr.co.vo.UserVO">
+  	INSERT INTO user (
   		UUID
   		, NAME
   		, PHONENUM
@@ -16,16 +20,17 @@
   	
   	) VALUES (
   		uuid
-  		, '#{name}'
-  		, '#{phonenum}'
-  		, 1
-  		, '#{password}'
-  		, '#{userid}'
+  		, #{name}
+  		, #{phonenum}
+  		, #{auth}
+  		, #{pass}
+  		, #{userid}
   	
   	)
   	
   </insert>
   
+<<<<<<< HEAD
   	<!-- 회원들의 구매개수 ,판매개수 -->
 	<select id="deal_list" resultType="kr.co.vo.UserVO">
 		SELECT
@@ -69,6 +74,20 @@
 	    AND 
 	    	u.uuid=2;
 	</select>
+=======
+  
+  
+  <select id="login" resultType="kr.co.vo.UserVO">
+  	
+  	SELECT
+  		*
+  	FROM user
+  	WHERE userid = #{userid}
+  	
+  
+  </select>
+ 
+>>>>>>> refs/remotes/origin/coding_source
  
  </mapper>
  
