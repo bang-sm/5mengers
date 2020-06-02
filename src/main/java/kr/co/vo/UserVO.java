@@ -2,20 +2,14 @@ package kr.co.vo;
 
 public class UserVO {
 
-	private int uuid;
 	private String name;
 	private String phonenum;
-	private Integer auth;
-	private String password;
+	private int auth;
+	private String pass;
 	private String userid;
 	
 	// getter & setter 
-	public int getUuid() {
-		return uuid;
-	}
-	public void setUuid(int uuid) {
-		this.uuid = uuid;
-	}
+	
 	public String getName() {
 		return name;
 	}
@@ -29,17 +23,18 @@ public class UserVO {
 		this.phonenum = phonenum;
 	}
 	
-	public Integer getAuth() {
+	public int getAuth() {
 		return auth;
 	}
-	public void setAuth(Integer auth) {
+	public void setAuth(int auth) {
 		this.auth = auth;
 	}
-	public String getPassword() {
-		return password;
+	
+	public String getPass() {
+		return pass;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	public String getUserid() {
 		return userid;

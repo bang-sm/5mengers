@@ -14,7 +14,7 @@
 				<input type="text" name="userid" class="form-control" placeholder="아이디">
 			</div>
 			<div class="form-group has feedback">
-				<input type="password" name="password" class="form-control" placeholder="비밀번호">
+				<input type="password" name="pass" class="form-control" placeholder="비밀번호">
 			</div>
 			
 			<div>
