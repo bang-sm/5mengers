@@ -23,18 +23,18 @@ public class BookDetailController {
 	
 	
 	@RequestMapping(value = "/bookdetail", method = RequestMethod.GET)
-	public String bookdetail(Model model) throws Exception {
+	public String bookdetail(Model model,int bsr_id,int uuid) throws Exception {
 	    logger.info("책 상세 페이지");
-		model.addAttribute("detail",service.detail());
-		model.addAttribute("zzim",service.like());
-		model.addAttribute("zzim_check",service.cheking());
+		model.addAttribute("detail",service.detail(bsr_id,uuid));
+		model.addAttribute("zzim",service.like(bsr_id));
+		model.addAttribute("zzim_check",service.cheking(bsr_id,uuid));
 		return "bookdetail/detail";
 	}
 	@ResponseBody
 	@RequestMapping(value = "/zzimoff", method = RequestMethod.GET)
-	public void zzimout(int uuid) throws Exception {
+	public void zzimout(int uuid,int bsr_id) throws Exception {
 	    logger.info("책 관심목록 해제");
-        service.check_off(uuid);
+        service.check_off(uuid,bsr_id);
 	}
 	
 	@ResponseBody

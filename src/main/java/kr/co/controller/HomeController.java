@@ -17,10 +17,12 @@ public class HomeController {
 		
 		@Autowired
 		private BookDetailService service;
+		
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public String home(Model model) throws Exception {
 			logger.info("home");
 			model.addAttribute("list",service.category());
+			model.addAttribute("booklist",service.mainBookList());
 			return "home";
 		}
 		

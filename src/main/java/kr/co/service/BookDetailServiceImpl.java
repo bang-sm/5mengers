@@ -17,15 +17,15 @@ public class BookDetailServiceImpl implements BookDetailService{
 	private BookDetailDAO dao;
 	
 	@Override
-	public BookDetailDTO detail() throws Exception {
+	public BookDetailDTO detail(int bsr_id,int uuid) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.detail();
+		return dao.detail(bsr_id,uuid);
 	}
 
 	@Override
-	public BookDetailDTO like() throws Exception {
+	public BookDetailDTO like(int bsr_id) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.like();
+		return dao.like(bsr_id);
 	}
 
 	@Override
@@ -35,13 +35,13 @@ public class BookDetailServiceImpl implements BookDetailService{
 	}
 
 	@Override
-	public BookDetailDTO cheking() throws Exception {
-		return dao.cheking();
+	public BookDetailDTO cheking(int bsr_id, int uuid) throws Exception {
+		return dao.cheking(bsr_id,uuid);
 	}
-
+	
 	@Override
-	public void check_off(int uuid) throws Exception {
-		 dao.check_off(uuid);
+	public void check_off(int uuid,int bsr_id) throws Exception {
+		 dao.check_off(uuid,bsr_id);
 		
 	}
 
@@ -65,6 +65,15 @@ public class BookDetailServiceImpl implements BookDetailService{
 		// TODO Auto-generated method stub
 		return dao.category();
 	}
+
+	@Override
+	public List<BookCategoryDTO> mainBookList() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.mainBookList();
+	}
+
+	
+
 
 
 }

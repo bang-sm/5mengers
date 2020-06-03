@@ -265,7 +265,7 @@ left:900px;
 						<span class="book_detail_title">판 매 자 :</span>${detail.name}
 					</div>
 					<div>
-						<span class="book_detail_title">장 르 :</span>${detail.bsr_category}
+						<span class="book_detail_title">장 르 :</span>${detail.bc_name}
 					</div>
 					<div>
 						<span class="book_detail_title">정 가 :</span>${detail.bsr_fixed_price}원
@@ -296,13 +296,13 @@ left:900px;
 					<span>관심목록에 추가 하시겠습니까?</span>
 					<c:choose>
 						<c:when
-							test="${zzim_check.uuid == detail.uuid and  zzim_check.bsr_id == detail.bsr_id}">
+							test="${zzim_check.uuid == uuid and  zzim_check.bsr_id == bsr_id}">
 							<img class="book_zzim_img" alt=""
-								src="/resources/site_img/heart_on.png">
+								src="/resources/site_img/heart_off.png">
 						</c:when>
 						<c:otherwise>
 							<img class="book_zzim_img" alt=""
-								src="/resources/site_img/heart_off.png">
+								src="/resources/site_img/heart_on.png">
 						</c:otherwise>
 					</c:choose>
 
@@ -351,10 +351,6 @@ left:900px;
 					   <c:when test="${detail.bsr_check ==1 }" >
 					   	<input class="btn info" style="width:100px;height:auto" type=button value="판매완료"/>
 					   </c:when>
-					  <!--   <c:when test="${detail.bsr_check ==0 and ${detail.uuid = uuid }" >
-					   	<input class="btn info" style="width:100px;height:auto" type=button value="예약취소"/>
-					   </c:when>
-					   -->
 					   <c:otherwise>
 					   <input class="btn danger" style="width:100px;height:auto" type=button value="예약 중"/>
 					   </c:otherwise>
@@ -384,21 +380,23 @@ left:900px;
                   url: "/zzimoff", //매핑
                   type: "GET",
                   data :  {
-                     "uuid" : ${detail.uuid} 
+                     "uuid" : <%= request.getParameter("uuid")%>,
+                     "bsr_id" : <%= request.getParameter("bsr_id")%>
+             
                   },
                   success : function(){
                 	  $.ajax({
                 		  url:"/zzimcount",
                 		  type:"GET",
-                		  data :{ 
-                			  "bsr_id" : ${detail.bsr_id}
+                		  data :{  
+                			  "bsr_id" : <%= request.getParameter("bsr_id")%>
                 		  },
                 		  success : function(data){
                 			  $('.zzim_count').text(""+data);
                 		  }
                 	  });
 
-                  },
+                  }, 
                   error : function(){
                   }
                });
@@ -409,15 +407,15 @@ left:900px;
                   url: "/zzimon", //매핑
                   type: "GET",
                   data :  {
-                	  "uuid" : ${detail.uuid},
-                	  "bsr_id" : ${detail.bsr_id},
+                	  "uuid" : <%= request.getParameter("uuid")%>,
+                      "bsr_id" : <%= request.getParameter("bsr_id")%>
                   },
                   success : function(){
                 	  $.ajax({
                 		  url:"/zzimcount",
                 		  type:"GET",
                 		  data :{ 
-                			  "bsr_id" : ${detail.bsr_id}
+                			  "bsr_id" : <%= request.getParameter("bsr_id")%>
                 		  },
                 		  success : function(data){
                 			  $('.zzim_count').text(""+data);

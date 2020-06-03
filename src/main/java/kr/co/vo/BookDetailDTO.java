@@ -6,7 +6,6 @@ public class BookDetailDTO {
 	int uuid;
 	String name;
 	String bsr_name;
-	
 	String bsr_price;
 	String bsr_comment;
 	Date bsr_regdate;
@@ -15,13 +14,19 @@ public class BookDetailDTO {
 	String bsr_fixed_price;
 	String bsr_confirm;
 	String phonenum;
+	String bc_name;
 	int zzim;
 	int auth;
-	
 	int bsr_id;
 	double map_x;
 	double map_y;
 	
+	public String getBc_name() {
+		return bc_name;
+	}
+	public void setBc_name(String bc_name) {
+		this.bc_name = bc_name;
+	}
 	public int getZzim() {
 		return zzim;
 	}
