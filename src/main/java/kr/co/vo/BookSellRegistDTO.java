@@ -13,7 +13,7 @@ public class BookSellRegistDTO {
 	private String bsr_price;
 	private String bsr_comment;
 	private Date bsr_regdate;
-	private String bsr_category;
+	private int bsr_category;
 	private int bsr_check;
 	private String bsr_fixed_price;
 	private String bsr_confirm;
@@ -60,10 +60,10 @@ public class BookSellRegistDTO {
 		this.bsr_regdate = bsr_regdate;
 	}
 	
-	public String getBsr_category() {
+	public int getBsr_category() {
 		return bsr_category;
 	}
-	public void setBsr_category(String bsr_category) {
+	public void setBsr_category(int bsr_category) {
 		this.bsr_category = bsr_category;
 	}
 	public int getBsr_check() {

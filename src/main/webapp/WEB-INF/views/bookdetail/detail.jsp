@@ -231,6 +231,47 @@ body {
 	top: 25px;
 	left: 900px;
 }
+.side_book_border{
+border:1px solid black;
+border-radius:5px;
+margin:50px 10px 50px 10px;
+position:relative;
+
+}
+.side_book{
+padding-top:20px;
+float:left;
+}
+
+.side_name{
+position:absolute;
+top:5px;
+left:5px;
+font-size:20px;
+font-weight:bold;
+padding:10px 10px 0 10px;
+}
+.side_price{
+position:absolute;
+top:70px;
+left:120px;
+float:left;
+ font-size: 10px;
+}
+.side_img{
+position:absolute;
+top:35px;
+left:5px;
+padding:10px;
+float:left;
+}
+.side_regdate{
+position:absolute;
+top:100px;
+left:120px;
+float:left;
+font-size: 10px;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript"
@@ -333,7 +374,18 @@ body {
 
 			<aside id="aside">
 				<!--같은 장르 추천 책-->
-				<div class="aside_book"></div>
+				<div class="aside_book">
+				<c:forEach var="side" items="${side_book}">
+					<div class="side_book_border"style="width:230px;height:150px;">
+					    <div class="side_name">${side.bsr_name}</div>
+						<div class="side_img">
+						  <img style="width:100px; height:100px;"alt="" src="http://blogfiles.naver.net/data13/2006/1/27/91/%B5%E5%B7%A1%B0%EF%BA%BCGT_01-dbgn6906.jpg">
+						</div>
+						  <div class="side_price">가격 : ${side.bsr_price}원</div>
+						  <div class="side_regdate">등록일 : ${side.bsr_regdate}</div>
+					</div>
+				</c:forEach>
+				</div>
 			</aside>
 
 		</article>

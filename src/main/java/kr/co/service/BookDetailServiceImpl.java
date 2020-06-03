@@ -72,6 +72,14 @@ public class BookDetailServiceImpl implements BookDetailService{
 		return dao.mainBookList();
 	}
 
+	//책 같은 장르 구현
+	@Override
+	public List<BookDetailDTO> sidebook(int bsr_category,int bsr_id) throws Exception {
+		return dao.sidebook(bsr_category,bsr_id);
+	}
+
+	
+
 	
 
 

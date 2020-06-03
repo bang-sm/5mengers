@@ -23,6 +23,9 @@ public interface BookDetailService {
 	
 	public void book_check(int bsr_check,int bsr_id) throws Exception;
 	
+	//책 같은 장르 구현
+	public List<BookDetailDTO> sidebook(int bsr_category,int bsr_id) throws Exception;
+	
 	
 	//책 카테고리 리스트
 	public List<BookCategoryDTO> category() throws Exception;

@@ -25,13 +25,14 @@ public class BookDetailController {
 	private BookDetailService service;
 	
 	@RequestMapping(value = "/bookdetail", method = RequestMethod.GET)
-	public String bookdetail(Model model,int bsr_id,int uuid,HttpSession ss,UserVO uv) throws Exception {
+	public String bookdetail(Model model,int bsr_id,int uuid,int bsr_category,HttpSession ss,UserVO uv) throws Exception {
 	    logger.info("책 상세 페이지");
 	    uv = (UserVO) ss.getAttribute("login");
 	    
 	   
    		model.addAttribute("detail",service.detail(bsr_id,uuid));
    		model.addAttribute("zzim",service.like(bsr_id));
+   		model.addAttribute("side_book",service.sidebook(bsr_category,bsr_id));
 	    
    		if(uv !=null) {
    			int getuuid = uv.getUuid();  //접속한 사용자 uuid 값
