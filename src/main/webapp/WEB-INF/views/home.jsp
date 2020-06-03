@@ -5,14 +5,24 @@
 
 <html>
 <body>
-	<%@ include file="common/head.jsp" %>
+	<%@ include file="common/head.jsp"%>
 
-	<div id="content">
-	
-	</div>
-	
-	<div id="footer">
-	
+	<div id="cate_box">
+		<div id="cateline"
+			style="position: relative; width: 1200px; margin-left: auto; margin-right: auto; top: 0px; z-index: 1000; left: 0px; background: rgb(255, 255, 255);">
+			<div class="box_1200">
+				<div id="category"
+					class="xans-element- xans-layout xans-layout-category">
+					<div class="position">
+						<ul>
+							<c:forEach var="list" items="${list}">
+								<li class="xans-record-"><a href="" class='${list.bc_code}' >${list.bc_name}</a></li>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kr.co.dao.BookDetailDAO;
+import kr.co.vo.BookCategoryDTO;
 import kr.co.vo.BookDetailDTO;
 
 @Service
@@ -57,6 +58,12 @@ public class BookDetailServiceImpl implements BookDetailService{
 	@Override
 	public void book_check(int bsr_check,int bsr_id) throws Exception {
 		dao.book_check(bsr_check,bsr_id);
+	}
+
+	@Override
+	public List<BookCategoryDTO> category() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.category();
 	}
 
 

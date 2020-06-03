@@ -20,7 +20,7 @@
 		<div id="contents">
 			<div class="title_top">
 				<h2>
-					MY PAGE <span class="title_sub">내가 올린 구매요청 리스트</span>
+					MY PAGE <span class="title_sub"> 회원님의 개인페이지입니다.</span>
 				</h2>
 			</div>
 			<div class="mypage_banner">
@@ -46,34 +46,32 @@
 					<a href="http://localhost:8080/my/manyask">자주묻는질문</a>
 				</div>
 			</div>
-
-			<div class="boardList">
-				<table border="1" summary="">
-					<caption>구매요청 리스트</caption>
-					<thead class="">
-						<tr style="">
-							<th scope="col" style="width: 70px;">NO.</th>
-							<th scope="col" style="width: auto;">게시글제목</th>
-							<th scope="col" style="width: 84px;">원하는책</th>
-							<th scope="col" style="width: 80px;" class="">등록날짜</th>
-							<th scope="col" style="width: 55px;" class="">댓글유무</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr style="color: #555555;" >
-							<td>5</td>
-							<td class="subject">
-								<a href="#">자바의 정석책 구해요~~</a> 
-							</td>
-							<td>원디자인</td>
-							<td class="txtLess ">2017-12-10</td>
-							<td class="txtLess ">Y</td>
-						</tr>
-					</tbody>
-				</table>
+			<!-- .mypage_banner -->
+			<div class="xans-element- xans-myshop xans-myshop-bankbook">
+				<ul>
+					<li class="first">
+						<strong class="title">판매중인 책</strong> 
+						<strong class="data use">
+							<c:out value="${sellingbook}"/>개
+						</strong> 
+						<a href="#">조회</a>
+					</li>
+					<li class="">
+						<strong class="title">구매중인 책</strong>
+					 	<strong class="data">
+					 		<c:out value="${buyingbook}"/>개
+					 	</strong>
+					 	<a href="#">조회</a>
+				 	</li>
+					<li class="">
+						<strong class="title">찜 중인 책</strong>
+					 	<strong class="data">
+					 		<c:out value="${zzim}"/>개
+					 	</strong>
+					 	<a href="#">조회</a>
+				 	</li>
+				</ul>
 			</div>
-
-
 		</div>
 	</div>
 </body>
