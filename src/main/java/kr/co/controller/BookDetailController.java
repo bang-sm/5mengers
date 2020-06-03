@@ -1,16 +1,26 @@
 package kr.co.controller;
 
 import javax.inject.Inject;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.Session;
+import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import kr.co.service.BookDetailService;
+import kr.co.vo.UserVO;
+
 
 @Controller
 public class BookDetailController {
@@ -21,13 +31,15 @@ public class BookDetailController {
 	@Inject
 	private BookDetailService service;
 	
-	
 	@RequestMapping(value = "/bookdetail", method = RequestMethod.GET)
-	public String bookdetail(Model model,int bsr_id,int uuid) throws Exception {
+	public String bookdetail(Model model,int bsr_id,int uuid,HttpSession ss,UserVO uv) throws Exception {
 	    logger.info("책 상세 페이지");
+	    uv = (UserVO) ss.getAttribute("login");
+	    int getuuid = uv.getUuid();  //접속한 사용자 uuid 값
+	    logger.info("현재 접속한 사용자의 uuid : "+uv.getUuid());
 		model.addAttribute("detail",service.detail(bsr_id,uuid));
 		model.addAttribute("zzim",service.like(bsr_id));
-		model.addAttribute("zzim_check",service.cheking(bsr_id,uuid));
+		model.addAttribute("zzim_check",service.cheking(bsr_id,getuuid));
 		return "bookdetail/detail";
 	}
 	@ResponseBody
