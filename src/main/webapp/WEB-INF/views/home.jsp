@@ -37,10 +37,10 @@
 					<c:forEach var="booklist" items="${booklist}">
 						<li id="" class="item xans-record-">
 							<div class="box" class="${booklist.bsr_category}">
-								<a href="${contextPath}/bookdetail?bsr_id=${booklist.bsr_id}&uuid=${booklist.uuid}">
+								<a href="${contextPath}/bookdetail?bsr_id=${booklist.bsr_id}&uuid=${booklist.uuid}&bsr_category=${booklist.bsr_category}">
 									<img src="https://placeimg.com/270/250/any/grayscale" />
 								</a> 
-								<a href="${contextPath}/bookdetail?bsr_id=${booklist.bsr_id}&uuid=${booklist.uuid}">
+								<a href="${contextPath}/bookdetail?bsr_id=${booklist.bsr_id}&uuid=${booklist.uuid}&bsr_category=${booklist.bsr_category}">
 									<span style="font-size: 12px; color: #000000;">
 										<c:out value="${booklist.bsr_name }"/>
 									</span>

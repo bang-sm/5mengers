@@ -82,6 +82,18 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 	public List<BookCategoryDTO> mainBookList() throws Exception {
 		return sqlSession.selectList("BookDetailMapper.main_book_list");
 	}
+	//책 같은 장르 구현
+	@Override
+	public List<BookDetailDTO> sidebook(int bsr_category,int bsr_id) throws Exception {
+		HashMap<String, Integer> sbmap=new HashMap<String, Integer>();
+		sbmap.put("bsr_category", bsr_category);
+		sbmap.put("bsr_id", bsr_id);
+		
+		return sqlSession.selectList("BookDetailMapper.side_same_category",sbmap);
+	}
+
+
+	
 
 	
 

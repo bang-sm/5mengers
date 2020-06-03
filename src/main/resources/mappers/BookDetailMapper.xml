@@ -83,10 +83,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          bsr_id,
          uuid,
          bsr_price,
-         bsr_name
+         bsr_name,
+         bsr_category
       FROM
          book_sell_regist 
       ORDER BY
          bsr_regdate desc;
+   </select>
+   
+   <!-- 같은 연관 장르 목록 -->
+   <select id="side_same_category" parameterType="map" resultType="kr.co.vo.BookDetailDTO">
+   SELECT 
+   		* 
+   FROM 
+   		book_sell_regist_user 
+   WHERE 
+    	bsr_category =#{bsr_category} and bsr_id != #{bsr_id}
+   ORDER BY  
+    	bsr_regdate 
+   DESC  
+   LIMIT 0,10;
    </select>
 </mapper>
