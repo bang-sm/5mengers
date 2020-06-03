@@ -1,5 +1,9 @@
 package kr.co.dao;
 
-public interface AdminDAO {
+import kr.co.vo.PopupDTO;
 
+public interface AdminDAO {
+	
+	//팝업등록
+	public void registPopup(PopupDTO popupDTO);
 }

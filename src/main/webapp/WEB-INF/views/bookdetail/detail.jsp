@@ -313,9 +313,11 @@ body {
 				<div class="book_zzim">
 					<!-- 찜등록  -->
 					<span>관심목록에 추가 하시겠습니까?</span>
+					<c:set value='<%= request.getParameter("bsr_id") %>' var="bsr_id"/>
 					<c:choose>
-						<c:when
+					<c:when
 							test="${zzim_check.uuid == login.uuid and  zzim_check.bsr_id == bsr_id}">
+							${bsr_id }
 							<img class="book_zzim_img" alt=""
 								src="/resources/site_img/heart_on.png">
 						</c:when>
@@ -324,7 +326,8 @@ body {
 								src="/resources/site_img/heart_off.png">
 						</c:otherwise>
 					</c:choose>
-
+					
+						
 				</div>
 			</div>
 

@@ -21,34 +21,37 @@
 	<div id="container">
 		<div id="contents">
 			<div class="boardView ">
-				<table border="1" summary="">
-					<tbody>
-						<tr>
-							<th scope="row">제목</th>
-							<td>
-								<input type="text"/>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">팝업페이지</th>
-							<td>
-								<select name="language" >
-									<option value="/">=== 페이지선택 ===</option>
-									<option value="/home">메인페이지</option>
-									<option value="/my/index">마이페이지</option>
-									<option value="/bookDetail">책 상세페이지</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">팝업내용</th>
-							<td>
-								<textarea cols="40" rows="10" style="resize: none;width:500px;height: 300px">.
-								</textarea>
-							</td> 
-						</tr>
-					</tbody>
-				</table>
+				<form role="fmt" method="post" action="${contextPath}/admin/popupSubmit">
+					<table border="1" summary="">
+						<tbody>
+							<tr>
+								<th scope="row">제목</th>
+								<td><input type="text" name="np_title"/></td>
+							</tr>
+							<tr>
+								<th scope="row">팝업페이지</th>
+								<td>
+									<select name="np_page_name">
+											<option value="/">=== 페이지선택 ===</option>
+											<option value="/home">메인페이지</option>
+											<option value="/my/index">마이페이지</option>
+											<option value="/bookDetail">책 상세페이지</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">팝업내용</th>
+								<td><textarea cols="40" rows="10" style="resize: none; width: 500px; height: 300px" name="np_comment"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="submit" value="작성"/>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
 			</div>
 		</div>
 	</div>
