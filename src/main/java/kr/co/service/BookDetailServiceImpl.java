@@ -66,5 +66,11 @@ public class BookDetailServiceImpl implements BookDetailService{
 		return dao.category();
 	}
 
+	@Override
+	public List<BookCategoryDTO> mainBookList() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.mainBookList();
+	}
+
 
 }

@@ -6,7 +6,6 @@ public class BookDetailDTO {
 	int uuid;
 	String name;
 	String bsr_name;
-	
 	String bsr_price;
 	String bsr_comment;
 	Date bsr_regdate;
@@ -17,7 +16,6 @@ public class BookDetailDTO {
 	String phonenum;
 	int zzim;
 	int auth;
-	
 	int bsr_id;
 	double map_x;
 	double map_y;

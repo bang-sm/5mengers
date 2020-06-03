@@ -25,4 +25,6 @@ public interface BookDetailService {
 	
 	//책 카테고리 리스트
 	public List<BookCategoryDTO> category() throws Exception;
+	//메인책리스트
+	public List<BookCategoryDTO> mainBookList() throws Exception;
 }

@@ -20,25 +20,25 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 	public BookDetailDTO detail() throws Exception{
 		// TODO Auto-generated method stub
 		System.out.println("확인");
-		return sqlSession.selectOne("book_detail");
+		return sqlSession.selectOne("BookDetailMapper.book_detail");
 	}
 	@Override
 	public BookDetailDTO like() throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("zzim");
+		return sqlSession.selectOne("BookDetailMapper.zzim");
 	}
 	@Override
 	public BookDetailDTO check_on() throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("check_on");
+		return sqlSession.selectOne("BookDetailMapper.check_on");
 	}
 	@Override
 	public BookDetailDTO cheking() throws Exception {
-		return sqlSession.selectOne("zzim_check");
+		return sqlSession.selectOne("BookDetailMapper.zzim_check");
 	}
 	@Override
 	public void check_off(int uuid) throws Exception {
-		sqlSession.selectOne("check_off",uuid);
+		sqlSession.selectOne("BookDetailMapper.check_off",uuid);
 		
 	}
 	@Override
@@ -47,7 +47,7 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 		hmap.put("uuid",uuid);
 		hmap.put("bsr_id",bsr_id);
 		
-		sqlSession.selectList("check_on", hmap);
+		sqlSession.selectList("BookDetailMapper.check_on", hmap);
 	}
 	@Override
 	public int check_count(int bsr_id) throws Exception {
@@ -58,14 +58,20 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 		HashMap<String, Integer> cmap=new HashMap<String, Integer>();
 		cmap.put("bsr_check",bsr_check);
 		cmap.put("bsr_id",bsr_id);
-		sqlSession.update("book_check",cmap);
+		sqlSession.update("BookDetailMapper.book_check",cmap);
 	}
 	
 	//책 카테고리 리스트
 	@Override
 	public List<BookCategoryDTO> category() throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("bc");
+		return sqlSession.selectList("BookDetailMapper.bc");
+	}
+	//메인책리스트
+	@Override
+	public List<BookCategoryDTO> mainBookList() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("BookDetailMapper.main_book_list");
 	}
 
 }
