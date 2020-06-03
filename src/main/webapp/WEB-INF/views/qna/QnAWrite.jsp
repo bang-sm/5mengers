@@ -4,7 +4,8 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Q&A 작성페이지</title>
+<title>QnA 작성페이지</title>
+<script src="/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 <div>작성자 :&nbsp;<input type="text" disabled="disabled"/></div>
@@ -12,8 +13,11 @@
 
 <br>
 <div>문의내용<br>
-<input class="context" type="text"/>
+<textarea id="ckeditor1"></textarea>
+<script>
+	CKEDITOR.replace('ckeditor1', {allowedContent: true});
+</script>
 </div>
-<div>Q&A 등록</div><div>목록으로</div><%-- 목록으로 클릭시 confirm --%>
+<div>QnA 등록</div><div>목록으로</div><%-- 목록으로 클릭시 confirm --%>
 </body>
 </html>

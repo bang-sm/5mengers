@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>구매 요청 게시판</title>
 </head>
+<script src="/resources/js/bookrequest.js" type="text/javascript">
+</script>
 <body>
 <div class="toptitle">구매요청 TOP 3
 	<table>

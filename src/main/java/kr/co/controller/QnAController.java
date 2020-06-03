@@ -12,23 +12,23 @@ public class QnAController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(QnAController.class);
 	
-		@RequestMapping(value = "/qna", method = RequestMethod.GET)
+		@RequestMapping(value = "/qnaView", method = RequestMethod.GET)
 		public String qna() throws Exception {
 			logger.info("QnA");
 			
-			return "/qna/qna";
+			return "/qna/QnA";
 		}
 		@RequestMapping("/qnaDetail")
 		public String qnaD() throws Exception {
-			logger.info("QnA 惑技其捞瘤");
+			logger.info("QnA 靸侅劯韼橃澊歆�");
 			
-			return "/qna/Detail";
+			return "/qna/QnADetail";
 		}
 		@RequestMapping(value = "/qnaWrite", method = RequestMethod.GET)
 		public String qnaW() throws Exception {
 			
-			logger.info("QnA 累己其捞瘤");
+			logger.info("QnA 鞛戩劚韼橃澊歆�");
 			
-			return "/qna/Write";
+			return "/qna/QnAWrite";
 		}
 }
