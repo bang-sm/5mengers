@@ -317,7 +317,6 @@ body {
 					<c:choose>
 					<c:when
 							test="${zzim_check.uuid == login.uuid and  zzim_check.bsr_id == bsr_id}">
-							${bsr_id }
 							<img class="book_zzim_img" alt=""
 								src="/resources/site_img/heart_on.png">
 						</c:when>
@@ -395,66 +394,89 @@ body {
 	<footer> </footer>
 
 </body>
-<script>
-         $('.book_zzim_img').click(function(){
-            var allowsrc = $(this).attr('src');
-            
-            if(allowsrc.match('on')){
-               //찜이 이미 눌러져있다  -> 찜 해제
-               $.ajax({
-                  url: "/zzimoff", //매핑
-                  type: "GET",
-                  data :  {
-                     "uuid" : ${login.uuid},
-                     "bsr_id" : <%=request.getParameter("bsr_id")%>
-             
-                  },
-                  success : function(){
-                	  $.ajax({
-                		  url:"/zzimcount",
-                		  type:"GET",
-                		  data :{  
-                			  "bsr_id" : <%=request.getParameter("bsr_id")%>
-                		  },
-                		  success : function(data){
-                			  $('.zzim_count').text(""+data);
-                		  }
-                	  });
+<c:choose>
+	<c:when  test = "${empty login}">
+	 <script>
+	 $('.book_zzim_img').click(function(){
+		 alert("로그인 하세요");
+		  location.href="http://localhost:8080/user/login";
+	 })
+	  $('.info').click(function(){
+		 alert("로그인 하세요");
+		  location.href="http://localhost:8080/user/login";
+	 })
+	 
+	</script>
+	</c:when>
+	<c:otherwise>
+	<script>
+		$('.book_zzim_img').click(function(){
+	        var allowsrc = $(this).attr('src');
+	        if(allowsrc.match('on')){
+	           //찜이 이미 눌러져있다  -> 찜 해제
+	                     
 
-                  }, 
-                  error : function(){
-                  }
-               });
-            $('.book_zzim_img').attr("src","/resources/site_img/heart_off.png");
-            }else{
-               //찜이 안눌러 져있다  ->찜 등록
-               $.ajax({
-                  url: "/zzimon", //매핑
-                  type: "GET",
-                  data :  {
-                	  "uuid" : ${login.uuid},
-                      "bsr_id" : <%=request.getParameter("bsr_id")%>
-                  },
-                  success : function(){
-                	  $.ajax({
-                		  url:"/zzimcount",
-                		  type:"GET",
-                		  data :{ 
-                			  "bsr_id" : <%=request.getParameter("bsr_id")%>
-                		  },
-                		  success : function(data){
-                			  $('.zzim_count').text(""+data);
-                		  }
-                	  });
-                  },
-                  error : function(){
-                  }
-               });
-               $('.book_zzim_img').attr("src","/resources/site_img/heart_on.png");
-            }
-         });
-        
+	           $.ajax({
+	              url: "/zzimoff", //매핑
+	              type: "GET",
+	              data :  {
+	                 "uuid" : ${login.uuid}, 
+	                 "bsr_id" : <%=request.getParameter("bsr_id")%>
+	         
+	              },
+	              success : function(){
+	            	  $.ajax({
+	            		  url:"/zzimcount",
+	            		  type:"GET",
+	            		  data :{  
+	            			  "bsr_id" : <%=request.getParameter("bsr_id")%>
+	            		  },
+	            		  success : function(data){
+	            			  $('.zzim_count').text(""+data);
+	            		  }
+	            	  });
+
+	              }, 
+	              error : function(){
+	              }
+	           });
+	        $('.book_zzim_img').attr("src","/resources/site_img/heart_off.png");
+	        }else{
+	           //찜이 안눌러 져있다  ->찜 등록
+	           $.ajax({
+	              url: "/zzimon", //매핑
+	              type: "GET",
+	              data :  {
+	            	  "uuid" : ${login.uuid},
+	                  "bsr_id" : <%=request.getParameter("bsr_id")%>
+	              },
+	              success : function(){
+	            	  $.ajax({
+	            		  url:"/zzimcount",
+	            		  type:"GET",
+	            		  data :{ 
+	            			  "bsr_id" : <%=request.getParameter("bsr_id")%>
+	            		  },
+	            		  success : function(data){
+	            			  $('.zzim_count').text(""+data);
+	            		  }
+	            	  });
+	              },
+	              error : function(){
+	            	  alert("로그인해라");
+	              }
+	           });
+	           $('.book_zzim_img').attr("src","/resources/site_img/heart_on.png");
+	        }
+	     });
+
          </script>
+	</c:otherwise>
+</c:choose>
+	
+
+
+
 <script>
 			  $('.info').click(function(){
 				  $('.book_popup').show();
