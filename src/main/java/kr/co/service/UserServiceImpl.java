@@ -1,5 +1,7 @@
 package kr.co.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -28,6 +30,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserVO login(LoginDTO loginDTO) throws Exception {
 		return userDAO.login(loginDTO);
+	}
+	
+	//유저 판매.구매 카운트
+	@Override
+	public List<UserVO> userbuysell() throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.userbuysell();
 	}
 
 }

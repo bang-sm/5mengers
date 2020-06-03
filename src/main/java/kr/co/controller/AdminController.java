@@ -4,22 +4,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.co.service.AdminService;
+import kr.co.service.UserService;
 
 @Controller
 public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-	
+
 	@Autowired
-	private AdminService adminService;
-	
+	private UserService userService;
+
 	@RequestMapping(value ="/admin/userlist", method = RequestMethod.GET)
-	public String test() throws Exception {
+	public String userBuySell(Model model) throws Exception {
 		logger.info("/admin/userlist");
-		
+		model.addAttribute("userbuysell",userService.userbuysell());
 		return "admin/userlist";
 	}
 }

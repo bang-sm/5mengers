@@ -1,5 +1,7 @@
 package kr.co.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -33,6 +35,12 @@ public class UserDAOImpl implements UserDAO {
 	public UserVO login(LoginDTO loginDTO) throws Exception {
 		
 		return sqlSession.selectOne("login", loginDTO);
+	}
+	//회원 전체 구매내역 판매내역 받아오는처리
+	@Override
+	public List<UserVO> userbuysell() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("userMapper.deal_list");
 	}
 
 }

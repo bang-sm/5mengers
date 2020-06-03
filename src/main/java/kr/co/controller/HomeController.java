@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.co.service.BookDetailService;
 
 @Controller
-@RequestMapping("/")
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
