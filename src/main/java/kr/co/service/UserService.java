@@ -1,5 +1,7 @@
 package kr.co.service;
 
+import java.util.List;
+
 import kr.co.vo.LoginDTO;
 import kr.co.vo.UserVO;
 
@@ -10,5 +12,8 @@ public interface UserService {
 	
 	// 로그인 처리 
 	UserVO login(LoginDTO loginDTO) throws Exception;	
+	
+	//회원 전체 구매내역 판매내역 받아오는처리
+	public List<UserVO> userbuysell() throws Exception;
 	
 }
