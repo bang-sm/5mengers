@@ -36,14 +36,6 @@
 							<input type="text" id="writer" name="bsr_price" /></td>
 						</tr>
 						<tr>
-							<td><label for="bsr_id">유저 고유값</label>
-							<input type="text" id="writer" name="bsr_id" /></td>
-						</tr>
-						<tr>
-							<td><label for="bsr_regdate">현재시간</label>
-							<input type="text" id="writer" name="bsr_regdate" /></td>
-						</tr>
-						<tr>
 							<td><label for="bsr_category">카테고리</label> <!-- select 형태로 바꿀것 -->
 							<input type="text" id="writer" name="bsr_category" /></td>
 						</tr>
