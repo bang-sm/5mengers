@@ -30,6 +30,7 @@ ol, ul {
 
 a {
 	text-decoration: none;
+	font-family:NanumBarunGothic; 
 }
 
 blockquote, q {
@@ -95,89 +96,141 @@ table {
 	font-family: 'NanumBarunGothic', sans-serif;
 }
 
-/** 공통 헤드 CSS **/
-#head {
-	overflow:hidden;
-	height: 230px;
-	background: #ff8a3d;
+/********************************** 공통 헤드 CSS **************************************/
+#header_top {
+	width: 100%;
+    position: relative;
+    margin: 0 auto;
+    z-index: 999;
+}
+#haed{
+	width: 100%;
+    position: relative;
+    margin: 0 auto;
+}
+#topbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    clear: both;
+    width: 100%;
+    min-width: 1200px;
+    height: 35px;
+    text-transform: uppercase;
+    background: #000;
+}
+.box_1200{
+	position: relative;
+    clear: both;
+    width: 1200px;
+    margin: 0 auto;
 }
 
-#top_main{
-	width:1000px;
-	margin:0 auto;
-	height: 160px;
-	background: #ff8a3d;
-}
-#top_nav li{
-	float: right;
-}
-
-#haed_nav {
-	width: 1200px;
-	margin: 0 auto;
-	font-family: NanumBarunGothic;
-	font-weight: 400;
-}
-
-#my_info {
-	float: right;
-}
-
-.my_nav_left li {
-	float: left;
-	padding: 0 6px 0 8px;
-	color: #fff;
-	line-height: 70px;
-}
-
-.my_nav_right li {
-	display: inline-block;
-	padding: 0 6px 0 8px;
-	color: #fff;
-	line-height: 70px;
-	float: left;
-}
-
-.book_serach {
-	height: 30px;
-}
-
-#my_info ul li dl.dropdown_menu {
-	background:#1e2329;
-	display: none;
+.topbar_left{
 	position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+.topbar_right{
+	position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 2;
 }
 
-#my_info ul li dl.dropdown_menu dd {
-	height: 50px;
-	width:200px;
-	line-height: 50px;
+#topbar .topbar_left li {
+    float: left;
+    text-align: left;
 }
 
-#my_info ul li dl.dropdown_menu a {
-	color: #fff;
-	padding:15px;
-	text-decoration: none;
+#topbar li {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
 }
 
-#my_info ul li dl.dropdown_menu dd:hover {
-	background: #0074ac;
+#topbar a {
+    display: block;
+    line-height: 35px;
+    font-family: 'Lato',sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #ddd;
 }
 
-#my_info ul .dropdown_li:hover .dropdown_menu {
-	display: block;
+#logo {
+    position: relative;
+    clear: both;
+    width: 100%;
+    text-align: center;
+    padding: 75px 0 40px;
+    margin: 0 auto;
 }
 
-/** 공통 사이드메뉴 CSS **/
+#cate_box {
+    clear: both;
+    width: 100%;
+    min-width: 1200px;
+    height: 62px;
+}
+
+.position > ul > li {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    font-family: 'Lato',sans-serif,'Nanum Gothic';
+    font-weight: normal;
+    font-size: 13px;
+    letter-spacing: 1px;
+    height: 60px;
+    padding: 0px 20px;
+}
+
+.position > ul > li a:hover{
+	border-bottom:2px solid #000;	
+}
+
+#cateline {
+    clear: both;
+    width: 1200px;
+    margin: 0 auto;
+    border-top: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+}
+#cateline .box_1200 {
+    position: relative;
+    text-align: center;
+}
+
+.position > ul > li a {
+    display: block;
+    line-height: 59px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************** 공통 사이드메뉴 CSS **************************************/
 .menu_left {
-	float: left;
-	width: 230px;
-	position: absolute;
-	left: 0;
-	top: 230px;
-	bottom: 0;
-	border-right: 2px solid #e5e5e5;
-	background: #1e2329;
+	position:absolute;
+    width: 200px;
+    background: #1e2329;
+    margin: 20px;
+    z-index:1;
 }
 
 .menu_left ul li {
@@ -194,7 +247,7 @@ table {
 
 .menu_left ul li a {
 	font-family: NanumBarunGothic;
-	font-weight: 700px;
+	font-weight: 700;
 	color: #fff;
 	text-decoration: none;
 }

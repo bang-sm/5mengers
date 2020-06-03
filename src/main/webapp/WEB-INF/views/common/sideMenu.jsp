@@ -38,12 +38,13 @@ $(document).ready(function(){
 <body>
 	<div class="menu_left">
 		<ul>
-			<li class="requestboard"><a href="http://localhost:8080/my/boardList">거래요청게시판</a></li>
-			<li class="qnaboard"><a href="http://localhost:8080/my/qnaList">QnA게시판</a></li>
-			<li class="bookstatus"><a href="http://localhost:8080/my/bookStatus">책관리게시판</a></li>
-			<li class="userinfochange"><a href="http://localhost:8080/my/userInfo">회원정보변경</a></li>
+			<li class="requestboard"><a href="http://localhost:8080/my/boardList">나의게시판</a></li>
+			<li class="bookstatus"><a href="http://localhost:8080/my/bookStatus">판매중인 책</a></li>
+			<li class="bookstatus"><a href="http://localhost:8080/my/bookStatus">구매중인 책</a></li>
+			<li class="bookstatus"><a href="http://localhost:8080/my/bookStatus">찜목록 책</a></li>
 			<li class="buylist"><a href="http://localhost:8080/my/completBook">구매내역리스트</a></li>
 			<li class="manyask"><a href="http://localhost:8080/my/userAsk">자주묻는질문</a></li>
+			<li class="userinfochange"><a href="http://localhost:8080/my/userInfo">회원정보변경</a></li>
 		</ul>
 	</div>
 </body>

@@ -23,6 +23,7 @@
 			<param-value>
 				/WEB-INF/spring/appServlet/servlet-context.xml
 				/WEB-INF/spring/spring-security.xml
+				/WEB-INF/spring/context-common.xml <!-- by 정인주 -->
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
@@ -53,5 +54,12 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- 한글 인코딩 End -->
+	
+	
+	<!-- 에러페이지 커스텀 -->
+	<error-page>
+    	<error-code>404</error-code>
+    	<location>/WEB-INF/views/common/error404.jsp</location>
+	</error-page>
 
 </web-app>

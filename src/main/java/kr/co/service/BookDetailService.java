@@ -2,6 +2,7 @@ package kr.co.service;
 
 import java.util.List;
 
+import kr.co.vo.BookCategoryDTO;
 import kr.co.vo.BookDetailDTO;
 
 public interface BookDetailService {
@@ -21,4 +22,7 @@ public interface BookDetailService {
 	public int check_count(int bsr_id) throws Exception;
 	
 	public void book_check(int bsr_check,int bsr_id) throws Exception;
+	
+	//책 카테고리 리스트
+	public List<BookCategoryDTO> category() throws Exception;
 }

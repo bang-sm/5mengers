@@ -3,8 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
- <mapper namespace = "kr.co.dao.UserDAO">
- 
+ <mapper namespace ="userMapper">
  <insert id="register" parameterType="kr.co.vo.UserVO">
   	INSERT INTO user (
   		UUID
@@ -23,25 +22,58 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		, #{userid}
   	
   	)
-  	
   </insert>
-  
-  
-  
-  <select id="login" resultType="kr.co.vo.UserVO">
-  	
-  	SELECT
-  		*
-  	FROM user
-  	WHERE userid = #{userid}
-  	
-  
-  </select>
- 
- 
+  	<!-- 회원들의 구매개수 ,판매개수 -->
+	<select id="deal_list" resultType="kr.co.vo.UserVO">
+		SELECT
+		   (SELECT COUNT(*) FROM my_buy_book MBB WHERE MBB.UUID = u.UUID AND MBB.BSR_CONFIRM = 'Y') AS buy_count,
+		   (SELECT COUNT(*) FROM book_sell_regist BSR WHERE BSR.UUID =u.UUID AND BSR.BSR_CONFIRM = 'Y') AS sell_count,
+		   u.name,
+		   u.userid 
+		FROM
+		   user u
+	</select>
+  	<!-- 내가 판매중인책 개수 -->
+	<select id="my_selling_count" resultType="int">
+		SELECT 
+			count(*)
+		FROM 
+			book_sell_regist bsr 
+		LEFT OUTER JOIN 
+			user u 
+		ON
+			u.uuid =bsr.uuid 
+		WHERE 
+			u.uuid =2 and bsr_check =3;
+	</select>
+  	<!-- 내가 구매중인책 개수 -->
+	<select id="my_buying_count" resultType="int">
+		SELECT 
+			count(*)
+		FROM 
+			my_buy_book
+		where 
+			uuid=2 and bsr_confirm ='Z';
+	</select>
+	<!-- 나의 찜개수 -->
+	<select id="my_zzim_count" resultType="int">
+		SELECT 
+			count(*) zzim
+		FROM 
+			zzim z join user u 
+		ON 
+			u.uuid =z.uuid 
+	    AND 
+	    	u.uuid=2;
+	</select>
+	  <select id="login" resultType="kr.co.vo.UserVO">
+	  	
+	  	SELECT
+	  		*
+	  	FROM user
+	  	WHERE userid = #{userid}
+	  	
+	  </select>
  </mapper>
  
- 
-
-  
   

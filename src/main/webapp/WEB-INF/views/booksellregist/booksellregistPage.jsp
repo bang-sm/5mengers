@@ -15,26 +15,38 @@
 		<nav>홈 - 글 작성</nav>
 		<hr />
 
-		<section id="container">
-			<form role="form" method="post" action="/board/write">
+		<section id="container">					<!-- Controller의 value값과 동일하게 해줄것 -->
+			<form role="form" method="post" action="/booksellregistPage" enctype="multipart/form-data">
 				<table>
 					<tbody>
 						<tr>
 							<td><label for="title">책 이름</label>
-							<input type="text" id="title" name="title" /></td>
+							<input type="text" id="title" name="bsr_name" /></td>
 						</tr>
 						<tr>
 							<td><label for="content">소개글</label>
-							<textarea id="content" name="content"></textarea></td>
+							<textarea id="content" name="bsr_comment"></textarea></td>
 						</tr>
 						<tr>
-							<td><label for="price">정가</label>
-							<input type="text" id="writer" name="writer" /></td>
+							<td><label for="fix_price">정가</label>
+							<input type="text" id="writer" name="bsr_fixed_price" /></td>
 						</tr>
 						<tr>
-							<td><label for="category">소개글</label>
-							<textarea id="content" name="content"></textarea></td>
+							<td><label for="price">희망 판매가</label>
+							<input type="text" id="writer" name="bsr_price" /></td>
 						</tr>
+						<tr>
+							<td><label for="bsr_category">카테고리</label> <!-- select 형태로 바꿀것 -->
+							<input type="text" id="writer" name="bsr_category" /></td>
+						</tr>
+						<tr>
+							<td>
+								<input type="file" name"file">									
+							</td>
+						</tr>
+						
+						
+						
 						<tr>
 							<td>
 								<button type="submit">작성</button>
