@@ -12,22 +12,22 @@ public class BookRequestController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BookRequestController.class);
 		
-		@RequestMapping(value ="/bookRequest", method = RequestMethod.GET)
+		@RequestMapping(value ="/bookRequestView", method = RequestMethod.GET)
 		public String test() throws Exception {
-			logger.info("���� ��û �Խ���");
+			logger.info("구매 요청 페이지");
 			
-			return "/bookRequest/Request";
+			return "/bookRequest/BookRequest";
 		}
 		@RequestMapping(value = "/bookRequestDetail", method = RequestMethod.GET)
 		public String brd() throws Exception {
-			logger.info("���� ��û ��������");
+			logger.info("구매 요청 상세페이지");
 			
-			return "/bookRequest/Detail";
+			return "/bookRequest/BookRequestDetail";
 		}
 		@RequestMapping(value="/bookRequestWrite", method = RequestMethod.GET)
 		public String brw() throws Exception {
-			logger.info("���� ��û �ۼ�������");
+			logger.info("구매 요청 작성페이지");
 			
-			return "/bookRequest/Write";
+			return "/bookRequest/BookRequestWrite";
 		}
 	}

@@ -17,15 +17,19 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 	@Inject
 	private SqlSession sqlSession;
 	@Override
-	public BookDetailDTO detail() throws Exception{
-		// TODO Auto-generated method stub
+	public BookDetailDTO detail(int bsr_id,int uuid) throws Exception{
 		System.out.println("확인");
-		return sqlSession.selectOne("BookDetailMapper.book_detail");
+		HashMap<String, Integer> dmap=new HashMap<String, Integer>();
+		dmap.put("bsr_id", bsr_id);
+		dmap.put("uuid", uuid);
+		
+		return sqlSession.selectOne("BookDetailMapper.book_detail",dmap);
 	}
+	
 	@Override
-	public BookDetailDTO like() throws Exception {
+	public BookDetailDTO like(int bsr_id) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("BookDetailMapper.zzim");
+		return sqlSession.selectOne("BookDetailMapper.zzim",bsr_id);
 	}
 	@Override
 	public BookDetailDTO check_on() throws Exception {
@@ -33,12 +37,19 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 		return sqlSession.selectOne("BookDetailMapper.check_on");
 	}
 	@Override
-	public BookDetailDTO cheking() throws Exception {
-		return sqlSession.selectOne("BookDetailMapper.zzim_check");
+	public BookDetailDTO cheking(int bsr_id,int uuid) throws Exception {
+		HashMap<String, Integer> chmap=new HashMap<String, Integer>();
+		chmap.put("uuid",uuid);
+		chmap.put("bsr_id",bsr_id);
+		
+		return sqlSession.selectOne("BookDetailMapper.zzim_check",chmap);
 	}
 	@Override
-	public void check_off(int uuid) throws Exception {
-		sqlSession.selectOne("BookDetailMapper.check_off",uuid);
+	public void check_off(int uuid,int bsr_id) throws Exception {
+		HashMap<String, Integer> chofmap=new HashMap<String, Integer>();
+		chofmap.put("uuid",uuid);
+		chofmap.put("bsr_id",bsr_id);
+		sqlSession.delete("BookDetailMapper.check_off",chofmap);
 		
 	}
 	@Override
@@ -47,7 +58,7 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 		hmap.put("uuid",uuid);
 		hmap.put("bsr_id",bsr_id);
 		
-		sqlSession.selectList("BookDetailMapper.check_on", hmap);
+		sqlSession.insert("BookDetailMapper.check_on", hmap);
 	}
 	@Override
 	public int check_count(int bsr_id) throws Exception {
@@ -64,14 +75,14 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 	//책 카테고리 리스트
 	@Override
 	public List<BookCategoryDTO> category() throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("BookDetailMapper.bc");
 	}
 	//메인책리스트
 	@Override
 	public List<BookCategoryDTO> mainBookList() throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("BookDetailMapper.main_book_list");
 	}
+
+	
 
 }
