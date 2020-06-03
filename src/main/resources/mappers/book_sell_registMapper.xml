@@ -4,8 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="kr.co.dao.BookSellRegistDAO">
 
-   <!-- 게시판 글 작성 -->
-   <insert id="book_sell_registMapper" parameterType="kr.co.vo.BookSellRegistDTO" useGeneratedKeys="true">
+   <!-- 게시판 글 작성 -->		
+   <!-- selectKey에 의해 선택된 키가 무엇인지 설정 -->												<!--자동적으로 증가되는 키를 받기 위해 사용  -->
+   <insert id="book_sell_registMapper" parameterType="kr.co.vo.BookSellRegistDTO" 
+   useGeneratedKeys="true" keyProperty="bsr_id">
+	
+   	
+   	
+   	<selectKey keyProperty="bsr_id" resultType="int" order="BEFORE"></selectKey>
 	   INSERT INTO book_sell_regist( bsr_id <!-- 책 고유번호, 자동으로 부여됨 -->
 	   						, uuid	<!-- 유저 고유값, 회원을 구분하기 위해 지정 -->
 	   						, bsr_name <!-- 책 이름 -->
@@ -32,12 +38,26 @@
 	                 		  , #{map_y}  )
    
    </insert>
-<<<<<<< HEAD
+   
+   <insert id="insertFile" parameterType="hashMap">
+   		INSERT INTO book_img (
+   			bsr_img_id, <!-- 이미지 고유값 -->
+   			bi_user_file_name, <!-- 이미지 고유값 -->
+   			bi_file_name,	<!-- 프론트에서 확장자 검수 -->
+   			bi_root,	<!-- 관리 파일명 -->
+   			bsr_id <!-- 책 고유번호 -->
+   		) VALUES (
+   			5,
+   			#{bi_user_file_name},
+   			#{bi_file_name},
+   			#{bi_root},
+   			3
+   		)
+   
+   
+   
+   </insert>
+   
+   
+ </mapper>
 
-=======
->>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers.git
-  </mapper>
-<<<<<<< HEAD
-=======
-  
->>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers.git
