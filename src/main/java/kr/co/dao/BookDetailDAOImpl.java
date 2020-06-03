@@ -16,6 +16,8 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 
 	@Inject
 	private SqlSession sqlSession;
+	
+	//DB에서 책 관련 값들 가져오기
 	@Override
 	public BookDetailDTO detail(int bsr_id,int uuid) throws Exception{
 		System.out.println("확인");
@@ -26,16 +28,14 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 		return sqlSession.selectOne("BookDetailMapper.book_detail",dmap);
 	}
 	
+	//DB에서 찜개수 가져오기
 	@Override
 	public BookDetailDTO like(int bsr_id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("BookDetailMapper.zzim",bsr_id);
 	}
-	@Override
-	public BookDetailDTO check_on() throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("BookDetailMapper.check_on");
-	}
+	
+	//사용자 찜 확인
 	@Override
 	public BookDetailDTO cheking(int bsr_id,int uuid) throws Exception {
 		HashMap<String, Integer> chmap=new HashMap<String, Integer>();
@@ -44,6 +44,8 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 		
 		return sqlSession.selectOne("BookDetailMapper.zzim_check",chmap);
 	}
+	
+	//찜 등록 해제 AJAX
 	@Override
 	public void check_off(int uuid,int bsr_id) throws Exception {
 		HashMap<String, Integer> chofmap=new HashMap<String, Integer>();
@@ -52,6 +54,8 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 		sqlSession.delete("BookDetailMapper.check_off",chofmap);
 		
 	}
+	
+	//찜 등록 AJAX
 	@Override
 	public void check_on(int uuid, int bsr_id) throws Exception {
 		HashMap<String, Integer> hmap=new HashMap<String, Integer>();
@@ -60,10 +64,14 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 		
 		sqlSession.insert("BookDetailMapper.check_on", hmap);
 	}
+	
+	//찜 개수 AJAX 표현
 	@Override
 	public int check_count(int bsr_id) throws Exception {
 		return sqlSession.selectOne("check_count",bsr_id);
 	}
+	
+	//구매하기 버튼 클릭시 예약중 AJAX
 	@Override
 	public void book_check(int bsr_check,int bsr_id) throws Exception {
 		HashMap<String, Integer> cmap=new HashMap<String, Integer>();
@@ -91,6 +99,13 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 		
 		return sqlSession.selectList("BookDetailMapper.side_same_category",sbmap);
 	}
+
+	//글 수정
+	@Override
+	public List<BookDetailDTO>bookupdate(int bsr_id) throws Exception {
+		return sqlSession.selectList("BookDetailMapper.bookupdate",bsr_id);
+	}
+
 
 
 	

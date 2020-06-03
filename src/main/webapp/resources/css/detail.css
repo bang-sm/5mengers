@@ -1,0 +1,262 @@
+@charset "UTF-8";
+body {
+	margin: 0 300px 0 300px;
+}
+
+#article {
+	width: 1200px;
+	margin: 0 auto;
+	height: 600px;
+	border: 1px solid black;
+	position: relative;
+}
+
+#article2 {
+	width: 1200px;
+	margin: 0 auto;
+	height: 500px;
+	position: relative;
+}
+
+.div_top {
+	width: 100%;
+	height: 100px;
+}
+
+.book_title {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	margin: 10px 0 0 10px;
+	font-size: 30px;
+	font-weight: bold;
+	float: left;
+}
+
+.zzim {
+	float: right;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.zzim_img {
+	width: 50px;
+	height: 50px;
+	margin: 5px 10px 0 0;
+	float: left;
+	margin: 20px 30px 0 0;
+}
+
+.zzim_count {
+	float: left;
+	font-size: 50px;
+	margin: 20px 10px 0 0;
+}
+
+.div_middle_1 {
+	height: 200px;
+}
+
+.book_img {
+	position: absolute;
+	left: 50px;
+	float: left;
+}
+
+.book_detail {
+	position: absolute;
+	top: 150px;
+	left: 500px;
+	float: left;
+}
+
+.book_detail>div {
+	margin-bottom: 20px;
+}
+
+.book_detail_title {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.book_regdate {
+	position: absolute;
+	top: 400px;
+	height: 50px;
+	margin-left: 100px;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.div_middle_2 {
+	height: 300px;
+}
+
+.book_content {
+	position: absolute;
+	top: 390px;
+	left: 500px;
+}
+
+.book_content_title {
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.book_zzim {
+	position: absolute;
+	top: 500px;
+	left: 50px;
+	font-weight: bold;
+}
+
+.toggle_img {
+	position: absolute;
+	top: -30px;
+	left: 200px;
+}
+
+.book_zzim_img {
+	width: 40px;
+	height: auto;
+	margin: 20px 0 0 50px;
+}
+
+#map {
+	float: left;
+}
+
+.hope_map {
+	border: 1px solid black;
+}
+
+#map_detail {
+	float: left;
+	border: 3px solid black;
+	height: 100px;
+	margin: 100px 0 0 30px;
+}
+
+#article2 {
+	margin-top: 100px;
+}
+
+.article2_top {
+	height: 500px;
+}
+
+.aside_book {
+	width: 250px;
+	height: 700px;
+	border: 3px solid black;
+	border-radius: 10px;
+}
+
+#aside {
+	position: absolute;
+	top: 100px;
+	right: -300px;
+}
+
+.buy_button {
+	position: absolute;
+	top: 400px;
+	left: 1000px;
+}
+
+.info {
+	background-color: #2196F3;
+} /* Blue */
+.info:hover {
+	background: #0b7dda;
+}
+
+.danger {
+	background-color: #f44336;
+} /* Red */
+.danger:hover {
+	background: #da190b;
+}
+
+.book_popup {
+	width: 450px;
+	height: 170px;
+	border: 1px solid black;
+	border-radius: 10px;
+	position: absolute;
+	top: 700px;
+	left: 600px;
+	display: none;
+	background-color: lightgray;
+}
+
+.book_popup h3 {
+	font-size: 30px;
+	font-weight: bold;
+	margin: 0 0 100px 0;
+}
+
+.book_popup_ok {
+	width: 150px;
+	height: 30px;
+	border: 1px solid black;
+	border-radius: 2px;
+}
+
+.book_popup_no {
+	width: 150px;
+	height: 30px;
+	border: 1px solid black;
+	border-radius: 2px;
+}
+
+.book_confirm {
+	position: absolute;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	top: 25px;
+	left: 900px;
+}
+.side_book_border{
+border:1px solid black;
+border-radius:5px;
+margin:50px 10px 50px 10px;
+position:relative;
+
+}
+.side_book{
+padding-top:20px;
+float:left;
+}
+
+.side_name{
+position:absolute;
+top:5px;
+left:5px;
+font-size:20px;
+font-weight:bold;
+padding:10px 10px 0 10px;
+}
+.side_price{
+position:absolute;
+top:70px;
+left:120px;
+float:left;
+ font-size: 10px;
+}
+.side_img{
+position:absolute;
+top:35px;
+left:5px;
+padding:10px;
+float:left;
+}
+.side_regdate{
+position:absolute;
+top:100px;
+left:120px;
+float:left;
+font-size: 10px;
+}
