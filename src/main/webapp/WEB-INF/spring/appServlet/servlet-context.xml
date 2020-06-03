@@ -8,12 +8,9 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-<<<<<<< HEAD
 
 		
 	<!-- Enables the Spring MVC @Controller programming model -->
-=======
->>>>>>> refs/remotes/origin/coding_source
 	<annotation-driven />
 	<!-- Enables the Spring MVC @Controller programming model -->
 
@@ -29,7 +26,6 @@
 	<context:component-scan base-package="kr.co.controller" />
 	<beans:bean id="loginInterceptor" class="commons.interceptor.LoginInterceptor"/>
 	
-<<<<<<< HEAD
 	<interceptors>
 		<interceptor>
 			<mapping path="/user/loginPost"/>
@@ -46,14 +42,6 @@
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>
-	
-	
-	
-		
-=======
-	
-	
->>>>>>> refs/remotes/origin/coding_source
 </beans:beans>
 
 

@@ -25,17 +25,27 @@
 					<tbody>
 						<tr>
 							<th scope="row">제목</th>
-							<td>문의사항 입니다.</td>
+							<td>
+								<input type="text"/>
+							</td>
 						</tr>
 						<tr>
 							<th scope="row">팝업페이지</th>
-							<td>원디자인 <span class="displaynone">(ip:)</span>
+							<td>
+								<select name="language" >
+									<option value="/">=== 페이지선택 ===</option>
+									<option value="/home">메인페이지</option>
+									<option value="/my/index">마이페이지</option>
+									<option value="/bookDetail">책 상세페이지</option>
+								</select>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">팝업내용</th>
-							<td>원디자인 <span class="displaynone">(ip:)</span>
-							</td>
+							<td>
+								<textarea cols="40" rows="10" style="resize: none;width:500px;height: 300px">.
+								</textarea>
+							</td> 
 						</tr>
 					</tbody>
 				</table>
