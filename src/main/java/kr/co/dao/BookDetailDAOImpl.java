@@ -21,7 +21,7 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 		// TODO Auto-generated method stub
 		System.out.println("확인");
 		return sqlSession.selectOne("book_detail");
-	}
+	} 
 	@Override
 	public BookDetailDTO like() throws Exception {
 		// TODO Auto-generated method stub
