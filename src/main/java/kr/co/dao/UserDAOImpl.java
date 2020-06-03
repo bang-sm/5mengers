@@ -39,8 +39,9 @@ public class UserDAOImpl implements UserDAO {
 	//회원 전체 구매내역 판매내역 받아오는처리
 	@Override
 	public List<UserVO> userbuysell() throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("userMapper.deal_list");
+		
+		
 	}
 
 }

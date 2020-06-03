@@ -1,6 +1,7 @@
 package kr.co.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -21,14 +22,32 @@ public class BookDetailController {
 	private static final Logger logger = LoggerFactory.getLogger(BookDetailController.class);
 	
 	
+	private void saveDestination(HttpServletRequest request) {
+		String uri = request.getRequestURI();
+		String query = request.getQueryString();
+		
+		if(query == null || query.equals("null")) {
+			query = "";
+		} else {
+			query = "?" + query;
+		}
+		
+		if(request.getMethod().equals("GET")) {
+			logger.info("destination : " + (uri + query));
+			request.getSession().setAttribute("destination", uri + query);
+			
+		}
+			
+	}
+	
 	@Inject
 	private BookDetailService service;
 	
 	@RequestMapping(value = "/bookdetail", method = RequestMethod.GET)
-	public String bookdetail(Model model,int bsr_id,int uuid,int bsr_category,HttpSession ss,UserVO uv) throws Exception {
+	public String bookdetail(Model model,int bsr_id,int uuid,int bsr_category,HttpSession ss,UserVO uv, HttpServletRequest request) throws Exception {
 	    logger.info("책 상세 페이지");
 	    uv = (UserVO) ss.getAttribute("login");
-	    
+	    saveDestination(request);
 	   
    		model.addAttribute("detail",service.detail(bsr_id,uuid));
    		model.addAttribute("zzim",service.like(bsr_id));
