@@ -36,13 +36,8 @@
 				<ul class="prdList column4">
 					<c:forEach var="booklist" items="${booklist}">
 						<li id="" class="item xans-record-">
-<<<<<<< HEAD
-							<div class="box ${booklist.bsr_category}">
-								<a href="${contextPath}/bookdeatil?bsr_id=${booklist.bsr_id}&uuid=${booklist.uuid}">
-=======
 							<div class="box" class="${booklist.bsr_category}">
 								<a href="${contextPath}/bookdetail?bsr_id=${booklist.bsr_id}&uuid=${booklist.uuid}">
->>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers.git
 									<img src="https://placeimg.com/270/250/any/grayscale" />
 								</a> 
 								<a href="${contextPath}/bookdetail?bsr_id=${booklist.bsr_id}&uuid=${booklist.uuid}">
