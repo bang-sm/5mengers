@@ -36,7 +36,7 @@
 				<ul class="prdList column4">
 					<c:forEach var="booklist" items="${booklist}">
 						<li id="" class="item xans-record-">
-							<div class="box" class="${booklist.bsr_category}">
+							<div class="box ${booklist.bsr_category}">
 								<a href="${contextPath}/bookdeatil?bsr_id=${booklist.bsr_id}&uuid=${booklist.uuid}">
 									<img src="https://placeimg.com/270/250/any/grayscale" />
 								</a> 
