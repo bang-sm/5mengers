@@ -30,11 +30,18 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			logger.info("new login success"); // 로그인 성공하면 콘솔창에 info: new login success 뜸
 			
 			httpSession.setAttribute(LOGIN, userVO); // httpSession 에 user를 저장 ( user 는 userController 에서 확인)
-			response.sendRedirect("/"); // "/" 로 다이렉트
+//			response.sendRedirect("/"); // "/" 로 다이렉트
+			
+			// destination 으로 경로 변경
+			Object destination = httpSession.getAttribute("destination");
+			response.sendRedirect(destination != null ? (String)destination : "/");
 			
 		} // end if
 		
 	} // end postHandle()
+	
+	
+	
 	
 	// 기존의 로그인 정보가 있을 경우 초기화하는 역할
 	@Override

@@ -399,11 +399,11 @@ body {
 	 <script>
 	 $('.book_zzim_img').click(function(){
 		 alert("로그인 하세요");
-		  location.href="http://localhost:8080/user/login";
+		  location.href="${path}/user/login";
 	 })
 	  $('.info').click(function(){
 		 alert("로그인 하세요");
-		  location.href="http://localhost:8080/user/login";
+		  location.href="${path}/user/login";
 	 })
 	 
 	</script>
