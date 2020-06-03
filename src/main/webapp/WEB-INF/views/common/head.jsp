@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="../resources/css/mypage.css">
 </head>
 <body>
+
 	<div id="header_top">
 		<div id="header">
 			<div id="topbar">
