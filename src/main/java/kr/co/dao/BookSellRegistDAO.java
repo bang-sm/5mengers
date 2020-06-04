@@ -9,6 +9,6 @@ public interface BookSellRegistDAO {
 	
 	public void write(BookSellRegistDTO bookSellRegistDTO) throws Exception;
 
-	public void insertFile(Map<String, Object> map);
+	public void insertFile(Map<String, Object> map) throws Exception;
 
 }

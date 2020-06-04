@@ -57,6 +57,8 @@ public class FileUtils {
 				listMap.put("bi_user_file_name", originalFileName);
 				listMap.put("bi_file_name", storedFileName);
 				list.add(listMap);
+				
+				System.out.println(list);
 			}
 		}
 	
