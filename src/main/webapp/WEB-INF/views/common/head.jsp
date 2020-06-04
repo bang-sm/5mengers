@@ -15,6 +15,10 @@
 <link rel="stylesheet" href="../resources/css/card.css">
 <link rel="stylesheet" href="../resources/css/login.css">
 </head>
+<<<<<<< HEAD
+
+<body>
+=======
 <script>
 	$(document).ready(function(){
 		//현재페이지
@@ -27,6 +31,7 @@
 			success: function(data){
 				console.log("성공했습니다");
 				console.log(data);
+>>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers.git
 
 				for (var i = 0; i < data.length; i++) {
 					console.log(data[i].np_id);
@@ -86,8 +91,12 @@
 							<li><a href="${contextPath}/user/login">로그인</a></li>
 							</c:if>
 							<c:if test="${not empty login }">
+<<<<<<< HEAD
+							<li><button type="button" id="logoutbtn">로그아웃</button></li>
+=======
 							<li><a href="${contextPath}/my/nav">마이페이지</a>
 							<li><a href="${contextPath}/user/logout">로그아웃</a></li>
+>>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers.git
 							</c:if>
 						</ul>
 					</div>
@@ -101,4 +110,22 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+
+	$('#logoutbtn').on('click', function(){
+		$.ajax({
+			url : "user/logout",
+			type: "GET",
+			success: function(){
+				alert('로그아웃 되었습니다.');
+				location.reload();
+			}, error: function(){
+				alert('다시 시도해 주세요!');
+			}
+			
+		})
+		
+	});
+
+</script>
 </html>

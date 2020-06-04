@@ -1,5 +1,6 @@
 package kr.co.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -38,7 +39,6 @@ public class UserServiceImpl implements UserService {
 	//유저 판매.구매 카운트
 	@Override
 	public List<UserVO> userbuysell() throws Exception {
-		// TODO Auto-generated method stub
 		return userDAO.userbuysell();
 	}
 	
@@ -48,6 +48,18 @@ public class UserServiceImpl implements UserService {
 		// TODO : 중복로그인 확인 
 		return false;
 	}
+	
+	// 자동 로그인 서비스 (로그인 유지 method)
+	@Override
+	public void keepLogin(String userid, String sessionId, Date next) throws Exception {
+		userDAO.keepLogin(userid, sessionId, next);
 		
+	}
+	
+	// 자동 로그인 서비스 (loginCookie로 회원정보 조회)
+	@Override
+	public UserVO previousLoginCheck(String value) throws Exception {
+		return userDAO.checkUserSessionKey(value);
+	}
 
 }

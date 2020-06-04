@@ -40,6 +40,26 @@
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>
+	
+	<beans:bean id="rememberPreviousInterceptor" class="commons.interceptor.RememberPreviousInterceptor"/>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/**/"/>
+			<beans:ref bean="rememberPreviousInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	<beans:bean id="loginAfterInterceptor" class="commons.interceptor.LoginAfterInterceptor"/>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/login"/>
+			<mapping path="/user/register"/>
+			<beans:ref bean="loginAfterInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>
 
 

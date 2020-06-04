@@ -75,6 +75,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  	WHERE userid = #{userid}
 	  	
 	  </select>
+	  
+	  <!-- 세션 아이디, 로그인 유지 기간 설정시 기간 갱신 -->
+	  <update id="keeplogin">
+	  
+	  	UPDATE user
+	  	SET sesssion_key = #{sessionId}
+	  		, session_limit = #{next}
+	  	WHERE userid = #{userid}	  	
+	  
+	  </update>
+	  
+	  <!-- Session key 확인 -->
+	  <select id="checkUserSessionKey" parameterType="String" resultType="kr.co.vo.UserVO">
+	  
+	  	SELECT
+	  		*
+	  	FROM user
+	  	WHERE sesssion_key = #{value }
+	  		AND session_limit > now()
+	  
+	  </select>
+	  
   	<!-- 내가 판매중인 책 -->
 	<select id="my_selling_book_list" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
 		SELECT
