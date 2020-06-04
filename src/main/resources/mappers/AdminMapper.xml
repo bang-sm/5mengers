@@ -4,13 +4,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AdminMapper">
 	<insert id="popup_regist" parameterType="kr.co.vo.PopupDTO" >
-		INSERT INTO notice_popup values(
+		INSERT INTO new_notice_popup values(
 			np_id,
 			#{np_title},
 			#{np_comment},
 			#{np_page_name},
-			#{uuid},
 			np_yes_no
 		)
 	</insert>
+	<select id="popup_check" resultType="kr.co.vo.PopupDTO">
+		SELECT 
+			*
+		FROM
+			new_notice_popup
+	</select>
+	<update id="popup_status_update" parameterType="kr.co.vo.PopupDTO">
+		UPDATE new_notice_popup
+		SET
+			np_yes_no=#{np_yes_no}
+		WHERE
+			np_id=#{np_id}
+	</update>
 </mapper>

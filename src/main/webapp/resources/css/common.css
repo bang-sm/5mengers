@@ -251,3 +251,45 @@ table {
 	color: #fff;
 	text-decoration: none;
 }
+
+/************************************팝업 CSS *********************************************/
+.pop-layer{
+	cursor: move;
+}
+.pop-layer .pop-container {
+  padding: 20px 25px;
+}
+
+.pop-layer p.ctxt {
+  color: #666;
+  line-height: 25px;
+}
+
+.pop-layer .btn-r {
+  width: 100%;
+  margin: 10px 0 20px;
+  padding-top: 10px;
+  border-top: 1px solid #DDD;
+  text-align: right;
+}
+.pop-conts{
+	height: 300px;
+}
+#np_title{
+	line-height:50px;
+	height:50px;
+	margin-bottom:30px;
+	text-align:center;
+	background-color: #e5e5e5;
+}
+.pop-layer {
+  display: none;
+  position: absolute;
+  top: 10%;
+  left: 70%;
+  width: 410px;
+  height: 400px;
+  background-color: #fff;
+  border: 5px solid #3571B5;
+  z-index: 9999;
+}
