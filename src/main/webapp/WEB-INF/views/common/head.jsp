@@ -2,8 +2,8 @@
 	contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="contextPath" value="http://localhost:8080"></c:set>
-<%-- <c:set var="contextPath" value="http://gksfk6165.cafe24.com"></c:set>   --%>
+<c:set var="contextPath" value="http://localhost:8080"></c:set> 
+<%--<c:set var="contextPath" value="http://gksfk6165.cafe24.com"></c:set> --%>
 <%-- 프로젝트용 / 로컬용 패스--%>
 <html>
 <head>
