@@ -102,7 +102,7 @@ public class BookDetailController {
 		service.book_check(bsr_check,bsr_id);
 	}
 	
-	//글 수정
+	//글 수정 DB 값 가져와서 화면구성
 	@RequestMapping(value ="/bookupdate",method =RequestMethod.GET)
 	public String bookupdate(Model model,int bsr_id) throws Exception{
 		logger.info("글 수정 페이지 이동");
@@ -116,10 +116,11 @@ public class BookDetailController {
 		return "bookdetail/ex";
 	}
 	
-	@RequestMapping(value ="/bookupdate_end",method =RequestMethod.GET)
+	//글 수정 DB 값 넣기
+	@RequestMapping(value ="/bookupdate_end",method =RequestMethod.POST)
 	public String bookupdateend(BookDetailDTO bookDetailDTO) throws Exception{
 		logger.info("글 수정");
 		service.bookupdateend(bookDetailDTO);
-		return "bookdetail/ex";
+		return "redirect:/my/nav";
 	}
 }

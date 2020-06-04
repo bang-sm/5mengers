@@ -50,7 +50,8 @@
 
 <div>
 	<div>글 수정</div>
-	<form role="form" method="post" action="/bookupdate_end">
+	<form  method="post" action="/bookupdate_end">
+	<input type='hidden' name="bsr_id" value="${bookupdate[0].bsr_id }"/>
 	<div>책 이름 </div>
 	<div>${bookupdate[0].bsr_name}</div>
 	<div>카테고리</div>
@@ -60,7 +61,7 @@
 	<div>판매가</div>
 	<input type="text" name="bsr_price" value="${bookupdate[0].bsr_price }"/>
 	<div>책 소개글</div>
-	<textarea>${bookupdate[0].bsr_comment }</textarea>
+	<textarea name="bsr_comment">${bookupdate[0].bsr_comment }</textarea>
 	<input type='hidden' name="map_x" value="${bookupdate[0].map_x}"/>
 	<input type='hidden' name="map_y" value="${bookupdate[0].map_y}"/>
 	<div>직거래 희망 지역</div>
@@ -88,6 +89,11 @@
 </div>
 
 </body>
+<script>
+function update(){
+	location.href="http://localhost:8080";
+}
+</script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
 <script>
 // 마커를 담을 배열입니다
@@ -313,7 +319,7 @@ function removeAllChildNods(el) {
  //list 에서 클릭한 주소값 불러오기
 function clicker(id){
 	var juso =  $(id).children("span").first().text();
-	$('.map_juso').text(juso); //input 창에 입력해주기
+	$('input[name=want]').val(juso); //input 창에 입력해주기
 	
 	 var geocoder1 = new kakao.maps.services.Geocoder();
 	 var callback = function(result, status) {

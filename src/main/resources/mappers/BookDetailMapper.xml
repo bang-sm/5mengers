@@ -128,6 +128,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     UPDATE 
 	   			book_sell_regist  
 	     SET 
+	            bsr_regdate =now(),
 	   			bsr_price =#{bsr_price},
 	   			bsr_comment =#{bsr_comment},
 	   			map_x = #{map_x},

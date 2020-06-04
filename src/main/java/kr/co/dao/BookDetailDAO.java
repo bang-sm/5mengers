@@ -37,8 +37,9 @@ public interface BookDetailDAO {
 	//메인책리스트
 	public List<BookCategoryDTO> mainBookList() throws Exception;
 	
-	//글 수정
+	//글 수정 DB 값 가져와서 표출
 	public List<BookDetailDTO> bookupdate(int bsr_id) throws Exception;
 	
+	//글 수정 DB 값 넣기
 	public void bookupdateend(BookDetailDTO bookDetailDTO)throws Exception;
 }

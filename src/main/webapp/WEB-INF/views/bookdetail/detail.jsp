@@ -141,12 +141,12 @@
 
 		<article id="article2">
 			<div class="article2_top">
-				<div>
+				<div style="width:1200px; height:500px;">
 					<!--  지도(DB에서 위도,경도 값 받아서 스크립트에 넣기-->
 					<div id="map" style="width: 1200px; height: 500px;"></div>
 				</div>
 			</div>
-			<div>
+			<div style="height:500px;">
 				<div class="buy_button">
 					<!--  버튼 들  -->
 					<div></div>

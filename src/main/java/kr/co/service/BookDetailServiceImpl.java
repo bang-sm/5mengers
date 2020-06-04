@@ -81,12 +81,13 @@ public class BookDetailServiceImpl implements BookDetailService{
 		return dao.sidebook(bsr_category,bsr_id);
 	}
 
-	//책수정
+	//글 수정 DB 값 가져와서 표출
 	@Override
 	public List<BookDetailDTO> bookupdate(int bsr_id) throws Exception {
 		return dao.bookupdate(bsr_id);
 	}
 
+	//글 수정 DB 값 넣기
 	@Override
 	public void bookupdateend(BookDetailDTO bookDetailDTO) throws Exception {
 		dao.bookupdateend(bookDetailDTO);
