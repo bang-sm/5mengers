@@ -4,8 +4,6 @@ import java.util.Date;
 
 public class BookSellRegistDTO {
 	
-	
-	
 	// Book_sell_registMapper
 	private int bsr_id;
 	private int uuid;

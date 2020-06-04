@@ -5,12 +5,7 @@
 <mapper namespace="kr.co.dao.BookSellRegistDAO">
 
 	<!-- 게시판 글 작성 -->											
-	<insert id="book_sell_registMapper"
-		parameterType="kr.co.vo.BookSellRegistDTO" useGeneratedKeys="true"
-		keyProperty="bsr_id">
-
-		<selectKey keyProperty="bsr_id" resultType="int"
-			order="BEFORE"></selectKey>
+	<insert id="book_sell_registMapper" parameterType="kr.co.vo.BookSellRegistDTO">
 		INSERT INTO book_sell_regist( bsr_id <!-- 책 고유번호, 자동으로 부여됨 -->
 		, uuid	<!-- 유저 고유값, 회원을 구분하기 위해 지정 -->
 		, bsr_name <!-- 책 이름 -->
