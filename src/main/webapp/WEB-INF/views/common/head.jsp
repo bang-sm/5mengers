@@ -12,6 +12,8 @@
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="../resources/css/common.css">
 <link rel="stylesheet" href="../resources/css/mypage.css">
+<link rel="stylesheet" href="../resources/css/card.css">
+<link rel="stylesheet" href="../resources/css/login.css">
 </head>
 <script>
 	$(document).ready(function(){
@@ -35,7 +37,9 @@
 							$("#popup_box").css("display","block");
 							$("#np_title").text(data[i].np_title);
 							$("#np_comment").text(data[i].np_comment);
-							$(".pop-layer").draggable();
+							$(".pop-layer").draggable({
+								containment: 'window'
+							});
 						}
 					}
 				}
@@ -44,6 +48,10 @@
 				console.log("에러입니다");
 				console.log(request,status,error);
 			}
+		});
+		
+ 		$('#btn_Close').click(function(){
+ 			  $('#popup_box').css("display","none");
 		});
 	});
 </script>
@@ -56,7 +64,7 @@
 				<span id="np_comment"></span>
 			</div>
 			 <div class="btn-r">
-                <a href="#" class="btn_Close">Close</a>
+                <Button id="btn_Close">Close</Button>
             </div>
 		</div>
 	</div>

@@ -78,11 +78,8 @@ public class UserController {
 		if(destination != null || destination != "/") {
 			
 			return (String) destination;
-		} 
-			
+		}
 		return "/";
-		
-		
 	}
 	
 	// loginPost 창 (로그인 틀렸을 경우 알림 띄우기 및 return)
