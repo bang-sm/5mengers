@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>글 수정 페이지</title>
- <style>
+    <meta charset="utf-8">
+    <title>키워드로 장소검색하고 목록으로 표출하기</title>
+    <style>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
@@ -46,37 +46,16 @@
 </head>
 <body>
 <%@ include file="../common/head.jsp"%>
-
-
-<div>
-	<div>글 수정</div>
-	<form role="form" method="post" action="/bookupdate_end">
-	<div>책 이름 </div>
-	<div>${bookupdate[0].bsr_name}</div>
-	<div>카테고리</div>
-	<div>${bookupdate[0].bsr_category}</div>
-	<div>정가</div>
-	<div>${bookupdate[0].bsr_fixed_price}</div>
-	<div>판매가</div>
-	<input type="text" name="bsr_price" value="${bookupdate[0].bsr_price }"/>
-	<div>책 소개글</div>
-	<textarea>${bookupdate[0].bsr_comment }</textarea>
-	<input type='hidden' name="map_x" value="${bookupdate[0].map_x}"/>
-	<input type='hidden' name="map_y" value="${bookupdate[0].map_y}"/>
-	<div>직거래 희망 지역</div>
-	<input type="text" name="want" value=""/>
-	<button type="submit">글 등록</button>
-	</form>
-	
-</div>
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
     <div id="menu_wrap" class="bg_white">
         <div class="option">
             <div>
+                <form onsubmit="searchPlaces(); return false;">
                     키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
-                    <button class="map_btn">검색하기</button> 
+                    <button class="map_btn"type="submit">검색하기</button> 
+                </form>
             </div>
         </div>
         <hr>
@@ -85,9 +64,10 @@
     </div>
     
     <div class="map_juso"style="width:300px;height:200px;font-size:10px;"></div>
+    <div class="map_x"></div>
+    <div class="map_y"></div>
 </div>
 
-</body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
 <script>
 // 마커를 담을 배열입니다
@@ -95,7 +75,7 @@ var markers = [];
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new kakao.maps.LatLng(${bookupdate[0].map_x}, ${bookupdate[0].map_y}), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };  
 
@@ -108,11 +88,8 @@ var ps = new kakao.maps.services.Places();
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
-
 // 키워드로 장소를 검색합니다
-$('.map_btn').click(function(){
 searchPlaces();
-})
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
@@ -318,28 +295,17 @@ function clicker(id){
 	 var geocoder1 = new kakao.maps.services.Geocoder();
 	 var callback = function(result, status) {
 	     if (status === kakao.maps.services.Status.OK) {
-	         $('input[name=map_y]').val(result[0].x);   //위도
-	         $('input[name=map_x]').val(result[0].y);   //경도
+	         $('.map_y').text(result[0].x);   //위도
+	         $('.map_x').text(result[0].y);   //경도
 	     }
 	 };
 
 	 geocoder1.addressSearch(juso, callback);
 }
  
- 
- 
-var geocoder = new kakao.maps.services.Geocoder();
-var abc=$('input[name=map_x]').val();
-var def=$('input[name=map_y]').val();
-
-var callback = function(result, status) {
-    if (status === kakao.maps.services.Status.OK) {
-    	$('input[name=want]').val(result[0].address_name);
-    }
-};
-
-geocoder.coord2RegionCode(def, abc, callback);
+ //주소로 좌표값 불러오기
  
 
 </script>
+</body>
 </html>

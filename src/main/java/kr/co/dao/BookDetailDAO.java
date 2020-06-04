@@ -39,4 +39,6 @@ public interface BookDetailDAO {
 	
 	//글 수정
 	public List<BookDetailDTO> bookupdate(int bsr_id) throws Exception;
+	
+	public void bookupdateend(BookDetailDTO bookDetailDTO)throws Exception;
 }

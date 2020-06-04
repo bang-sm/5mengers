@@ -100,10 +100,16 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 		return sqlSession.selectList("BookDetailMapper.side_same_category",sbmap);
 	}
 
-	//글 수정
+	//글 수정 DB 값 가져와서 표출
 	@Override
 	public List<BookDetailDTO>bookupdate(int bsr_id) throws Exception {
 		return sqlSession.selectList("BookDetailMapper.bookupdate",bsr_id);
+	}
+
+	//글 수정 DB 값 넣기
+	@Override
+	public void bookupdateend(BookDetailDTO bookDetailDTO) throws Exception {
+		  sqlSession.update("BookDetailMapper.bookupdateend",bookDetailDTO);
 	}
 
 

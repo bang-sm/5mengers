@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 body {
 	margin: 0 300px 0 300px;
 }
@@ -133,9 +134,6 @@ body {
 
 #map_detail {
 	float: left;
-	border: 3px solid black;
-	height: 100px;
-	margin: 100px 0 0 30px;
 }
 
 #article2 {
@@ -146,18 +144,13 @@ body {
 	height: 500px;
 }
 
-.aside_book {
+.aside_book{
 	width: 250px;
 	height: 700px;
-	border: 3px solid black;
 	border-radius: 10px;
 }
 
-#aside {
-	position: absolute;
-	top: 100px;
-	right: -300px;
-}
+
 
 .buy_button {
 	position: absolute;
@@ -219,44 +212,55 @@ body {
 	top: 25px;
 	left: 900px;
 }
-.side_book_border{
-border:1px solid black;
-border-radius:5px;
-margin:50px 10px 50px 10px;
-position:relative;
-
-}
-.side_book{
-padding-top:20px;
-float:left;
-}
-
 .side_name{
-position:absolute;
-top:5px;
-left:5px;
-font-size:20px;
-font-weight:bold;
-padding:10px 10px 0 10px;
+	width:150px;
+	height:20px;
+	font-size: 20px;
+    text-align: left;
+    font-weight: bold;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.side_fixed_price{
+	margin-top:10px;
 }
 .side_price{
-position:absolute;
-top:70px;
-left:120px;
-float:left;
- font-size: 10px;
+	margin-top:30px;
 }
-.side_img{
-position:absolute;
-top:35px;
-left:5px;
-padding:10px;
-float:left;
+#book_ul >a:link{
+	color:black;
 }
-.side_regdate{
-position:absolute;
-top:100px;
-left:120px;
-float:left;
-font-size: 10px;
+#book_ul >a:visited{
+	color:black;
+}
+#book_ul {
+  margin: 0px;
+  padding: 0px;
+  width: 200px;
+  height: 400px;
+}
+.book_li {
+  list-style: none;
+  margin:20px 0 0 20px;
+  width: 150px;
+  height: 300px;
+
+}
+#aside{
+  width: 250px;
+  overflow: hidden;
+  position: absolute;
+  top: -20px;
+  right:-300px;
+}
+.aside_book {
+  overflow-y: scroll;
+  width: 350px;
+  height: 800px;
+  background-color: white;
+}
+
+.map_address{
+	color: red;
 }

@@ -87,6 +87,11 @@ public class BookDetailServiceImpl implements BookDetailService{
 		return dao.bookupdate(bsr_id);
 	}
 
+	@Override
+	public void bookupdateend(BookDetailDTO bookDetailDTO) throws Exception {
+		dao.bookupdateend(bookDetailDTO);
+	}
+
 	
 
 	

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.service.BookDetailService;
+import kr.co.vo.BookDetailDTO;
 import kr.co.vo.UserVO;
 
 
@@ -107,5 +108,18 @@ public class BookDetailController {
 		logger.info("글 수정 페이지 이동");
 		model.addAttribute("bookupdate",service.bookupdate(bsr_id));
 		return "bookdetail/bookupdate";
+	}
+	//지도 연습입니당
+	@RequestMapping(value ="/ex",method =RequestMethod.GET)
+	public String bookupdate(Model model) throws Exception{
+		logger.info("지도 연습");
+		return "bookdetail/ex";
+	}
+	
+	@RequestMapping(value ="/bookupdate_end",method =RequestMethod.GET)
+	public String bookupdateend(BookDetailDTO bookDetailDTO) throws Exception{
+		logger.info("글 수정");
+		service.bookupdateend(bookDetailDTO);
+		return "bookdetail/ex";
 	}
 }

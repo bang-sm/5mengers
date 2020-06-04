@@ -116,12 +116,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!-- 글 수정 -->
    <select id="bookupdate" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
-   SELECT 
-   		 * 
-   FROM 
-        book_sell_regist 
-   WHERE 
-   		bsr_id =#{bsr_id};
+		 SELECT 
+		   	   * 
+		 FROM 
+		       book_sell_regist 
+		 WHERE 
+		   	   bsr_id =#{bsr_id};
    
    </select>
+   <update id="bookupdateend" parameterType="kr.co.vo.BookDetailDTO"> 
+	     UPDATE 
+	   			book_sell_regist  
+	     SET 
+	   			bsr_price =#{bsr_price},
+	   			bsr_comment =#{bsr_comment},
+	   			map_x = #{map_x},
+	   			map_y= #{map_y} 
+	     WHERE 
+	   			bsr_id = #{bsr_id};
+   </update>
 </mapper>

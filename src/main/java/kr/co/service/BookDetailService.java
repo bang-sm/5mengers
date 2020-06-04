@@ -38,6 +38,10 @@ public interface BookDetailService {
 	//메인책리스트
 	public List<BookCategoryDTO> mainBookList() throws Exception;
 	
-	//책 수정
+	//글 수정 데이터 가져오기
 	public List<BookDetailDTO> bookupdate(int bsr_id) throws Exception;
+	
+	//글 수정 데이터 넣기
+	public void bookupdateend(BookDetailDTO bookDetailDTO) throws Exception;
+	
 }
