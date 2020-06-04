@@ -30,10 +30,8 @@
 					console.log(data[i].np_id);
 					console.log(data[i].np_page_name);
 					if(data[i].np_page_name == path){
-						alert('이 페이지에 팝업창이 등록되어있습니다..');
 						console.log(data[i].np_yes_no +"   검색된 팝업 활성화 상황");
 						if(data[i].np_yes_no == 1){
-							alert('활성화된 팝업도 있습니다');
 							$("#popup_box").css("display","block");
 							$("#np_title").text(data[i].np_title);
 							$("#np_comment").text(data[i].np_comment);
@@ -41,7 +39,6 @@
 						}
 					}
 				}
-				
 			},
 			error: function (request, status, error){       
 				console.log("에러입니다");
@@ -77,11 +74,11 @@
 					</div>
 					<div class="topbar_right">
 						<ul>
-							<li><a href="${contextPath}/my/nav">마이페이지</a>
 							<c:if test="${ empty login }">
 							<li><a href="${contextPath}/user/login">로그인</a></li>
 							</c:if>
 							<c:if test="${not empty login }">
+							<li><a href="${contextPath}/my/nav">마이페이지</a>
 							<li><a href="${contextPath}/user/logout">로그아웃</a></li>
 							</c:if>
 						</ul>
