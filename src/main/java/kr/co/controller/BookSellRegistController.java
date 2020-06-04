@@ -37,6 +37,8 @@ public class BookSellRegistController {
 	public String write(BookSellRegistDTO bookSellRegistDTO, MultipartHttpServletRequest mpRequest) throws Exception{
 		logger.info("booksellregistPage");
 		
+		logger.info(bookSellRegistDTO.getBsr_name());
+		
 		service.write(bookSellRegistDTO, mpRequest);
 		// 데이터 전송 후 보여줄 page를 return함(현재페이지를 새로고침함)
 		return "redirect:/booksellregist/booksellregistPage";

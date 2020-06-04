@@ -34,11 +34,14 @@ public class BookSellRegistServiceImpl implements BookSellRegistService{
 	//게시글 작성
 	@Override
 	public void write(BookSellRegistDTO bookSellRegistDTO, MultipartHttpServletRequest mpRequest) throws Exception {
+		System.out.println("게시글매소드에 들어옴 1 ");
 		dao.write(bookSellRegistDTO);
 		
+		System.out.println("게시글매소드에 들어옴 2");
 		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(bookSellRegistDTO, mpRequest);
 		int size = list.size();
 		for(int i=0; i<size; i++) {
+			System.out.println("게시글매소드포문");
 			dao.insertFile(list.get(i));
 		}
 		

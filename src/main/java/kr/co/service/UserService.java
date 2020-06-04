@@ -21,7 +21,5 @@ public interface UserService {
 	// 회원 로그인 체크
 	public boolean logincheck(UserVO userVO, HttpSession httpSession) throws Exception;
 	
-	// 회원 로그아웃
-	public void logout(HttpSession httpSession) throws Exception;
 	
 }

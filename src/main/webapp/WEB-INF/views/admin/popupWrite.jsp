@@ -34,7 +34,7 @@
 									<select name="np_page_name">
 											<option value="/">=== 페이지선택 ===</option>
 											<option value="/home">메인페이지</option>
-											<option value="/my/index">마이페이지</option>
+											<option value="/my/nav">마이페이지</option>
 											<option value="/bookDetail">책 상세페이지</option>
 									</select>
 								</td>

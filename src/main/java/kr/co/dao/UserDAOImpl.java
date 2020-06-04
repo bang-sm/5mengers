@@ -3,6 +3,7 @@ package kr.co.dao;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -36,12 +37,18 @@ public class UserDAOImpl implements UserDAO {
 		
 		return sqlSession.selectOne("login", loginDTO);
 	}
+	
 	//회원 전체 구매내역 판매내역 받아오는처리
 	@Override
 	public List<UserVO> userbuysell() throws Exception {
 		return sqlSession.selectList("userMapper.deal_list");
-		
-		
 	}
 
+	// 로그아웃 처리
+	@Override
+	public void logout(HttpSession session) {
+		
+	}
+	
+	
 }

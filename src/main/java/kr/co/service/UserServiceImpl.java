@@ -48,12 +48,6 @@ public class UserServiceImpl implements UserService {
 		// TODO : 중복로그인 확인 
 		return false;
 	}
-	
-	// 회원 로그아웃
-	@Override
-	public void logout(HttpSession httpSession) throws Exception {
-		// TODO Auto-generated method stub
 		
-	}
 
 }
