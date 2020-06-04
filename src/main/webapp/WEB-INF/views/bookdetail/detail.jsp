@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
@@ -9,214 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>거래 상세 페이지</title>
-
-<style>
-body {
-	margin: 0 300px 0 300px;
-}
-
-#article {
-	width: 1200px;
-	margin: 0 auto;
-	height: 600px;
-	border: 1px solid black;
-	position: relative;
-}
-
-#article2 {
-	width: 1200px;
-	margin: 0 auto;
-	height: 500px;
-	position: relative;
-}
-
-.div_top {
-	width: 100%;
-	height: 100px;
-}
-
-.book_title {
-	position: absolute;
-	top: 10px;
-	left: 10px;
-	margin: 10px 0 0 10px;
-	font-size: 30px;
-	font-weight: bold;
-	float: left;
-}
-
-.zzim {
-	float: right;
-	font-size: 40px;
-	font-weight: bold;
-}
-
-.zzim_img {
-	width: 50px;
-	height: 50px;
-	margin: 5px 10px 0 0;
-	float:left;
-	margin:20px 30px 0 0;
-}
-.zzim_count{
-  float:left;
-  font-size:50px;
-  margin:20px 10px 0 0;
-}
-
-.div_middle_1 {
-	height: 200px;
-}
-
-.book_img {
-	position: absolute;
-	left: 50px;
-	float: left;
-}
-
-.book_detail {
-	position: absolute;
-	top: 150px;
-	left: 500px;
-	float: left;
-}
-
-.book_detail>div {
-	margin-bottom: 20px;
-}
-
-.book_detail_title {
-	font-size: 20px;
-	font-weight: bold;
-}
-
-.book_regdate {
-	position: absolute;
-	top: 400px;
-	height: 50px;
-	margin-left: 100px;
-	font-weight: bold;
-	font-size: 30px;
-}
-
-.div_middle_2 {
-	height: 300px;
-}
-
-.book_content {
-	position: absolute;
-	top: 390px;
-	left: 500px;
-}
-
-.book_content_title {
-	font-size: 20px;
-	font-weight: bold;
-	margin-bottom: 20px;
-}
-
-.book_zzim {
-	position: absolute;
-	top: 500px;
-	left: 50px;
-	font-weight: bold;
-}
-
-.toggle_img {
-	position: absolute;
-	top: -30px;
-	left: 200px;
-}
-
-.book_zzim_img {
-	width: 40px;
-	height: auto;
-	margin: 20px 0 0 50px;
-}
-
-#map {
-	float: left;
-}
-
-.hope_map {
-	border: 1px solid black;
-}
-
-#map_detail {
-	float: left;
-	border: 3px solid black;
-	height: 100px;
-	margin: 100px 0 0 30px;
-}
-
-#article2 {
-	margin-top: 100px;
-}
-
-.article2_top {
-	height: 500px;
-}
-
-.aside_book {
-	width: 250px;
-	height: 700px;
-	border: 3px solid black;
-	border-radius: 10px;
-}
-
-#aside {
-	position: absolute;
-	top: 100px;
-	right: -300px;
-}
-.buy_button{
-  position:absolute;
-  top:400px;
-  left:1000px;
-}
-.info {background-color: #2196F3;} /* Blue */
-.info:hover {background: #0b7dda;}
-
-.danger {background-color: #f44336;} /* Red */ 
-.danger:hover {background: #da190b;}
-
-.book_popup{
-width:450px;
-height:170px;
-border: 1px solid black;
-border-radius:10px;
-position: absolute;
-top:700px;
-left:600px;
-display:none;
-background-color:lightgray;
-}
-.book_popup h3{
-font-size:30px;
-font-weight:bold;
-margin:0 0 100px 0;
-}
-.book_popup_ok{
- width:150px;
- height:30px;
- border: 1px solid black;
-border-radius:2px;
-}
-.book_popup_no{
- width:150px;
- height:30px;
- border: 1px solid black;
-border-radius:2px;
-}
-.book_confirm{
-position:absolute;
-font-size:30px;
-font-weight:bold;
-text-align:center;
-top:25px;
-left:900px;
-}
-</style>
+<link rel="stylesheet" href="../resources/css/detail.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
@@ -242,30 +36,34 @@ left:900px;
 					<img alt="" style="width: 200px; height: auto"
 						src="https://search.pstatic.net/common/?src=http%3A%2F%2Fimage.nmv.naver.net%2Fblogucc28%2F2017%2F07%2F08%2F448%2F506e27a24cc2ebbd547b7de4a3d741176e18_ugcvideo_270P_01_16x9_logo.jpg&type=b400">
 				</div>
-				
+
 				<c:choose>
 					<c:when test="${detail.bsr_check == 3}">
-					<div class="book_confirm" style="color:blue;border:1px solid blue; padding:10px;"> 판매중</div>
+						<div class="book_confirm"
+							style="color: blue; border: 1px solid blue; padding: 10px;">
+							판매중</div>
 					</c:when>
 					<c:when test="${detail.bsr_check == 2}">
-					<div class="book_confirm" style="color:blue"> 삭제됨</div>
+						<div class="book_confirm" style="color: blue">삭제됨</div>
 					</c:when>
 					<c:when test="${detail.bsr_check == 1}">
-					<div class="book_confirm" style="color:blue"> 판매완료</div>
+						<div class="book_confirm" style="color: blue">판매완료</div>
 					</c:when>
 					<c:otherwise>
-					<div class="book_confirm" style="color:red;border:1px solid red; padding:10px;"> 예약중</div>
+						<div class="book_confirm"
+							style="color: red; border: 1px solid red; padding: 10px;">
+							예약중</div>
 					</c:otherwise>
 				</c:choose>
-				
+
 				<div class="book_detail">
-				
+
 					<!-- 책 설명(판매자/장르/정가/판매가/휴대폰)(60%) -->
 					<div>
 						<span class="book_detail_title">판 매 자 :</span>${detail.name}
 					</div>
 					<div>
-						<span class="book_detail_title">장 르 :</span>${detail.bsr_category}
+						<span class="book_detail_title">장 르 :</span>${detail.bc_name}
 					</div>
 					<div>
 						<span class="book_detail_title">정 가 :</span>${detail.bsr_fixed_price}원
@@ -294,9 +92,10 @@ left:900px;
 				<div class="book_zzim">
 					<!-- 찜등록  -->
 					<span>관심목록에 추가 하시겠습니까?</span>
+					<c:set value='<%= request.getParameter("bsr_id") %>' var="bsr_id"/>
 					<c:choose>
-						<c:when
-							test="${zzim_check.uuid == detail.uuid and  zzim_check.bsr_id == detail.bsr_id}">
+					<c:when
+							test="${zzim_check.uuid == login.uuid and  zzim_check.bsr_id == bsr_id}">
 							<img class="book_zzim_img" alt=""
 								src="/resources/site_img/heart_on.png">
 						</c:when>
@@ -305,22 +104,34 @@ left:900px;
 								src="/resources/site_img/heart_off.png">
 						</c:otherwise>
 					</c:choose>
-
+					
+						
 				</div>
 			</div>
-			
+
 
 			<aside id="aside">
 				<!--같은 장르 추천 책-->
-				<div class="aside_book"></div>
+				<div class="aside_book">
+				<c:forEach var="side" items="${side_book}">
+					<div class="side_book_border"style="width:230px;height:150px;">
+					    <div class="side_name">${side.bsr_name}</div>
+						<div class="side_img">
+						  <img style="width:100px; height:100px;"alt="" src="http://blogfiles.naver.net/data13/2006/1/27/91/%B5%E5%B7%A1%B0%EF%BA%BCGT_01-dbgn6906.jpg">
+						</div>
+						  <div class="side_price">가격 : ${side.bsr_price}원</div>
+						  <div class="side_regdate">등록일 : ${side.bsr_regdate}</div>
+					</div>
+				</c:forEach>
+				</div>
 			</aside>
 
 		</article>
-         <div class="book_popup">
-            <h3>해당 제품을 구매하시겠습니까?</h3>
-            <input class="book_popup_ok info" type="button" value = "구매합니다"/>
-            <input class="book_popup_no info" type="button" value ="좀더 둘러볼께요.."/>
-         </div>
+		<div class="book_popup">
+			<h3>해당 제품을 구매하시겠습니까?</h3>
+			<input class="book_popup_ok info" type="button" value="구매합니다" /> <input
+				class="book_popup_no info" type="button" value="좀더 둘러볼께요.." />
+		</div>
 
 
 		<article id="article2">
@@ -340,30 +151,29 @@ left:900px;
 				<div class="buy_button">
 					<!--  버튼 들  -->
 					<div></div>
-					<c:if test="${detail.auth==2}">
+					<c:if test="${login.uuid == detail.uuid}">
 						<input type=button value="글 삭제" onclick="" />
-						<input type=button value="글 수정" onclick="" />
+						<a href="${contextPath}/bookupdate?bsr_id=<%=request.getParameter("bsr_id")%>">글 수정</a>
 					</c:if>
 					<c:choose>
-					   <c:when test="${detail.bsr_check ==3 }" >
-					   	<input class="btn info" style="width:100px;height:auto" type=button value="구매 하기"/>
-					   </c:when>
-					   <c:when test="${detail.bsr_check ==1 }" >
-					   	<input class="btn info" style="width:100px;height:auto" type=button value="판매완료"/>
-					   </c:when>
-					  <!--   <c:when test="${detail.bsr_check ==0 and ${detail.uuid = uuid }" >
-					   	<input class="btn info" style="width:100px;height:auto" type=button value="예약취소"/>
-					   </c:when>
-					   -->
-					   <c:otherwise>
-					   <input class="btn danger" style="width:100px;height:auto" type=button value="예약 중"/>
-					   </c:otherwise>
+						<c:when test="${detail.bsr_check ==3 }">
+							<input class="btn info" style="width: 100px; height: auto"
+								type=button value="구매 하기" />
+						</c:when>
+						<c:when test="${detail.bsr_check ==1 }">
+							<input class="btn info" style="width: 100px; height: auto"
+								type=button value="판매완료" />
+						</c:when>
+						<c:otherwise>
+							<input class="btn danger" style="width: 100px; height: auto"
+								type=button value="예약 중" />
+						</c:otherwise>
 					</c:choose>
-					
+
 
 				</div>
 			</div>
-			
+
 		</article>
 
 	</section>
@@ -374,65 +184,90 @@ left:900px;
 	<footer> </footer>
 
 </body>
-<script>
-         $('.book_zzim_img').click(function(){
-            var allowsrc = $(this).attr('src');
-            
-            if(allowsrc.match('on')){
-               //찜이 이미 눌러져있다  -> 찜 해제
-               $.ajax({
-                  url: "/zzimoff", //매핑
-                  type: "GET",
-                  data :  {
-                     "uuid" : ${detail.uuid} 
-                  },
-                  success : function(){
-                	  $.ajax({
-                		  url:"/zzimcount",
-                		  type:"GET",
-                		  data :{ 
-                			  "bsr_id" : ${detail.bsr_id}
-                		  },
-                		  success : function(data){
-                			  $('.zzim_count').text(""+data);
-                		  }
-                	  });
+<c:choose>
+	<c:when  test = "${empty login}">
+	 <script>
+	 $('.book_zzim_img').click(function(){
+		 alert("로그인 하세요");
+		  location.href="${path}/user/login";
+	 })
+	  $('.info').click(function(){
+		 alert("로그인 하세요");
+		  location.href="${path}/user/login";
+	 })
+	 
+	</script>
+	</c:when>
+	<c:otherwise>
+	<script>
+		$('.book_zzim_img').click(function(){
+	        var allowsrc = $(this).attr('src');
+	        if(allowsrc.match('on')){
+	           //찜이 이미 눌러져있다  -> 찜 해제
+	                     
 
-                  },
-                  error : function(){
-                  }
-               });
-            $('.book_zzim_img').attr("src","/resources/site_img/heart_off.png");
-            }else{
-               //찜이 안눌러 져있다  ->찜 등록
-               $.ajax({
-                  url: "/zzimon", //매핑
-                  type: "GET",
-                  data :  {
-                	  "uuid" : ${detail.uuid},
-                	  "bsr_id" : ${detail.bsr_id},
-                  },
-                  success : function(){
-                	  $.ajax({
-                		  url:"/zzimcount",
-                		  type:"GET",
-                		  data :{ 
-                			  "bsr_id" : ${detail.bsr_id}
-                		  },
-                		  success : function(data){
-                			  $('.zzim_count').text(""+data);
-                		  }
-                	  });
-                  },
-                  error : function(){
-                  }
-               });
-               $('.book_zzim_img').attr("src","/resources/site_img/heart_on.png");
-            }
-         });
-        
+	           $.ajax({
+	              url: "/zzimoff", //매핑
+	              type: "GET",
+	              data :  {
+	                 "uuid" : ${login.uuid}, 
+	                 "bsr_id" : <%=request.getParameter("bsr_id")%>
+	         
+	              },
+	              success : function(){
+	            	  $.ajax({
+	            		  url:"/zzimcount",
+	            		  type:"GET",
+	            		  data :{  
+	            			  "bsr_id" : <%=request.getParameter("bsr_id")%>
+	            		  },
+	            		  success : function(data){
+	            			  $('.zzim_count').text(""+data);
+	            		  }
+	            	  });
+
+	              }, 
+	              error : function(){
+	              }
+	           });
+	        $('.book_zzim_img').attr("src","/resources/site_img/heart_off.png");
+	        }else{
+	           //찜이 안눌러 져있다  ->찜 등록
+	           $.ajax({
+	              url: "/zzimon", //매핑
+	              type: "GET",
+	              data :  {
+	            	  "uuid" : ${login.uuid},
+	                  "bsr_id" : <%=request.getParameter("bsr_id")%>
+	              },
+	              success : function(){
+	            	  $.ajax({
+	            		  url:"/zzimcount",
+	            		  type:"GET",
+	            		  data :{ 
+	            			  "bsr_id" : <%=request.getParameter("bsr_id")%>
+	            		  },
+	            		  success : function(data){
+	            			  $('.zzim_count').text(""+data);
+	            		  }
+	            	  });
+	              },
+	              error : function(){
+	            	  alert("로그인해라");
+	              }
+	           });
+	           $('.book_zzim_img').attr("src","/resources/site_img/heart_on.png");
+	        }
+	     });
+
          </script>
-         <script>
+	</c:otherwise>
+</c:choose>
+	
+
+
+
+<script>
 			  $('.info').click(function(){
 				  $('.book_popup').show();
 			  })

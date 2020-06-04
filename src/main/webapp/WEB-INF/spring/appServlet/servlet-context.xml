@@ -8,6 +8,7 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 	<!-- Enables the Spring MVC @Controller programming model -->
 
@@ -21,7 +22,24 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.co.controller" />
+	<beans:bean id="loginInterceptor" class="commons.interceptor.LoginInterceptor"/>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/loginPost"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
+	<beans:bean id="authInterceptor" class="commons.interceptor.AuthInterceptor"/>
 	
+	<interceptors>
+		<interceptor>
+			<!-- 자신의 페이지가 로그인이 되어야 ,접근 해야 하는 페이지 url 작성 -->
+			<mapping path=""/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+	</interceptors>
 </beans:beans>
+
+

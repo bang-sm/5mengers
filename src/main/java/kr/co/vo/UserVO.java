@@ -6,10 +6,18 @@ public class UserVO {
 	private String phonenum;
 	private int auth;
 	private String pass;
+	private int uuid;
 	private String userid;
 	private int sell_count;
 	private int buy_count;
 	
+	
+	public int getUuid() {
+		return uuid;
+	}
+	public void setUuid(int uuid) {
+		this.uuid = uuid;
+	}
 	public int getSell_count() {
 		return sell_count;
 	}

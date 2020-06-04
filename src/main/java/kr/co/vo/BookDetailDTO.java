@@ -9,17 +9,24 @@ public class BookDetailDTO {
 	String bsr_price;
 	String bsr_comment;
 	Date bsr_regdate;
-	String bsr_category;
+	int bsr_category;
 	int bsr_check;
 	String bsr_fixed_price;
 	String bsr_confirm;
 	String phonenum;
+	String bc_name;
 	int zzim;
 	int auth;
 	int bsr_id;
 	double map_x;
 	double map_y;
 	
+	public String getBc_name() {
+		return bc_name;
+	}
+	public void setBc_name(String bc_name) {
+		this.bc_name = bc_name;
+	}
 	public int getZzim() {
 		return zzim;
 	}
@@ -75,10 +82,11 @@ public class BookDetailDTO {
 	public void setBsr_regdate(Date bsr_regdate) {
 		this.bsr_regdate = bsr_regdate;
 	}
-	public String getBsr_category() {
+	
+	public int getBsr_category() {
 		return bsr_category;
 	}
-	public void setBsr_category(String bsr_category) {
+	public void setBsr_category(int bsr_category) {
 		this.bsr_category = bsr_category;
 	}
 	public int getBsr_check() {

@@ -4,96 +4,124 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BookDetailMapper">
 
-	<select id="book_detail" resultType="kr.co.vo.BookDetailDTO">
-
-		SELECT
-			bsr.bsr_name,
-			bsr.bsr_regdate,
-			bsr.bsr_category,
-			bsr.bsr_fixed_price,
-			bsr.bsr_price,
-			bsr.bsr_comment,
-			bsr.bsr_check,
-			bsr.map_x,
-			bsr.map_y,
-			bsr.bsr_id,
-			bsr.uuid,
-			u.phonenum,
-			u.name,
-			u.auth
-		FROM
-			user u,book_sell_regist bsr
-		WHERE 
-		    u.uuid = bsr.uuid and u.uuid=2;
-	</select>
-	
-	<select id ="zzim" resultType="kr.co.vo.BookDetailDTO">
+<!-- DB에서 책 관련 값들 가져오기 -->
+	<select id="book_detail" parameterType="map" resultType="kr.co.vo.BookDetailDTO">
 		SELECT 
-			count(bsr_id) as zzim 
-	    FROM
-	        zzim;
-	
-	</select>
-	<select id="zzim_check" resultType="kr.co.vo.BookDetailDTO">
-		SELECT 
-			* 
+		     bsru.*,bc.bc_name 
 		FROM 
-			zzim 
-		WHERE 
-			uuid =2 and bsr_id=1;
-	</select>
-	
-	<delete id="check_off" parameterType="int">
-		 DELETE 
-		 FROM 
-		 	zzim 
-		 WHERE 
-		 	uuid= #{uuid};
-	</delete>
-
-	<insert id="check_on" parameterType="map">
-		INSERT INTO 
-			zzim 
-		VALUES
-			(#{uuid},#{bsr_id});
-	</insert>
-	<select id ="check_count" resultType="int">
-		SELECT 
-		    count(*)
-		FROM
-		    zzim
+			 book_sell_regist_user bsru  
+		INNER JOIN 
+		     book_category bc
+		ON 
+		     bsru.bsr_category  = bc.bc_code 
 		WHERE
-		    bsr_id = #{bsr_id}
+		     bsr_id=#{bsr_id} and uuid=#{uuid};
 	</select>
 	
-	<update id= "book_check" parameterType="map">
-		UPDATE 
-			book_sell_regist  
-		SET 
-			bsr_check=#{bsr_check} 
-		WHERE 
-		    bsr_id=#{bsr_id};
-	
-	</update>
-	
-	<!-- 책 카테고리 리스트 -->
-	<select id="bc" resultType="kr.co.vo.BookCategoryDTO">
-		SELECT
-		bc_code,
-		bc_name
-		FROM
-		book_category;
-	</select>
-	<!-- 메인 책 리스트 -->
-	<select id="main_book_list" resultType="kr.co.vo.BookDetailDTO">
-		SELECT
-			bsr_id,
-			uuid,
-			bsr_price,
-			bsr_name
-		FROM
-			book_sell_regist 
-		ORDER BY
-			bsr_regdate desc;
-	</select>
+   <!-- 찜 개수  -->
+   <select id ="zzim" parameterType ="int" resultType="kr.co.vo.BookDetailDTO">
+        SELECT 
+	         count(*) as zzim 
+	    FROM
+	         zzim
+	    WHERE 
+	      	 bsr_id=#{bsr_id};
+	   
+   </select>
+   
+   <!-- 사용자 찜 확인 -->
+   <select id="zzim_check" parameterType="map" resultType="kr.co.vo.BookDetailDTO">
+      	SELECT 
+         	  * 
+      	FROM 
+         	  zzim 
+     	WHERE 
+       		  uuid =#{uuid} and bsr_id=#{bsr_id};
+   </select>
+   
+   <!-- 찜 등록 해제 AJAX  -->
+   <delete id="check_off" parameterType="map">
+	    DELETE 
+	    FROM 
+	          zzim 
+	    WHERE 
+	          uuid= #{uuid} and bsr_id=#{bsr_id} ;
+   </delete>
+
+   <!-- 찜 등록 AJAX -->
+   <insert id="check_on" parameterType="map">
+	    INSERT INTO 
+	          zzim(uuid,bsr_id) 
+	    VALUES
+	          (#{uuid},#{bsr_id});
+   </insert>
+   
+   <!--찜 개수 AJAX 표현  -->
+   <select id ="check_count" resultType="int">
+        SELECT 
+              count(*)
+        FROM
+              zzim
+        WHERE
+              bsr_id = #{bsr_id}
+   </select>
+   
+   <!--구매하기 버튼 클릭시 예약중 AJAX-->
+   <update id= "book_check" parameterType="map">
+        UPDATE 
+              book_sell_regist  
+        SET 
+              bsr_check=#{bsr_check} 
+        WHERE 
+              bsr_id=#{bsr_id};
+   
+   </update>
+   
+   
+   <!-- 책 카테고리 리스트 -->
+   <select id="bc" resultType="kr.co.vo.BookCategoryDTO">
+        SELECT
+	          bc_code,
+	          bc_name
+        FROM
+      	      book_category;
+   </select>
+   <!-- 메인 책 리스트 -->
+   <select id="main_book_list" resultType="kr.co.vo.BookDetailDTO">
+        SELECT
+	          bsr_id,
+	          uuid,
+	          bsr_price,
+	          bsr_name,
+	          bsr_category
+        FROM
+              book_sell_regist 
+        ORDER BY
+              bsr_regdate desc;
+   </select>
+   
+   <!-- 같은 연관 장르 목록 -->
+   <select id="side_same_category" parameterType="map" resultType="kr.co.vo.BookDetailDTO">
+	     SELECT 
+	   		   * 
+	     FROM 
+	   	       book_sell_regist_user 
+	     WHERE 
+	    	   bsr_category =#{bsr_category} and bsr_id != #{bsr_id}
+	     ORDER BY  
+	    	   bsr_regdate 
+	     DESC  
+	     LIMIT 0,10;
+   </select>
+   
+   <!-- 글 수정 -->
+   <select id="bookupdate" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
+   SELECT 
+   		 * 
+   FROM 
+        book_sell_regist 
+   WHERE 
+   		bsr_id =#{bsr_id};
+   
+   </select>
 </mapper>
