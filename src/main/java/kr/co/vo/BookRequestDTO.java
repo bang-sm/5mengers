@@ -1,20 +1,22 @@
 package kr.co.vo;
 
+import java.util.Date;
+
 public class BookRequestDTO {
 	private int brb_id;
 	private String bk_category;
 	private String brd_comment;
 	private int uuid;
-	private String brb_regdate;
+	private Date brb_regdate;
 	private int brb_cnt;
 	private String brb_isbn;
 	
 	public BookRequestDTO() {
 		super();
-		System.out.println("BookRequestDTO 梓端 持失");
+		System.out.println("BookRequestDTO");
 	}
 	
-	public BookRequestDTO(int brb_id, String bk_category, String brd_comment, int uuid, String brb_regdate, int brb_cnt, String isbn) {
+	public BookRequestDTO(int brb_id, String bk_category, String brd_comment, int uuid, Date brb_regdate, int brb_cnt, String isbn) {
 		super();
 		this.brb_id = brb_id;
 		this.bk_category = bk_category;
@@ -23,7 +25,7 @@ public class BookRequestDTO {
 		this.brb_regdate = brb_regdate;
 		this.brb_cnt = brb_cnt;
 		this.brb_isbn = isbn;
-		System.out.println("BookRequestDTO(brb_id, brk_category, brd_comment, uuid, brb_regdate, brb_cnt, isbn) 梓端 持失");
+		System.out.println("BookRequestDTO(brb_id, brk_category, brd_comment, uuid, brb_regdate, brb_cnt, isbn)");
 	}
 
 	public int getBrb_id() {
@@ -58,11 +60,11 @@ public class BookRequestDTO {
 		this.uuid = uuid;
 	}
 
-	public String getBrb_regdate() {
+	public Date getBrb_regdate() {
 		return brb_regdate;
 	}
 
-	public void setBrb_regdate(String brb_regdate) {
+	public void setBrb_regdate(Date brb_regdate) {
 		this.brb_regdate = brb_regdate;
 	}
 

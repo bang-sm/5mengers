@@ -1,5 +1,5 @@
 $(document).ready(function(){
 	$('.bname').click(function(){
-		$('body').load('/resources/js/BookRequestDetail.jsp')
+		$('body').load('/resources/js/BookRequestDetail.jsp');
 	});
-});
+})
