@@ -28,7 +28,12 @@
 					<div class="topbar_right">
 						<ul>
 							<li><a href="${contextPath}/my/nav">마이페이지</a>
+							<c:if test="${ empty login }">
 							<li><a href="${contextPath}/user/login">로그인</a></li>
+							</c:if>
+							<c:if test="${not empty login }">
+							<li><a href="${contextPath}/user/logout">로그아웃</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</div>

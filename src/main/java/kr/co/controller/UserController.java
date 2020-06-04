@@ -2,6 +2,7 @@ package kr.co.controller;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -74,19 +75,39 @@ public class UserController {
 		// 비밀번호 일치하면, model 에 userVO 를 user 에 저장!
 		Object destination = httpSession.getAttribute("destination");
 		
-		if(destination != null) {
+		if(destination != null || destination != "/") {
 			
 			return (String) destination;
-		}
+		} 
+			
 		return "/";
+		
 		
 	}
 	
 	// loginPost 창 (로그인 틀렸을 경우 알림 띄우기 및 return)
-		@RequestMapping(value = "/loginPost" , method = RequestMethod.GET)
-		public String loginPostGET() throws Exception {
-			
-			return "/user/loginPost";
-		}
+	@RequestMapping(value = "/loginPost" , method = RequestMethod.GET)
+	public String loginPostGET() throws Exception {
+		
+		return "/user/loginPost";
+	}
 	
+	// 로그 아웃 처리!! 
+	@RequestMapping(value = "/logout" , method = RequestMethod.GET)
+	public String logout(HttpSession httpSession, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		Object object = httpSession.getAttribute("login");
+		if(object != null) { // Session에  login attribute 가 존재할 경우, 세션 초기화 
+//			UserVO userVO = (UserVO) object;
+			httpSession.removeAttribute("login");
+			httpSession.invalidate();
+		}
+		
+		
+		return "/user/logout";
+	}
+		
+
+	
+		
 }
