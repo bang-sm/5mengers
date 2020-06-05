@@ -109,7 +109,7 @@
 
 	$('#logoutbtn').on('click', function(){
 		$.ajax({
-			url : "user/logout",
+			url : "../user/logout",
 			type: "GET",
 			success: function(){
 				alert('로그아웃 되었습니다.');

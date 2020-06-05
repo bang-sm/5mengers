@@ -106,6 +106,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			uuid=#{uuid} and bsr_check=3;
 	</select>
+	
+	
   	<!-- 내가 찜중인 책 -->
 	<select id="my_zzim_book_list" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
 		SELECT
