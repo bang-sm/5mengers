@@ -77,7 +77,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  </select>
 	  
 	  <!-- 세션 아이디, 로그인 유지 기간 설정시 기간 갱신 -->
-	  <update id="keeplogin">
+	  <update id="keepLogin">
 	  
 	  	UPDATE user
 	  	SET sesssion_key = #{sessionId}

@@ -22,37 +22,26 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.co.controller" />
+	
 	<beans:bean id="loginInterceptor" class="commons.interceptor.LoginInterceptor"/>
+	<beans:bean id="authInterceptor" class="commons.interceptor.AuthInterceptor"/>
+	<beans:bean id="rememberPreviousInterceptor" class="commons.interceptor.RememberPreviousInterceptor"/>
+	<beans:bean id="loginAfterInterceptor" class="commons.interceptor.LoginAfterInterceptor"/>
 	
 	<interceptors>
 		<interceptor>
 			<mapping path="/user/loginPost"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
-	</interceptors>
-	
-	<beans:bean id="authInterceptor" class="commons.interceptor.AuthInterceptor"/>
-	
-	<interceptors>
 		<interceptor>
 			<!-- 자신의 페이지가 로그인이 되어야 ,접근 해야 하는 페이지 url 작성 -->
 			<mapping path=""/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
-	</interceptors>
-	
-	<beans:bean id="rememberPreviousInterceptor" class="commons.interceptor.RememberPreviousInterceptor"/>
-	
-	<interceptors>
 		<interceptor>
 			<mapping path="/**/"/>
 			<beans:ref bean="rememberPreviousInterceptor"/>
 		</interceptor>
-	</interceptors>
-	
-	<beans:bean id="loginAfterInterceptor" class="commons.interceptor.LoginAfterInterceptor"/>
-	
-	<interceptors>
 		<interceptor>
 			<mapping path="/user/login"/>
 			<mapping path="/user/register"/>
