@@ -2,6 +2,9 @@ package kr.co.service;
 
 import java.util.List;
 
+import org.json.simple.JSONObject;
+
+
 import kr.co.vo.BookCategoryDTO;
 import kr.co.vo.BookDetailDTO;
 
@@ -47,5 +50,7 @@ public interface BookDetailService {
 	//글 삭제 
 	public void book_delete(int bsr_id) throws Exception;
 	
+	//네이버 책
+	public JSONObject bookapi(String keyword) throws Exception;
 	
 }

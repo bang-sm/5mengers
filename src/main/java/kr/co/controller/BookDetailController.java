@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -142,8 +143,23 @@ public class BookDetailController {
 	    logger.info("글 삭제");
 		service.book_delete(bsr_id);
 	}
+	 
 	
+	//bookapi 페이지
+	@RequestMapping(value ="/bookapi",method =RequestMethod.GET)
+	public String bookapi() throws Exception{
+		logger.info("책 목록");
+		return "bookdetail/bookapi";
+	}
 	
+	//네이버 책  ajax
+	@ResponseBody
+	@RequestMapping(value ="/bookapicheck",method =RequestMethod.GET)
+	public JSONObject bookapicheck(String keyword) throws Exception{
+		logger.info("책 목록");
+		logger.info("머가 오지: "+service.bookapi(keyword));
+		return service.bookapi(keyword);
+	}
 	
 	
 }
