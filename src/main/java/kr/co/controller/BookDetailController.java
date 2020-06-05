@@ -1,16 +1,27 @@
 package kr.co.controller;
 
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 import kr.co.service.BookDetailService;
 import kr.co.vo.BookDetailDTO;
@@ -123,4 +134,16 @@ public class BookDetailController {
 		service.bookupdateend(bookDetailDTO);
 		return "redirect:/my/nav";
 	}
+	
+	//글 삭제 AJAX
+	@ResponseBody
+	@RequestMapping(value = "/book_delete", method = RequestMethod.GET)
+	public void bookdelete(int bsr_id) throws Exception {
+	    logger.info("글 삭제");
+		service.book_delete(bsr_id);
+	}
+	
+	
+	
+	
 }

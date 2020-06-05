@@ -150,8 +150,8 @@
 				<div class="buy_button">
 					<!--  버튼 들  -->
 					<div></div>
-					<c:if test="${login.uuid == detail.uuid}">
-						<input type=button value="글 삭제" onclick="" />
+					<c:if test="${login.uuid == detail.uuid && detail.bsr_check ==3}">
+						<input type=button value="글 삭제" onclick="deletebtn()" />
 						<a
 							href="${contextPath}/bookupdate?bsr_id=<%=request.getParameter("bsr_id")%>">글
 							수정</a>
@@ -178,7 +178,6 @@
 		</article>
 
 	</section>
-
 
 
 
@@ -254,7 +253,6 @@
 	            	  });
 	              },
 	              error : function(){
-	            	  alert("로그인해라");
 	              }
 	           });
 	           $('.book_zzim_img').attr("src","/resources/site_img/heart_on.png");
@@ -276,7 +274,7 @@
         		  success : function(){
         		  }
         	  });
-			  location.href="http://localhost:8080/bookdetail";
+			  location.href="http://localhost:8080/my/nav";
 		  })
 		   $('.book_popup_no').click(function(){
 			   $('.book_popup').hide();
@@ -284,6 +282,24 @@
          </script>
 	</c:otherwise>
 </c:choose>
+<script>
+function deletebtn(){
+	var check = confirm("해당 게시글을 삭제 하시겠습니까?");
+	if(check){
+		$.ajax({
+			url:"/book_delete",
+			type:"GET",
+			data:{
+				"bsr_id":${detail.bsr_id}
+			},
+			success : function(){
+				alert("해당 게시글이 삭제 되었습니다.")
+			}
+		});
+		location.href="http://localhost:8080";
+	}
+}
+</script>
 <script>
 var abc =${detail.map_x};
 var def = ${detail.map_y};

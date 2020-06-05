@@ -44,4 +44,8 @@ public interface BookDetailService {
 	//글 수정 데이터 넣기
 	public void bookupdateend(BookDetailDTO bookDetailDTO) throws Exception;
 	
+	//글 삭제 
+	public void book_delete(int bsr_id) throws Exception;
+	
+	
 }

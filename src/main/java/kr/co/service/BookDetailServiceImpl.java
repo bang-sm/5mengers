@@ -1,5 +1,13 @@
 package kr.co.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -93,10 +101,10 @@ public class BookDetailServiceImpl implements BookDetailService{
 		dao.bookupdateend(bookDetailDTO);
 	}
 
-	
-
-	
-
-
+	//글 삭제 
+	@Override
+	public void book_delete(int bsr_id) throws Exception {
+		dao.book_delete(bsr_id);
+	}
 
 }

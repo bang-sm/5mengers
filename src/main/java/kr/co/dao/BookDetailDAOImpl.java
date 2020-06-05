@@ -112,6 +112,12 @@ public class BookDetailDAOImpl implements BookDetailDAO{
 		  sqlSession.update("BookDetailMapper.bookupdateend",bookDetailDTO);
 	}
 
+	//글 삭제
+	@Override
+	public void book_delete(int bsr_id) throws Exception {
+		sqlSession.delete("BookDetailMapper.bookdelete",bsr_id);
+		}
+
 
 
 	

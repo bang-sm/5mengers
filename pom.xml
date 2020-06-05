@@ -217,6 +217,14 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>8.0.11</version>
 		</dependency>
+		
+	<!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+<dependency>
+    <groupId>org.assertj</groupId>
+    <artifactId>assertj-core</artifactId>
+    <version>3.5.2</version>
+    <scope>test</scope>
+</dependency>
 
 		
 	</dependencies>

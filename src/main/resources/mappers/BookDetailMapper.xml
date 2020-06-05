@@ -114,7 +114,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     LIMIT 0,10;
    </select>
    
-   <!-- 글 수정 -->
+   <!-- 글 수정  DB 값 가져오기-->
    <select id="bookupdate" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
 		 SELECT 
 		   	   * 
@@ -124,6 +124,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   	   bsr_id =#{bsr_id};
    
    </select>
+   <!--글 수정 DB UPDATE  -->
    <update id="bookupdateend" parameterType="kr.co.vo.BookDetailDTO"> 
 	     UPDATE 
 	   			book_sell_regist  
@@ -136,4 +137,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     WHERE 
 	   			bsr_id = #{bsr_id};
    </update>
+   
+   <!-- 글삭제 -->
+   <delete id="bookdelete" parameterType="int">
+	     DELETE 
+		 FROM 
+		       book_sell_regist  
+		 WHERE 
+		       bsr_id =#{bsr_id};
+		   
+   </delete>
 </mapper>
