@@ -37,9 +37,10 @@ function my_list(data,stat) {
 		for (var i = 0; i < data.length; i++) {
 	    	var confirm;
 	    	var ok;
-	    	if(data[i].bsr_check ==3){
+	    	console.log(data[i].bsr_check +" -----------------------------------");
+	    	if(data[i].bsr_check==1){
 	    		confirm="판매 되었습니다";
-	    		ok="<button value='"+data[i].bsr_id+"'>목록에서 제거하기</button>";
+	    		ok="<button value='"+data[i].bsr_id+"'>목록제거</button>";
 	    	}else{
 	    		confirm="-";
 	    		ok="";

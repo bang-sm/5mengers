@@ -109,7 +109,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<!-- 내가 찜중인 책 -->
 	<select id="my_zzim_book_list" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
 		SELECT
-		  	z.uuid ,z.bsr_id ,b.bsr_name ,b.bsr_price 
+		  	z.uuid,
+		  	z.bsr_id,
+		  	b.bsr_name,
+		  	b.bsr_price,
+		  	b.bsr_check
 		FROM
 		 	zzim z  inner join book_sell_regist b
 		ON
