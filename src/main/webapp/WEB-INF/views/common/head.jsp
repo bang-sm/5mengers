@@ -12,7 +12,11 @@
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="../resources/css/common.css">
 <link rel="stylesheet" href="../resources/css/mypage.css">
+<link rel="stylesheet" href="../resources/css/card.css">
+<link rel="stylesheet" href="../resources/css/login.css">
 </head>
+
+<body>
 <script>
 	$(document).ready(function(){
 		//현재페이지
@@ -23,27 +27,29 @@
 			url: "/admin/popupCheck",
 			type: "POST",
 			success: function(data){
-				console.log("성공했습니다");
-				console.log(data);
 
 				for (var i = 0; i < data.length; i++) {
 					console.log(data[i].np_id);
 					console.log(data[i].np_page_name);
 					if(data[i].np_page_name == path){
-						console.log(data[i].np_yes_no +"   검색된 팝업 활성화 상황");
 						if(data[i].np_yes_no == 1){
 							$("#popup_box").css("display","block");
 							$("#np_title").text(data[i].np_title);
 							$("#np_comment").text(data[i].np_comment);
-							$(".pop-layer").draggable();
+							$(".pop-layer").draggable({
+								containment: 'window'
+							});
 						}
 					}
 				}
 			},
 			error: function (request, status, error){       
-				console.log("에러입니다");
 				console.log(request,status,error);
 			}
+		});
+		
+ 		$('#btn_Close').click(function(){
+ 			  $('#popup_box').css("display","none");
 		});
 	});
 </script>
@@ -56,7 +62,7 @@
 				<span id="np_comment"></span>
 			</div>
 			 <div class="btn-r">
-                <a href="#" class="btn_Close">Close</a>
+                <Button id="btn_Close">Close</Button>
             </div>
 		</div>
 	</div>
@@ -75,11 +81,17 @@
 					<div class="topbar_right">
 						<ul>
 							<c:if test="${ empty login }">
-							<li><a href="${contextPath}/user/login">로그인</a></li>
+								<li>
+									<button type="button" id="login" onclick="location.href='${contextPath}/user/login'">로그인</button>
+								</li>
 							</c:if>
 							<c:if test="${not empty login }">
-							<li><a href="${contextPath}/my/nav">마이페이지</a>
-							<li><a href="${contextPath}/user/logout">로그아웃</a></li>
+								<li>
+									<button type="button" id="mypage" onclick="location.href='${contextPath}/my/nav'">마이페이지</button>
+								</li>
+								<li>
+									<button type="button" id="logoutbtn">로그아웃</button>
+								</li>
 							</c:if>
 						</ul>
 					</div>
@@ -93,4 +105,22 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+
+	$('#logoutbtn').on('click', function(){
+		$.ajax({
+			url : "user/logout",
+			type: "GET",
+			success: function(){
+				alert('로그아웃 되었습니다.');
+				location.reload();
+			}, error: function(){
+				alert('다시 시도해 주세요!');
+			}
+			
+		})
+		
+	});
+
+</script>
 </html>

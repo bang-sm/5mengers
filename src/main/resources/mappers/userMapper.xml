@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   u.name,
 		   u.userid 
 		FROM
-		   user u
+			user u
 	</select>
   	<!-- 내가 판매중인책 개수 -->
 	<select id="my_selling_count" resultType="int">
@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ON
 			u.uuid =bsr.uuid 
 		WHERE 
-			u.uuid =2 and bsr_check =3;
+			u.uuid =#{uuid} and bsr_check =3;
 	</select>
   	<!-- 내가 구매중인책 개수 -->
 	<select id="my_buying_count" resultType="int">
@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM 
 			my_buy_book
 		where 
-			uuid=2 and bsr_confirm ='Z';
+			uuid=#{uuid} and bsr_confirm ='Z';
 	</select>
 	<!-- 나의 찜개수 -->
 	<select id="my_zzim_count" resultType="int">
@@ -65,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ON 
 			u.uuid =z.uuid 
 	    AND 
-	    	u.uuid=2;
+	    	u.uuid=#{uuid};
 	</select>
 	  <select id="login" resultType="kr.co.vo.UserVO">
 	  	
@@ -75,6 +75,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  	WHERE userid = #{userid}
 	  	
 	  </select>
+	  
+	  <!-- 세션 아이디, 로그인 유지 기간 설정시 기간 갱신 -->
+	  <update id="keepLogin">
+	  
+	  	UPDATE user
+	  	SET sesssion_key = #{sessionId}
+	  		, session_limit = #{next}
+	  	WHERE userid = #{userid}	  	
+	  
+	  </update>
+	  
+	  <!-- Session key 확인 -->
+	  <select id="checkUserSessionKey" parameterType="String" resultType="kr.co.vo.UserVO">
+	  
+	  	SELECT
+	  		*
+	  	FROM user
+	  	WHERE sesssion_key = #{value }
+	  		AND session_limit > now()
+	  
+	  </select>
+	  
+  	<!-- 내가 판매중인 책 -->
+	<select id="my_selling_book_list" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
+		SELECT
+			*
+		FROM
+			book_sell_regist bsr
+		WHERE
+			uuid=#{uuid} and bsr_check=3;
+	</select>
+  	<!-- 내가 찜중인 책 -->
+	<select id="my_zzim_book_list" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
+		SELECT
+		  	z.uuid,
+		  	z.bsr_id,
+		  	b.bsr_name,
+		  	b.bsr_price,
+		  	b.bsr_check
+		FROM
+		 	zzim z  inner join book_sell_regist b
+		ON
+			z.bsr_id=b.bsr_id and z.uuid=#{uuid};
+	</select>
  </mapper>
  
   

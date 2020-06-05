@@ -1,7 +1,9 @@
 package kr.co.controller;
 
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import kr.co.service.MyService;
+import kr.co.vo.BookDTO;
+import kr.co.vo.BookDetailDTO;
+import kr.co.vo.UserVO;
 
 
 @Controller
@@ -20,14 +27,22 @@ public class MyController {
 	@Autowired
 	private MyService myService;
 	
-	//나의 인덱스페이지
+	
+	/**
+	 * 나의 Nav 페이지
+	 * @param model 데이터를 담아 화면에 넘겨준다
+	 * @param hs 세션으로 현재 유저의 정보를 받아온다
+	 * @param uv 유저객체 
+	 */
 	@RequestMapping(value = "/my/nav", method = RequestMethod.GET)
-	public String myNav(Model model) throws Exception {
+	public String myNav(Model model,HttpSession hs,UserVO uv) throws Exception {
 		logger.info("myNav");
-		
-		model.addAttribute("zzim",myService.zzimCount());
-		model.addAttribute("sellingbook",myService.sellingBookCount());
-		model.addAttribute("buyingbook",myService.buyingBookCount());
+		//로그인유저의 정보
+		uv = (UserVO) hs.getAttribute("login");
+		int getuuid = uv.getUuid();
+		model.addAttribute("zzim",myService.zzimCount(getuuid));
+		model.addAttribute("sellingbook",myService.sellingBookCount(getuuid));
+		model.addAttribute("buyingbook",myService.buyingBookCount(getuuid));
 		
 		return "my/nav";
 	}
@@ -41,39 +56,34 @@ public class MyController {
 		return "my/boardList";
 	}
 	
-	//qna등록한 목록
-	@RequestMapping(value = "/my/qnaList", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/my/sellList", method = RequestMethod.GET)
 	public String myqna() throws Exception {
 		logger.info("qnaList");
 		
-		return "my/qnaList";
+		return "my/sellList";
 	}
-	//판매중인책
+	
+	//나의 판매중책
+	@ResponseBody
 	@RequestMapping(value = "/my/sellbook", method = RequestMethod.GET)
-	public String mySellBook() throws Exception {
-		logger.info("mySellBook");
+	public List<BookDetailDTO> mysellbook(HttpSession hs,UserVO uv,String stat) throws Exception {
+		logger.info("sellbook");
+		//로그인유저의 정보
+		uv = (UserVO) hs.getAttribute("login");
+		int getuuid = uv.getUuid();
 		
-		return "my/sellbook";
-	}
-	//구매중인책
-	@RequestMapping(value = "/my/buybook", method = RequestMethod.GET)
-	public String mybuybook() throws Exception {
-		logger.info("mybuybook");
-		
-		return "my/buybook";
-	}
-	//찜책
-	@RequestMapping(value = "/my/zzim", method = RequestMethod.GET)
-	public String myZzim() throws Exception {
-		logger.info("myZzim");
-		
-		return "my/zzim";
-	}
-	//나의 책 등록 , 찜 목록 , 거래승인 내역
-	@RequestMapping(value = "/my/bookStatus", method = RequestMethod.GET)
-	public String myStatus() throws Exception {
-		logger.info("qnaList");
-		
-		return "my/bookStatus";
+		List<BookDetailDTO> bookdto;
+		if(stat.equals("S")) {
+			logger.info("판매 if");
+			bookdto=myService.sellingBookList(getuuid);
+			return bookdto;
+		}
+		else if(stat.equals("Z")) {
+			logger.info("찜 if");
+			bookdto=myService.sellingZzimList(getuuid);
+			return bookdto;
+		}
+		return null;
 	}
 }

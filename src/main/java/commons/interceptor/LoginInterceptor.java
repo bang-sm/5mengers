@@ -1,5 +1,6 @@
 package commons.interceptor;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -31,6 +32,20 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			
 			httpSession.setAttribute(LOGIN, userVO); // httpSession 에 user를 저장 ( user 는 userController 에서 확인)
 //			response.sendRedirect("/"); // "/" 로 다이렉트
+			
+			
+			// 로그인 페이지에서 로그인 유지 checkbox 클릭 시, 로그인 유지 쿠키 발행 (브라우저 닫아도 유지 - 쿠키 살아있는 동안)
+			if(request.getParameter("useCookie") != null) {
+				logger.info("remember cookie");
+
+				// 쿠키 생성
+				Cookie loginCookie = new Cookie("loginCookie", httpSession.getId()); // Cookie는 브라우저 종료시에도 사라지지 않는다, session id 값을 쿠키에 저장
+				loginCookie.setPath("/"); // 웹 어플리케이션의 모든 URL에서 전송
+				loginCookie.setMaxAge(60 * 60 * 24 * 7); // 쿠키 유지 시간: 7일
+				
+				// 쿠키 전송
+				response.addCookie(loginCookie);
+			}
 			
 			// destination 으로 경로 변경
 			Object destination = httpSession.getAttribute("destination");

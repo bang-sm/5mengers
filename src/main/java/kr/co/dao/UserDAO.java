@@ -1,5 +1,6 @@
 package kr.co.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -22,4 +23,10 @@ public interface UserDAO {
 	
 	// 회원 로그 아웃
 	public void logout(HttpSession session);
+	
+	// 로그인 유지 처리
+	public void keepLogin(String userid, String sessionId, Date next) throws Exception;
+	
+	// 세션키 검증
+	public UserVO checkUserSessionKey(String value) throws Exception;
 }

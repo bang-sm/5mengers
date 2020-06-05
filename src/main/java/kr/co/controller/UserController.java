@@ -1,6 +1,9 @@
 package kr.co.controller;
 
+import java.util.Date;
+
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,7 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.WebUtils;
 
 import commons.interceptor.AuthInterceptor;
 import kr.co.service.UserService;
@@ -61,28 +66,37 @@ public class UserController {
 	
 	// 로그인 처리
 	@RequestMapping(value = "/loginPost", method = RequestMethod.POST)
-	public String loginPOST(LoginDTO loginDTO, HttpSession httpSession, Model model) throws Exception{
+	public String loginPOST(LoginDTO loginDTO, HttpSession httpSession, Model model , RedirectAttributes redirectAttributes) throws Exception{
 		
 		
 		UserVO userVO = userService.login(loginDTO);
 		
 		if(userVO == null || !BCrypt.checkpw( loginDTO.getPass(), userVO.getPass() )) {
+			redirectAttributes.addFlashAttribute("msg", "FAILURE");
 			
 			return "redirect:/user/loginPost"; // 비밀번호 틀리면 메소드 종료!!
 		}
 		
-		model.addAttribute("user", userVO);
 		// 비밀번호 일치하면, model 에 userVO 를 user 에 저장!
+		model.addAttribute("user", userVO);
+		
+		
+		// 로그인 유지를 선택했을 경우!!
+		if(loginDTO.isUseCookie()) {
+			int cookieLife = 60 * 60 * 24 * 7; // 쿠키 생존 시간 ㅠㅠ (7일 설정)
+			Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * cookieLife)); // milisec 기준이라 1000을 곱해준다~!!
+
+			userService.keepLogin(userVO.getUserid(), httpSession.getId(), sessionLimit);
+		}
+		
+		
 		Object destination = httpSession.getAttribute("destination");
 		
 		if(destination != null || destination != "/") {
 			
 			return (String) destination;
-		} 
-			
+		}
 		return "/";
-		
-		
 	}
 	
 	// loginPost 창 (로그인 틀렸을 경우 알림 띄우기 및 return)
@@ -92,22 +106,34 @@ public class UserController {
 		return "/user/loginPost";
 	}
 	
-	// 로그 아웃 처리!! 
+	// 로그아웃 처리!! 
+	@ResponseBody
 	@RequestMapping(value = "/logout" , method = RequestMethod.GET)
-	public String logout(HttpSession httpSession, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void logout(HttpSession httpSession, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		Object object = httpSession.getAttribute("login");
+		
 		if(object != null) { // Session에  login attribute 가 존재할 경우, 세션 초기화 
-//			UserVO userVO = (UserVO) object;
+			
+			UserVO userVO = (UserVO) object;
+			
 			httpSession.removeAttribute("login");
 			httpSession.invalidate();
-		}
+			
+			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie"); // 쿠키를 요청!!
+			
+			if(loginCookie != null) { // 쿠키가 있는 경우 -> 로그 아웃시 쿠키 제거!! 
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(0); // 쿠키 생명 0 으로 설정해서 쿠키 죽이기
+				response.addCookie(loginCookie); // 디바이스에 쿠키 response
+				
+				userService.keepLogin(userVO.getUserid(), "none", new Date());
+				
+			} // 쿠키 제거 if 제거 end
+			
+		} // session 초기화 if end 
 		
 		
-		return "/user/logout";
 	}
-		
-
-	
 		
 }

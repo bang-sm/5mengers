@@ -1,6 +1,9 @@
 package kr.co.dao;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -14,7 +17,7 @@ import kr.co.vo.UserVO;
 @Repository
 public class UserDAOImpl implements UserDAO {
 
-//	private static final String NAMESPACE = "../userMapper";
+//	private static final String NAMESPACE = "userMapper";
 	
 	@Inject
 	private SqlSession sqlSession;
@@ -49,6 +52,25 @@ public class UserDAOImpl implements UserDAO {
 	public void logout(HttpSession session) {
 		
 	}
+	
+	// 로그인 유지
+	@Override
+	public void keepLogin(String userid, String sessionId, Date next) throws Exception {
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("userid", userid);
+		paramMap.put("sessionId", sessionId);
+		paramMap.put("next", next);
+		
+		sqlSession.update("keepLogin", paramMap);
+	}
+	
+	// 세션키 검증
+	@Override
+	public UserVO checkUserSessionKey(String value) throws Exception {
+		
+		return sqlSession.selectOne("checkUserSessionKey", value);
+	}
+	
 	
 	
 }

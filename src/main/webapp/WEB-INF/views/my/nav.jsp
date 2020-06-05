@@ -13,8 +13,7 @@
 		<div id="contents">
 			<div class="title_top">
 				<h2>
-				
-					MY PAGE <span class="title_sub"> 회원님의 개인페이지입니다.</span>
+					MY PAGE <span class="title_sub">${login.name } 님 어세오세요!</span>
 				</h2>
 			</div>
 			<div class="mypage_banner">
@@ -25,7 +24,7 @@
 					<a href="${contextPath}/my/qnaList">나의QnA 리스트</a>
 				</div>
 				<div>
-					<a href="${contextPath}/my/sellbook">판매중인책</a>
+					<a href="${contextPath}/my/sellList">판매중인책</a>
 				</div>
 				<div>
 					<a href="${contextPath}/my/buybook">구매중인책</a>
@@ -38,6 +37,9 @@
 				</div>
 				<div>
 					<a href="${contextPath}/my/manyask">자주묻는질문</a>
+				</div>
+				<div>
+					<a href="${contextPath}/my/myStatusUpdate">회원정보변경</a>
 				</div>
 			</div>
 			<!-- .mypage_banner -->
