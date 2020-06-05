@@ -33,6 +33,7 @@ public class RememberPreviousInterceptor extends HandlerInterceptorAdapter {
 			
 			if(userVO != null) {  // 사용자 정보 확인 뒤, 세션에 회원 정보 추가!! 
 				httpSession.setAttribute("login", userVO);
+				logger.info("쿠키발급 ");
 			}
 		}
 		
