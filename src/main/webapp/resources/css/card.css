@@ -7,7 +7,7 @@
   -webkit-transform: translate(-50%, -50%);
 }
 
-#sell_book .card {
+.card {
   width: 300px;
   height: 130px;
   background-color: #fff;

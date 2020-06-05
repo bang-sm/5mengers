@@ -67,15 +67,23 @@ public class MyController {
 	//나의 판매중책
 	@ResponseBody
 	@RequestMapping(value = "/my/sellbook", method = RequestMethod.GET)
-	public List<BookDetailDTO> mysellbook(HttpSession hs,UserVO uv,Model model) throws Exception {
+	public List<BookDetailDTO> mysellbook(HttpSession hs,UserVO uv,String stat) throws Exception {
 		logger.info("sellbook");
 		//로그인유저의 정보
 		uv = (UserVO) hs.getAttribute("login");
 		int getuuid = uv.getUuid();
 		
-		List<BookDetailDTO> bookdto=myService.sellingBookList(getuuid);
-		model.addAttribute("sellbook",bookdto);
-		logger.info(bookdto +"");
-		return bookdto;
+		List<BookDetailDTO> bookdto;
+		if(stat.equals("S")) {
+			logger.info("판매 if");
+			bookdto=myService.sellingBookList(getuuid);
+			return bookdto;
+		}
+		else if(stat.equals("Z")) {
+			logger.info("찜 if");
+			bookdto=myService.sellingZzimList(getuuid);
+			return bookdto;
+		}
+		return null;
 	}
 }

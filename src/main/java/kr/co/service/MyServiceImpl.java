@@ -41,4 +41,10 @@ public class MyServiceImpl implements MyService{
 		return dao.sellingBookList(uuid);
 	}
 
+	@Override
+	public List<BookDetailDTO> sellingZzimList(int uuid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.sellingZzimList(uuid);
+	}
+
 }

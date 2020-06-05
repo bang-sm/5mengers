@@ -43,22 +43,53 @@
 				</div>
 			</div>
 			<div id="myStatus">
-				<div class="myStatus_box" id="sell_book">
-				</div>
-				<div class="myStatus_box"></div>
+				<div class="myStatus_box" id="sell_book"></div>
+				<div class="myStatus_box" id="zzim_book"></div>
 				<div class="myStatus_box"></div>
 			</div>
 			<script>
 				$(document).ready(function(){
+					
+					var stat;
+					//판매중 리스트
+					stat="S";
 					$.ajax({
+					
 				  			url: '/my/sellbook',
 				  			type: "GET",
+				  			data:{
+				  				"stat" : stat
+				  			},
 				  			success: function(data){
-				  				sellList(data);
+				  				console.log("판매중 리스트리턴 성공")
+				  				console.log(data);
+				  				stat="S";
+				  				my_list(data,stat);
 				  			},
 				  			error: function (request, status, error){      
 				  			}
 				  	  	});
+			
+					//찜 리스트
+					stat="Z";
+					$.ajax({
+					
+			  			url: '/my/sellbook',
+			  			type: "GET",
+			  			data:{
+			  				"stat" : stat
+			  			},
+			  			success: function(data){
+			  				console.log("찜 리스트리턴 성공");
+			  				console.log(data)
+		  					stat="Z";
+			  				my_list(data,stat);
+			  			},
+			  			error: function (request, status, error){      
+			  			}
+			  	  	});
+					
+					//구매요청중리스트
 				});
 			</script>
 		</div>

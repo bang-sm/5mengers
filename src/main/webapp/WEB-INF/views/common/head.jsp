@@ -27,14 +27,11 @@
 			url: "/admin/popupCheck",
 			type: "POST",
 			success: function(data){
-				console.log("성공했습니다");
-				console.log(data);
 
 				for (var i = 0; i < data.length; i++) {
 					console.log(data[i].np_id);
 					console.log(data[i].np_page_name);
 					if(data[i].np_page_name == path){
-						console.log(data[i].np_yes_no +"   검색된 팝업 활성화 상황");
 						if(data[i].np_yes_no == 1){
 							$("#popup_box").css("display","block");
 							$("#np_title").text(data[i].np_title);
@@ -47,7 +44,6 @@
 				}
 			},
 			error: function (request, status, error){       
-				console.log("에러입니다");
 				console.log(request,status,error);
 			}
 		});
@@ -85,12 +81,17 @@
 					<div class="topbar_right">
 						<ul>
 							<c:if test="${ empty login }">
-							<li><a href="${contextPath}/user/login">로그인</a></li>
+								<li>
+									<button type="button" id="login" onclick="location.href='${contextPath}/user/login'">로그인</button>
+								</li>
 							</c:if>
 							<c:if test="${not empty login }">
-							<li><button type="button" id="logoutbtn">로그아웃</button></li>
-							<li><a href="${contextPath}/my/nav">마이페이지</a>
-							<li><a href="${contextPath}/user/logout">로그아웃</a></li>
+								<li>
+									<button type="button" id="mypage" onclick="location.href='${contextPath}/my/nav'">마이페이지</button>
+								</li>
+								<li>
+									<button type="button" id="logoutbtn">로그아웃</button>
+								</li>
 							</c:if>
 						</ul>
 					</div>
