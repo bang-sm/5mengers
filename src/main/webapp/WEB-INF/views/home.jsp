@@ -12,7 +12,7 @@
 
 	<div id="cate_box">
 		<div id="cateline"
-			style="position: relative; width: 1200px; margin-left: auto; margin-right: auto; top: 0px; z-index: 1000; left: 0px; background: rgb(255, 255, 255);">
+			style="position: relative; width: 1200px; margin-left: auto; margin-right: auto; top: 0px; z-index: 10; left: 0px; background: rgb(255, 255, 255);">
 			<div class="box_1200">
 				<div id="category"
 					class="xans-element- xans-layout xans-layout-category">

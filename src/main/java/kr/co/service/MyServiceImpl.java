@@ -40,11 +40,17 @@ public class MyServiceImpl implements MyService{
 		// TODO Auto-generated method stub
 		return dao.sellingBookList(uuid);
 	}
-
+	//찜중인책리스트
 	@Override
 	public List<BookDetailDTO> sellingZzimList(int uuid) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.sellingZzimList(uuid);
+	}
+	//구매요청중인책리스트
+	@Override
+	public List<BookDetailDTO> RequestList(int uuid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.RequestList(uuid);
 	}
 
 }

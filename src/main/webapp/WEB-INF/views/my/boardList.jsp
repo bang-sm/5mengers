@@ -7,6 +7,7 @@
 <html lang="ko">
 <head>
 <title>마이페이지</title>
+<link rel="stylesheet" href="../resources/css/mypage.css">
 </head>
 <body>
 	<%@ include file="../common/head.jsp"%>

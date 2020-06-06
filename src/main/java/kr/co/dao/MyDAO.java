@@ -19,4 +19,6 @@ public interface MyDAO {
 	public List<BookDetailDTO> sellingBookList(int uuid) throws Exception;
 	//현재 찜중인책
 	public List<BookDetailDTO> sellingZzimList(int uuid) throws Exception;
+
+	public List<BookDetailDTO> RequestList(int uuid) throws Exception;
 }
