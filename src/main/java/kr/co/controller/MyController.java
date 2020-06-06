@@ -57,32 +57,41 @@ public class MyController {
 	}
 	
 
-	@RequestMapping(value = "/my/sellList", method = RequestMethod.GET)
+	@RequestMapping(value = "/my/status", method = RequestMethod.GET)
 	public String myqna() throws Exception {
 		logger.info("qnaList");
 		
-		return "my/sellList";
+		return "my/status";
 	}
 	
 	//나의 판매중책
 	@ResponseBody
-	@RequestMapping(value = "/my/sellbook", method = RequestMethod.GET)
+	@RequestMapping(value = "/my/statusList", method = RequestMethod.GET)
 	public List<BookDetailDTO> mysellbook(HttpSession hs,UserVO uv,String stat) throws Exception {
-		logger.info("sellbook");
 		//로그인유저의 정보
-		uv = (UserVO) hs.getAttribute("login");
-		int getuuid = uv.getUuid();
-		
-		List<BookDetailDTO> bookdto;
-		if(stat.equals("S")) {
-			logger.info("판매 if");
-			bookdto=myService.sellingBookList(getuuid);
-			return bookdto;
+		if(hs.getAttribute("login")==null) {
+			logger.info("유저의 세션이 없습니다");
 		}
-		else if(stat.equals("Z")) {
-			logger.info("찜 if");
-			bookdto=myService.sellingZzimList(getuuid);
-			return bookdto;
+		else {
+			uv = (UserVO) hs.getAttribute("login");
+			int getuuid = uv.getUuid();
+			List<BookDetailDTO> bookdto;
+			
+			//나의 책 리스트 페이지에서 AJAX를 통해 화면 표출
+			//각 호출 구분자로 뿌리는 데이터를 달리한다.
+			// S :판매중  Z:찜  R:구매요청중
+
+			if(stat.equals("S")) {
+				bookdto=myService.sellingBookList(getuuid);
+				return bookdto;
+			}
+			else if(stat.equals("Z")) {
+				bookdto=myService.sellingZzimList(getuuid);
+				return bookdto;
+			}else if(stat.equals("R")) {
+				bookdto=myService.RequestList(getuuid);
+				return bookdto;
+			}
 		}
 		return null;
 	}

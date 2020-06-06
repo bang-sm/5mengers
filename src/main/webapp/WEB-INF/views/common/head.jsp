@@ -2,23 +2,28 @@
 	contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="contextPath" value="http://localhost:8080"></c:set> 
-<%--<c:set var="contextPath" value="http://gksfk6165.cafe24.com"></c:set> --%>
+<c:set var="contextPath" value="http://localhost:8080"></c:set>
+<%-- <c:set var="contextPath" value="http://gksfk6165.cafe24.com"></c:set> --%>
 <%-- 프로젝트용 / 로컬용 패스--%>
 <html>
 <head>
 <title>Home</title>
+<link rel="stylesheet" href="../resources/css/common.css">
+<link rel="stylesheet" href="../resources/css/card.css">
+<link rel="stylesheet" href="../resources/css/mypage.css">
+<link rel="stylesheet" href="../resources/css/login.css">
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="../resources/css/common.css">
-<link rel="stylesheet" href="../resources/css/mypage.css">
-<link rel="stylesheet" href="../resources/css/card.css">
-<link rel="stylesheet" href="../resources/css/login.css">
+<script src="../resources/js/popup.js"></script>
+
 </head>
 
 <body>
 <script>
 	$(document).ready(function(){
+		App.TopPop.init();
+		
 		//현재페이지
 		console.log($(location).attr('pathname'));
 		var path=$(location).attr('pathname');
@@ -27,7 +32,6 @@
 			url: "/admin/popupCheck",
 			type: "POST",
 			success: function(data){
-
 				for (var i = 0; i < data.length; i++) {
 					console.log(data[i].np_id);
 					console.log(data[i].np_page_name);
@@ -47,10 +51,6 @@
 				console.log(request,status,error);
 			}
 		});
-		
- 		$('#btn_Close').click(function(){
- 			  $('#popup_box').css("display","none");
-		});
 	});
 </script>
 <body>
@@ -62,7 +62,7 @@
 				<span id="np_comment"></span>
 			</div>
 			 <div class="btn-r">
-                <Button id="btn_Close">Close</Button>
+                <Button id="po_btn_close" >Close</Button>
             </div>
 		</div>
 	</div>
@@ -106,7 +106,6 @@
 	</div>
 </body>
 <script type="text/javascript">
-
 	$('#logoutbtn').on('click', function(){
 		$.ajax({
 			url : "../user/logout",
@@ -117,10 +116,7 @@
 			}, error: function(){
 				alert('다시 시도해 주세요!');
 			}
-			
 		})
-		
 	});
-
 </script>
 </html>

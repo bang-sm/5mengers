@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>책관리게시판</title>
+<link rel="stylesheet" href="../resources/css/mypage.css">
 </head>
 <body>
 	<%@ include file="../common/head.jsp"%>

@@ -49,5 +49,10 @@ public class MyDAOImpl implements MyDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("userMapper.my_zzim_book_list",uuid);
 	}
+	@Override
+	public List<BookDetailDTO> RequestList(int uuid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("userMapper.my_request_book_list",uuid);
+	}
 
 }

@@ -104,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 			book_sell_regist bsr
 		WHERE
-			uuid=#{uuid} and bsr_check=3;
+			uuid=#{uuid} AND bsr_check=3;
 	</select>
 	
 	
@@ -119,7 +119,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 		 	zzim z  inner join book_sell_regist b
 		ON
-			z.bsr_id=b.bsr_id and z.uuid=#{uuid};
+			z.bsr_id=b.bsr_id AND z.uuid=#{uuid};
+	</select>
+	
+	<!-- 내가 구매요청중인책 -->
+	<select id="my_request_book_list" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
+		SELECT
+			bs.bsr_name,
+			bs.bsr_price,
+			bs.uuid,
+			bs.bsr_confirm 
+		FROM 
+			my_buy_book mb inner join book_sell_regist bs
+		ON
+			mb.bsr_id =bs.bsr_id AND mb.uuid =#{uuid};
 	</select>
  </mapper>
  
