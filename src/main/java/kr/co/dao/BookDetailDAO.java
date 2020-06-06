@@ -46,4 +46,5 @@ public interface BookDetailDAO {
 	//글 삭제 
 	public void book_delete(int bsr_id) throws Exception;
 	
+	
 }
