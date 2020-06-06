@@ -30,7 +30,9 @@ public interface BookDetailService {
 	public int check_count(int bsr_id) throws Exception;
 	
 	//구매하기 버튼 클릭시 예약중 AJAX
-	public void book_check(int bsr_check,int bsr_id) throws Exception;
+	public int book_check(int bsr_check,int bsr_id) throws Exception;
+	//구매하기 버튼 클릭시 게시글 update 중인지 확인 ajax
+
 	
 	//책 같은 장르 구현
 	public List<BookDetailDTO> sidebook(int bsr_category,int bsr_id) throws Exception;
@@ -41,16 +43,25 @@ public interface BookDetailService {
 	//메인책리스트
 	public List<BookCategoryDTO> mainBookList() throws Exception;
 	
+	
+	//글 수정버튼 클릭시 DB(bsr_update) 값 변경
+	public void bookupdatecheck(int bsr_id) throws Exception;
 	//글 수정 데이터 가져오기
 	public List<BookDetailDTO> bookupdate(int bsr_id) throws Exception;
 	
 	//글 수정 데이터 넣기
 	public void bookupdateend(BookDetailDTO bookDetailDTO) throws Exception;
-	
+
+	//글 수정 등록시 DB(bsr_update) 값 변경
+	public void bookupdatecheckout(int bsr_id) throws Exception;
+
 	//글 삭제 
 	public void book_delete(int bsr_id) throws Exception;
 	
 	//네이버 책
 	public JSONObject bookapi(String keyword) throws Exception;
+	
+	
+	
 	
 }

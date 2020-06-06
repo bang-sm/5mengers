@@ -124,6 +124,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   	   bsr_id =#{bsr_id};
    
    </select>
+   
+   	<!--  글 수정버튼 클릭시 db(bsr_update) 값 변경-->
+   	<update id="bookupdatecheck" parameterType="int">
+	   	UPDATE 
+	   			book_sell_regist  
+	   	SET 
+	   			bsr_update = NULL 
+	   	WHERE 
+	   			bsr_id = #{bsr_id};
+   	
+   	</update>
+   
    <!--글 수정 DB UPDATE  -->
    <update id="bookupdateend" parameterType="kr.co.vo.BookDetailDTO"> 
 	     UPDATE 
@@ -133,7 +145,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   			bsr_price =#{bsr_price},
 	   			bsr_comment =#{bsr_comment},
 	   			map_x = #{map_x},
-	   			map_y= #{map_y} 
+	   			map_y= #{map_y}
 	     WHERE 
 	   			bsr_id = #{bsr_id};
    </update>
@@ -147,4 +159,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       bsr_id =#{bsr_id};
 		   
    </delete>
+   
+   <!-- 게시글 수정 상태 확인 -->
+   <select id ="book_update_check" parameterType="int" resultType="int">
+		   SELECT 
+		 		  bsr_update 
+		   FROM 
+		  		 book_sell_regist
+		   WHERE 
+		  		 bsr_id =#{bsr_id};
+   </select>
+   
+   <!-- 게시글 수정 등록시 DB(bsr_update)값 변경 -->
+   <update id="bookupdatecheckout" parameterType="int">
+   		UPDATE 
+	   			book_sell_regist  
+	   	SET 
+	   			bsr_update = 'Y' 
+	   	WHERE 
+	   			bsr_id = #{bsr_id};
+   </update>
 </mapper>
