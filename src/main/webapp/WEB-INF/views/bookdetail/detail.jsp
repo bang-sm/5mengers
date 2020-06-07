@@ -10,177 +10,172 @@
 <head>
 <meta charset="UTF-8">
 <title>거래 상세 페이지</title>
-<link rel="stylesheet" href="../resources/css/detail.css">
+<link rel="stylesheet" href="../resources/css/detail.css?v1">
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
 </head>
 <body>
 
-	<%@ include file="../common/head.jsp"%>
-
-	<section id="section">
-		<article id="article">
-			<!--거래 상세 페이지 책 제목/설명/찜 개수 -->
-			<div class="div_top">
-				<div class="book_title">${detail.bsr_name}</div>
-				<div class="zzim">
-					<img class="zzim_img" alt=""
-						src="/resources/site_img/total_heart.png">
-					<div class="zzim_count">${zzim.zzim}</div>
-				</div>
-			</div>
-			<div class="div_middle_1">
-				<div class="book_img">
-					<!-- 사진 슬라이드(40%) -->
-					<img alt="" style="width: 200px; height: auto"
-						src="https://search.pstatic.net/common/?src=http%3A%2F%2Fimage.nmv.naver.net%2Fblogucc28%2F2017%2F07%2F08%2F448%2F506e27a24cc2ebbd547b7de4a3d741176e18_ugcvideo_270P_01_16x9_logo.jpg&type=b400">
-				</div>
-
-				<c:choose>
-					<c:when test="${detail.bsr_check == 3}">
-						<div class="book_confirm"
-							style="color: blue; border: 1px solid blue; padding: 10px;">
-							판매중</div>
-					</c:when>
-					<c:when test="${detail.bsr_check == 2}">
-						<div class="book_confirm" style="color: blue">삭제됨</div>
-					</c:when>
-					<c:when test="${detail.bsr_check == 1}">
-						<div class="book_confirm" style="color: blue">판매완료</div>
-					</c:when>
-					<c:otherwise>
-						<div class="book_confirm"
-							style="color: red; border: 1px solid red; padding: 10px;">
-							예약중</div>
-					</c:otherwise>
-				</c:choose>
-
-				<div class="book_detail">
-
-					<!-- 책 설명(판매자/장르/정가/판매가/휴대폰)(60%) -->
-					<div>
-						<span class="book_detail_title">판 매 자 :</span>${detail.name}
-					</div>
-					<div>
-						<span class="book_detail_title">장 르 :</span>${detail.bc_name}
-					</div>
-					<div>
-						<span class="book_detail_title">정 가 :</span>${detail.bsr_fixed_price}원
-					</div>
-					<div>
-						<span class="book_detail_title">판 매 가 :</span>${detail.bsr_price}원
-					</div>
-					<div>
-						<span class="book_detail_title">휴 대 폰 :</span>${detail.phonenum}
-					</div>
-
-
-				</div>
+	<%@ include file="../common/head.jsp"%>	
+	<div class="book_popup">
+		<h3>해당 제품을 구매하시겠습니까?</h3>
+		<input class="book_popup_ok info" type="button" value="구매합니다" /> <input
+			class="book_popup_no info" type="button" value="좀더 둘러볼께요.." />
+	</div>
+	<div id="container">
+		<div id="aside">
+			<!--같은 장르 추천 책-->
+			<div class="aside_book">
+				<ul id="book_ul">
+					<c:forEach var="side" items="${side_book}">
+					<li class="book_li">
+						<a href="http://localhost:8080/bookdetail?bsr_id=${side.bsr_id }&uuid=${side.uuid}&bsr_category=${side.bsr_category}">
+							<img style="width: 100%; height: 200px;" class="side_book_img" alt=""
+								src="http://imgnews.naver.net/image/112/2013/05/02/20130502000285_0_59_20130502093112.jpg">
+							<div class="side_name">${side.bsr_name }</div>
+							<div class="side_fixed_price">정가 : ${side.bsr_fixed_price }원</div>
+							<div class="side_price">판매가 : ${side.bsr_price }원</div>
+						</a>
+					</li>
+					</c:forEach>
+				</ul>
 
 			</div>
-			<div class="div_middle_2">
-				<div class="book_regdate">
-					<!-- 등록일 -->
-					${detail.bsr_regdate}
-				</div>
-				<div class="book_content">
-					<!-- 코멘트 -->
-					<div class="book_content_title">중고책 소개</div>
-					<div>${detail.bsr_comment}</div>
-				</div>
-				<div class="book_zzim">
-					<!-- 찜등록  -->
-					<span>관심목록에 추가 하시겠습니까?</span>
-					<c:set value='<%=request.getParameter("bsr_id")%>' var="bsr_id" />
-					<c:choose>
-						<c:when
-							test="${zzim_check.uuid == login.uuid and  zzim_check.bsr_id == bsr_id}">
-							<img class="book_zzim_img" alt=""
-								src="/resources/site_img/heart_on.png">
-						</c:when>
-						<c:otherwise>
-							<img class="book_zzim_img" alt=""
-								src="/resources/site_img/heart_off.png">
-						</c:otherwise>
-					</c:choose>
-
-
-				</div>
-			</div>
-
-
-			<div id="aside">
-				<!--같은 장르 추천 책-->
-				<div class="aside_book">
-					<ul id="book_ul">
-						<c:forEach var="side" items="${side_book}">
-							<a
-								href="http://localhost:8080/bookdetail?bsr_id=${side.bsr_id }&uuid=${side.uuid}&bsr_category=${side.bsr_category}">
-								<li class="book_li"><img
-									style="width: 100%; height: 200px;" class="side_book_img"
-									alt=""
-									src="http://imgnews.naver.net/image/112/2013/05/02/20130502000285_0_59_20130502093112.jpg">
-									<div class="side_name">${side.bsr_name }</div>
-									<div class="side_fixed_price">정가 : ${side.bsr_fixed_price }원</div>
-									<div class="side_price">판매가 : ${side.bsr_price }원</div></li>
-							</a>
-
-						</c:forEach>
-					</ul>
-
-				</div>
-			</div>
-
-		</article>
-		<div class="book_popup">
-			<h3>해당 제품을 구매하시겠습니까?</h3>
-			<input class="book_popup_ok info" type="button" value="구매합니다" /> <input
-				class="book_popup_no info" type="button" value="좀더 둘러볼께요.." />
 		</div>
+		<div id="contents">
+		<div id="map" style="width: 490px; height: 230px;position: absolute;bottom:-400px;left:0"></div>
+			<div class="xans-element- xans-product xans-product-detail">
+				<div class="detailArea">
 
+					<!-- IMAGE 영역 -->
+					<div class="xans-element- xans-product xans-product-image imgArea ">
+						<div class="keyImg">
+							<a href="/product/image_zoom2.html?product_no=11&amp;cate_no=42&amp;display_group=1">
+								<img src="//ecudemo79218.cafe24.com/web/product/big/201712/11_shop1_464973.jpg" class="BigImage ">
+							</a>
+						</div>
+						<div class="zzim">
+							<img class="zzim_img" alt=""
+								src="/resources/site_img/total_heart.png">
+							<div class="zzim_count">${zzim.zzim}</div>
+						</div>
+					</div>
+					<div class="infoArea">
 
-		<article id="article2">
-			<div class="article2_top">
-				<div style="width:1200px; height:500px;">
-					<!--  지도(DB에서 위도,경도 값 받아서 스크립트에 넣기-->
-					<div id="map" style="width: 1200px; height: 500px;"></div>
+						<div id="sangse_name" class="">
+
+							<h3>
+								<c:choose>
+									<c:when test="${detail.bsr_check == 3}">
+										<div class="book_confirm"
+											style="color: blue; border: 1px solid blue; padding: 10px;">
+											판매중</div>
+									</c:when>
+									<c:when test="${detail.bsr_check == 2}">
+										<div class="book_confirm" style="color: blue">삭제됨</div>
+									</c:when>
+									<c:when test="${detail.bsr_check == 1}">
+										<div class="book_confirm" style="color: blue">판매완료</div>
+									</c:when>
+									<c:otherwise>
+										<div class="book_confirm"
+											style="color: red; border: 1px solid red; padding: 10px;">
+											예약중</div>
+									</c:otherwise>
+								</c:choose>
+							</h3>
+						</div>
+						<div class="xans-element- xans-product xans-product-detaildesign">
+							<table border="1">
+								<tbody>
+									<tr class=" xans-record-">
+										<th scope="row">
+											<span style="font-size: 16px; color: #555555;">책이름</span></th>
+										<td>
+											<span style="font-size: 16px; color: #555555;">${detail.bsr_name }</span>
+										</td>
+									</tr>
+									<tr class=" xans-record-">
+										<th scope="row">
+											<span style="font-size: 12px; color: #555555;">장르</span>
+										</th>
+										<td><span style="font-size: 12px; color: #555555;"><span
+												id="span_product_price_custom">${detail.bc_name}</span></span></td>
+									</tr>
+									<tr class=" xans-record-">
+										<th scope="row">
+											<span style="font-size: 12px; color: #555555;">판매가격</span>
+										</th>
+										<td><span style="font-size: 12px; color: #555555;"><span
+												id="span_product_price_custom">${detail.bsr_price}</span></span></td>
+									</tr>
+									<tr class=" xans-record-">
+										<th scope="row"><span
+											style="font-size: 12px; color: #555555; font-weight: bold;">책 정가</span></th>
+										<td>
+											<strong id="span_product_price_text">${detail.bsr_fixed_price}
+											</strong>
+										</td>
+									</tr>
+									<tr class=" xans-record-">
+										<th scope="row" colspan="2" style="text-align: center;">
+										<span
+											style="font-size: 12px; color: #555555; font-weight: bold;">중고책 소개</span>
+										</th>
+									</tr>
+									<tr class=" xans-record-">
+										<td scope="row" colspan="2">
+										<span
+											style="font-size: 12px; color: #555555; font-weight: bold;">${detail.bsr_comment}</span>
+										</td>
+									</tr>
+									<tr class=" xans-record-">
+										<th scope="row">
+											<span style="font-size: 12px; color: #555555;">연락처</span>
+										</th>
+										<td>
+											<span id="span_product_price_custom">${detail.phonenum}</span>
+										</td>
+									</tr>
+									<tr class=" xans-record-">
+										<th scope="row">
+											<span style="font-size: 12px; color: #555555;">등록일</span>
+										</th>
+										<td>
+											<span id="span_product_price_custom">${detail.bsr_regdate}</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="xans-element- xans-product xans-product-action ">
+							<div class="btnArea">
+								<a href="#none" class="roll buy">
+									<span style="background-color:red">구매요청</span>
+								</a> 
+								<a href="#none" class="roll buy">
+									<span style="background-color:red">관심목록에 찜하기 아래클릭</span>
+								</a> 
+								<a href="#none" class="roll buy">
+									<c:set value='<%=request.getParameter("bsr_id")%>' var="bsr_id" />
+									<c:choose>
+										<c:when
+											test="${zzim_check.uuid == login.uuid and  zzim_check.bsr_id == bsr_id}">
+											<img class="book_zzim_img" alt="" src="../resources/site_img/zzim_on.png"/>
+										</c:when>
+										<c:otherwise>
+											<img class="book_zzim_img" alt="" src="../resources/site_img/zzim_off.png">
+										</c:otherwise>
+									</c:choose>
+								</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div style="height:500px;">
-				<div class="buy_button">
-					<!--  버튼 들  -->
-					<div></div>
-					<c:if test="${login.uuid == detail.uuid && detail.bsr_check ==3}">
-						<button onclick="deletebtn()">글삭제</button>
-						<button onclick="bookupdate()">글수정</button>
-					</c:if>
-					<c:choose>
-						<c:when test="${detail.bsr_check ==3 }">
-							<input class="btn info" style="width: 100px; height: auto"
-								type=button value="구매 하기" />
-						</c:when>
-						<c:when test="${detail.bsr_check ==1 }">
-							<input class="btn info" style="width: 100px; height: auto"
-								type=button value="판매완료" />
-						</c:when>
-						<c:otherwise>
-							<input class="btn danger" style="width: 100px; height: auto"
-								type=button value="예약 중" />
-						</c:otherwise>
-					</c:choose>
-
-
-				</div>
-			</div>
-
-		</article>
-
-	</section>
-
-
-
-	<footer> </footer>
-
+		</div>
+	</div>	
+	<br>
 </body>
 <c:choose>
 	<c:when test="${empty login}">
@@ -202,8 +197,6 @@
 	        var allowsrc = $(this).attr('src');
 	        if(allowsrc.match('on')){
 	           //찜이 이미 눌러져있다  -> 찜 해제
-	                     
-
 	           $.ajax({
 	              url: "/zzimoff", //매핑
 	              type: "GET",
@@ -228,7 +221,7 @@
 	              error : function(){
 	              }
 	           });
-	        $('.book_zzim_img').attr("src","/resources/site_img/heart_off.png");
+	        $('.book_zzim_img').attr("src","../resources/site_img/zzim_on.png");
 	        }else{
 	           //찜이 안눌러 져있다  ->찜 등록
 	           $.ajax({
@@ -253,7 +246,7 @@
 	              error : function(){
 	              }
 	           });
-	           $('.book_zzim_img').attr("src","/resources/site_img/heart_on.png");
+	           $('.book_zzim_img').attr("src","../resources/site_img/zzim_off.png");
 	        }
 	     });
 

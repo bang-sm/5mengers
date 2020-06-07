@@ -121,7 +121,7 @@ body {
 .book_zzim_img {
 	width: 40px;
 	height: auto;
-	margin: 20px 0 0 50px;
+	cursor: pointer;
 }
 
 #map {
@@ -203,12 +203,9 @@ body {
 }
 
 .book_confirm {
-	position: absolute;
 	font-size: 30px;
 	font-weight: bold;
 	text-align: center;
-	top: 25px;
-	left: 900px;
 }
 
 .side_name {
@@ -257,7 +254,7 @@ body {
 	overflow: hidden;
 	position: absolute;
 	top: -20px;
-	right: -300px;
+	right: 0;
 }
 
 .aside_book {
@@ -270,3 +267,126 @@ body {
 .map_address {
 	color: red;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************************방석민**************************************************/
+xans-product-detail .detailArea {
+    *zoom: 1;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.xans-product-detail .imgArea {
+    float: left;
+    width: 800px;
+}
+.xans-product-detail .imgArea .keyImg {
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+.xans-product-detail .listImg {
+    overflow: hidden;
+    width: 800px;
+    margin: 10px auto 0;
+}
+
+.xans-product-detail .listImg ul {
+    margin: 0px;
+    font-size: 0;
+    line-height: 0;
+}
+.xans-product-detail .listImg li {
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 12px;
+    line-height: 14px;
+    vertical-align: top;
+    *display: inline;
+    *zoom: 1;
+}
+
+.xans-product-detail .listImg li img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.xans-product-detail .infoArea {
+    float: right;
+    width: 360px;
+}
+
+.xans-product-detail .infoArea #sangse_name {
+    clear: both;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #dedede;
+}
+.xans-product-detail .infoArea h3 {
+    padding-bottom: 10px;
+    font-size: 14px;
+    color: #000;
+}
+
+.xans-product-detail .infoArea table {
+    border: 0;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.xans-product-detail .infoArea th {
+    font-weight: normal;
+    color: #555;
+    width: 115px;
+    padding: 7px 0 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.xans-product-detail .infoArea td {
+    padding: 7px 0px 8px;
+    vertical-align: top;
+}
+
+.xans-product-action .btnArea {
+    overflow: hidden;
+    margin: 0px;
+    text-align: center;
+    line-height: 0;
+}
+
+.xans-product-action .btnArea .buy span{
+    width: 100%;
+    cursor: pointer;
+    color: #fff;
+    line-height: 40px;
+}
+
+.xans-product-action .btnArea span {
+    float: left;
+    line-height: 40px;
+    margin-bottom:5px;
+
+}
+.roll span {
+    display: inline;
+}
+.xans-product-action {
+    width: 100%;
+    padding-top: 50px;
+}
+

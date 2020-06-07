@@ -72,7 +72,7 @@ public class BookDetailController {
 	@ResponseBody
 	@RequestMapping(value = "/zzimoff", method = RequestMethod.GET)
 	public void zzimout(int uuid,int bsr_id) throws Exception {
-	    logger.info("책 관심목록 해제");
+	    logger.info("zzimoff / 책 관심목록 해제");
         service.check_off(uuid,bsr_id);
 	}
 	
@@ -80,7 +80,7 @@ public class BookDetailController {
 	@ResponseBody
 	@RequestMapping(value = "/zzimon", method = RequestMethod.GET)
 	public void zzimon(int uuid,int bsr_id) throws Exception {
-	    logger.info("책 관심목록 등록");
+	    logger.info("zzimon / 책 관심목록 등록");
 		service.check_on(uuid,bsr_id);
 	}
 	

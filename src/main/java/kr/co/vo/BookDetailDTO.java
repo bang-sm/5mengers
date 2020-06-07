@@ -11,6 +11,7 @@ public class BookDetailDTO {
 	Date bsr_regdate;
 	int bsr_category;
 	int bsr_check;
+	int bsr_status;
 	String bsr_fixed_price;
 	String bsr_confirm;
 	String phonenum;
@@ -21,6 +22,12 @@ public class BookDetailDTO {
 	double map_x;
 	double map_y;
 	
+	public int getBsr_status() {
+		return bsr_status;
+	}
+	public void setBsr_status(int bsr_status) {
+		this.bsr_status = bsr_status;
+	}
 	public String getBc_name() {
 		return bc_name;
 	}

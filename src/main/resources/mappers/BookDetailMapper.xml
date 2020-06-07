@@ -102,7 +102,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	          bsr_name,
 	          bsr_category
         FROM
-              book_sell_regist 
+              book_sell_regist
+        WHERE 
+        	  bsr_status = 1 
         ORDER BY
               bsr_regdate desc;
    </select>
@@ -137,7 +139,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   	UPDATE 
 	   			book_sell_regist  
 	   	SET 
-	   			bsr_update = 0 
+	   			bsr_status = 0 
 	   	WHERE 
 	   			bsr_id = #{bsr_id};
    	
@@ -170,7 +172,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <!-- 게시글 수정 상태 확인 -->
    <select id ="book_update_check" parameterType="int" resultType="int">
 		   SELECT 
- 		 		 bsr_update 
+ 		 		 bsr_status 
 		   FROM 
 		  		 book_sell_regist
 		   WHERE 
@@ -182,7 +184,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		UPDATE 
 	   			book_sell_regist  
 	   	SET 
-	   			bsr_update = 1 
+	   			bsr_status = 1 
 	   	WHERE 
 	   			bsr_id = #{bsr_id};
    </update>

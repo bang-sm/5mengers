@@ -1,0 +1,53 @@
+.prolist_title {
+    clear: both;
+    width: 100%;
+    line-height: 20px;
+    font-family: 'Lato','Nanum Gothic',sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size: 13px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 10px;
+    margin: 40px auto;
+}
+
+.prolist_title span {
+    clear: both;
+    display: block;
+    font-size: 11px;
+    font-weight: normal;
+    color: #777;
+    font-family: 'Nanum Gothic';
+}
+
+.xans-product-listnormal ul.prdList {
+    display: table;
+    width: 1240px;
+    min-width: 756px;
+    margin: 0 0 0 -19px;
+    font-size: 0;
+    line-height: 0;
+}
+
+.xans-product-listnormal ul.column4 li.item {
+    width: 25%;
+}
+
+.xans-product-listnormal ul.prdList li.item {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 45px 0px;
+}
+
+.xans-product-listnormal ul.column4 li.item .box {
+    width: 273px;
+}
+
+.xans-product-listnormal ul.prdList li.item .box {
+    margin: 0 auto;
+    font-family: 'Nanum Gothic','verdana','arial';
+    font-size: 11px;
+    line-height: 16px;
+    text-align: center;
+}

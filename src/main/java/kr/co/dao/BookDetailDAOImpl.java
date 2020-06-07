@@ -50,6 +50,8 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 	@Override
 	public void check_off(int uuid, int bsr_id) throws Exception {
 		HashMap<String, Integer> chofmap = new HashMap<String, Integer>();
+		System.out.println("찜해제 매개변수uuid   "+uuid);
+		System.out.println("찜해제 매개변수bsr_id  "+bsr_id);
 		chofmap.put("uuid", uuid);
 		chofmap.put("bsr_id", bsr_id);
 		sqlSession.delete("BookDetailMapper.check_off", chofmap);
@@ -59,6 +61,8 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 	// 찜 등록 AJAX
 	@Override
 	public void check_on(int uuid, int bsr_id) throws Exception {
+		System.out.println("찜등록 매개변수uuid   "+uuid);
+		System.out.println("찜등록 매개변수bsr_id  "+bsr_id);
 		HashMap<String, Integer> hmap = new HashMap<String, Integer>();
 		hmap.put("uuid", uuid);
 		hmap.put("bsr_id", bsr_id);

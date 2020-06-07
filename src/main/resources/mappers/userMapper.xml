@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ON
 			u.uuid =bsr.uuid 
 		WHERE 
-			u.uuid =#{uuid} and bsr_check =3;
+			u.uuid =#{uuid} and bsr_status =1;
 	</select>
   	<!-- 내가 구매중인책 개수 -->
 	<select id="my_buying_count" resultType="int">
@@ -104,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 			book_sell_regist bsr
 		WHERE
-			uuid=#{uuid} AND bsr_check=3;
+			uuid=#{uuid} AND bsr_status=1;
 	</select>
 	
 	
