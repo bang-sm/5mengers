@@ -33,6 +33,8 @@ public interface BookDetailService {
 	public int book_check(int bsr_check,int bsr_id) throws Exception;
 	//구매하기 버튼 클릭시 게시글 update 중인지 확인 ajax
 
+	//구매하기시 구매자 DB 상태 업데이트   by-방석민
+	public void buying_book(int uuid,int bsr_id) throws Exception;
 	
 	//책 같은 장르 구현
 	public List<BookDetailDTO> sidebook(int bsr_category,int bsr_id) throws Exception;

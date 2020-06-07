@@ -66,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
               bsr_id = #{bsr_id}
    </select>
    
-   <!--구매하기 버튼 클릭시 예약중 AJAX-->
+   <!--구매하기 버튼 클릭시 예약중 업데이트 AJAX-->
    <update id= "book_check" parameterType="map">
         UPDATE 
               book_sell_regist  
@@ -74,9 +74,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
               bsr_check=#{bsr_check} 
         WHERE 
               bsr_id=#{bsr_id};
-   
    </update>
-   
+   <!-- 구매하기 헀을떄 구매자 DB업데이트 -->
+   <insert id="buying_book" parameterType="map">
+		INSERT INTO my_buy_book values(
+			#{uuid},
+			#{bsr_id},
+			now(),
+			bsr_confirm
+		)		
+   </insert>
    
    <!-- 책 카테고리 리스트 -->
    <select id="bc" resultType="kr.co.vo.BookCategoryDTO">
@@ -130,7 +137,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   	UPDATE 
 	   			book_sell_regist  
 	   	SET 
-	   			bsr_update = NULL 
+	   			bsr_update = 0 
 	   	WHERE 
 	   			bsr_id = #{bsr_id};
    	
@@ -163,7 +170,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <!-- 게시글 수정 상태 확인 -->
    <select id ="book_update_check" parameterType="int" resultType="int">
 		   SELECT 
-		 		  bsr_update 
+ 		 		 bsr_update 
 		   FROM 
 		  		 book_sell_regist
 		   WHERE 
@@ -175,7 +182,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		UPDATE 
 	   			book_sell_regist  
 	   	SET 
-	   			bsr_update = 'Y' 
+	   			bsr_update = 1 
 	   	WHERE 
 	   			bsr_id = #{bsr_id};
    </update>

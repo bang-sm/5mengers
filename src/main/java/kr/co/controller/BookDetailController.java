@@ -1,28 +1,20 @@
 package kr.co.controller;
 
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 
 import kr.co.service.BookDetailService;
 import kr.co.vo.BookDetailDTO;
@@ -48,12 +40,8 @@ public class BookDetailController {
 		if(request.getMethod().equals("GET")) {
 			logger.info("destination : " + (uri + query));
 			request.getSession().setAttribute("destination", uri + query);
-			
 		}
-			
 	}
-	
-	
 	@Inject
 	private BookDetailService service;
 	
@@ -109,9 +97,20 @@ public class BookDetailController {
 	//구매하기 버튼 클릭시 예약중 바뀌는 AJAX
 	@ResponseBody
 	@RequestMapping(value = "/book_check", method = RequestMethod.GET)
-	public int bookcheck(int bsr_check,int bsr_id) throws Exception {
+	public int bookcheck(int bsr_check,int bsr_id,HttpSession hs,UserVO uv) throws Exception {
 	    logger.info("예약중");
 		int check = service.book_check(bsr_check,bsr_id);
+		
+		
+		if(hs.getAttribute("login")==null) {
+			logger.info("유저의 세션이 없습니다");
+		}
+		else {
+			//구매하기 버튼시 예약중 처리를 하며 구매자 DB에 구입한 목록에 insert한다.
+			uv = (UserVO) hs.getAttribute("login");
+			int getuuid = uv.getUuid();
+			service.buying_book(getuuid, bsr_id);
+		}
 		
 		return check;
 	}

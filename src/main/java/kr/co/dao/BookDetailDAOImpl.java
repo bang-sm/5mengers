@@ -145,5 +145,14 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 		sqlSession.update("BookDetailMapper.bookupdatecheckout", bsr_id);
 
 	}
+	
+	//구매하기시 구매자 DB 상태 업데이트   by-방석민
+	@Override
+	public void buying_book(int uuid, int bsr_id) throws Exception {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("uuid", uuid);
+		map.put("bsr_id", bsr_id);
+		sqlSession.insert("BookDetailMapper.buying_book",map);
+	}
 
 }

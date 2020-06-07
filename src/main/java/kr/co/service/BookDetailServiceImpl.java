@@ -12,9 +12,6 @@ import javax.inject.Inject;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import kr.co.dao.BookDetailDAO;
 import kr.co.vo.BookCategoryDTO;
@@ -164,6 +161,13 @@ public class BookDetailServiceImpl implements BookDetailService {
 	public void bookupdatecheckout(int bsr_id) throws Exception {
 		dao.bookupdatecheckout(bsr_id);
 
+	}
+
+	//구매하기시 판매자 DB변경
+	@Override
+	public void buying_book(int uuid, int bsr_id) throws Exception {
+		// TODO Auto-generated method stub
+		dao.buying_book(uuid, bsr_id);
 	}
 
 }
