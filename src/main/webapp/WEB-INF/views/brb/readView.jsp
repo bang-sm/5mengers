@@ -26,9 +26,10 @@
 			})
 			// 목록
 			$(".btn_list").on("click", function(){
+				
 				location.href = "/brb/list";
 			})
-		});
+		})
 	</script>
 <body>
 	<div id="root">
@@ -37,14 +38,14 @@
 	</header>
 	<hr>
 		<section>
-			<form role="form" method="post">
+			<form name="readForm" role="form" method="post">
 				<input type="hidden" id="brb_id" name="brb_id" value="${read.brb_id}">
 			</form>
 				<table>
 					<tr>
 						<td>
 							<label for="brb_id">작성자(수정요)</label>
-							<input type="text" id="brb_id" name="brb_id" value="${read.brb_id}" disabled="disabled"/>
+							<input type="text" id="brb_id" name="brb_id" value="${login.userid}" disabled="disabled"/>
 						</td>
 					</tr>
 					<tr>
@@ -56,25 +57,19 @@
 					<tr>
 						<td>
 							<label for="brb_id">가격(수정요)</label>
-							<input type="text" id="brb_id" name="brb_id" value="${read.brb_id}"/>
+							<input type="text" id="brb_id" name="brb_id" value="${read.brb_id}" disabled="disabled"/>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<label for="brb_regdate">카테고리</label>
-							<select>
-								<option>인문</option><option>역사</option><option>예술</option><option>종교</option>
-								<option>사회</option><option>과학</option><option>경제경영</option><option>자기계발</option>
-								<option>만화</option><option>라이트노벨</option><option>여행</option><option>잡지</option>
-								<option>어린이</option><option>요리</option><option>육아</option><option>건강</option>
-								<option>IT</option><option>자격증</option><option>참고서</option>
-							</select>
+							<input type="text" id="bk_category" name="bk_category" value="${read.bk_category}" disabled="disabled"/>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<label for="brd_comment">내용</label>							
-							<div id="brd_comment">${read.brd_comment}</div>
+							<div>${read.brd_comment}</div>
 						</td>
 					</tr>					
 				</table>
