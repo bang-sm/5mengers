@@ -22,35 +22,50 @@
 <body>
 <script>
 	$(document).ready(function(){
-		App.TopPop.init();
-		
-		//현재페이지
-		console.log($(location).attr('pathname'));
 		var path=$(location).attr('pathname');
-		//페이지 마다 팝업창 체크하는 스크립트입니다.
- 		$.ajax({
-			url: "/admin/popupCheck",
-			type: "POST",
-			success: function(data){
-				for (var i = 0; i < data.length; i++) {
-					console.log(data[i].np_id);
-					console.log(data[i].np_page_name);
-					if(data[i].np_page_name == path){
-						if(data[i].np_yes_no == 1){
-							$("#popup_box").css("display","block");
-							$("#np_title").text(data[i].np_title);
-							$("#np_comment").text(data[i].np_comment);
-							$(".pop-layer").draggable({
-								containment: 'window'
-							});
+		var cookieName=path;
+		console.log(cookieName);
+		db_pop_check();
+	    $("#po_btn_close").click(function () {
+	    	//닫기 버튼을 클릭시 세션 부여 각페이지마다 다른 세션생성
+	        setCookieMobile( cookieName, "done" , 1);
+	        $("#popup_box").css("display","none");
+	    });
+		
+		function db_pop_check(){
+			//페이지 마다 팝업창 체크하는 스크립트입니다.
+	 		$.ajax({
+				url: "/admin/popupCheck",
+				type: "POST",
+				success: function(data){
+					for (var i = 0; i < data.length; i++) {
+						
+						//현재페이지에 팝업창이 있는지 체크
+						if(data[i].np_page_name == path){
+							//db에서 팝업창 활성화 된것이 있는 체크
+							if(data[i].np_yes_no == 1){
+								
+								//페이지세션 확인
+								if(document.cookie.indexOf(""+cookieName+"=done")<0){
+									$("#popup_box").css("display","block");
+									$("#np_title").text(data[i].np_title);
+									$("#np_comment").text(data[i].np_comment);
+									$(".pop-layer").draggable({
+										containment: 'window'
+									}); 
+								}
+								else{
+									$("#popup_box").css("display","none");
+								}
+							}
 						}
 					}
+				},
+				error: function (request, status, error){       
+					console.log(request,status,error);
 				}
-			},
-			error: function (request, status, error){       
-				console.log(request,status,error);
-			}
-		});
+			});
+		}
 	});
 </script>
 <body>
@@ -62,7 +77,7 @@
 				<span id="np_comment"></span>
 			</div>
 			 <div class="btn-r">
-                <Button id="po_btn_close" >Close</Button>
+                <Button id="po_btn_close" style="width: 190px" >오늘 하루동안 열지 않기</Button>
             </div>
 		</div>
 	</div>
