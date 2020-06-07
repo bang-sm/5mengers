@@ -151,10 +151,8 @@
 					<!--  버튼 들  -->
 					<div></div>
 					<c:if test="${login.uuid == detail.uuid && detail.bsr_check ==3}">
-						<input type=button value="글 삭제" onclick="deletebtn()" />
-						<a
-							href="${contextPath}/bookupdate?bsr_id=<%=request.getParameter("bsr_id")%>">글
-							수정</a>
+						<button onclick="deletebtn()">글삭제</button>
+						<button onclick="bookupdate()">글수정</button>
 					</c:if>
 					<c:choose>
 						<c:when test="${detail.bsr_check ==3 }">
@@ -259,26 +257,31 @@
 	        }
 	     });
 
+		
+		//구매하기 버튼 클릭시 ajax 
 		  $('.info').click(function(){
-			  $('.book_popup').show();
-		  })
-		  
-		  $('.book_popup_ok').click(function(){
+			  
+			  //판매자가 게시글을 수정 하고 있는지 확인 여부  (data : 현재 게시글 번호)
 			  $.ajax({
-        		  url:"/book_check",
+				  url:"/book_check",
         		  type:"GET",
         		  data :{ 
         			  "bsr_check" : 0,
         			  "bsr_id" : ${detail.bsr_id}
         		  },
-        		  success : function(){
+        		  //updata 컬럼 상태 받아오기 (bsr_check(수정상태 ) 값 가져오기)
+        		  success : function(data){
+        			  if(data==0){
+        			  	location.href="http://localhost:8080/my/nav"        				  
+        			  }else{
+        				  alert("현재 판매자가 게시글을 수정하고 있습니다.");
+        			  }
+        			   
         		  }
-        	  });
-			  location.href="http://localhost:8080/my/nav";
-		  })
-		   $('.book_popup_no').click(function(){
-			   $('.book_popup').hide();
-		  })
+		  });
+		  });
+		  
+		  
          </script>
 	</c:otherwise>
 </c:choose>
@@ -299,7 +302,26 @@ function deletebtn(){
 		location.href="http://localhost:8080";
 	}
 }
+
 </script>
+<script>
+function bookupdate(){
+	
+	$.ajax({
+		url:"/bookupdatecheck",
+		type:"GET",
+		data:{
+			"bsr_id":${detail.bsr_id}
+		},
+		success : function(){
+			
+			location.href="${contextPath}/bookupdate?bsr_id=<%=request.getParameter("bsr_id")%>"
+		}
+	});
+	};
+</script>
+
+
 <script>
 var abc =${detail.map_x};
 var def = ${detail.map_y};

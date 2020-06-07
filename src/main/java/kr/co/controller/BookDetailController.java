@@ -109,9 +109,11 @@ public class BookDetailController {
 	//구매하기 버튼 클릭시 예약중 바뀌는 AJAX
 	@ResponseBody
 	@RequestMapping(value = "/book_check", method = RequestMethod.GET)
-	public void bookcheck(int bsr_check,int bsr_id) throws Exception {
+	public int bookcheck(int bsr_check,int bsr_id) throws Exception {
 	    logger.info("예약중");
-		service.book_check(bsr_check,bsr_id);
+		int check = service.book_check(bsr_check,bsr_id);
+		
+		return check;
 	}
 	
 	//글 수정 DB 값 가져와서 화면구성
@@ -120,6 +122,15 @@ public class BookDetailController {
 		logger.info("글 수정 페이지 이동");
 		model.addAttribute("bookupdate",service.bookupdate(bsr_id));
 		return "bookdetail/bookupdate";
+	}
+	
+	
+	//글수정시 bsr_update 값 변경
+	@ResponseBody
+	@RequestMapping(value ="/bookupdatecheck",method =RequestMethod.GET)
+	public void bookupdatecheck(int bsr_id) throws Exception{
+		logger.info("글 수정 페이지 이동시 DB 값 변경");
+		service.bookupdatecheck(bsr_id);
 	}
 	//지도 연습입니당
 	@RequestMapping(value ="/ex",method =RequestMethod.GET)
@@ -132,6 +143,7 @@ public class BookDetailController {
 	@RequestMapping(value ="/bookupdate_end",method =RequestMethod.POST)
 	public String bookupdateend(BookDetailDTO bookDetailDTO) throws Exception{
 		logger.info("글 수정");
+		service.bookupdatecheckout(bookDetailDTO.getBsr_id());
 		service.bookupdateend(bookDetailDTO);
 		return "redirect:/my/nav";
 	}

@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
 
@@ -66,8 +67,8 @@ public class BookDetailServiceImpl implements BookDetailService {
 
 	// 구매하기 버튼 클릭시 예약중 AJAX
 	@Override
-	public void book_check(int bsr_check, int bsr_id) throws Exception {
-		dao.book_check(bsr_check, bsr_id);
+	public int book_check(int bsr_check, int bsr_id) throws Exception {
+		return dao.book_check(bsr_check, bsr_id);
 	}
 
 	// 책 카테고리 리스트
@@ -117,7 +118,8 @@ public class BookDetailServiceImpl implements BookDetailService {
 
 		try {
 			String end = URLEncoder.encode(keyword, "UTF-8");
-			String apiURL = String.format("https://openapi.naver.com/v1/search/book.json?query=%s&display=100&start=1", end);
+			String apiURL = String.format("https://openapi.naver.com/v1/search/book.json?query=%s&display=100&start=1",
+					end);
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
@@ -141,14 +143,27 @@ public class BookDetailServiceImpl implements BookDetailService {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
-		 JSONParser parser=new JSONParser();
-	     Object obj=parser.parse(response.toString());
-	     JSONObject jsonObj=(JSONObject) obj;
+
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(response.toString());
+		JSONObject jsonObj = (JSONObject) obj;
 
 		return jsonObj;
 
 	}
-	
+
+	// 글 수정버튼 클릭시 db(bsr_update) 값 변경
+
+	@Override
+	public void bookupdatecheck(int bsr_id) throws Exception {
+		dao.bookupdatecheck(bsr_id);
+
+	}
+
+	@Override
+	public void bookupdatecheckout(int bsr_id) throws Exception {
+		dao.bookupdatecheckout(bsr_id);
+
+	}
 
 }
