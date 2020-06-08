@@ -26,7 +26,7 @@
 						<tbody>
 							<tr>
 								<th scope="row">제목</th>
-								<td><input type="text" name="np_title"/></td>
+								<td><input type="text" name="np_title"/>${pop.np_title}</td>
 							</tr>
 							<tr>
 								<th scope="row">팝업페이지</th>
@@ -41,7 +41,8 @@
 							</tr>
 							<tr>
 								<th scope="row">팝업내용</th>
-								<td><textarea cols="40" rows="10" style="resize: none; width: 500px; height: 300px" name="np_comment"></textarea>
+								<td>
+								<textarea cols="40" rows="10" style="resize: none; width: 500px; height: 300px" name="np_comment">${pop.np_comment}</textarea>
 								</td>
 							</tr>
 							<tr>

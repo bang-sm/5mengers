@@ -51,6 +51,13 @@ public class AdminController {
 		
 		return "admin/popupWrite";
 	}
+	//팝업삭제
+	@RequestMapping(value ="/admin/popup_delete", method = RequestMethod.GET)
+	public String popupWrite(Model model,int np_id) throws Exception {
+		logger.info("/admin/popup_delete");
+		adminService.popupDelete(np_id);
+		return "OK";
+	}
 	
 	//팝업작성후 서브밋!
 	@RequestMapping(value ="/admin/popupSubmit", method = RequestMethod.POST)

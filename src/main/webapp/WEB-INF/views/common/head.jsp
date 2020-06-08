@@ -101,12 +101,29 @@
 								</li>
 							</c:if>
 							<c:if test="${not empty login }">
-								<li>
-									<button type="button" id="mypage" onclick="location.href='${contextPath}/my/nav'">마이페이지</button>
-								</li>
-								<li>
-									<button type="button" id="logoutbtn">로그아웃</button>
-								</li>
+								<c:choose>
+							         <c:when test = "${login.auth == 2}">
+						          		<li>
+											<button type="button" id="mypage" onclick="location.href='${contextPath}/admin/userlist'">관리자</button>
+										</li>
+										<li>
+											<button type="button" id="logoutbtn">로그아웃</button>
+										</li>
+							         </c:when>
+							         <c:when test = "${login.auth == 1}">
+							         	<li>
+											<button type="button" id="mypage" onclick="location.href='${contextPath}/my/nav'">마이페이지</button>
+										</li>
+										<li>
+											<button type="button" id="logoutbtn">로그아웃</button>
+										</li>		
+							         </c:when>
+							         <c:otherwise>
+   										<li>
+											<button type="button" id="logoutbtn" onclick="location.href='${contextPath}/user/login'">로그인</button>
+										</li>	
+							         </c:otherwise>
+						      	</c:choose>
 							</c:if>
 						</ul>
 					</div>

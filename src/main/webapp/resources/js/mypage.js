@@ -1,6 +1,8 @@
 //마이페이지용JS
 
+
 function my_list(data,stat) {
+	$(".card").draggable({ axis: "y" }); 
 	console.log(stat);
 	 
 	if(stat=="S"){	

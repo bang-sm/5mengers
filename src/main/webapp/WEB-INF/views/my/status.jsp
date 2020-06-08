@@ -10,7 +10,6 @@
 <script type="text/javascript" src="../resources/js/mypage.js"></script>
 <link rel="stylesheet" href="../resources/css/mypage.css">
 </head>
-
 <body>
 	<%@ include file="../common/head.jsp"%>
 	<div id="container">

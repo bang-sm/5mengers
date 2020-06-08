@@ -25,4 +25,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			np_id=#{np_id}
 	</update>
+	<delete id="popup_delete" parameterType="int">
+		DELETE FROM new_notice_popup
+		WHERE
+			np_id=#{np_id}
+	</delete>
 </mapper>

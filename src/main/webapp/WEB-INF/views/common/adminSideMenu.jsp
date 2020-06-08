@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,12 +17,6 @@ $(document).ready(function(){
 	case "/admin/popupregist":
 		$(".popupregist").addClass("on");
 		break;
-	case "/admin/popupupdate":
-		$(".popupupdate").addClass("on");
-		break;
-	case "/admin/popuplist":
-		$(".popuplist").addClass("on");
-		break;
 	default:
 		break;
 	}
@@ -32,10 +27,8 @@ $(document).ready(function(){
 <body>
 	<div class="menu_left">
 		<ul>
-			<li class="userlist"><a href="http://localhost:8080/admin/userlist">회원관리</a></li>
-			<li class="popupregist"><a href="http://localhost:8080/admin/popupregist">팝업등록</a></li>
-			<li class="popupupdate"><a href="http://localhost:8080/admin/popupupdate">팝업수정</a></li>
-			<li class="popuplist"><a href="http://localhost:8080/admin/popuplist">팝업리스트관리</a></li>
+			<li class="userlist"><a href="${contextPath}/admin/userlist">회원관리</a></li>
+			<li class="popupregist"><a href="${contextPath}/admin/popupregist">팝업등록</a></li>
 		</ul>
 	</div>
 </body>
