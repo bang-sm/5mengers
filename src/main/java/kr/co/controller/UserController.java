@@ -1,6 +1,7 @@
 package kr.co.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
@@ -40,19 +42,34 @@ public class UserController {
 	public String registerGET() throws Exception {
 		return "/user/register";
 	}
+	
+	// 중복 아이디 확인
+	@ResponseBody
+	@RequestMapping(value = "/idCheck" , method = RequestMethod.POST)
+	public int idCheck(UserVO userVO) throws Exception {
+		int result = userService.idCheck(userVO);
 		
+		return result;
+	}
+	
 	// 회원가입 처리
 	@RequestMapping(value = "/register" , method = RequestMethod.POST)
-	public String registerPOST(UserVO userVO, RedirectAttributes redirectAttributes	) throws Exception {
+	public String registerPOST(UserVO userVO, RedirectAttributes redirectAttributes	, HttpSession httpSession) throws Exception {
+		
+		int result = userService.idCheck(userVO);
+		
+		if(result != 0) {
+			return "/user/register";
+		}
 		
 		String hashdPw = BCrypt.hashpw(userVO.getPass(), BCrypt.gensalt());
 		userVO.setPass(hashdPw);
 		userService.register(userVO);
 		redirectAttributes.addFlashAttribute("msg", "REGISTERED");
-						
+		
+		httpSession.invalidate();				
 		return "redirect:/user/login";
 	}
-	
 	
 	
 	// 로그인 창
@@ -63,18 +80,22 @@ public class UserController {
 	}
 	
 	
-	
 	// 로그인 처리
 	@RequestMapping(value = "/loginPost", method = RequestMethod.POST)
 	public String loginPOST(LoginDTO loginDTO, HttpSession httpSession, Model model , RedirectAttributes redirectAttributes) throws Exception{
 		
-		
 		UserVO userVO = userService.login(loginDTO);
 		
-		if(userVO == null || !BCrypt.checkpw( loginDTO.getPass(), userVO.getPass() )) {
+		if(userVO == null || !BCrypt.checkpw( loginDTO.getPass(), userVO.getPass())) {
 			redirectAttributes.addFlashAttribute("msg", "FAILURE");
 			
 			return "redirect:/user/loginPost"; // 비밀번호 틀리면 메소드 종료!!
+		}
+		
+		if(userVO.getAuth() == 0) {
+			redirectAttributes.addAttribute("msg", "NOAUTH");
+			
+			return "redirect:/user/noAuth";
 		}
 		
 		// 비밀번호 일치하면, model 에 userVO 를 user 에 저장!
@@ -106,10 +127,17 @@ public class UserController {
 		return "/user/loginPost";
 	}
 	
+	// noAuth 창 (auth 0 인 계정인 경우 알림 및 return)
+		@RequestMapping(value = "/noAuth" , method = RequestMethod.GET)
+		public String noAuthGET() throws Exception {
+			
+			return "/user/noAuth";
+		}
+	
 	// 로그아웃 처리!! 
 	@ResponseBody
 	@RequestMapping(value = "/logout" , method = RequestMethod.GET)
-	public void logout(HttpSession httpSession, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void logout(HttpSession httpSession, HttpServletRequest request, HttpServletResponse response) throws Exception  {
 		
 		Object object = httpSession.getAttribute("login");
 		
@@ -133,7 +161,24 @@ public class UserController {
 			
 		} // session 초기화 if end 
 		
+	}// logout() end
 		
+	// 카카오 API 로그인
+	@RequestMapping(value = "/auth", method = RequestMethod.GET)
+	public String kakaoLogin(@RequestParam("code") String code, HttpSession session) throws Exception {
+		
+		String accessToken = userService.getAccessToken(code);
+		HashMap<String, Object> userInfo = userService.getUserInfo(accessToken);
+		System.out.println("login Controller : " + accessToken);
+		
+		// nickname이 존재할 때, 토큰 등록
+		if(userInfo.get("nickname") != null) {
+			session.setAttribute("kakao", userInfo.get("nickname"));
+			session.setAttribute("accessToken", accessToken);
+		}
+		
+		return "redirect:/user/register";
 	}
-		
+	
+	
 }
