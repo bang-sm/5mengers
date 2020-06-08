@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.vo.BookDTO;
 import kr.co.vo.BookDetailDTO;
+import kr.co.vo.MyhistoryDTO;
+import kr.co.vo.QnADTO;
 
 @Repository
 public class MyDAOImpl implements MyDAO {
@@ -53,6 +55,16 @@ public class MyDAOImpl implements MyDAO {
 	public List<BookDetailDTO> RequestList(int uuid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("userMapper.my_request_book_list",uuid);
+	}
+	@Override
+	public List<MyhistoryDTO> mybookhistory(int uuid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("userMapper.my_book_history",uuid);
+	}
+	@Override
+	public List<QnADTO> qnaList(int uuid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("userMapper.my_qnaList",uuid);
 	}
 
 }

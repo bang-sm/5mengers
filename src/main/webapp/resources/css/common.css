@@ -96,6 +96,10 @@ table {
 	font-family: 'NanumBarunGothic', sans-serif;
 }
 
+.text_center{
+	text-align: center;
+}
+
 /********************************** 공통 헤드 CSS **************************************/
 #header_top {
 	width: 100%;

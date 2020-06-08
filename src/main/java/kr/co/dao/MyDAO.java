@@ -4,6 +4,8 @@ import java.util.List;
 
 import kr.co.vo.BookDTO;
 import kr.co.vo.BookDetailDTO;
+import kr.co.vo.MyhistoryDTO;
+import kr.co.vo.QnADTO;
 
 public interface MyDAO {
 	
@@ -19,6 +21,12 @@ public interface MyDAO {
 	public List<BookDetailDTO> sellingBookList(int uuid) throws Exception;
 	//현재 찜중인책
 	public List<BookDetailDTO> sellingZzimList(int uuid) throws Exception;
-
+	//구매요청중인책
 	public List<BookDetailDTO> RequestList(int uuid) throws Exception;
+	//나의 책 구매 히스토리
+	public List<MyhistoryDTO> mybookhistory(int uuid) throws Exception;
+	//나의qna리스트
+	public List<QnADTO> qnaList(int uuid);
+	
+	
 }

@@ -10,8 +10,8 @@
 <title>Home</title>
 <link rel="stylesheet" href="../resources/css/common.css">
 <link rel="stylesheet" href="../resources/css/card.css">
-<link rel="stylesheet" href="../resources/css/mypage.css">
 <link rel="stylesheet" href="../resources/css/login.css">
+<link rel="stylesheet" href="../resources/css/mypage.css">
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
