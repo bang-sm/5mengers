@@ -152,7 +152,7 @@ function goAjax(){
 }
 
 $(document).ready(function(){
-	
+    
     $("#Start_DatePicker").datepicker({
 		changeMonth: true, 
 		changeYear: true,
@@ -167,7 +167,6 @@ $(document).ready(function(){
         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
     });
-    $('#Start_DatePicker').datepicker('setDate', '-1M'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)  
     $("#End_DatePicker").datepicker({
 		changeMonth: true, 
 		changeYear: true,
@@ -182,8 +181,7 @@ $(document).ready(function(){
         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
     });
-    $('#End_DatePicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
-    
+
 	$(".dataSearch").click(function(){
 		console.log("누르눈중");
 		var startDate=$("#Start_DatePicker").val();

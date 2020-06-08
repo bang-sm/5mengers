@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="../resources/css/detail.css?v1">
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
+	<script src="../resources/js/bookdetail.js"></script>
 </head>
 <body >
 
@@ -66,19 +67,21 @@
 
 							<h3>
 								<c:choose>
-									<c:when test="${detail.bsr_check == 3 && detail.bsr_status==1 }">
+									<c:when test="${detail.bsr_status == 0 }">
+										<div class="book_confirm"
+											style="color: blue; border: 1px solid blue; padding: 10px;">
+											게시글 비활성화</div>
+									</c:when>
+									<c:when test="${detail.bsr_check == 3 && detail.bsr_status == 1 }">
 										<div class="book_confirm"
 											style="color: blue; border: 1px solid blue; padding: 10px;">
 											판매중</div>
 									</c:when>
-									<c:when test="${detail.bsr_check == 2 && detail.bsr_status==1}">
+									<c:when test="${detail.bsr_check == 2 && detail.bsr_status == 0}">
 										<div class="book_confirm" style="color: blue">삭제됨</div>
 									</c:when>
-									<c:when test="${detail.bsr_check == 1 && detail.bsr_status==1}">
+									<c:when test="${detail.bsr_check == 1 && detail.bsr_status == 0}">
 										<div class="book_confirm" style="color: blue">판매완료</div>
-									</c:when>
-									<c:when test="${ detail.bsr_status==0}">
-										<div class="book_confirm" style="color: red">게시글 비활성화</div>
 									</c:when>
 									<c:otherwise>
 										<div class="book_confirm"
@@ -153,11 +156,31 @@
 						</div>
 						<div class="xans-element- xans-product xans-product-action ">
 							<div class="btnArea">
-								<c:if test="${login.uuid == detail.uuid && detail.bsr_check ==3}">
+								<c:choose>
+								<c:when test="${login.uuid == detail.uuid && detail.bsr_check ==3 && detail.bsr_status== 1}">
 									<button onclick="deletebtn()">글삭제</button>
 									<button onclick="bookupdate()">글수정</button>
-									<button onclick="bookactive()">게시글 비활성화</button>
-								</c:if>
+									<form  id="bookactive" method="get" action="/bookactive">
+					                <input type="hidden" name ="bsr_id" value="${detail.bsr_id}"/>
+					                <input type="hidden" name ="uuid" value="${detail.uuid}"/>
+					                <input type="hidden" name ="bsr_category" value="${detail.bsr_category}"/>
+									<button  type="submit" name = "bsr_status" value="0" onclick="active()">게시글 비활성화 시키기</button>
+									</form>
+								</c:when>
+								<c:when test="${login.uuid == detail.uuid && detail.bsr_check ==3 && detail.bsr_status== 0}">
+									<button onclick="deletebtn()">글삭제</button>
+									<button onclick="bookupdate()">글수정</button>
+									<form id="bookactive" method="get" action="/bookactive">
+									<input type="hidden" name ="bsr_id" value="${detail.bsr_id}"/>
+					                <input type="hidden" name ="uuid" value="${detail.uuid}"/>
+					                <input type="hidden" name ="bsr_category" value="${detail.bsr_category}"/>
+									<button  type="submit" name = "bsr_status" value="1" onclick="active()">게시글 활성화 시키기</button>
+									</form>
+								</c:when>
+								<c:otherwise>
+								
+								</c:otherwise>
+								</c:choose>
 								<a href="#none" class="roll buy info">
 									<span style="background-color:red">구매요청</span>
 								</a> 
@@ -239,7 +262,7 @@
 	                  "bsr_id" : <%=request.getParameter("bsr_id")%>
 	              },
 	              success : function(){
-	            	  $.ajax({
+	            	  $.ajax({ 
 	            		  url:"/zzimcount",
 	            		  type:"GET",
 	            		  data :{ 
@@ -259,32 +282,48 @@
 		
 		//구매하기 버튼 클릭시 ajax 
 		  $('.info').click(function(){
-			  alert("확인");
-			  if(${login.uuid} != ${detail.uuid}){ 
-				  alert("확인");
 			  
-			  //판매자가 게시글을 수정 하고 있는지 확인 여부  (data : 현재 게시글 번호)
-			  $.ajax({
-				  url:"/book_check",
-        		  type:"GET",
-        		  data :{ 
-        			  "bsr_check" : 0,
-        			  "bsr_id" : ${detail.bsr_id}
-        		  },
-        		  //updata 컬럼 상태 받아오기 (bsr_check(수정상태 ) 값 가져오기)
-        		  success : function(data){
-        			  if(data==0){
-        			  	location.href="http://localhost:8080/my/nav"        				  
-        			  }else{
-        				  alert("현재 판매자가 게시글을 수정하고 있습니다.");
-        			  }
-        			   
-        		  }
-		  		});
+			  if(${detail.bsr_check} == 3){
+				  if(${login.uuid} != ${detail.uuid}){ 
+					  
+					  $.ajax({
+								url:"/bookactivecount",
+								type:"GET",
+								data:{
+									"bsr_id":${detail.bsr_id}
+								},
+								success : function(data){
+									if(data == 1 ){
+										 $.ajax({
+											  url:"/book_check",
+							        		  type:"GET",
+							        		  data :{ 
+							        			  "bsr_check" : 0,
+							        			  "bsr_id" : ${detail.bsr_id}
+							        		  },
+							        		  //updata 컬럼 상태 받아오기 (bsr_check(수정상태 ) 값 가져오기)
+							        		  success : function(){
+							        		  }
+									  	});
+										alert("해당 상품을 예약하셨습니다. 마이페이지로 이동합니다.");
+										location.href="http://localhost:8080/my/nav" 
+									}else{
+										 alert("현재 판매자가 게시글을 수정하고 있습니다.");
+									}
+								}
+					   });	  
+						  
+					  //판매자가 게시글을 수정 하고 있는지 확인 여부  (data : 현재 게시글 번호)
+					 
+					  }else{
+						  alert("판매자는 구매할수 없습니다!");
+					  }
+				
 			  }else{
-				  alert("판매자는 구매할수 없습니다!");
+				  alert("해당 상품을 구매요청 하실수 없습니다!");
 			  }
 		  });
+			  
 		  
 		  
          </script>
@@ -302,8 +341,8 @@ function deletebtn(){
 			},
 			success : function(){
 				alert("해당 게시글이 삭제 되었습니다.")
-			}
-		});
+			}  
+		}); 
 		location.href="http://localhost:8080";
 	}
 }
@@ -311,31 +350,30 @@ function deletebtn(){
 </script>
 <script>
 function bookupdate(){
-	var check = confirm("게시글을 비활성화 시키시겠습니까? ");
-	if(check){
 	$.ajax({
-		url:"/bookupdatecheck",
+		url:"/bookactivecount",
 		type:"GET",
 		data:{
-			"bsr_id":${detail.bsr_id}
+			"bsr_id":${detail.bsr_id} 
 		},
-		success : function(){
-			location.href="${contextPath}/bookupdate?bsr_id=<%=request.getParameter("bsr_id")%>"
-			$('.book_confirm').text("게시글 비활성화");
-			$('.book_confrim').css('color','red');
+		success : function(data){
+			if(data ==1 ){
+				alert("먼저 게시글을 비활성화 시켜주세요!");
+			}else{
+				var check = confirm("글 수정 하시겠습니까 ? ");
+				if(check){
+					location.href="http://localhost:8080/bookupdate?bsr_id="+${detail.bsr_id};
+				}
+			}
 		}
 	});
-			
-	}else{
-		
-	}
-	};
+}
 </script>
 <script>
+function active(){
+	$('#bookactive').submit();
+}
 
-
-
- 
 </script>
 
 
