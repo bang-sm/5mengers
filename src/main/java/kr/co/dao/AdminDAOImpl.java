@@ -31,10 +31,12 @@ public class AdminDAOImpl implements AdminDAO{
 	@Override
 	public void popup_status_update(PopupDTO popupDTO) {
 		// TODO Auto-generated method stub
-		System.out.println(popupDTO.getNp_id());
-		System.out.println(popupDTO.getNp_yes_no());
 		sqlsession.update("AdminMapper.popup_status_update",popupDTO);
-		System.out.println("완료후");
+	}
+	@Override
+	public void popup_delete(int np_id) {
+		// TODO Auto-generated method stub
+		sqlsession.delete("AdminMapper.popup_delete",np_id);
 	}
 
 }

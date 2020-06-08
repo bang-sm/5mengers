@@ -12,4 +12,6 @@ public interface AdminService {
 	public List<PopupDTO> popupList();
 	//팝업상태변경
 	public void popup_status_update(PopupDTO popupDTO);
+	//팝업삭제
+	public void popupDelete(int np_id);
 }

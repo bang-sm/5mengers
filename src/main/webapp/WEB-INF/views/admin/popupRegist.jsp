@@ -17,6 +17,24 @@
 </style>
 <script>
 	$(document).ready(function(){
+		
+		//팝업 삭제하기
+		$('.del_popup').click(function(){
+			var btn_np_id=$(this).val();
+			$.ajax({
+    			url: '/admin/popup_delete',
+    			type: "GET",
+    			data:{
+    				"np_id" :  btn_np_id
+    			},
+    			success: function(data){
+    				alert(data);
+    			},
+    			error: function (request, status, error){      
+    				console.log(request,status,error);
+    			}
+    	  	});
+		});
 		//팝업창 상태 온오프 변경하기
 	    $(".popup_status").change(function(){
 	        if($(this).is(":checked")){
@@ -79,15 +97,16 @@
 						<tr style="">
 							<th scope="col" width="30%">팝업제목</th>
 							<th scope="col" width="50%">팝업페이지</th>
-							<th scope="col" width="20%">표출여부</th>
+							<th scope="col" width="10%">표출여부</th>
+							<th scope="col" width="10%">삭제</th>
 						</tr>
 					</thead>
 					<tbody>
 					<c:forEach items="${popupList}" var="popupList">
 						<tr style="color: #555555;" class="textCenter">
 							<td class="">
-								<input class="np_id" type="hidden" value='${popupList.np_id}'/>
-								<a href="#" class="np_title">${popupList.np_title}</a>
+								<input class="np_id" type="hidden" name="np_id" value='${popupList.np_id}'/>
+								<a href="#" class="np_title" >${popupList.np_title}</a>
 							</td>
 							<td class="">
 								<a href="#" class="np_page_name">${popupList.np_page_name}</a>
@@ -99,6 +118,9 @@
 								<c:if test="${popupList.np_yes_no eq 0}">
 									<input type="checkbox" class="popup_status" name="popup_status" value="${popupList.np_yes_no}"/>
 								</c:if>
+							</td>
+							<td class="">
+								<button class="del_popup" value="${popupList.np_id}">삭제</button>
 							</td>
 						</tr>
 					</c:forEach>
