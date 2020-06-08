@@ -64,6 +64,7 @@ public class MyDAOImpl implements MyDAO {
 	@Override
 	public List<QnADTO> qnaList(int uuid) {
 		// TODO Auto-generated method stub
+		System.out.println("QnADAO");
 		return sqlSession.selectList("userMapper.my_qnaList",uuid);
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import kr.co.dao.BookRequestDAO;
@@ -39,5 +40,11 @@ public class BookRequestServiceImpl implements BookRequestService {
 	public void delete(int brb_id) throws Exception {
 
 		dao.delete(brb_id);
+	}
+	
+	@Override
+	public void search(JSONObject keyword) throws Exception {
+		//TODO JSON으로 받아서 필요한 Property 가져와서 리턴?
+		
 	}
 }

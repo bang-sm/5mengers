@@ -155,7 +155,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 *
 		FROM
 			qna_board
-		WHERE uuid=#{uuid}
+		WHERE uuid=#{uuid};
 	</select>
  </mapper>
  

@@ -22,5 +22,5 @@ public interface MyService {
 	//나의 책 구매 히스토리
 	public List<MyhistoryDTO> mybookhistory(int uuid) throws Exception;
 	//나의qna리스트
-	public List<QnADTO> qnaList(int uuid);
+	public List<QnADTO> qnaList(int uuid) throws Exception;
 }

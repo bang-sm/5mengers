@@ -51,7 +51,7 @@ public class MyController {
 		logger.info("myQnaList");
 		uv = (UserVO) hs.getAttribute("login");
 		int getuuid = uv.getUuid();
-		model.addAttribute("qnalist",myService.qnaList(getuuid));
+		model.addAttribute("qnaList",myService.qnaList(getuuid));
 		
 		return "my/qnaList";
 	}

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>Insert title here</title>
+<title>구매 요청 상세페이지</title>
 </head>
 <script type="text/javascript">
 	$(document).ready(function(){

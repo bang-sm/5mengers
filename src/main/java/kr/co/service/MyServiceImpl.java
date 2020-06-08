@@ -62,7 +62,7 @@ public class MyServiceImpl implements MyService{
 	}
 
 	@Override
-	public List<QnADTO> qnaList(int uuid) {
+	public List<QnADTO> qnaList(int uuid) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.qnaList(uuid);
 	}
