@@ -1,6 +1,7 @@
 package kr.co.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -79,14 +80,12 @@ public class MyController {
 	public String myBuyBookComplete(Model model,HttpSession hs,UserVO uv,String startDate,String endDate) throws Exception {
 		logger.info("buycomplete");
 		
-		System.out.println(startDate + " / "+endDate);
-		
 		if(hs.getAttribute("login")==null) {
 			logger.info("유저의 세션이 없습니다");
 		}else {
 			uv = (UserVO) hs.getAttribute("login");
 			int getuuid = uv.getUuid();
-			model.addAttribute("list",myService.mybookhistory(getuuid));
+			model.addAttribute("list",myService.mybookhistory(getuuid,startDate,endDate));
 		}
 		
 		return "my/buycomplete";
