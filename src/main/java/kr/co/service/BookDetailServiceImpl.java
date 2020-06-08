@@ -27,6 +27,7 @@ public class BookDetailServiceImpl implements BookDetailService {
 	@Override
 	public BookDetailDTO detail(int bsr_id, int uuid) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("detail service");
 		return dao.detail(bsr_id, uuid);
 	}
 
@@ -168,6 +169,12 @@ public class BookDetailServiceImpl implements BookDetailService {
 	public void buying_book(int uuid, int bsr_id) throws Exception {
 		// TODO Auto-generated method stub
 		dao.buying_book(uuid, bsr_id);
+	}
+
+	//상세페이지 접속시 bsr_status 는 비활성화
+	@Override
+	public void bsrstatuscheck(int bsr_id) throws Exception {
+		dao.bsrstatusbook(bsr_id);
 	}
 
 }
