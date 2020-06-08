@@ -43,7 +43,7 @@
 			</div>
 		</div>
 		<div id="contents">
-		<div id="map" style="width: 490px; height: 230px;position: absolute;bottom:-400px;left:0"></div>
+		<div id="map" style="width: 490px; height: 230px;position: absolute;bottom:-400px"></div>
 			<div class="xans-element- xans-product xans-product-detail">
 				<div class="detailArea">
 

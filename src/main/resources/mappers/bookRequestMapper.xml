@@ -6,43 +6,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<insert id="insert">		
-		INSERT INTO book_request_board (  brb_id
-										, bk_category
+		INSERT INTO book_request_board (  bk_category
 										, brd_comment
 										, uuid
 										, brb_regdate
-										, brb_cnt
-										, brb_isbn	)
-								VALUES(   #{brb_id}
-										, #{bk_category}
+										, brb_cnt )
+								VALUES(   #{bk_category}
 										, #{brd_comment}
 										, #{uuid}
-										, #{brb_regdate}
-										, #{brb_cnt}
-										, #{brb_isbn}	)
-<!-- 										
-		INSERT INTO book_request_board (  brb_id
-										, bk_category
-										, brd_comment
-										, uuid
-										, brb_regdate
-										, brb_cnt
-										)
-								VALUES(   5
-										, 17
-										, 2
-										, 7 
 										, now()
-										, 0);						
--->				
-	
+										, #{brb_cnt} ); <!-- isbn 처리해야함. -->
 	</insert>
 	
 	<select id="list" resultType="kr.co.vo.BookRequestDTO">
 		SELECT 	 brb_id
 			   , brb_isbn
 			   , brb_regdate
-			   , brb_cnt			   
+			   , brb_cnt
 			     FROM book_request_board
 			     ORDER BY brb_id;
 
@@ -50,20 +30,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="read" parameterType="int" resultType="kr.co.vo.BookRequestDTO">
 		SELECT 	 brb_id
-			   , brb_isbn
-			   , brb_regdate
-			   , brb_cnt
+			   , uuid
+			   , bk_category			   
+			   , brd_comment
 			     FROM book_request_board
 		WHERE brb_id = #{brb_id};
-
+		UPDATE	book_request_board set brb_cnt = #{brb_cnt} + 1 WHERE brb_id = #{brb_id};
 	</select>
 	
-	<select id="update">
-		UPDATE book_request_board set brd_comment = #{content} WHERE brb_id = #{brb_id};
-	</select>
+	<update id="update">
+		UPDATE book_request_board set brd_comment = #{brd_comment}, bk_category = #{bk_category} WHERE brb_id = #{brb_id};
+	</update>
 	
-	<select id="delete">
+	<delete id="delete">
 		DELETE FROM book_request_board where brb_id = #{brb_id};
-	</select>
+	</delete>
 
 </mapper>

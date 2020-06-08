@@ -32,4 +32,10 @@ public class AdminServiceImpl implements AdminService{
 		adminDAO.popup_status_update(popupDTO);
 	}
 
+	@Override
+	public void popupDelete(int np_id) {
+		// TODO Auto-generated method stub
+		adminDAO.popup_delete(np_id);
+	}
+
 }

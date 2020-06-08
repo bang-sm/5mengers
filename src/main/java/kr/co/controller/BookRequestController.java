@@ -1,6 +1,7 @@
 package kr.co.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.service.BookRequestService;
 import kr.co.vo.BookRequestDTO;
+import kr.co.vo.UserVO;
 
 @Controller
 public class BookRequestController {
@@ -29,8 +31,12 @@ public class BookRequestController {
 		
 		// 작성 내용
 		@RequestMapping(value="brb/write", method = RequestMethod.POST)
-		public String write(BookRequestDTO bRequestDTO) throws Exception {
+		public String write(HttpSession httpSession, BookRequestDTO bRequestDTO) throws Exception {
 			logger.info("brb/write");
+			
+			UserVO userVO = (UserVO) httpSession.getAttribute("login");
+			
+			bRequestDTO.setUuid(userVO.getUuid());
 			
 			service.write(bRequestDTO);
 			
@@ -43,22 +49,24 @@ public class BookRequestController {
 			logger.info("brb/list");
 			
 			model.addAttribute("list", service.list());
+			
 			return "/brb/list";
 		}
 		
 		// 게시판 목록 불러오기
 		@RequestMapping(value = "brb/readView", method = RequestMethod.GET)
 		public String read(BookRequestDTO bRequestDTO, Model model) throws Exception {
-			logger.info("brb/readView");
+			logger.info("brb/readView");			
 			
 			model.addAttribute("read", service.read(bRequestDTO.getBrb_id()));
+			
 			return "/brb/readView";
 		}
 		
 		@RequestMapping(value = "brb/updateView", method = RequestMethod.GET)
 		public String updateView(BookRequestDTO bRequestDTO, Model model) throws Exception {
 			logger.info("/brb/updateView");
-			
+						
 			model.addAttribute("update", service.read(bRequestDTO.getBrb_id()));
 			
 			return "brb/updateView";
@@ -68,11 +76,19 @@ public class BookRequestController {
 		public String update(BookRequestDTO bRequestDTO) throws Exception {
 			logger.info("/brb/update");
 			
-			service.delete(bRequestDTO.getBrb_id());
+			service.update(bRequestDTO);
 			
 			return "redirect:/brb/list";					
 		}
 		
+		@RequestMapping(value = "brb/delete", method = RequestMethod.POST)
+		public String delete(BookRequestDTO bRequestDTO) throws Exception {
+			logger.info("/brb/delete");
+			
+			service.delete(bRequestDTO.getBrb_id());
+			
+			return "redirect:/brb/list";
+		}
 		
 		
 		
