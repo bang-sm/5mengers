@@ -25,7 +25,7 @@ public class QnADAOImpl implements QnADAO{
 	
 	@Override
 	public void update(QnADTO qnaDTO) throws Exception {
-		sqlSession.update("QnAMapper.update", qnaDTO);		
+		sqlSession.update("QnAMapper.update", qnaDTO);
 	}
 	
 	@Override

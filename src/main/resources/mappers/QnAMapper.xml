@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   , qb_comment
 			     FROM qna_board WHERE qb_id = #{qb_id};
 	</select>
-	<update id="update">
+	<update id="update" parameterType="kr.co.vo.QnADTO">
 		UPDATE qna_board set qb_title = #{qb_title}, qb_comment = #{qb_comment} WHERE qb_id = #{qb_id};
 	</update>
 	<delete id="delete">
