@@ -50,7 +50,7 @@
 
 <div>
 	<div>글 수정</div>
-	<form  method="post" action="/bookupdate_end">
+	<form  method="post" action="/bookupdate_end" enctype="multipart/form-data">
 	<input type='hidden' name="bsr_id" value="${bookupdate[0].bsr_id }"/>
 	<div>책 이름 </div>
 	<div>${bookupdate[0].bsr_name}</div>
@@ -59,13 +59,17 @@
 	<div>정가</div>
 	<div>${bookupdate[0].bsr_fixed_price}</div>
 	<div>판매가</div>
-	<input type="text" name="bsr_price" value="${bookupdate[0].bsr_price }"/>
+	<input type="text" name="bsr_price" value="${bookupdate[0].bsr_price } " style="width:100px;height:30px;"/>
 	<div>책 소개글</div>
 	<textarea name="bsr_comment">${bookupdate[0].bsr_comment }</textarea>
 	<input type='hidden' name="map_x" value="${bookupdate[0].map_x}"/>
 	<input type='hidden' name="map_y" value="${bookupdate[0].map_y}"/>
 	<div>직거래 희망 지역</div>
 	<input type="text" name="want" value=""/>
+	<c:foreach var="item" items="${bookupdate[0]}" begin=0 end="${bookupdate[0].length }" step=1>
+	<input type ="file" name="file" value="${bookupdate[0].bi_user_file_name[i] }"/>
+	</c:foreach>
+	
 	<button type="submit">글 등록</button>
 	</form>
 	
