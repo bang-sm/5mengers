@@ -25,6 +25,7 @@
 							</td>
 							<td>작성자(수정중)</td>
 							<td><f:formatDate value="${list.brb_regdate}" pattern="yyyy-MM-dd"/></td>
+							<td>${list.brb_cnt}</td>
 						</tr>
 						</c:forEach>
 					</table>

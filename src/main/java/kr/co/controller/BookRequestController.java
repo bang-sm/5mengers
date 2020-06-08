@@ -49,22 +49,24 @@ public class BookRequestController {
 			logger.info("brb/list");
 			
 			model.addAttribute("list", service.list());
+			
 			return "/brb/list";
 		}
 		
 		// 게시판 목록 불러오기
 		@RequestMapping(value = "brb/readView", method = RequestMethod.GET)
 		public String read(BookRequestDTO bRequestDTO, Model model) throws Exception {
-			logger.info("brb/readView");
+			logger.info("brb/readView");			
 			
 			model.addAttribute("read", service.read(bRequestDTO.getBrb_id()));
+			
 			return "/brb/readView";
 		}
 		
 		@RequestMapping(value = "brb/updateView", method = RequestMethod.GET)
 		public String updateView(BookRequestDTO bRequestDTO, Model model) throws Exception {
 			logger.info("/brb/updateView");
-			
+						
 			model.addAttribute("update", service.read(bRequestDTO.getBrb_id()));
 			
 			return "brb/updateView";

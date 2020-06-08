@@ -9,28 +9,28 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			var formObj = $("form[name='readForm']");
-			// 수정
-			$(".btn_update").on("click", function(){
-				formObj.attr("action", "/brb/updateView");
-				formObj.attr("method", "get");
-				formObj.submit();
-			})
-			// 삭제
-			$(".btn_delete").on("click", function(){
-				formObj.attr("action", "/brb/delete");
-				formObj.attr("method", "post");
-				formObj.submit();
-			})
-			// 목록
-			$(".btn_list").on("click", function(){
-				
-				location.href = "/brb/list";
-			})
+<script type="text/javascript">
+	$(document).ready(function(){
+		var formObj = $("form[name='readForm']");
+		// 수정
+		$(".btn_update").on("click", function(){
+			formObj.attr("action", "/brb/updateView");
+			formObj.attr("method", "get");
+			formObj.submit();
 		})
-	</script>
+		// 삭제
+		$(".btn_delete").on("click", function(){
+			formObj.attr("action", "/brb/delete");
+			formObj.attr("method", "post");
+			formObj.submit();
+		})
+		// 목록
+		$(".btn_list").on("click", function(){
+			
+			location.href = "/brb/list";
+		})
+	})
+</script>
 <body>
 	<div id="root">
 	<header>
