@@ -157,6 +157,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			qna_board
 		WHERE uuid=#{uuid}
 	</select>
+	
+	<!-- 중복 id check! -->
+	<select id="idCheck" resultType="int">
+		SELECT 
+			count(*) 
+		FROM 
+			user
+		WHERE userid = #{userid}
+			
+	</select>
+	
+	<!-- auth check! -->
+	
+	<select id="authCheck" resultType="int">
+		SELECT
+			auth
+		FROM
+			user
+		WHERE userid = #{userid}
+	</select>
  </mapper>
  
   

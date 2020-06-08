@@ -99,11 +99,9 @@ public class BookDetailController {
 	//구매하기 버튼 클릭시 예약중 바뀌는 AJAX
 	@ResponseBody
 	@RequestMapping(value = "/book_check", method = RequestMethod.GET)
-	public int bookcheck(int bsr_check,int bsr_id,HttpSession hs,UserVO uv) throws Exception {
-	    logger.info("예약중");
-		int check = service.book_check(bsr_check,bsr_id);
-		
-		
+	public void bookcheck(int bsr_check,int bsr_id,HttpSession hs,UserVO uv) throws Exception {
+		logger.info("구매하기 db 값 변경");
+		service.book_check(bsr_check,bsr_id);
 		if(hs.getAttribute("login")==null) {
 			logger.info("유저의 세션이 없습니다");
 		}
@@ -113,8 +111,6 @@ public class BookDetailController {
 			int getuuid = uv.getUuid();
 			service.buying_book(getuuid, bsr_id);
 		}
-		
-		return check;
 	}
 	
 	//글 수정 DB 값 가져와서 화면구성
@@ -128,11 +124,43 @@ public class BookDetailController {
 	
 	//글수정시 bsr_status 값 변경
 	@ResponseBody
-	@RequestMapping(value ="/bookupdatecheck",method =RequestMethod.GET)
-	public void bookupdatecheck(int bsr_id) throws Exception{
-		logger.info("글 수정 페이지 이동시 DB 값 변경");
-		service.bookupdatecheck(bsr_id);
+	@RequestMapping(value ="/bookactiveoff",method =RequestMethod.GET)
+	public void bookactiveoff(int bsr_id) throws Exception{
+		logger.info("글 수정 페이지 이동시 DB 값 변경 = 0");
+		service.bookactiveoff(bsr_id);
 	}
+	
+	//글수정시 bsr_status 값 변경
+	@ResponseBody
+	@RequestMapping(value ="/bookactiveon",method =RequestMethod.GET)
+	public void bookactiveon(int bsr_id) throws Exception{
+		logger.info("글 수정 페이지 이동시 DB 값 변경 = 1");
+		service.bookactiveon(bsr_id);
+	}
+	
+	
+	@RequestMapping(value="/bookactive",method=RequestMethod.GET)
+	public String bookactive(BookDetailDTO bookDetailDTO) throws Exception{
+		logger.info("글 수정 페이지 이동시 DB 값 변경 ");
+		int bsr_id = bookDetailDTO.getBsr_id();
+		int bsr_status = bookDetailDTO.getBsr_status();
+		
+		int uuid= bookDetailDTO.getUuid();
+		int bsr_category = bookDetailDTO.getBsr_category();
+		service.bookactive(bsr_id,bsr_status);
+		
+		return "redirect:/bookdetail?bsr_id="+bsr_id+"&uuid="+uuid+"&bsr_category="+bsr_category;
+	}
+	
+	//bsr_status 값 가져오기
+	@ResponseBody
+	@RequestMapping(value ="/bookactivecount",method =RequestMethod.GET)
+	public int bookactive(int bsr_id) throws Exception{
+		logger.info("글 수정 페이지 이동시 DB 값 가져오기");
+		int check = service.bookactivecount(bsr_id);
+		return check;
+	}
+	
 	//지도 연습입니당
 	@RequestMapping(value ="/ex",method =RequestMethod.GET)
 	public String bookupdate(Model model) throws Exception{
