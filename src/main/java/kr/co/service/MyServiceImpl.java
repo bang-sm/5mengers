@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kr.co.dao.MyDAO;
 import kr.co.vo.BookDetailDTO;
+import kr.co.vo.MyhistoryDTO;
+import kr.co.vo.QnADTO;
 
 @Service
 public class MyServiceImpl implements MyService{
@@ -51,6 +53,18 @@ public class MyServiceImpl implements MyService{
 	public List<BookDetailDTO> RequestList(int uuid) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.RequestList(uuid);
+	}
+	//나의 구매책 히스토리
+	@Override
+	public List<MyhistoryDTO> mybookhistory(int uuid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.mybookhistory(uuid);
+	}
+
+	@Override
+	public List<QnADTO> qnaList(int uuid) {
+		// TODO Auto-generated method stub
+		return dao.qnaList(uuid);
 	}
 
 }

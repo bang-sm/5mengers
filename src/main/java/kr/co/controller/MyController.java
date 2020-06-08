@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.service.MyService;
-import kr.co.vo.BookDTO;
 import kr.co.vo.BookDetailDTO;
 import kr.co.vo.UserVO;
 
@@ -26,7 +25,6 @@ public class MyController {
 	
 	@Autowired
 	private MyService myService;
-	
 	
 	/**
 	 * 나의 Nav 페이지
@@ -47,6 +45,18 @@ public class MyController {
 		return "my/nav";
 	}
 	
+	// 나의 QnA리스트
+	@RequestMapping(value = "/my/qnaList", method = RequestMethod.GET)
+	public String myQnaList(Model model,HttpSession hs,UserVO uv) throws Exception {
+		logger.info("myQnaList");
+		uv = (UserVO) hs.getAttribute("login");
+		int getuuid = uv.getUuid();
+		model.addAttribute("qnalist",myService.qnaList(getuuid));
+		
+		return "my/qnaList";
+	}
+	
+	
 	// 거래요청게시판 목록
 	@RequestMapping(value = "/my/boardList", method = RequestMethod.GET)
 	public String myboard() throws Exception {
@@ -59,9 +69,27 @@ public class MyController {
 
 	@RequestMapping(value = "/my/status", method = RequestMethod.GET)
 	public String myqna() throws Exception {
-		logger.info("qnaList");
+		logger.info("status");
 		
 		return "my/status";
+	}
+	
+	//구매완료된 리스트
+	@RequestMapping(value = "/my/buycomplete", method = RequestMethod.GET)
+	public String myBuyBookComplete(Model model,HttpSession hs,UserVO uv,String startDate,String endDate) throws Exception {
+		logger.info("buycomplete");
+		
+		System.out.println(startDate + " / "+endDate);
+		
+		if(hs.getAttribute("login")==null) {
+			logger.info("유저의 세션이 없습니다");
+		}else {
+			uv = (UserVO) hs.getAttribute("login");
+			int getuuid = uv.getUuid();
+			model.addAttribute("list",myService.mybookhistory(getuuid));
+		}
+		
+		return "my/buycomplete";
 	}
 	
 	//나의 판매중책

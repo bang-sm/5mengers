@@ -134,6 +134,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ON
 			mb.bsr_id =bs.bsr_id AND mb.uuid =#{uuid};
 	</select>
+	
+	<!-- 나의 구매 책 히스토리 -->
+	<select id="my_book_history" parameterType="map" resultType="kr.co.vo.MyhistoryDTO">
+		SELECT
+			bs.bsr_name ,
+			bs.bsr_id,
+			bs.bsr_price ,
+			mbb.myb_regdate,
+			mbb.bsr_confirm 
+		FROM 
+			my_buy_book mbb inner join book_sell_regist bs 
+		ON	
+			mbb.bsr_id =bs.bsr_id 
+		AND mbb.uuid =13 AND  mbb.bsr_confirm ='Z' AND myb_regdate between #{startDate} and #{endDate};
+	</select>
+	<!-- 나의 qna리스트 -->
+	<select id="my_qnaList" parameterType="map" resultType="kr.co.vo.QnADTO">
+		SELECT
+		 *
+		FROM
+			qna_board
+		WHERE uuid=#{uuid}
+	</select>
  </mapper>
  
   
