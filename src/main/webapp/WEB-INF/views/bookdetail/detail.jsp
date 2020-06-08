@@ -14,7 +14,7 @@
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
 </head>
-<body>
+<body >
 
 	<%@ include file="../common/head.jsp"%>	
 	<div class="book_popup">
@@ -66,16 +66,19 @@
 
 							<h3>
 								<c:choose>
-									<c:when test="${detail.bsr_check == 3}">
+									<c:when test="${detail.bsr_check == 3 && detail.bsr_status==1 }">
 										<div class="book_confirm"
 											style="color: blue; border: 1px solid blue; padding: 10px;">
 											판매중</div>
 									</c:when>
-									<c:when test="${detail.bsr_check == 2}">
+									<c:when test="${detail.bsr_check == 2 && detail.bsr_status==1}">
 										<div class="book_confirm" style="color: blue">삭제됨</div>
 									</c:when>
-									<c:when test="${detail.bsr_check == 1}">
+									<c:when test="${detail.bsr_check == 1 && detail.bsr_status==1}">
 										<div class="book_confirm" style="color: blue">판매완료</div>
+									</c:when>
+									<c:when test="${ detail.bsr_status==0}">
+										<div class="book_confirm" style="color: red">게시글 비활성화</div>
 									</c:when>
 									<c:otherwise>
 										<div class="book_confirm"
@@ -150,7 +153,12 @@
 						</div>
 						<div class="xans-element- xans-product xans-product-action ">
 							<div class="btnArea">
-								<a href="#none" class="roll buy">
+								<c:if test="${login.uuid == detail.uuid && detail.bsr_check ==3}">
+									<button onclick="deletebtn()">글삭제</button>
+									<button onclick="bookupdate()">글수정</button>
+									<button onclick="bookactive()">게시글 비활성화</button>
+								</c:if>
+								<a href="#none" class="roll buy info">
 									<span style="background-color:red">구매요청</span>
 								</a> 
 								<a href="#none" class="roll buy">
@@ -203,9 +211,9 @@
 	              data :  {
 	                 "uuid" : ${login.uuid}, 
 	                 "bsr_id" : <%=request.getParameter("bsr_id")%>
-	         
 	              },
 	              success : function(){
+	            	
 	            	  $.ajax({
 	            		  url:"/zzimcount",
 	            		  type:"GET",
@@ -214,21 +222,20 @@
 	            		  },
 	            		  success : function(data){
 	            			  $('.zzim_count').text(""+data);
+	            			 
 	            		  }
 	            	  });
 
-	              }, 
-	              error : function(){
 	              }
 	           });
-	        $('.book_zzim_img').attr("src","../resources/site_img/zzim_on.png");
+	           $(this).attr('src','../resources/site_img/zzim_off.png');
 	        }else{
 	           //찜이 안눌러 져있다  ->찜 등록
 	           $.ajax({
 	              url: "/zzimon", //매핑
 	              type: "GET",
 	              data :  {
-	            	  "uuid" : ${login.uuid},
+	            	  "uuid" : ${login.uuid}, 
 	                  "bsr_id" : <%=request.getParameter("bsr_id")%>
 	              },
 	              success : function(){
@@ -240,19 +247,21 @@
 	            		  },
 	            		  success : function(data){
 	            			  $('.zzim_count').text(""+data);
+	            			  
 	            		  }
 	            	  });
-	              },
-	              error : function(){
 	              }
-	           });
-	           $('.book_zzim_img').attr("src","../resources/site_img/zzim_off.png");
+	           });  
+	           $(this).attr('src','../resources/site_img/zzim_on.png');
 	        }
 	     });
 
 		
 		//구매하기 버튼 클릭시 ajax 
 		  $('.info').click(function(){
+			  alert("확인");
+			  if(${login.uuid} != ${detail.uuid}){ 
+				  alert("확인");
 			  
 			  //판매자가 게시글을 수정 하고 있는지 확인 여부  (data : 현재 게시글 번호)
 			  $.ajax({
@@ -271,7 +280,10 @@
         			  }
         			   
         		  }
-		  });
+		  		});
+			  }else{
+				  alert("판매자는 구매할수 없습니다!");
+			  }
 		  });
 		  
 		  
@@ -299,7 +311,8 @@ function deletebtn(){
 </script>
 <script>
 function bookupdate(){
-	
+	var check = confirm("게시글을 비활성화 시키시겠습니까? ");
+	if(check){
 	$.ajax({
 		url:"/bookupdatecheck",
 		type:"GET",
@@ -307,11 +320,22 @@ function bookupdate(){
 			"bsr_id":${detail.bsr_id}
 		},
 		success : function(){
-			
 			location.href="${contextPath}/bookupdate?bsr_id=<%=request.getParameter("bsr_id")%>"
+			$('.book_confirm').text("게시글 비활성화");
+			$('.book_confrim').css('color','red');
 		}
 	});
+			
+	}else{
+		
+	}
 	};
+</script>
+<script>
+
+
+
+ 
 </script>
 
 

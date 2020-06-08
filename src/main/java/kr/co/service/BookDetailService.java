@@ -31,7 +31,6 @@ public interface BookDetailService {
 	
 	//구매하기 버튼 클릭시 예약중 AJAX
 	public int book_check(int bsr_check,int bsr_id) throws Exception;
-	//구매하기 버튼 클릭시 게시글 update 중인지 확인 ajax
 
 	//구매하기시 구매자 DB 상태 업데이트   by-방석민
 	public void buying_book(int uuid,int bsr_id) throws Exception;
@@ -54,7 +53,7 @@ public interface BookDetailService {
 	//글 수정 데이터 넣기
 	public void bookupdateend(BookDetailDTO bookDetailDTO) throws Exception;
 
-	//글 수정 등록시 DB(bsr_update) 값 변경
+	//글 수정 등록시 DB(bsr_status) 값 변경
 	public void bookupdatecheckout(int bsr_id) throws Exception;
 
 	//글 삭제 
@@ -64,6 +63,7 @@ public interface BookDetailService {
 	public JSONObject bookapi(String keyword) throws Exception;
 	
 	
-	
+	//상세페이지 접속시 bsr_status 는 비활성화
+	public void bsrstatuscheck(int bsr_id) throws Exception;
 	
 }

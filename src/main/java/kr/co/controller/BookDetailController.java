@@ -37,7 +37,7 @@ public class BookDetailController {
 			query = "?" + query;
 		}
 		
-		if(request.getMethod().equals("GET")) {
+		if(request.getMethod().equals("GET")) {	
 			logger.info("destination : " + (uri + query));
 			request.getSession().setAttribute("destination", uri + query);
 		}
@@ -53,7 +53,9 @@ public class BookDetailController {
 	    saveDestination(request);
 	   
 	    //판매자가 DB에 등록한 책 값들
+	    logger.info("시작 ");
    		model.addAttribute("detail",service.detail(bsr_id,uuid));
+   		logger.info("끝");
    		
    		//찜개수
    		model.addAttribute("zzim",service.like(bsr_id));
@@ -124,7 +126,7 @@ public class BookDetailController {
 	}
 	
 	
-	//글수정시 bsr_update 값 변경
+	//글수정시 bsr_status 값 변경
 	@ResponseBody
 	@RequestMapping(value ="/bookupdatecheck",method =RequestMethod.GET)
 	public void bookupdatecheck(int bsr_id) throws Exception{
@@ -171,6 +173,13 @@ public class BookDetailController {
 		logger.info("머가 오지: "+service.bookapi(keyword));
 		return service.bookapi(keyword);
 	}
+	@ResponseBody
+	@RequestMapping(value ="/bsrstatuscheck",method =RequestMethod.GET)
+	public void bsrstatuscheck(int bsr_id) throws Exception{
+		logger.info("상세페이지 접속시 bsr_status 는 비활성화");
+		service.bsrstatuscheck(bsr_id);
+	}
+	
 	
 	
 }

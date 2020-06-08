@@ -55,5 +55,6 @@ public interface BookDetailDAO {
 	//글 수정 글등록시 DB(bsr_update) 값 변경
 	public void bookupdatecheckout(int bsr_id) throws Exception;
 	
-	
+	//상세페이지 접속시 bsr_status 는 비활성화
+	public void bsrstatusbook(int bsr_id) throws Exception;
 }

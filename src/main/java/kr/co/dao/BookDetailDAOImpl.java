@@ -23,9 +23,9 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 	public BookDetailDTO detail(int bsr_id, int uuid) throws Exception {
 		System.out.println("확인");
 		HashMap<String, Integer> dmap = new HashMap<String, Integer>();
-		dmap.put("bsr_id", bsr_id);
-		dmap.put("uuid", uuid);
-
+		dmap.put("bsr_id",bsr_id);
+		dmap.put("uuid",uuid);
+        System.out.println(dmap);
 		return sqlSession.selectOne("BookDetailMapper.book_detail", dmap);
 	}
 
@@ -50,8 +50,6 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 	@Override
 	public void check_off(int uuid, int bsr_id) throws Exception {
 		HashMap<String, Integer> chofmap = new HashMap<String, Integer>();
-		System.out.println("찜해제 매개변수uuid   "+uuid);
-		System.out.println("찜해제 매개변수bsr_id  "+bsr_id);
 		chofmap.put("uuid", uuid);
 		chofmap.put("bsr_id", bsr_id);
 		sqlSession.delete("BookDetailMapper.check_off", chofmap);
@@ -157,6 +155,13 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 		map.put("uuid", uuid);
 		map.put("bsr_id", bsr_id);
 		sqlSession.insert("BookDetailMapper.buying_book",map);
+	}
+
+	//상세페이지 접속시 bsr_status 는 비활성화
+	@Override
+	public void bsrstatusbook(int bsr_id) throws Exception {
+		sqlSession.update("BookDetailMapper.bsrstatusbook",bsr_id);
+		
 	}
 
 }
