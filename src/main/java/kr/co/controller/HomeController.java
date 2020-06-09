@@ -1,5 +1,6 @@
 package kr.co.controller;
 
+import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.service.BookDetailService;
 
@@ -33,5 +35,14 @@ public class HomeController {
 			return "join/join";
 		}
 		
-		
+		@ResponseBody
+		@RequestMapping(value = "/home/autoSerach", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+		public String autoSerach() throws Exception {
+			logger.info("autoSerach");
+			String autolist = JSONArray.toJSONString(service.autoSearch());
+			
+			System.out.println(autolist);
+			
+			return autolist;
+		}
 }

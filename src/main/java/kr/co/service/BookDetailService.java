@@ -79,6 +79,9 @@ public interface BookDetailService {
 	//사진 첨부 삭제
 	public void deleteimagefile(int bsr_img_id) throws Exception;
 	
+	//autoSearch
+	public List<String> autoSearch() throws Exception;
+	
 
 	
 }

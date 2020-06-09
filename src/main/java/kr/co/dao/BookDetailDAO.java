@@ -72,4 +72,6 @@ public interface BookDetailDAO {
 	//파일 첨부 삭제
 	public void deleteimagefile(int bsr_img_id) throws Exception;
 	
+	//autoSearch
+	public List<String> autoSearch() throws Exception;
 }

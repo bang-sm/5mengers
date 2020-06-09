@@ -182,4 +182,11 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 		sqlSession.delete("BookDetailMapper.deleteimagefile",bsr_img_id);
 	}
 
+	@Override
+	public List<String> autoSearch() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("BookDetailMapper.autoSearch");
+	}
+
+
 }

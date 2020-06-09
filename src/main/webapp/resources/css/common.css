@@ -299,6 +299,13 @@ table {
   z-index: 9999;
 }
 
+#ui-id-1{
+	width: 498px;
+    top: 49.5px;
+    left: 408px;
+    z-index: 1000;
+}
+
 
 
 

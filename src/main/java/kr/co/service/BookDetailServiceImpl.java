@@ -207,5 +207,12 @@ public class BookDetailServiceImpl implements BookDetailService {
 		dao.deleteimagefile(bsr_img_id);
 	}
 
+	//autoSearch()
+	@Override
+	public List<String> autoSearch() throws Exception {
+		return dao.autoSearch();
+		
+	}
+
 
 }
