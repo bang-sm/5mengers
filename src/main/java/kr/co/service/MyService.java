@@ -23,4 +23,10 @@ public interface MyService {
 	public List<MyhistoryDTO> mybookhistory(int uuid,String startDate,String endDate) throws Exception;
 	//나의qna리스트
 	public List<QnADTO> qnaList(int uuid) throws Exception;
+	//찜해제
+	public void zzimDelete(int bsr_id, int uuid);
+	//수락하기
+	public void confirm(int bsr_id, int uuid);
+	//판매완료된 리스트
+	public List<MyhistoryDTO> mySellhistory(int getuuid, String startDate, String endDate);
 }

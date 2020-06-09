@@ -9,6 +9,7 @@ public class MyhistoryDTO {
 
 	//승인날짜 최초에는 널 판매자 승인시 그시각 업데이트
 	private String myb_regdate;
+	private String bsr_regdate;
 	private String bsr_confirm;
 	
 	public String getBsr_name() {
@@ -52,6 +53,12 @@ public class MyhistoryDTO {
 	}
 	public void setMyb_regdate(String myb_regdate) {
 		this.myb_regdate = myb_regdate;
+	}
+	public String getBsr_regdate() {
+		return bsr_regdate;
+	}
+	public void setBsr_regdate(String bsr_regdate) {
+		this.bsr_regdate = bsr_regdate;
 	}
 	
 }

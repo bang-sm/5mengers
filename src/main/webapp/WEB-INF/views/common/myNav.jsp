@@ -27,6 +27,9 @@
 		case "/my/myStatusUpdate":
 			$(".myStatusUpdate").addClass("on");
 			break;
+		case "/my/sellHistory":
+			$(".sellHistory").addClass("on");
+			break;
 		default:
 			break;
 		}
@@ -50,6 +53,9 @@
 		</div>
 		<div>
 			<a href="${contextPath}/my/buycomplete" class="buycomplete">구매 히스토리</a>
+		</div>
+		<div>
+			<a href="${contextPath}/my/sellHistory" class="sellHistory">판매히스토리</a>
 		</div>
 		<div>
 			<a href="${contextPath}/my/myStatusUpdate" class="myStatusUpdate">회원정보변경</a>

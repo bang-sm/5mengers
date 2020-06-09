@@ -158,6 +158,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE uuid=#{uuid};
 	</select>
 	
+	<!-- 나의 판매 책 히스토리 -->
+	<select id="my_sell_history" parameterType="map" resultType="kr.co.vo.MyhistoryDTO">
+		SELECT
+			 bsr_name,
+			 bsr_id,
+			 bsr_price,
+			 bsr_regdate
+		FROM
+			 book_sell_regist 
+		WHERE
+			 uuid=#{uuid} and bsr_check=1 
+			 and bsr_regdate between #{startDate} and #{endDate};
+	</select>
+	
 	<!-- 중복 id check! -->
 	<select id="idCheck" resultType="int">
 		SELECT 
@@ -169,7 +183,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- auth check! -->
-	
 	<select id="authCheck" resultType="int">
 		SELECT
 			auth
@@ -177,6 +190,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			user
 		WHERE userid = #{userid}
 	</select>
+	<!--찜해제 -->
+	<delete id="zzim_delete" parameterType="map">
+		DELETE FROM zzim 
+		WHERE 
+			uuid =#{uuid} and bsr_id=#{bsr_id};
+	</delete>
+	<!--구매 요청한 유저는 누구?? -->
+	<select id="whoAreYou" parameterType="int" resultType="int">
+		SELECT
+			(select uuid from my_buy_book where bsr_id =18) as whouuid
+		FROM
+			book_sell_regist
+		WHERE
+		 	bsr_id=#{bsr_id};
+	</select>
+	<!--구매 요청한 유저의 테이블 업데이트 -->
+	<update id="buyBookUpdate" parameterType="map">
+		UPDATE
+			my_buy_book 
+		SET 
+			bsr_confirm ='Y' 
+		WHERE uuid=#{whoUUid} and bsr_id=#{bsr_id};
+	</update>
+	<!-- 판매수락한 책상태도 업데이트 -->
+	<update id="sellBookUpdate" parameterType="map">
+		UPDATE
+			book_sell_regist 
+		SET 
+			bsr_confirm ='Y',bsr_check=1,bsr_status=0
+		WHERE uuid=#{uuid} and bsr_id=#{bsr_id};
+	</update>
  </mapper>
  
   

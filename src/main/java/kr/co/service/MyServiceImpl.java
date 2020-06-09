@@ -68,4 +68,28 @@ public class MyServiceImpl implements MyService{
 		return dao.qnaList(uuid);
 	}
 
+	//찜해제
+	@Override
+	public void zzimDelete(int bsr_id, int uuid) {
+		// TODO Auto-generated method stub
+		dao.zzimDelete(bsr_id,uuid);
+	}
+
+	@Override
+	public void confirm(int bsr_id, int uuid) {
+		// 구매요청한 유저가 누구인지 알아오기
+		int whoUUid=dao.whoAreYou(bsr_id);
+		//그 유저 mybuybook 책값 구매요청한아이디 이용하여 컬럼 업데이트 상태 Y로 바꿔주기
+		dao.buyBookUpdate(bsr_id,whoUUid);
+		//판매된 책도 바꿔주기
+		dao.sellBookUpdate(bsr_id,uuid);
+	}
+
+	//판매 완료된 리스트
+	@Override
+	public List<MyhistoryDTO> mySellhistory(int getuuid, String startDate, String endDate) {
+		// TODO Auto-generated method stub
+		return dao.mySellhistory(getuuid,startDate,endDate);
+	}
+
 }
