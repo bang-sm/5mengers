@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,6 +80,13 @@ public class BookSellRegistController {
 		logger.info("머가 오지: "+service.bookapi(keyword));
 		return service.bookapi(keyword);
 	}
+	
+	//지도 연습입니당
+		@RequestMapping(value ="/booksellregistmap",method =RequestMethod.GET)
+		public String bookupdate(Model model) throws Exception{
+			logger.info("지도 연습");
+			return "booksellregist/booksellregistPage";
+		}
 	
 	
 	
