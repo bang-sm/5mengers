@@ -111,8 +111,8 @@ html, body {
 			
 		</div>
 		<button id='show' onclick="dis()">show</button>
-		<section id="container"> <!-- Controller의 value값과 동일하게 해줄것 -->
-			<form role="form" method="post" action="/booksellregistPage">
+		<section id="container">      <!-- Controller의 value값과 동일하게 해줄것 -->
+			<form name="form" method="post" action="/booksellregistPage" enctype="multipart/form-data">
 				<table>
 					<tbody>
 						<tr>
