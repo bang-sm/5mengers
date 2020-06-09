@@ -27,7 +27,7 @@
 					<tbody>
 						<c:forEach items="${qnaList}" var="qnaList" varStatus="i">
 							<tr style="color: #555555;">
-								<td class="text_center">${i}</td>
+								<td class="text_center">${i.count}</td>
 								<td class="text_center">${login.userid}</td>
 								<td class="text_center">
 									<a href="/qna/readView?qb_id=${qnaList.qb_id}">${qnaList.qb_title}</a> 

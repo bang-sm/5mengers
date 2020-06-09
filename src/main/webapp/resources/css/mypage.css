@@ -322,7 +322,10 @@ table .txtLess {
     float: right;
 }
 
-
+.mypage_banner .on{
+	
+	border-bottom: 2px solid red;
+}
 
 
 
