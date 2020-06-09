@@ -92,7 +92,7 @@
 						<ul>
 							<li><a href="${contextPath}/admin/userlist">구매요청게시판</a></li>
 							<li><a
-								href="${contextPath}/booksellregist/booksellregistPage">나의책등록</a></li>
+								href="${contextPath}/booksellregist">나의책등록</a></li>
 							<li>
 								<input id="searchInput" type="text" style="width: 500px;height: 30px;margin-top: 9px;"/>
 								<button id="serachBtn">검색</button>

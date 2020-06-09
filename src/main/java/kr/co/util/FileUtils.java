@@ -19,7 +19,7 @@ import kr.co.vo.BookSellRegistDTO;
 // 첨부파일의 정보를 이용하여 여러 조작을 할 클래스 
 public class FileUtils {
 
-	private static final String filePath = "/resources/bookimg"; // 경로 확인!
+	private static String filePath = null; // 경로 확인!
 	
 	
 	public List<Map<String, Object>> parseInsertFileInfo(BookSellRegistDTO bookSellRegistDTO,
@@ -31,11 +31,19 @@ public class FileUtils {
 		String originalFileName = null;
 		String originalFileExtension = null;
 		String storedFileName = null;
+		String bi_root = null;
+		
 		
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 		Map<String, Object> listMap = null;
 		
 		int bsr_id = bookSellRegistDTO.getBsr_id(); // Bsr_id 값을 bsr_id에 담는다 
+		
+		String root_path = mpRequest.getSession().getServletContext().getRealPath("/");  
+		String attach_path = "resources/bookimg/";
+		filePath = root_path+attach_path;
+		
+		
 		
 		File file = new File(filePath);
 		if(file.exists() == false) {
@@ -57,6 +65,7 @@ public class FileUtils {
 				listMap.put("bi_file_name", storedFileName);
 				listMap.put("bi_root",filePath);
 				listMap.put("bsr_id", bsr_id);
+
 				list.add(listMap);
 				
 				System.out.println(list);

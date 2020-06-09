@@ -195,11 +195,10 @@ public class UserServiceImpl implements UserService {
 	public void kakaoLogout(String accessToken) throws Exception {
 		String reqURL = "https://kapi.kakao.com/v1/user/logout";
 		
-		URL url = new URL(reqURL);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		
 		try {
+		URL url = new URL(reqURL);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		
 		conn.setRequestMethod("POST");
 		conn.setRequestProperty("Authorization", "Bearer " + accessToken);
@@ -207,6 +206,7 @@ public class UserServiceImpl implements UserService {
 		int responseCode = conn.getResponseCode();
 		System.out.println("responseCode : " + responseCode);
 		
+		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String result = "";
 		String line = "";
 		
@@ -215,15 +215,12 @@ public class UserServiceImpl implements UserService {
 		}
 		System.out.println(result);
 		
+		br.close();
+		conn.disconnect();
 		} catch (IOException e) {
 			
 			e.printStackTrace();
-		} finally {
-			br.close();
-			conn.disconnect();
-			
 		}
-		
 		
 	}
 	
