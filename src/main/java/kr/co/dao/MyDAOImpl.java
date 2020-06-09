@@ -57,7 +57,7 @@ public class MyDAOImpl implements MyDAO {
 		return sqlSession.selectList("userMapper.my_request_book_list",uuid);
 	}
 	@Override
-	public List<MyhistoryDTO> mybookhistory(int uuid) throws Exception {
+	public List<MyhistoryDTO> mybookhistory(int uuid,String startDate,String endDate) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("userMapper.my_book_history",uuid);
 	}

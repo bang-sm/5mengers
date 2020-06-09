@@ -29,4 +29,11 @@ public interface UserDAO {
 	
 	// 세션키 검증
 	public UserVO checkUserSessionKey(String value) throws Exception;
+	
+	// 아이디 중복 체크
+	public int idCheck (UserVO userVO) throws Exception;
+	
+	// 로그인 권한 체크 
+	public int authCheck (UserVO userVO) throws Exception;
+	
 }

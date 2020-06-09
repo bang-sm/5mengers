@@ -5,19 +5,46 @@ import java.util.Date;
 public class BookSellRegistDTO {
 	
 	// Book_sell_registMapper
-	private int bsr_id;
-	private int uuid;
-	private String bsr_name;
-	private String bsr_price;
-	private String bsr_comment;
+	private int bsr_id; // book 게시판 id
+	private int uuid; // user ID
+	private String bsr_name; // 책 이름 ---> 데이터 받아오기
+	private String bsr_price; // 책 희망가격
+	private String bsr_comment; 
 	private Date bsr_regdate;
 	private int bsr_category;
 	private int bsr_check;
-	private String bsr_fixed_price;
+	private String bsr_fixed_price; // 책 가격 
 	private String bsr_confirm;
 	//맵 주소 소수
 	private double map_x;
 	private double map_y;
+	
+	// 출판사 명과 작가 명 명시해서 책 구분을 해야한다. 
+	
+	private String author;
+	private String publisher;
+	
+	
+	
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public String getPublisher() {
+		return publisher;
+	}
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+	// 새 데이터 추가 ---> 데이터 베이스에 없어도 되려나?
+	
+	// 담긴 데이터를 확인하기 위해 
+	public String toString () {
+		return "Book [bsr_name=" + bsr_name + ", bsr_fixed_price" + bsr_fixed_price 
+				+ ", author" + author + ", publisher " + publisher + "]";
+	}
 	
 	
 	

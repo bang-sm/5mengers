@@ -40,7 +40,7 @@
 		</interceptor>
 		<interceptor>
 			<!-- 자신의 페이지가 로그인이 되어야 ,접근 해야 하는 페이지 url 작성 -->
-			<mapping path="/my/nav"/>
+			<mapping path="/my/*"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 		<interceptor>

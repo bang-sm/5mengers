@@ -2,6 +2,8 @@ package kr.co.dao;
 
 import java.util.List;
 
+import org.json.simple.JSONObject;
+
 import kr.co.vo.BookRequestDTO;
 
 public interface BookRequestDAO {
@@ -21,6 +23,6 @@ public interface BookRequestDAO {
 	// 게시물 삭제
 	public void delete(int brb_id) throws Exception;
 	
-	
-	
-	}
+	// 네이버 책 API 검색
+	public void search(JSONObject keyword) throws Exception;
+}

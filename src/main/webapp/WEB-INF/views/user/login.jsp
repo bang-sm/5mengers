@@ -7,7 +7,7 @@
 	<%@ include file="../common/head.jsp"%>
 	<div class="site__container">
 		<div class="grid__container">
-			<form action="${path}/user/loginPost" method="post" class="form form--login">
+			<form action="${path}/user/loginPost" method="post" class="form form--login" onsubmit="return check()">
 	
 		        <div class="form-group has feedback form__field">
 		          <label class="fontawesome-user" for="login__username"><span class="hidden">Username</span></label>
@@ -33,7 +33,5 @@
       		<p class="text--center">Not a member? <a href="${path}/user/register">Sign up now</a> <span class="fontawesome-arrow-right"></span></p>
 		</div>
 	</div>
-
-
 </body>
 </html>

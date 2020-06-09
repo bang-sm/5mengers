@@ -15,16 +15,6 @@ public class QnADTO {
 		System.out.println("QnADTO()");
 	}
 	
-	public QnADTO(int qb_id, int uuid, String qb_title, String qb_comment, Date qb_date) {
-		super();
-		this.qb_id = qb_id;
-		this.uuid = uuid;
-		this.qb_title = qb_title;
-		this.qb_comment = qb_comment;
-		this.qb_date = qb_date;
-		System.out.println("QnADTO(qb_id, uuid, qb_title, qb_comment, qb_date)");
-	}
-	
 	public int getQb_id() {
 		return qb_id;
 	}

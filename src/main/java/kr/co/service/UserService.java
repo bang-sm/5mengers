@@ -1,6 +1,7 @@
 package kr.co.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -27,6 +28,24 @@ public interface UserService {
 	
 	// 자동 로그인 서비스 (loginCookie로 회원정보 조회)
 	UserVO previousLoginCheck(String value) throws Exception;
+	
+	// 아이디 중복체크
+	public int idCheck(UserVO userVO) throws Exception;
+	
+	// 카카오API AccessToken 받기
+	public String getAccessToken(String authorize_code) throws Exception;
+	
+	// 카카오 API 에서 회원 닉네임 받아오기
+	public HashMap<String, Object> getUserInfo(String accessToken) throws Exception;
+	
+	// 로그인 권한 체크
+	public int authCheck(UserVO userVO) throws Exception;
+	
+	
+		
+	
+	
+	
 	
 	
 	

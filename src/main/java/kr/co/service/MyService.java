@@ -20,7 +20,7 @@ public interface MyService {
 	//구매요청중인책리스트
 	public List<BookDetailDTO> RequestList(int getuuid) throws Exception;
 	//나의 책 구매 히스토리
-	public List<MyhistoryDTO> mybookhistory(int uuid) throws Exception;
+	public List<MyhistoryDTO> mybookhistory(int uuid,String startDate,String endDate) throws Exception;
 	//나의qna리스트
-	public List<QnADTO> qnaList(int uuid);
+	public List<QnADTO> qnaList(int uuid) throws Exception;
 }

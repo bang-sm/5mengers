@@ -10,23 +10,16 @@ public class BookRequestDTO {
 	private Date brb_regdate;
 	private int brb_cnt;
 	private String brb_isbn;
+	private String brb_title;
+	private String brb_price;
+	private String keyword;
 	
+
 	public BookRequestDTO() {
 		super();
 		System.out.println("BookRequestDTO");
 	}
-	
-	public BookRequestDTO(int brb_id, String bk_category, String brd_comment, int uuid, Date brb_regdate, int brb_cnt, String isbn) {
-		super();
-		this.brb_id = brb_id;
-		this.bk_category = bk_category;
-		this.brd_comment = brd_comment;
-		this.uuid = uuid;
-		this.brb_regdate = brb_regdate;
-		this.brb_cnt = brb_cnt;
-		this.brb_isbn = isbn;
-		System.out.println("BookRequestDTO(brb_id, brk_category, brd_comment, uuid, brb_regdate, brb_cnt, isbn)");
-	}
+
 
 	public int getBrb_id() {
 		return brb_id;
@@ -84,5 +77,27 @@ public class BookRequestDTO {
 		this.brb_isbn = brb_isbn;
 	}
 	
+	public String getBrb_title() {
+		return brb_title;
+	}
+
+	public void setBrb_title(String brb_title) {
+		this.brb_title = brb_title;
+	}
+
+	public String getBrb_price() {
+		return brb_price;
+	}
+
+	public void setBrb_price(String brb_price) {
+		this.brb_price = brb_price;
+	}
 	
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 }

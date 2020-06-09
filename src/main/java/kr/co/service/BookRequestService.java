@@ -2,6 +2,8 @@ package kr.co.service;
 
 import java.util.List;
 
+import org.json.simple.JSONObject;
+
 import kr.co.vo.BookRequestDTO;
 
 public interface BookRequestService {
@@ -20,4 +22,7 @@ public interface BookRequestService {
 	
 	// 게시물 삭제
 	public void delete(int brb_id) throws Exception;
+	
+	// 네이버 책 API 가져오기
+	public void search(JSONObject keyword) throws Exception;
 }

@@ -8,5 +8,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO qna_board (uuid, qb_title, qb_comment, qb_date)
 						VALUE (#{uuid}, #{qb_title}, #{qb_comment}, now());	
 	</insert>
-	
+	<select id="read" parameterType="int" resultType="kr.co.vo.QnADTO">
+		SELECT 	 qb_id
+			   , uuid
+			   , qb_title
+			   , qb_comment
+			     FROM qna_board
+			     WHERE qb_id = #{qb_id};
+	</select>
+	<select id="select">
+		SELECT 	 qb_id
+			   , uuid
+			   , qb_title			   
+			   , qb_comment
+			     FROM qna_board WHERE qb_id = #{qb_id};
+	</select>
+	<update id="update">
+		UPDATE qna_board set qb_title = #{qb_title}, qb_comment = #{qb_comment} WHERE qb_id = #{qb_id};
+	</update>
+	<delete id="delete">
+		DELETE FROM qna_board where qb_id = #{qb_id};
+	</delete>
 </mapper>
