@@ -6,74 +6,9 @@
 <head>
 <title>게시판</title>
 
-<!-- 지도 style -->
-<style>
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-#map {
-	height: 400px;
-	width: 600px;
-}
-/* Optional: Makes the sample page fill the window. */
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
 
-#floating-panel {
-	top: 10px;
-	left: 25%;
-	z-index: 5;
-	background-color: #fff;
-	padding: 5px;
-	border: 1px solid #999;
-	text-align: center;
-	font-family: 'Roboto', 'sans-serif';
-	line-height: 30px;
-	padding-left: 10px;
-}
-</style>
+</head>
 
-<!-- 지도 script  -->
-
-<script>
-	function initMap() {
-		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom : 8,
-			center : {
-				lat : -34.397,
-				lng : 150.644
-			}
-		});
-		var geocoder = new google.maps.Geocoder();
-
-		document.getElementById('submit').addEventListener('click', function() {
-			geocodeAddress(geocoder, map);
-		});
-	}
-
-	function geocodeAddress(geocoder, resultsMap) {
-		var address = document.getElementById('address').value;
-		geocoder.geocode({
-			'address' : address
-		}, function(results, status) {
-			if (status === 'OK') {
-				resultsMap.setCenter(results[0].geometry.location);
-				var marker = new google.maps.Marker({
-					map : resultsMap,
-					position : results[0].geometry.location
-				});
-			} else {
-				alert('Geocode was not successful for the following reason: '
-						+ status);
-			}
-		});
-	}
-</script>
-<script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFofoZnDDbEIAGQ1dPQRKPlOGGbb5sgOE&callback=initMap">
-</script>
 <!-- jquery 사용을 위한 src -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -87,7 +22,10 @@ html, body {
 		}
 	}
 </script>
-</head>
+
+
+
+
 <body>
 <input class="book"type="text" name="title" value="책 이름 "/>
 <button class="bookbtn" onclick="booksearch()">책 검색</button>
@@ -142,12 +80,7 @@ html, body {
 			</section>
 			<hr/>
 		</div>
-		<!-- 지도 나타내기 -->
-		<div id="floating-panel">
-			<input id="address" type="textbox" value="Sydney, NSW"> <input
-				id="submit" type="button" value="Geocode">
-		</div>
-		<div id="map"></div>
+		
 </body>
 
 <script>

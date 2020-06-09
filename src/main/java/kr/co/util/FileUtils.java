@@ -31,6 +31,8 @@ public class FileUtils {
 		String originalFileName = null;
 		String originalFileExtension = null;
 		String storedFileName = null;
+		String bi_root = null;
+		
 		
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 		Map<String, Object> listMap = null;
@@ -56,6 +58,9 @@ public class FileUtils {
 				listMap.put("bsr_img_id", bsr_id);
 				listMap.put("bi_user_file_name", originalFileName);
 				listMap.put("bi_file_name", storedFileName);
+				listMap.put("bi_root", bi_root);
+			
+				
 				list.add(listMap);
 				
 				System.out.println(list);
