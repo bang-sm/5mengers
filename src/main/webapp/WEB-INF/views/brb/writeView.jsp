@@ -20,7 +20,17 @@
 			formObj.attr("action", "/brb/write");
 			formObj.attr("method", "post");
 			formObj.submit();
+			location.href("/brb/list")
 		})
+		$(".btn_search").on("click", function(){
+			var keyword = $("#keyword").val().trim();
+			$.ajax({
+				url: "/bSearch",
+				type: "GET",
+				data: "keyword", keyword
+			})
+		})
+
 		function fn_valichk(){
 			var regForm = $("form[name='writeForm'] .chk").length;
 			for(var i = 0; i < regForm; i++) {
@@ -49,12 +59,17 @@
 				</tr>
 				<tr>
 					<td>
-						<label for="price">가격(수정요)</label><input type="text" id="price" name="price" class="chk"/>
+						<label for="brb_title">게시물제목</label><input type="text" id="brb_title" name="brb_title" class="chk"/>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="category">카테고리</label> <!-- null check?? -->
+						<label for="brb_price">가격</label><input type="text" id="brb_price" name="brb_price" class="chk"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="bk_category">카테고리</label> <!-- null check?? -->
 						<select id="bk_category" name="bk_category">
 							<option value="01">인문</option><option value="02">역사</option><option value="03">예술</option>
 							<option value="04">종교</option><option value="05">사회</option><option value="06">과학</option>
@@ -82,9 +97,8 @@
 		</table>
 	</form>
 </section>
-<hr>
-<div class="search"><%-- 팝업창 --%>
-	<div>도서명<input type="text"/><button>검색</button></div>
+<div class="search">
+	<div>도서명<input type="text" id="keyword" name="keyword"/><button class="btn_search">검색</button></div>
 	<table>
 		<tr>
 			<th>번호</th>

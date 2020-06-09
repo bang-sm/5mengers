@@ -1,7 +1,5 @@
 package kr.co.vo;
 
-import java.util.Date;
-
 public class MyhistoryDTO {
 	private String bsr_name;
 	private int bsr_id;
@@ -10,7 +8,7 @@ public class MyhistoryDTO {
 	private String endDate;
 
 	//승인날짜 최초에는 널 판매자 승인시 그시각 업데이트
-	private Date myb_regdate;
+	private String myb_regdate;
 	private String bsr_confirm;
 	
 	public String getBsr_name() {
@@ -31,12 +29,6 @@ public class MyhistoryDTO {
 	public void setBsr_price(String bsr_price) {
 		this.bsr_price = bsr_price;
 	}
-	public Date getMyb_regdate() {
-		return myb_regdate;
-	}
-	public void setMyb_regdate(Date myb_regdate) {
-		this.myb_regdate = myb_regdate;
-	}
 	public String getBsr_confirm() {
 		return bsr_confirm;
 	}
@@ -54,6 +46,12 @@ public class MyhistoryDTO {
 	}
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+	public String getMyb_regdate() {
+		return myb_regdate;
+	}
+	public void setMyb_regdate(String myb_regdate) {
+		this.myb_regdate = myb_regdate;
 	}
 	
 }

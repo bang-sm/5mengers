@@ -1,5 +1,6 @@
 package kr.co.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,13 +57,13 @@ public class MyServiceImpl implements MyService{
 	}
 	//나의 구매책 히스토리
 	@Override
-	public List<MyhistoryDTO> mybookhistory(int uuid) throws Exception {
+	public List<MyhistoryDTO> mybookhistory(int uuid,String startDate,String endDate) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.mybookhistory(uuid);
+		return dao.mybookhistory(uuid,startDate,endDate);
 	}
 
 	@Override
-	public List<QnADTO> qnaList(int uuid) {
+	public List<QnADTO> qnaList(int uuid) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.qnaList(uuid);
 	}

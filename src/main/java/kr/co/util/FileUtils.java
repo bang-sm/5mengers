@@ -19,7 +19,7 @@ import kr.co.vo.BookSellRegistDTO;
 // 첨부파일의 정보를 이용하여 여러 조작을 할 클래스 
 public class FileUtils {
 
-	private static final String filePath = "C:\\mp\\file"; // 경로 확인!
+	private static final String filePath = "/resources/bookimg"; // 경로 확인!
 	
 	
 	public List<Map<String, Object>> parseInsertFileInfo(BookSellRegistDTO bookSellRegistDTO,

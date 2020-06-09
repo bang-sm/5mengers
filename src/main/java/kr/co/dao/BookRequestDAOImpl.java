@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Repository;
 
 import kr.co.vo.BookRequestDTO;
@@ -45,5 +46,9 @@ public class BookRequestDAOImpl implements BookRequestDAO {
 	public void delete(int brb_id) throws Exception {
 
 		sqlSession.delete("bookRequestMapper.delete", brb_id);
+	}
+	@Override
+	public void search(JSONObject keyword) throws Exception {
+		
 	}
 }

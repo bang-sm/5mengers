@@ -1,7 +1,5 @@
 package kr.co.dao;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -21,27 +19,18 @@ public class QnADAOImpl implements QnADAO{
 	}
 	
 	@Override
-	public List<QnADTO> list() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
 	public QnADTO read(int qb_id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("QnAMapper.read", qb_id);
 	}
 	
 	@Override
 	public void update(QnADTO qnaDTO) throws Exception {
-		// TODO Auto-generated method stub
-		
+		sqlSession.update("QnAMapper.update", qnaDTO);		
 	}
 	
 	@Override
 	public void delete(int qb_id) throws Exception {
-		// TODO Auto-generated method stub
-		
+		sqlSession.delete("QnAMapper.delete", qb_id);		
 	}
 
 }
