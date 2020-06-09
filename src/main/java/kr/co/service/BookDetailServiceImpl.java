@@ -27,6 +27,7 @@ public class BookDetailServiceImpl implements BookDetailService {
 	@Override
 	public BookDetailDTO detail(int bsr_id, int uuid) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("detail service");
 		return dao.detail(bsr_id, uuid);
 	}
 
@@ -62,11 +63,6 @@ public class BookDetailServiceImpl implements BookDetailService {
 		return dao.check_count(bsr_id);
 	}
 
-	// 구매하기 버튼 클릭시 예약중 AJAX
-	@Override
-	public int book_check(int bsr_check, int bsr_id) throws Exception {
-		return dao.book_check(bsr_check, bsr_id);
-	}
 
 	// 책 카테고리 리스트
 	@Override
@@ -150,13 +146,13 @@ public class BookDetailServiceImpl implements BookDetailService {
 	}
 
 	// 글 수정버튼 클릭시 db(bsr_update) 값 변경
-
 	@Override
-	public void bookupdatecheck(int bsr_id) throws Exception {
-		dao.bookupdatecheck(bsr_id);
+	public void bookactiveoff(int bsr_id) throws Exception {
+		dao.bookactiveoff(bsr_id);
 
 	}
 
+	//글 수정 등록시 DB(bsr_status) 값 변경
 	@Override
 	public void bookupdatecheckout(int bsr_id) throws Exception {
 		dao.bookupdatecheckout(bsr_id);
@@ -168,6 +164,37 @@ public class BookDetailServiceImpl implements BookDetailService {
 	public void buying_book(int uuid, int bsr_id) throws Exception {
 		// TODO Auto-generated method stub
 		dao.buying_book(uuid, bsr_id);
+	}
+
+	//상세페이지 접속시 bsr_status 는 비활성화
+	@Override
+	public void bsrstatuscheck(int bsr_id) throws Exception {
+		dao.bsrstatusbook(bsr_id);
+	}
+
+	//활성화 !
+	@Override
+	public void bookactiveon(int bsr_id) throws Exception {
+		dao.bookactiveon(bsr_id);
+		
+	}
+	
+	//구매요청 클릭시 DB 값 변경
+	@Override
+	public void book_check(int bsr_check,int bsr_id) throws Exception {
+		dao.book_check(bsr_check,bsr_id);
+	}
+
+	//책 수정중 상태값 가져오기
+	@Override
+	public void bookactive(int bsr_id,int bsr_status) throws Exception {
+		 dao.bookactive(bsr_id,bsr_status);
+	}
+
+	//구해요청 시 db 값 확인 (bsr_status)
+	@Override
+	public int bookactivecount(int bsr_id) throws Exception {
+		return dao.bookactivecount(bsr_id);
 	}
 
 }

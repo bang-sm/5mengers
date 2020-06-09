@@ -25,7 +25,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   , brb_cnt
 			     FROM book_request_board
 			     ORDER BY brb_id;
-
 	</select>
 	
 	<select id="read" parameterType="int" resultType="kr.co.vo.BookRequestDTO">
@@ -33,9 +32,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   , uuid
 			   , bk_category			   
 			   , brd_comment
-			     FROM book_request_board
-		WHERE brb_id = #{brb_id};
-
+			   , brb_cnt
+			     FROM book_request_board WHERE brb_id = #{brb_id};
+			     
+		UPDATE	book_request_board set brb_cnt = brb_cnt + 1 WHERE brb_id = #{brb_id};
 	</select>
 	
 	<update id="update">

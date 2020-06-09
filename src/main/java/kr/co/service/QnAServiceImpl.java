@@ -18,4 +18,21 @@ public class QnAServiceImpl implements QnAService {
 	public void write(QnADTO qnaDTO) throws Exception {
 		dao.write(qnaDTO);		
 	}
+	
+	@Override
+	public QnADTO read(int qb_id) throws Exception {
+		return dao.read(qb_id);
+	}
+	
+	@Override
+	public void update(QnADTO qnaDTO) throws Exception {
+		dao.update(qnaDTO);
+		
+	}
+	
+	@Override
+	public void delete(int qb_id) throws Exception {
+		dao.delete(qb_id);
+		
+	}
 }

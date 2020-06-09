@@ -6,7 +6,6 @@
 <html lang="ko">
 <head>
 <title>마이페이지</title>
-<link rel="stylesheet" href="../resources/css/mypage.css">
 </head>
 <body>
 	<%@ include file="../common/head.jsp"%>
@@ -29,9 +28,6 @@
 				</div>
 				<div>
 					<a href="${contextPath}/my/buycomplete">구매 히스토리</a>
-				</div>
-				<div>
-					<a href="${contextPath}/my/manyask">자주묻는질문</a>
 				</div>
 				<div>
 					<a href="${contextPath}/my/myStatusUpdate">회원정보변경</a>

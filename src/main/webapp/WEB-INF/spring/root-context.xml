@@ -22,7 +22,7 @@
     <bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://gksfk6165.cafe24.com:3306/gksfk6165?useSSL=false&amp;serverTimezone=UTC">
+        <property name="url" value="jdbc:mysql://gksfk6165.cafe24.com:3306/gksfk6165?useSSL=false&amp;serverTimezone=UTC&amp;allowMultiQueries=true">
         </property>
         <property name="username" value="gksfk6165"></property>
         <property name="password" value="dhaoswutm!@"></property>  

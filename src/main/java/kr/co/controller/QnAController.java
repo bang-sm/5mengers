@@ -43,16 +43,43 @@ public class QnAController {
 			
 			return "redirect:/";
 		}
-		@RequestMapping(value = "/qna/list", method = RequestMethod.GET)
-		public String qna() throws Exception {
-			logger.info("QnA");
-			
-			return "/qna/list";
-		}
-		@RequestMapping("/qna/detail")
-		public String qnaD() throws Exception {
+
+		@RequestMapping("/qna/readView")
+		public String read(QnADTO qnaDTO, Model model) throws Exception {
 			logger.info("QnA 상세페이지");
 			
-			return "/qna/qnaDetail";
+			model.addAttribute("read", service.read(qnaDTO.getQb_id()));
+			
+			return "/qna/readView";
+		}
+		
+		// 수정페이지 수정 화면
+		@RequestMapping(value = "qna/updateView", method = RequestMethod.GET)
+		public String updateView(QnADTO qnaDTO, Model model) throws Exception {
+			logger.info("/qna/updateView");
+						
+			model.addAttribute("update", service.read(qnaDTO.getQb_id()));
+			
+			return "qna/updateView";
+		}
+		
+		// 게시물 수정하기
+		@RequestMapping(value = "qna/update", method = RequestMethod.POST)
+		public String update(QnADTO qnaDTO) throws Exception {
+			logger.info("/qna/update");
+			
+			service.update(qnaDTO);
+			
+			return "redirect:/my/qnaList";					
+		}
+		
+		// 게시물 삭제하기
+		@RequestMapping(value = "qna/delete", method = RequestMethod.POST)
+		public String delete(QnADTO qnaDTO) throws Exception {
+			logger.info("/qna/delete");
+			
+			service.delete(qnaDTO.getQb_id());
+			
+			return "redirect:/my/qnaList";
 		}
 }

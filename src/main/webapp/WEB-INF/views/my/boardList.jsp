@@ -13,34 +13,7 @@
 	<%@ include file="../common/head.jsp"%>
 	<div id="container">
 		<div id="contents">
-			<div class="title_top">
-				<h2>
-					MY PAGE <span class="title_sub">내가 올린 구매요청 리스트</span>
-				</h2>
-			</div>
-			<div class="mypage_banner">
-				<div>
-					<a href="http://localhost:8080/my/boardList">구매요청 리스트</a>
-				</div>
-				<div>
-					<a href="http://localhost:8080/my/qnaList">나의QnA 리스트</a>
-				</div>
-				<div>
-					<a href="http://localhost:8080/my/sellbook">판매중인책</a>
-				</div>
-				<div>
-					<a href="http://localhost:8080/my/buybook">구매중인책</a>
-				</div>
-				<div>
-					<a href="http://localhost:8080/my/zzim">찜목록</a>
-				</div>
-				<div>
-					<a href="http://localhost:8080/my/buycomplete">구매내역리스트</a>
-				</div>
-				<div>
-					<a href="http://localhost:8080/my/manyask">자주묻는질문</a>
-				</div>
-			</div>
+			<%@ include file="../common/myNav.jsp"%>
 
 			<div class="boardList">
 				<table border="1" summary="">

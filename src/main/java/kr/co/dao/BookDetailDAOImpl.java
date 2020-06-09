@@ -23,9 +23,9 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 	public BookDetailDTO detail(int bsr_id, int uuid) throws Exception {
 		System.out.println("확인");
 		HashMap<String, Integer> dmap = new HashMap<String, Integer>();
-		dmap.put("bsr_id", bsr_id);
-		dmap.put("uuid", uuid);
-
+		dmap.put("bsr_id",bsr_id);
+		dmap.put("uuid",uuid);
+        System.out.println(dmap);
 		return sqlSession.selectOne("BookDetailMapper.book_detail", dmap);
 	}
 
@@ -50,8 +50,6 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 	@Override
 	public void check_off(int uuid, int bsr_id) throws Exception {
 		HashMap<String, Integer> chofmap = new HashMap<String, Integer>();
-		System.out.println("찜해제 매개변수uuid   "+uuid);
-		System.out.println("찜해제 매개변수bsr_id  "+bsr_id);
 		chofmap.put("uuid", uuid);
 		chofmap.put("bsr_id", bsr_id);
 		sqlSession.delete("BookDetailMapper.check_off", chofmap);
@@ -75,28 +73,6 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 		return sqlSession.selectOne("check_count", bsr_id);
 	}
 
-	// 구매하기 버튼 클릭시 예약중 AJAX
-	@Transactional
-	@Override
-	public int book_check(int bsr_check, int bsr_id) throws Exception {
-		int count;
-
-		try {
-			int check = sqlSession.selectOne("BookDetailMapper.book_update_check", bsr_id);
-			System.out.println("check : " + check);
-			HashMap<String, Integer> cmap = new HashMap<String, Integer>();
-			cmap.put("bsr_check", bsr_check);
-			cmap.put("bsr_id", bsr_id);
-			sqlSession.update("BookDetailMapper.book_check", cmap);
-			count = 0;
-			
-		} catch (NullPointerException e) {
-			System.out.println("수리중");
-			count =1;
-		}
-		return count;
-
-	}
 
 	// 책 카테고리 리스트
 	@Override
@@ -140,10 +116,11 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 
 	// 글 수정버튼 클릭시 db(bsr_update) 값 변경
 	@Override
-	public void bookupdatecheck(int bsr_id) throws Exception {
-		sqlSession.update("BookDetailMapper.bookupdatecheck", bsr_id);
+	public void bookactiveoff(int bsr_id) throws Exception {
+		sqlSession.update("BookDetailMapper.bookactiveoff", bsr_id);
 	}
 
+	//글 수정 글등록시 DB(bsr_update) 값 변경
 	@Override
 	public void bookupdatecheckout(int bsr_id) throws Exception {
 		sqlSession.update("BookDetailMapper.bookupdatecheckout", bsr_id);
@@ -157,6 +134,46 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 		map.put("uuid", uuid);
 		map.put("bsr_id", bsr_id);
 		sqlSession.insert("BookDetailMapper.buying_book",map);
+	}
+
+	//상세페이지 접속시 bsr_status 는 비활성화
+	@Override
+	public void bsrstatusbook(int bsr_id) throws Exception {
+		sqlSession.update("BookDetailMapper.bsrstatusbook",bsr_id);
+		
+	}
+
+	//글 수정버튼 클릭시 db(bsr_update) 값 변경
+	@Override
+	public void bookactiveon(int bsr_id) throws Exception {
+		sqlSession.update("BookDetailMapper.bookactiveon",bsr_id);
+		
+	}
+
+	//책 수정중 상태값 가져오기
+	@Override
+	public void bookactive(int bsr_id,int bsr_status) throws Exception {
+		HashMap<String, Integer> bamap = new HashMap<String, Integer>();
+		bamap.put("bsr_id", bsr_id);
+		bamap.put("bsr_status", bsr_status);
+	    sqlSession.update("BookDetailMapper.bookactive",bamap);
+	}
+
+	//구매요청 클릭시 DB 값 변경
+	@Override
+	public void book_check(int bsr_check,int bsr_id) throws Exception {
+		HashMap<String, Integer> bkmap = new HashMap<String, Integer>();
+		bkmap.put("bsr_check", bsr_check);
+		bkmap.put("bsr_id", bsr_id);
+		sqlSession.update("BookDetailMapper.book_check",bkmap);
+		
+	}
+
+	//bsr_status 값 가져오기
+	@Override
+	public int bookactivecount(int bsr_id) throws Exception {
+
+		return sqlSession.selectOne("BookDetailMapper.book_update_check",bsr_id);
 	}
 
 }

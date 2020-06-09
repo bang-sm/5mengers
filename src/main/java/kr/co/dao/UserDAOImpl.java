@@ -30,7 +30,7 @@ public class UserDAOImpl implements UserDAO {
 	// 회원가입 처리
 	@Override
 	public void register(UserVO userVO) throws Exception {
-		sqlSession.insert("register", userVO);
+		sqlSession.insert("userMapper.register", userVO);
 
 	}
 	
@@ -70,6 +70,22 @@ public class UserDAOImpl implements UserDAO {
 		
 		return sqlSession.selectOne("checkUserSessionKey", value);
 	}
+	
+	// 아이디 중복 체크
+	@Override
+	public int idCheck(UserVO userVO) throws Exception {
+		
+		int result = sqlSession.selectOne("userMapper.idCheck", userVO);
+		
+		return result;
+	}
+	
+	// 로그인 권한 확인
+	@Override
+		public int authCheck(UserVO userVO) throws Exception {
+			int result = sqlSession.selectOne("userMapper.authCheck", userVO);
+			return result;
+		}
 	
 	
 	
