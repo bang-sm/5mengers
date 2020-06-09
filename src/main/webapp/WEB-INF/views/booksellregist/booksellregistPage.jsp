@@ -251,15 +251,15 @@
 					<tbody>
 						<tr>
 							<td><label for="title">책 이름 :</label> <input type="text"
-								id="booktitle" name="bsr_name" value="" />
+								id="booktitle" name="bsr_name" value="" readonly />
 						</tr>
 						<tr>
 							<td><label for="title">작가 :</label> <input type="text"
-								id="author" value="" />
+								id="author" value="" readonly/>
 						</tr>
 						<tr>
 							<td><label for="fix_price">정가 : </label> <input type="text"
-								id="fixedprice" name="bsr_fixed_price" value="" />
+								id="fixedprice" name="bsr_fixed_price" value="" readonly />
 						</tr>
 						<tr>
 							<td><label for="bsr_category">카테고리 : </label> <select
@@ -303,11 +303,26 @@
 						</tr>
 						<tr>
 							<td>
+							<input type="text"
+								class="map_x" name="map_x" value="" hidden/>
+							
+							</td>
+						</tr>
+						<tr>
+							<td >
+							
+							<input type="text"
+								class="map_y" name="map_y" value="" hidden/>
+							
+							</td>
+						</tr>
+						<tr>
+							<td>
 								<button type="submit">작성</button>
 							</td>
 						</tr>
-						<span class="map_x" name="map_x"  ></span>
-						<span class="map_y" name="map_y" ></span>
+						
+						
 					</tbody>
 				</table>
 			</form>
@@ -612,7 +627,9 @@ function clicker(id){
 	 var callback = function(result, status) {
 	     if (status === kakao.maps.services.Status.OK) {
 	         $('.map_y').text(result[0].x);   //위도
+	         $('.map_y').val(result[0].x)
 	         $('.map_x').text(result[0].y);   //경도
+	         $('.map_x').val(result[0].y);
 	     }
 	 };
 
