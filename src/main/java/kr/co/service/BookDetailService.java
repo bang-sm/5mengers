@@ -2,12 +2,8 @@ package kr.co.service;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.json.simple.JSONObject;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import kr.co.util.FileUtils;
 import kr.co.vo.BookCategoryDTO;
 import kr.co.vo.BookDetailDTO;
 
@@ -47,7 +43,7 @@ public interface BookDetailService {
 	public List<BookCategoryDTO> category() throws Exception;
 	
 	//메인책리스트
-	public List<BookCategoryDTO> mainBookList() throws Exception;
+	public List<BookDetailDTO> mainBookList() throws Exception;
 	
 	//책 수정중 상태값 가져오기
 	public void bookactive(int bsr_id,int bsr_status) throws Exception;

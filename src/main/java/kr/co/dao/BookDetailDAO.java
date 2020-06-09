@@ -2,8 +2,6 @@ package kr.co.dao;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import kr.co.vo.BookCategoryDTO;
 import kr.co.vo.BookDetailDTO;
 
@@ -40,7 +38,7 @@ public interface BookDetailDAO {
 	public List<BookCategoryDTO> category() throws Exception;
 	
 	//메인책리스트
-	public List<BookCategoryDTO> mainBookList() throws Exception;
+	public List<BookDetailDTO> mainBookList() throws Exception;
 	
 	//글 수정 DB 값 가져와서 표출
 	public List<BookDetailDTO> bookupdate(int bsr_id) throws Exception;

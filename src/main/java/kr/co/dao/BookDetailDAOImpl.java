@@ -82,7 +82,7 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 
 	// 메인책리스트
 	@Override
-	public List<BookCategoryDTO> mainBookList() throws Exception {
+	public List<BookDetailDTO> mainBookList() throws Exception {
 		return sqlSession.selectList("BookDetailMapper.main_book_list");
 	}
 
