@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>게시판</title>
@@ -71,10 +73,7 @@ html, body {
 </script>
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFofoZnDDbEIAGQ1dPQRKPlOGGbb5sgOE&callback=initMap">
-	
 </script>
-
-
 <!-- jquery 사용을 위한 src -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -88,106 +87,31 @@ html, body {
 		}
 	}
 </script>
-
-
-
 </head>
-
-
 <body>
-
-	<form>
-
-		책 검색 : <input type="text" name="date" id="date">
-
-		<button id="btn_load" type="button">검색</button>
-		<button id="btn_remove" type="button">지우기</button>
-
-	</form>
-	<h2>찾은 책정보</h2>
-	<br>
-	<table id="demoXML"></table>
-
-	<!-- 인터파크 api xml 파씽 -->
-	<script type="text/javascript">
-
-	var api_key = "C354034269C775DBCB54644F752E164B5CDEE06889FEE967C07621D697D3A30A"
-		$(document).ready(function(){
-		$("#btn_load").click(function(){
-			 var date = document.getElementById("date").value.trim();
-			 
-			 // XML
-			 var url = "http://book.interpark.com/api/search.api?key=" + api_key + "&interpark&query=" + data;
-			
-			$.ajax({
-				url : url,
-				type : "GET",
-				cache : false,
-				success : function(data, status){
-					if(status == "success") parseXML(data);
-				}
-			});
-			
-			$("#btn_remove").click(function(){
-				$("#demoXML").html("");
-				$("#demoJSON").html("");
-			 });
-			
-		 });
-		
-		function parseXML(xmlDOM) {
-			var table = "<tr><th>호선</th><th>역명</th><th>승차인원</th><th>하차인원</th></tr>";
-			$(xmlDOM).find("row").each(function(){
-				table += "<tr>";
-				table += "<td>" + $(this).find("SUB_STA_NM").text() + "</td>";
-				table += "<td>" + $(this).find("RIDE_PASGR_NUM").text() + "</td>";
-				table += "<td>" + $(this).find("ALIGHT_PASGR_NUM").text() + "</td>"; 		
-				table += "</tr>";
-			});
-			$("#demoXML").html(table);
-		}
-
-</script>
-
-
+<input class="book"type="text" name="title" value="책 이름 "/>
+<button class="bookbtn" onclick="booksearch()">책 검색</button>
+	<div id="booklist">
+		<div id="booklist_div">
+			<ul id="booklist_ul">
+			<table id ="bookajax"></table>
+			</ul>
+		</div>
+	</div>
 
 	<div id="root">
 		<header>
-			<h1>게시판</h1>
+		<h1>게시판</h1>
 		</header>
 		<hr />
-
 		<nav>홈 - 글 작성</nav>
 		<hr />
-
-
 		<div id='dis' style="display: none">
 
-			<table>
-				<tbody>
-					<tr>
-						<td>책 이름:</td>
-					</tr>
-					<tr>
-						<td>저자 :</td>
-						</td>
-					<tr>
-						<td>정가:</td>
-						</td>
-				</tbody>
-
-
-			</table>
-
+			
 		</div>
-		<input type="text" id="" placeholder="책 검색">
 		<button id='show' onclick="dis()">show</button>
-
-
-
-
-		<section id="container">
-			<!-- Controller의 value값과 동일하게 해줄것 -->
+		<section id="container"> <!-- Controller의 value값과 동일하게 해줄것 -->
 			<form role="form" method="post" action="/booksellregistPage">
 				<table>
 					<tbody>
@@ -217,24 +141,47 @@ html, body {
 
 				</table>
 			</form>
-		</section>
-		<hr />
-
-
-
-	</div>
-	<!-- 지도 나타내기 -->
-	<div id="floating-panel">
-		<input id="address" type="textbox" value="Sydney, NSW"> <input
-			id="submit" type="button" value="Geocode">
-	</div>
-	<div id="map"></div>
-
-
-
-
-
-
-
+			</section>
+			<hr/>
+		</div>
+		<!-- 지도 나타내기 -->
+		<div id="floating-panel">
+			<input id="address" type="textbox" value="Sydney, NSW"> <input
+				id="submit" type="button" value="Geocode">
+		</div>
+		<div id="map"></div>
 </body>
+
+<script>
+function booksearch(){
+	var keyword = $('.book').val();
+	alert("keyword : " + keyword);
+	$.ajax({
+		url: "/booksellregistajax", // controller에서 받는다
+					type : "GET",
+					data : {
+						"keyword" : keyword
+					},
+					success : function(data) {
+						var total = data.items.length;
+						console.log("total : " + total);
+						var info = "<tr><th>이미지</th><th>제목</th><th>저자</th><th>정가</th>"
+						// "책 제목 : "+jemok +"<br>가격 : "+price +"<br>저자 : "+author +"사진 : "+"<img src='"+image+"'/>";
+						for (var i = 0; i < total; i++) {
+							info += "<li class='booklist_li'><tr>";
+							info += "<td><img class='booklist_img' src='"+data.items[i].image+"'/></td>";
+							info += "<td>" + data.items[i].title + "</td>";
+							info += "<td>" + data.items[i].author + "</td>";
+							info += "<td>" + data.items[i].price + "</td>";
+							info += "</tr></li>";
+						}
+						$('#bookajax').html(info);
+					},
+					error : function() {
+
+					}
+				});
+
+	}
+</script>
 </html>

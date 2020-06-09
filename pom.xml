@@ -57,6 +57,28 @@
 		 </dependency>
 
 		<!-- 첨부파일 END      by 정인주 -->
+		<dependency>
+            <groupId>net.sf.sociaal</groupId>
+            <artifactId>xmlpull-xpp3</artifactId>
+            <version>3.0.0.20130526</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>3.1.1.RELEASE</version>
+        </dependency>
+         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>3.1.1.RELEASE</version>
+        </dependency>
+	<!-- 추가 dependency by 정인주 -->
+
+
+
+
+
+
 				
 		<!-- AspectJ -->
 		<dependency>
