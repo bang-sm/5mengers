@@ -6,129 +6,106 @@
 <head>
 <title>게시판</title>
 
-<!-- 지도 style -->
-<style>
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-#map {
-	height: 400px;
-	width: 600px;
-}
-/* Optional: Makes the sample page fill the window. */
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
 
-#floating-panel {
-	top: 10px;
-	left: 25%;
-	z-index: 5;
-	background-color: #fff;
-	padding: 5px;
-	border: 1px solid #999;
-	text-align: center;
-	font-family: 'Roboto', 'sans-serif';
-	line-height: 30px;
-	padding-left: 10px;
-}
-</style>
+</head>
+<%@ include file="../common/head.jsp"%>
 
-<!-- 지도 script  -->
-
-<script>
-	function initMap() {
-		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom : 8,
-			center : {
-				lat : -34.397,
-				lng : 150.644
-			}
-		});
-		var geocoder = new google.maps.Geocoder();
-
-		document.getElementById('submit').addEventListener('click', function() {
-			geocodeAddress(geocoder, map);
-		});
-	}
-
-	function geocodeAddress(geocoder, resultsMap) {
-		var address = document.getElementById('address').value;
-		geocoder.geocode({
-			'address' : address
-		}, function(results, status) {
-			if (status === 'OK') {
-				resultsMap.setCenter(results[0].geometry.location);
-				var marker = new google.maps.Marker({
-					map : resultsMap,
-					position : results[0].geometry.location
-				});
-			} else {
-				alert('Geocode was not successful for the following reason: '
-						+ status);
-			}
-		});
-	}
-</script>
-<script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFofoZnDDbEIAGQ1dPQRKPlOGGbb5sgOE&callback=initMap">
-</script>
 <!-- jquery 사용을 위한 src -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- none -> block -->
 <script type="text/javascript">
-	function dis() {
-		if ($('#dis').css('display') == 'none') {
-			$('#dis').show();
-		} else {
-			$('#dis').hide();
-		}
-	}
+	$(document).on('click', '.searchTitle', function() {
+		var name = $(this).text();
+		var author = $(this).siblings(".author").text();
+		var price = $(this).siblings(".price").text();
+		$("#booktitle").text(name);
+		$("#booktitle").val(name);
+		$("#fixedprice").text(price);
+		$("#fixedprice").val(price);
+		$("#author").text(author);
+		$("#author").val(author)
+		$("#bookajax").children().remove();
+	});
+
 </script>
-</head>
+
+<!-- 책 API list style -->
+<style>
+#bookajax .booktr:hover {
+	background-color: #CEE3F6;
+}
+</style>
 <body>
-<input class="book"type="text" name="title" value="책 이름 "/>
-<button class="bookbtn" onclick="booksearch()">책 검색</button>
+	<h1>책 등록</h1>
+	<hr />
+	<input class="book" type="text" name="title" value="책 이름 " />
+	<button class="bookbtn" onclick="booksearch()">책 검색</button>
 	<div id="booklist">
 		<div id="booklist_div">
-			<ul id="booklist_ul">
-			<table id ="bookajax"></table>
-			</ul>
+
+			<table id="bookajax"></table>
+
 		</div>
 	</div>
 
 	<div id="root">
-		<header>
-		<h1>게시판</h1>
-		</header>
-		<hr />
-		<nav>홈 - 글 작성</nav>
-		<hr />
-		<div id='dis' style="display: none">
 
-			
-		</div>
-		<button id='show' onclick="dis()">show</button>
-		<section id="container">      <!-- Controller의 value값과 동일하게 해줄것 -->
-			<form name="form" method="post" action="/booksellregistPage" enctype="multipart/form-data">
+		
+		<div id="container">
+			<!-- Controller의 value값과 동일하게 해줄것 -->
+			<form name="form" method="post" action="/booksellregistPage"
+				enctype="multipart/form-data">
+				<!-- action 변경할 것 -->
 				<table>
 					<tbody>
 						<tr>
-							<td><label for="title" >책 이름 :</label>
+							<td><label for="title">책 이름 :</label> <input type="text"
+								id="booktitle" name="bsr_name" value="" />
 						</tr>
 						<tr>
-							<td><label for="fix_price" >정가 : </label>
+							<td><label for="title">작가 :</label> <input type="text"
+								id="author" value="" />
 						</tr>
 						<tr>
-							<td><label for="price">판매 희망가격 : </label> <textarea id="price" name="bsr_price"></textarea>
+							<td><label for="fix_price">정가 : </label> <input type="text"
+								id="fixedprice" name="bsr_fixed_price" value="" />
 						</tr>
 						<tr>
-							<td><label for="content">소개글</label> <textarea id="content" name="bsr_comment"></textarea></td>
+							<td><label for="bsr_category">카테고리 : </label> <select
+								id="bookcategory" name="bsr_category">
+									<option value="0">인문</option>
+									<option value="1">역사</option>
+									<option value="2">예술</option>
+									<option value="3">종교</option>
+									<option value="4">사회</option>
+									<option value="5">과학</option>
+									<option value="6">경제경영</option>
+									<option value="7">자기계발</option>
+									<option value="8">만화</option>
+									<option value="9">라이트노벨</option>
+									<option value="10">여행</option>
+									<option value="11">잡지</option>
+									<option value="12">어린이</option>
+									<option value="13">요리</option>
+									<option value="14">육아</option>
+									<option value="15">건강</option>
+									<option value="16">IT</option>
+									<option value="17">자격증</option>
+									<option value="18">참고서</option>
+
+							</select>
 						</tr>
 						<tr>
-							<td><input type="file" name="file"></td>
+							<td><label for="price">판매 희망가격 : </label> <textarea
+									id="price" name="bsr_price"></textarea>
+						</tr>
+						<tr>
+							<td><label for="content">소개글</label> <textarea id="content"
+									name="bsr_comment"></textarea></td>
+						</tr>
+						<tr>
+							<td><input type="file" name="img"></td>
 						</tr>
 						<tr>
 							<td>
@@ -139,23 +116,17 @@ html, body {
 
 				</table>
 			</form>
-			</section>
-			<hr/>
 		</div>
-		<!-- 지도 나타내기 -->
-		<div id="floating-panel">
-			<input id="address" type="textbox" value="Sydney, NSW"> <input
-				id="submit" type="button" value="Geocode">
-		</div>
-		<div id="map"></div>
+		<hr />
+	</div>
 </body>
 
 <script>
-function booksearch(){
-	var keyword = $('.book').val();
-	alert("keyword : " + keyword);
-	$.ajax({
-		url: "/booksellregistajax", // controller에서 받는다
+	function booksearch() {
+		var keyword = $('.book').val();
+		$
+				.ajax({
+					url : "/booksellregistajax", // controller에서 받는다
 					type : "GET",
 					data : {
 						"keyword" : keyword
@@ -163,23 +134,30 @@ function booksearch(){
 					success : function(data) {
 						var total = data.items.length;
 						console.log("total : " + total);
-						var info = "<tr><th>이미지</th><th>제목</th><th>저자</th><th>정가</th>"
-						// "책 제목 : "+jemok +"<br>가격 : "+price +"<br>저자 : "+author +"사진 : "+"<img src='"+image+"'/>";
+						var info = "<tr class = 'trtop'><th>이미지</th><th>제목</th><th>저자</th><th>정가</th>"
 						for (var i = 0; i < total; i++) {
-							info += "<li class='booklist_li'><tr>";
+							var title = data.items[i].title;
+							title
+									.replace(
+											/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig,
+											"");
+							info += "<tr class='booktr'>";
 							info += "<td><img class='booklist_img' src='"+data.items[i].image+"'/></td>";
-							info += "<td>" + data.items[i].title + "</td>";
-							info += "<td>" + data.items[i].author + "</td>";
-							info += "<td>" + data.items[i].price + "</td>";
-							info += "</tr></li>";
+							info += "<td class = 'searchTitle'> "
+									+ data.items[i].title + "</td>";
+							info += "<td class='author'>"
+									+ data.items[i].author + "</td>";
+							info += "<td class = 'price'>"
+									+ data.items[i].price + "원" + "</td>";
+							info += "</tr>";
 						}
 						$('#bookajax').html(info);
+						$("#booklist").show();
 					},
 					error : function() {
 
 					}
 				});
-
 	}
 </script>
 </html>
