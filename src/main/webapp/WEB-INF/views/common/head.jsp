@@ -19,15 +19,12 @@
 
 <script src="../resources/js/popup.js"></script>
 <script src="../resources/js/hangle.js"></script>
+<script src="../resources/js/home.js"></script>
 </head>
 <body>
 <script>
 	$(document).ready(function(){
-		$("#serachBtn").click(function(){
-			var bookname=$('#searchInput').val();
-			location.href="/?bsr_name="+bookname+"";
-		});
-		autoSearchInit();
+		
 		var path=$(location).attr('pathname');
 		var cookieName=path;
 		console.log(cookieName);

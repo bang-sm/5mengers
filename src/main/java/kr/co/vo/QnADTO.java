@@ -8,6 +8,7 @@ public class QnADTO {
 	private String qb_title;
 	private String qb_comment;
 	private Date qb_date;
+	private String userid;
 	
 	
 	public QnADTO() {
@@ -45,6 +46,13 @@ public class QnADTO {
 	public void setQb_date(Date qb_date) {
 		this.qb_date = qb_date;
 	}
-	
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 	
 }

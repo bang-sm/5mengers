@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.dao.AdminDAO;
 import kr.co.vo.PopupDTO;
+import kr.co.vo.QnADTO;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -36,6 +37,13 @@ public class AdminServiceImpl implements AdminService{
 	public void popupDelete(int np_id) {
 		// TODO Auto-generated method stub
 		adminDAO.popup_delete(np_id);
+	}
+
+	//유저들의 qna리스트
+	@Override
+	public List<QnADTO> userQnaList() {
+		// TODO Auto-generated method stub
+		return adminDAO.userQnaList();
 	}
 
 }
