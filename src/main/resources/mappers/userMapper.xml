@@ -177,6 +177,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			user
 		WHERE userid = #{userid}
 	</select>
+	
+	<!-- 회원정보 수정 -->
+	
  </mapper>
  
   

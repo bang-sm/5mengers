@@ -23,4 +23,5 @@ public interface MyService {
 	public List<MyhistoryDTO> mybookhistory(int uuid) throws Exception;
 	//나의qna리스트
 	public List<QnADTO> qnaList(int uuid);
+	
 }

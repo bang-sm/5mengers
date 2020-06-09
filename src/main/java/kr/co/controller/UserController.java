@@ -112,12 +112,14 @@ public class UserController {
 		
 		
 		Object destination = httpSession.getAttribute("destination");
+//		httpSession.removeAttribute("destination");
 		
 		if(destination != null || destination != "/") {
 			
 			return (String) destination;
 		}
 		return "/";
+		
 	}
 	
 	// loginPost 창 (로그인 틀렸을 경우 알림 띄우기 및 return)
@@ -128,11 +130,11 @@ public class UserController {
 	}
 	
 	// noAuth 창 (auth 0 인 계정인 경우 알림 및 return)
-		@RequestMapping(value = "/noAuth" , method = RequestMethod.GET)
-		public String noAuthGET() throws Exception {
-			
-			return "/user/noAuth";
-		}
+	@RequestMapping(value = "/noAuth" , method = RequestMethod.GET)
+	public String noAuthGET() throws Exception {
+		
+		return "/user/noAuth";
+	}
 	
 	// 로그아웃 처리!! 
 	@ResponseBody
@@ -162,7 +164,7 @@ public class UserController {
 		} // session 초기화 if end 
 		
 	}// logout() end
-		
+	
 	// 카카오 API 로그인
 	@RequestMapping(value = "/auth", method = RequestMethod.GET)
 	public String kakaoLogin(@RequestParam("code") String code, HttpSession session) throws Exception {
