@@ -81,6 +81,9 @@ public interface BookDetailService {
 	
 	//autoSearch
 	public List<String> autoSearch() throws Exception;
+
+	//검색 책
+	public Object mainBookSearchList(String bsr_name);
 	
 
 	

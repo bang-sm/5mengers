@@ -23,6 +23,10 @@
 <body>
 <script>
 	$(document).ready(function(){
+		$("#serachBtn").click(function(){
+			var bookname=$('#searchInput').val();
+			location.href="/?bsr_name="+bookname+"";
+		});
 		autoSearchInit();
 		var path=$(location).attr('pathname');
 		var cookieName=path;
@@ -33,9 +37,7 @@
 	        setCookieMobile( cookieName, "done" , 1);
 	        $("#popup_box").css("display","none");
 	    });
-	    
 	    function db_pop_check(){
-	    	
 	    	//페이지 마다 팝업창 체크하는 스크립트입니다.
 	    		$.ajax({
 	    		url: "/admin/popupCheck",
@@ -96,7 +98,7 @@
 								href="${contextPath}/booksellregist/booksellregistPage">나의책등록</a></li>
 							<li>
 								<input id="searchInput" type="text" style="width: 500px;height: 30px;margin-top: 9px;"/>
-								<button>검색</button>
+								<button id="serachBtn">검색</button>
 							</li>
 						</ul>
 					</div>

@@ -188,5 +188,11 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 		return sqlSession.selectList("BookDetailMapper.autoSearch");
 	}
 
+	@Override
+	public Object mainBookSearchList(String bsr_name) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("BookDetailMapper.serachBook",bsr_name);
+	}
+
 
 }

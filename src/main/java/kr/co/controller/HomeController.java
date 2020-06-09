@@ -21,10 +21,15 @@ public class HomeController {
 		private BookDetailService service;
 		
 		@RequestMapping(value = "/", method = RequestMethod.GET)
-		public String home(Model model) throws Exception {
+		public String home(Model model,String bsr_name) throws Exception {
 			logger.info("home");
-			model.addAttribute("list",service.category());
-			model.addAttribute("booklist",service.mainBookList());
+			if(bsr_name==null) {
+				model.addAttribute("list",service.category());
+				model.addAttribute("booklist",service.mainBookList());
+			}else {
+				model.addAttribute("list",service.category());
+				model.addAttribute("booklist",service.mainBookSearchList(bsr_name));
+			}
 			return "home";
 		}
 		

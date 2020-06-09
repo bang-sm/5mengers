@@ -7,7 +7,6 @@ function autoSearchInit() {
 		success : function(data) {
 
 			let source = $.map(data, function(item) { // json[i] 번째 에 있는게 item
-				console.log(item);	
 				chosung = "";
 				Hangul.d(item, true).forEach(function(strItem, index) {
 					if (strItem[0] != " ") { // 띄어 쓰기가 아니면
@@ -32,3 +31,4 @@ function autoSearchInit() {
 		}
 	});
 };
+

@@ -214,5 +214,11 @@ public class BookDetailServiceImpl implements BookDetailService {
 		
 	}
 
+	@Override
+	public Object mainBookSearchList(String bsr_name) {
+		// TODO Auto-generated method stub
+		return dao.mainBookSearchList(bsr_name);
+	}
+
 
 }
