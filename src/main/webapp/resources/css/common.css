@@ -131,10 +131,10 @@ table {
     margin: 0 auto;
 }
 
-.topbar_left{
-	position: absolute;
+.topbar_left {
+    position: absolute;
     top: 0px;
-    left: 0px;
+    left: 180px;
     z-index: 2;
 }
 .topbar_right{
