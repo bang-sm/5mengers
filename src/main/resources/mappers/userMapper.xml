@@ -190,6 +190,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			user
 		WHERE userid = #{userid}
 	</select>
+	
+	<!-- 비밀번호 수정 -->
+	  <update id="updatePass" >
+	  
+	  	UPDATE 
+	  		user
+	  	SET 
+	  		pass = #{pass}
+	  	WHERE 
+	  		userid = #{userid}	  	
+	  
+	  </update>
+	
 	<!--찜해제 -->
 	<delete id="zzim_delete" parameterType="map">
 		DELETE FROM zzim 

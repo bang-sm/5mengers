@@ -87,6 +87,16 @@ public class UserDAOImpl implements UserDAO {
 			return result;
 		}
 	
+	// 비밀번호 변경
+	@Override
+	public void updatePass(String userid, String pass) throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("userid", userid);
+		paramMap.put("pass", pass);
+		sqlSession.update("userMapper.updatePass", paramMap);
+		
+	}
+	
 	
 	
 }
