@@ -22,9 +22,9 @@
 			<div>문의내용<br>
 			<textarea id="qb_comment" name="qb_comment"></textarea>
 			</div>
-			<button type="submit">QnA 등록</button>
+			<button type="submit">등록</button>
 		</form>
-			<div><a href="/my/qnaList">목록으로</a></div><%-- 목록으로 클릭시 confirm --%>
+			<div><a href="/my/qnaList">목록</a></div><%-- 목록으로 클릭시 confirm --%>
 	</section>
 </body>
 </html>

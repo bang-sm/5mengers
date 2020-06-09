@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -39,10 +38,7 @@ public class UserServiceImpl implements UserService {
 	// 회원가입 처리
 	@Override
 	public void register(UserVO userVO) throws Exception {
-		// TODO 기능 구현
-				//  카카오 (API)
-				// 	중복아이디 체크 
-				
+					
 		userDAO.register(userVO);
 	}
 	
@@ -193,6 +189,12 @@ public class UserServiceImpl implements UserService {
 		
 	} // 카카오 API 사용자 정보 받아오기 end 
 	
+	@Override
+	public void kakaoLogout(String accessToken) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 	
 	// 로그인시 auth check!
@@ -202,4 +204,36 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 	
+	// 비밀번호 변경
+	@Override
+	public void updatePass(String userid, String pass) throws Exception {
+		
+		userDAO.updatePass(userid, pass);
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -82,7 +82,7 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 
 	// 메인책리스트
 	@Override
-	public List<BookCategoryDTO> mainBookList() throws Exception {
+	public List<BookDetailDTO> mainBookList() throws Exception {
 		return sqlSession.selectList("BookDetailMapper.main_book_list");
 	}
 
@@ -181,5 +181,18 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 	public void deleteimagefile(int bsr_img_id) throws Exception {
 		sqlSession.delete("BookDetailMapper.deleteimagefile",bsr_img_id);
 	}
+
+	@Override
+	public List<String> autoSearch() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("BookDetailMapper.autoSearch");
+	}
+
+	@Override
+	public Object mainBookSearchList(String bsr_name) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("BookDetailMapper.serachBook",bsr_name);
+	}
+
 
 }

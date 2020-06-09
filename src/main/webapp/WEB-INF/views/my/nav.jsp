@@ -16,23 +16,7 @@
 					MY PAGE <span class="title_sub">${login.name } 님 어세오세요!</span>
 				</h2>
 			</div>
-			<div class="mypage_banner">
-				<div>
-					<a href="${contextPath}/my/boardList">구매요청 리스트</a>
-				</div>
-				<div>
-					<a href="${contextPath}/my/qnaList">나의QnA 리스트</a>
-				</div>
-				<div>
-					<a href="${contextPath}/my/status">나의 책 목록</a>
-				</div>
-				<div>
-					<a href="${contextPath}/my/buycomplete">구매 히스토리</a>
-				</div>
-				<div>
-					<a href="${contextPath}/my/myStatusUpdate">회원정보변경</a>
-				</div>
-			</div>
+			<%@ include file="../common/myNav.jsp"%>
 			<!-- .mypage_banner -->
 			<div class="xans-element- xans-myshop xans-myshop-bankbook">
 				<ul>

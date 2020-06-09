@@ -17,18 +17,23 @@
 			formObj.attr("action", "/qna/updateView");
 			formObj.attr("method", "get");
 			formObj.submit();
-		})
+		});
 		// 삭제
 		$(".btn_delete").on("click", function(){
 			formObj.attr("action", "/qna/delete");
 			formObj.attr("method", "post");
 			formObj.submit();
-		})
+		});
 		// 목록
 		$(".btn_list").on("click", function(){
 			
 			location.href = "/my/qnaList";
-		})
+		});
+		$(".btn_replyWrite").on("click", function(){
+			var formObj = $("form[name='replyForm']");
+			formObj.attr("action", "/qna/replyWrite");
+			formObj.submit();
+		});
 	})
 </script>
 <body>
@@ -61,9 +66,31 @@
 						</td>
 					</tr>					
 				</table>
-				<button type="submit" class="btn_update">수정</button>
-				<button type="submit" class="btn_delete">삭제</button>
-				<button type="submit" class="btn_list">목록</button>
+				<div>
+					<button type="submit" class="btn_update">수정</button>
+					<button type="submit" class="btn_delete">삭제</button>
+					<button type="submit" class="btn_list">목록</button>
+				</div>
+				<div id="reply">
+					<ol class="replyList">
+						<c:forEach items="${replyList}" var="replyList">
+							<li>
+								<p>
+									${replyList.qbr_comment}
+								</p>
+							</li>
+						</c:forEach>
+					</ol>				
+				</div>
+				<form name="replyForm" role="form" method="post">
+					<input type="hidden" id="qb_id" name="qb_id" value="${read.qb_id}">
+					<div>
+						<label for="qbr_comment">답변</label><input type="text" id="qbr_comment" name="qbr_comment"/>
+					</div>
+					<div>
+						<button type="button" class="btn_replyWrite">등록</button>
+					</div>
+				</form>
 		</section>
 	</div>
 </body>

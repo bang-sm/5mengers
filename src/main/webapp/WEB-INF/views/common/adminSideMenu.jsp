@@ -17,6 +17,9 @@ $(document).ready(function(){
 	case "/admin/popupregist":
 		$(".popupregist").addClass("on");
 		break;
+	case "/admin/qnalist":
+		$(".qnalist").addClass("on");
+		break;
 	default:
 		break;
 	}
@@ -29,6 +32,7 @@ $(document).ready(function(){
 		<ul>
 			<li class="userlist"><a href="${contextPath}/admin/userlist">회원관리</a></li>
 			<li class="popupregist"><a href="${contextPath}/admin/popupregist">팝업등록</a></li>
+			<li class="qnalist"><a href="${contextPath}/admin/qnalist">QnA리스트</a></li>
 		</ul>
 	</div>
 </body>

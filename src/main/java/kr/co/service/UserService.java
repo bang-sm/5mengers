@@ -41,6 +41,11 @@ public interface UserService {
 	// 로그인 권한 체크
 	public int authCheck(UserVO userVO) throws Exception;
 	
+	// 비밀번호 변경
+	public void updatePass(String userid, String pass) throws Exception;
+	
+	// 카카오 API 로그아웃
+	public void kakaoLogout(String accessToken) throws Exception;
 	
 		
 	

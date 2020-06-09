@@ -13,15 +13,18 @@
 <link rel="stylesheet" href="../resources/css/login.css">
 <link rel="stylesheet" href="../resources/css/mypage.css">
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script src="../resources/js/popup.js"></script>
-
+<script src="../resources/js/hangle.js"></script>
+<script src="../resources/js/home.js"></script>
 </head>
-
 <body>
 <script>
 	$(document).ready(function(){
+		
 		var path=$(location).attr('pathname');
 		var cookieName=path;
 		console.log(cookieName);
@@ -31,41 +34,40 @@
 	        setCookieMobile( cookieName, "done" , 1);
 	        $("#popup_box").css("display","none");
 	    });
-		
-		function db_pop_check(){
-			//페이지 마다 팝업창 체크하는 스크립트입니다.
-	 		$.ajax({
-				url: "/admin/popupCheck",
-				type: "POST",
-				success: function(data){
-					for (var i = 0; i < data.length; i++) {
-						
-						//현재페이지에 팝업창이 있는지 체크
-						if(data[i].np_page_name == path){
-							//db에서 팝업창 활성화 된것이 있는 체크
-							if(data[i].np_yes_no == 1){
-								
-								//페이지세션 확인
-								if(document.cookie.indexOf(""+cookieName+"=done")<0){
-									$("#popup_box").css("display","block");
-									$("#np_title").text(data[i].np_title);
-									$("#np_comment").text(data[i].np_comment);
-									$(".pop-layer").draggable({
-										containment: 'window'
-									}); 
-								}
-								else{
-									$("#popup_box").css("display","none");
-								}
-							}
-						}
-					}
-				},
-				error: function (request, status, error){       
-					console.log(request,status,error);
-				}
-			});
-		}
+	    function db_pop_check(){
+	    	//페이지 마다 팝업창 체크하는 스크립트입니다.
+	    		$.ajax({
+	    		url: "/admin/popupCheck",
+	    		type: "POST",
+	    		success: function(data){
+	    			for (var i = 0; i < data.length; i++) {
+	    				
+	    				//현재페이지에 팝업창이 있는지 체크
+	    				if(data[i].np_page_name == path){
+	    					//db에서 팝업창 활성화 된것이 있는 체크
+	    					if(data[i].np_yes_no == 1){
+	    						
+	    						//페이지세션 확인
+	    						if(document.cookie.indexOf(""+cookieName+"=done")<0){
+	    							$("#popup_box").css("display","block");
+	    							$("#np_title").text(data[i].np_title);
+	    							$("#np_comment").text(data[i].np_comment);
+	    							$(".pop-layer").draggable({
+	    								containment: 'window'
+	    							}); 
+	    						}
+	    						else{
+	    							$("#popup_box").css("display","none");
+	    						}
+	    					}
+	    				}
+	    			}
+	    		},
+	    		error: function (request, status, error){       
+	    			console.log(request,status,error);
+	    		}
+	    	});
+	    }
 	});
 </script>
 <body>
@@ -92,8 +94,8 @@
 							<li><a
 								href="${contextPath}/booksellregist">나의책등록</a></li>
 							<li>
-								<input type="text" style="width: 500px;height: 30px;margin-top: 9px;"/>
-								<button>검색</button>
+								<input id="searchInput" type="text" style="width: 500px;height: 30px;margin-top: 9px;"/>
+								<button id="serachBtn">검색</button>
 							</li>
 						</ul>
 					</div>

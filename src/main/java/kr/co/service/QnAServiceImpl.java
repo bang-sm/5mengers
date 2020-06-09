@@ -1,5 +1,7 @@
 package kr.co.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -34,5 +36,15 @@ public class QnAServiceImpl implements QnAService {
 	public void delete(int qb_id) throws Exception {
 		dao.delete(qb_id);
 		
+	}
+	
+	@Override
+	public void writeReply(QnADTO qnaDTO) throws Exception {
+		dao.writeReply(qnaDTO);
+	}
+	
+	@Override
+	public List<QnADTO> readReply(int qbr_id) throws Exception {
+		return dao.readReply(qbr_id);
 	}
 }

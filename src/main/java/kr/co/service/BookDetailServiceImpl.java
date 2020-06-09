@@ -6,18 +6,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
-import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.dao.BookDetailDAO;
-import kr.co.util.FileUtils;
 import kr.co.vo.BookCategoryDTO;
 import kr.co.vo.BookDetailDTO;
 
@@ -77,7 +73,7 @@ public class BookDetailServiceImpl implements BookDetailService {
 
 	// 메인책리스트
 	@Override
-	public List<BookCategoryDTO> mainBookList() throws Exception {
+	public List<BookDetailDTO> mainBookList() throws Exception {
 		// TODO Auto-generated method stub
 		return dao.mainBookList();
 	}
@@ -205,6 +201,19 @@ public class BookDetailServiceImpl implements BookDetailService {
 	@Override
 	public void deleteimagefile(int bsr_img_id) throws Exception {
 		dao.deleteimagefile(bsr_img_id);
+	}
+
+	//autoSearch()
+	@Override
+	public List<String> autoSearch() throws Exception {
+		return dao.autoSearch();
+		
+	}
+
+	@Override
+	public Object mainBookSearchList(String bsr_name) {
+		// TODO Auto-generated method stub
+		return dao.mainBookSearchList(bsr_name);
 	}
 
 

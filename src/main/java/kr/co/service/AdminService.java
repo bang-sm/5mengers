@@ -3,6 +3,7 @@ package kr.co.service;
 import java.util.List;
 
 import kr.co.vo.PopupDTO;
+import kr.co.vo.QnADTO;
 
 public interface AdminService {
 
@@ -14,4 +15,7 @@ public interface AdminService {
 	public void popup_status_update(PopupDTO popupDTO);
 	//팝업삭제
 	public void popupDelete(int np_id);
+	
+	//유저들의 qna리스트
+	public List<QnADTO> userQnaList();
 }

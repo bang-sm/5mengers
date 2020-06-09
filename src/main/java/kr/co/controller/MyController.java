@@ -71,8 +71,26 @@ public class MyController {
 	@RequestMapping(value = "/my/status", method = RequestMethod.GET)
 	public String myqna() throws Exception {
 		logger.info("status");
-		
 		return "my/status";
+	}
+	
+	//구매요청수락하기
+	@RequestMapping(value = "/my/confirm", method = RequestMethod.GET)
+	public String confirm(int bsr_id,HttpSession hs,UserVO uv) throws Exception {
+		logger.info("confirm");
+		uv = (UserVO) hs.getAttribute("login");
+		int uuid = uv.getUuid();
+		myService.confirm(bsr_id,uuid);
+		return "redirect:/my/status";
+	}
+	//찜해제
+	@RequestMapping(value = "/my/zzimDelete", method = RequestMethod.GET)
+	public String zzimDelete(int bsr_id,HttpSession hs,UserVO uv) throws Exception {
+		logger.info("zzimDelete");
+		uv = (UserVO) hs.getAttribute("login");
+		int uuid = uv.getUuid();
+		myService.zzimDelete(bsr_id,uuid);
+		return "redirect:/my/status";
 	}
 	
 	//구매완료된 리스트
@@ -89,6 +107,22 @@ public class MyController {
 		}
 		
 		return "my/buycomplete";
+	}
+	
+	//판매완료된 리스트
+	@RequestMapping(value = "/my/sellHistory", method = RequestMethod.GET)
+	public String mySellBookComplete(Model model,HttpSession hs,UserVO uv,String startDate,String endDate) throws Exception {
+		logger.info("mySellBookComplete");
+		
+		if(hs.getAttribute("login")==null) {
+			logger.info("유저의 세션이 없습니다");
+		}else {
+			uv = (UserVO) hs.getAttribute("login");
+			int getuuid = uv.getUuid();
+			model.addAttribute("list",myService.mySellhistory(getuuid,startDate,endDate));
+		}
+		
+		return "my/sellHistory";
 	}
 	
 	//나의 판매중책
