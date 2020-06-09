@@ -29,4 +29,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete">
 		DELETE FROM qna_board where qb_id = #{qb_id};
 	</delete>
+	<insert id="writeReply">
+		INSERT INTO qna_board_reply (qb_id, qbr_comment, qbr_regdate) VALUE (#{qb_id}, #{qbr_comment}, now());
+	</insert>
+	<select id="readReply" resultType="kr.co.vo.QnADTO">
+		SELECT qbr_id, qb_id, qbr_comment, qbr_regdate FROM qna_board_reply WHERE qb_id = #{qb_id};
+	</select>
 </mapper>
