@@ -116,18 +116,16 @@ html, body {
 				<table>
 					<tbody>
 						<tr>
-							<td><label for="title">책 이름 :</label>
+							<td><label for="title" >책 이름 :</label>
 						</tr>
 						<tr>
-							<td><label for="fix_price">정가 : </label>
+							<td><label for="fix_price" >정가 : </label>
 						</tr>
 						<tr>
-							<td><label for="price">판매 희망가격 : </label> <textarea
-									id="price" name="bsr_price"></textarea>
+							<td><label for="price">판매 희망가격 : </label> <textarea id="price" name="bsr_price"></textarea>
 						</tr>
 						<tr>
-							<td><label for="content">소개글</label> <textarea id="content"
-									name="bsr_comment"></textarea></td>
+							<td><label for="content">소개글</label> <textarea id="content" name="bsr_comment"></textarea></td>
 						</tr>
 						<tr>
 							<td><input type="file" name="file"></td>
