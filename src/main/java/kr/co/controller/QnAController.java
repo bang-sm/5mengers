@@ -1,5 +1,7 @@
 package kr.co.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -50,6 +52,10 @@ public class QnAController {
 			
 			model.addAttribute("read", service.read(qnaDTO.getQb_id()));
 			
+			List<QnADTO> replyList = service.readReply(qnaDTO.getQb_id());
+			
+			model.addAttribute("replyList", replyList);
+			
 			return "/qna/readView";
 		}
 		
@@ -59,6 +65,7 @@ public class QnAController {
 			logger.info("/qna/updateView");
 			
 			model.addAttribute("update", service.read(qnaDTO.getQb_id()));
+			
 			
 			return "/qna/updateView";
 		}
@@ -74,7 +81,7 @@ public class QnAController {
 			
 			service.update(qnaDTO);
 			
-			return "redirect:/my/qnaList";
+			return "redirect:/qna/readView?qb_id=" + qnaDTO.getQb_id();
 		}
 		
 		// 게시물 삭제하기
@@ -85,5 +92,15 @@ public class QnAController {
 			service.delete(qnaDTO.getQb_id());
 			
 			return "redirect:/my/qnaList";
+		}
+		
+		// 댓글 작성하기
+		@RequestMapping(value = "qna/replyWrite", method = RequestMethod.POST)
+		public String replyWrite(QnADTO qnaDTO) throws Exception {
+			logger.info("/qna/replyWrite");
+			
+			service.writeReply(qnaDTO);
+			
+			return "redirect:/qna/readView?qb_id=" + qnaDTO.getQb_id();
 		}
 }

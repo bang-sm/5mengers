@@ -1,5 +1,7 @@
 package kr.co.dao;
 
+import java.util.List;
+
 import kr.co.vo.QnADTO;
 
 public interface QnADAO {
@@ -15,4 +17,11 @@ public interface QnADAO {
 	
 	// qna 삭제
 	public void delete(int qb_id) throws Exception;
+	
+	// qna reply 조회
+	public List<QnADTO> readReply(int qbr_id) throws Exception;
+	
+	// qna reply 작성
+	public void writeReply(QnADTO qnaDTO) throws Exception;
+	
 }
