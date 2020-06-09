@@ -1,5 +1,6 @@
 package kr.co.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -57,9 +58,13 @@ public class MyDAOImpl implements MyDAO {
 		return sqlSession.selectList("userMapper.my_request_book_list",uuid);
 	}
 	@Override
-	public List<MyhistoryDTO> mybookhistory(int uuid,String startDate,String endDate) throws Exception {
+	public List<MyhistoryDTO> mybookhistory(int uuid,String startDate,String endDate)throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("userMapper.my_book_history",uuid);
+		HashMap<String, String> map =new HashMap<String, String>();
+		map.put("uuid",Integer.toString(uuid));
+		map.put("startDate",startDate);
+		map.put("endDate",endDate);
+		return sqlSession.selectList("userMapper.my_book_history",map);
 	}
 	@Override
 	public List<QnADTO> qnaList(int uuid) {
