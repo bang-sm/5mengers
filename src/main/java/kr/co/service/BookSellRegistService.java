@@ -10,6 +10,7 @@ public interface BookSellRegistService {
 
 	void write(BookSellRegistDTO bookSellRegistDTO) throws Exception;
 
-
+	//수정된 db값 넣기 by.김성원
+	public void imageinsert(BookSellRegistDTO bookSellRegistDTO, MultipartHttpServletRequest mpRequest) throws Exception;
 
 }

@@ -6,14 +6,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.dao.BookDetailDAO;
+import kr.co.util.FileUtils;
 import kr.co.vo.BookCategoryDTO;
 import kr.co.vo.BookDetailDTO;
 
@@ -153,11 +157,11 @@ public class BookDetailServiceImpl implements BookDetailService {
 	}
 
 	//글 수정 등록시 DB(bsr_status) 값 변경
-	@Override
-	public void bookupdatecheckout(int bsr_id) throws Exception {
-		dao.bookupdatecheckout(bsr_id);
-
-	}
+//	@Override
+//	public void bookupdatecheckout(int bsr_id) throws Exception {
+//		dao.bookupdatecheckout(bsr_id);
+//
+//	}
 
 	//구매하기시 판매자 DB변경
 	@Override
@@ -196,5 +200,12 @@ public class BookDetailServiceImpl implements BookDetailService {
 	public int bookactivecount(int bsr_id) throws Exception {
 		return dao.bookactivecount(bsr_id);
 	}
+
+	//사진 첨부 삭제
+	@Override
+	public void deleteimagefile(int bsr_img_id) throws Exception {
+		dao.deleteimagefile(bsr_img_id);
+	}
+
 
 }

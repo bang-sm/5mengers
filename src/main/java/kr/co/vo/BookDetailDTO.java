@@ -21,6 +21,12 @@ public class BookDetailDTO {
 	int bsr_id;
 	double map_x;
 	double map_y;
+	int bsr_img_id;
+	String bi_user_file_name;
+	String bi_file_name;
+	String bi_root;
+	
+	
 	
 	public int getBsr_status() {
 		return bsr_status;
@@ -132,6 +138,30 @@ public class BookDetailDTO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getBsr_img_id() {
+		return bsr_img_id;
+	}
+	public void setBsr_img_id(int bsr_img_id) {
+		this.bsr_img_id = bsr_img_id;
+	}
+	public String getBi_user_file_name() {
+		return bi_user_file_name;
+	}
+	public void setBi_user_file_name(String bi_user_file_name) {
+		this.bi_user_file_name = bi_user_file_name;
+	}
+	public String getBi_file_name() {
+		return bi_file_name;
+	}
+	public void setBi_file_name(String bi_file_name) {
+		this.bi_file_name = bi_file_name;
+	}
+	public String getBi_root() {
+		return bi_root;
+	}
+	public void setBi_root(String bi_root) {
+		this.bi_root = bi_root;
 	}
    
 }

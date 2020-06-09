@@ -20,4 +20,7 @@ public interface BookRequestDAO {
 	
 	// 게시물 삭제
 	public void delete(int brb_id) throws Exception;
-}
+	
+	
+	
+	}

@@ -33,4 +33,38 @@
    
    </insert>
    
+    <!-- 수정된 db 값 넣기 by.김성원-->
+   <update id ="detailupdate" parameterType="kr.co.vo.BookSellRegistDTO">
+    	 UPDATE 
+	   			book_sell_regist  
+	     SET 
+	            bsr_regdate =now(),
+	   			bsr_price =#{bsr_price},
+	   			bsr_comment =#{bsr_comment},
+	   			map_x = #{map_x},
+	   			map_y= #{map_y}
+	     WHERE 
+	   			bsr_id = #{bsr_id};
+   
+   </update>
+   
+   <!--수정 페이지 파일 첨부 by.김성원 -->
+   <insert id="imageinsert" parameterType="hashMap">
+     INSERT INTO 
+     		book_img(
+     		bsr_img_id,
+     		bi_user_file_name ,
+     		bi_file_name ,
+     		bi_root ,
+     		bsr_id 
+     		)
+	VALUES(
+		  bsr_img_id,
+		  #{bi_user_file_name},
+		  #{bi_file_name},
+		  #{bi_root},
+		  #{bsr_id}
+	)
+   </insert>
+   
   </mapper>
