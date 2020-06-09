@@ -1,8 +1,11 @@
 package kr.co.controller;
 
 
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,9 +15,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.service.BookDetailService;
 import kr.co.vo.BookDetailDTO;
@@ -168,14 +174,7 @@ public class BookDetailController {
 		return "bookdetail/ex";
 	}
 	
-	//글 수정 DB 값 넣기
-	@RequestMapping(value ="/bookupdate_end",method =RequestMethod.POST)
-	public String bookupdateend(BookDetailDTO bookDetailDTO) throws Exception{
-		logger.info("글 수정");
-		service.bookupdatecheckout(bookDetailDTO.getBsr_id());
-		service.bookupdateend(bookDetailDTO);
-		return "redirect:/my/nav";
-	}
+	
 	
 	//글 삭제 AJAX
 	@ResponseBody
@@ -201,6 +200,8 @@ public class BookDetailController {
 		logger.info("머가 오지: "+service.bookapi(keyword));
 		return service.bookapi(keyword);
 	}
+	
+	
 	@ResponseBody
 	@RequestMapping(value ="/bsrstatuscheck",method =RequestMethod.GET)
 	public void bsrstatuscheck(int bsr_id) throws Exception{
@@ -209,5 +210,13 @@ public class BookDetailController {
 	}
 	
 	
+
+	//사진 첨부 삭제
+	@ResponseBody
+	@RequestMapping(value ="/deleteimagefile",method =RequestMethod.GET)
+	public void deleteimagefile(int bsr_img_id) throws Exception{
+		logger.info("상세페이지 접속시 bsr_status 는 비활성화");
+		service.deleteimagefile(bsr_img_id);
+    }
 	
 }

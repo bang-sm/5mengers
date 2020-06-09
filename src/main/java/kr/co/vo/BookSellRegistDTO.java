@@ -15,8 +15,9 @@ public class BookSellRegistDTO {
 	private int bsr_check;
 	private String bsr_fixed_price; // 책 가격 
 	private String bsr_confirm;
-	private int map_x;
-	private int map_y;
+	//맵 주소 소수
+	private double map_x;
+	private double map_y;
 	
 	// 출판사 명과 작가 명 명시해서 책 구분을 해야한다. 
 	
@@ -109,16 +110,16 @@ public class BookSellRegistDTO {
 	public void setBsr_confirm(String bsr_confirm) {
 		this.bsr_confirm = bsr_confirm;
 	}
-	public int getMap_x() {
+	public double getMap_x() {
 		return map_x;
 	}
-	public void setMap_x(int map_x) {
+	public void setMap_x(double map_x) {
 		this.map_x = map_x;
 	}
-	public int getMap_y() {
+	public double getMap_y() {
 		return map_y;
 	}
-	public void setMap_y(int map_y) {
+	public void setMap_y(double map_y) {
 		this.map_y = map_y;
 	}
 	

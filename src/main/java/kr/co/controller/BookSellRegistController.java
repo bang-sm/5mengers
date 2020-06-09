@@ -50,6 +50,16 @@ public class BookSellRegistController {
 		return "redirect:/booksellregist/booksellregistPage";
 	}
 	
+	//수정 페이지 에서 사진첨부 insert by.김성원
+	@RequestMapping(value ="/bookupdate_end", method = RequestMethod.POST)
+	public String imageinsert(BookSellRegistDTO bookSellRegistDTO, MultipartHttpServletRequest mpRequest) throws Exception{
+		logger.info("수정된 값 DB넣기 by.김성원");
+		service.imageinsert(bookSellRegistDTO,mpRequest);
+		
+		
+		return "redirect:/my/nav";
+	}
+
 	
 	
 	//bookapi 페이지

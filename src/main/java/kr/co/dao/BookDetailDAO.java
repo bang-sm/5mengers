@@ -2,6 +2,8 @@ package kr.co.dao;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import kr.co.vo.BookCategoryDTO;
 import kr.co.vo.BookDetailDTO;
 
@@ -56,7 +58,7 @@ public interface BookDetailDAO {
 	public void bookactiveon(int bsr_id) throws Exception;
 	
 	//글 수정 글등록시 DB(bsr_update) 값 변경
-	public void bookupdatecheckout(int bsr_id) throws Exception;
+//	public void bookupdatecheckout(int bsr_id) throws Exception;
 	
 	//상세페이지 접속시 bsr_status 는 비활성화
 	public void bsrstatusbook(int bsr_id) throws Exception;
@@ -66,4 +68,8 @@ public interface BookDetailDAO {
 	
 	//bsr_status 값 가져오기
 	public int bookactivecount(int bsr_id) throws Exception;
+	
+	//파일 첨부 삭제
+	public void deleteimagefile(int bsr_img_id) throws Exception;
+	
 }

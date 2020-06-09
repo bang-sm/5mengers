@@ -14,6 +14,7 @@ public interface BookSellRegistService {
 	//네이버 책
 	public JSONObject bookapi(String keyword) throws Exception;
 
-
+	//수정된 db값 넣기 by.김성원
+	public void imageinsert(BookSellRegistDTO bookSellRegistDTO, MultipartHttpServletRequest mpRequest) throws Exception;
 
 }

@@ -7,13 +7,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- DB에서 책 관련 값들 가져오기 -->
 	<select id="book_detail" parameterType="map" resultType="kr.co.vo.BookDetailDTO">
 		SELECT 
-		     bsru.*,bc.bc_name 
+		     bsr.*,bc.bc_name 
 		FROM 
-			 book_sell_regist_user bsru  
+			 book_sell_regist_user bsr  
 		INNER JOIN 
 		     book_category bc
 		ON 
-		     bsru.bsr_category  = bc.bc_code 
+		     bsr.bsr_category  = bc.bc_code 
 		WHERE
 		     bsr_id=#{bsr_id} and uuid=#{uuid};
 	</select>
@@ -126,15 +126,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <!-- 글 수정  DB 값 가져오기-->
    <select id="bookupdate" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
 		SELECT 
-		     bsr.*,bi.* 
+		     bsr.*,bi.bsr_img_id ,bi.bi_user_file_name ,bi.bi_file_name ,bi.bi_root 
 		FROM 
 			 book_sell_regist bsr
 		INNER JOIN 
 		     book_img  bi
 		ON 
-		     bsr.bsr_id  = bi.bsr_id;
+		     bsr.bsr_id  = bi.bsr_id
 		WHERE 
-			bsr.bsr_id = #{bsr_id}
+			bsr.bsr_id = #{bsr_id};
    
    </select>
    
@@ -160,19 +160,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	
    	</update>
    
-   <!--글 수정 DB UPDATE  -->
-   <update id="bookupdateend" parameterType="kr.co.vo.BookDetailDTO"> 
-	     UPDATE 
-	   			book_sell_regist  
-	     SET 
-	            bsr_regdate =now(),
-	   			bsr_price =#{bsr_price},
-	   			bsr_comment =#{bsr_comment},
-	   			map_x = #{map_x},
-	   			map_y= #{map_y}
-	     WHERE 
-	   			bsr_id = #{bsr_id};
-   </update>
    
    <!-- 글삭제 -->
    <delete id="bookdelete" parameterType="int">
@@ -204,5 +191,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   		bsr_id = #{bsr_id}
    </update>
    
+   <!--  파일 첨부 삭제 -->
+   <delete id="deleteimagefile" parameterType="int">
+   	DELETE
+   	FROM
+   			book_img
+   	WHERE
+   	     bsr_img_id = #{bsr_img_id}
+   </delete>
+   
+  
+ 
    
 </mapper>

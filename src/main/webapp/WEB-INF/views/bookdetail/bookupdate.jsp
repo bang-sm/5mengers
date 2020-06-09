@@ -66,14 +66,40 @@
 	<input type='hidden' name="map_y" value="${bookupdate[0].map_y}"/>
 	<div>직거래 희망 지역</div>
 	<input type="text" name="want" value=""/>
-	<c:foreach var="item" items="${bookupdate[0]}" begin=0 end="${bookupdate[0].length }" step=1>
-	<input type ="file" name="file" value="${bookupdate[0].bi_user_file_name[i] }"/>
-	</c:foreach>
-	
+	<br>
+	<c:forEach var="item" items="${bookupdate}">
+	 <div class="img${item.bsr_img_id}"><button type="button"onclick="deleteimg(${item.bsr_img_id})">삭제</button><span>${item.bi_user_file_name }</span></div>
+	</c:forEach>
+	<button type="button" class="appendimg">사진 추가</button>
+	<div class="newimg"></div>
+	<input type="file" name="img"/>
 	<button type="submit">글 등록</button>
 	</form>
 	
+	
 </div>
+<script>
+function deleteimg(id){
+	
+	 $.ajax({
+		  url:"/deleteimagefile",
+		  type:"GET",
+		  data :{  
+			  "bsr_img_id" : id
+		  },
+		  success : function(){
+				$('.img'+id).remove();
+				
+		  }
+	  });
+	
+}
+var count=0;
+$(".appendimg").click(function(){	
+	$('.newimg').append('<input type="file" name="img'+count+'"/><br>');
+	count++;
+})
+</script>
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 

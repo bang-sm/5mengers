@@ -55,12 +55,16 @@ public class FileUtils {
 				file = new File(filePath + storedFileName);
 				multipartFile.transferTo(file);
 				listMap = new HashMap<String, Object>();
-				listMap.put("bsr_img_id", bsr_id);
-				listMap.put("bi_user_file_name", originalFileName);
+				listMap.put("bi_user_file_name", originalFileName); 
 				listMap.put("bi_file_name", storedFileName);
+<<<<<<< HEAD
 				listMap.put("bi_root", bi_root);
 			
 				
+=======
+				listMap.put("bi_root",filePath);
+				listMap.put("bsr_id", bsr_id);
+>>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers.git
 				list.add(listMap);
 				
 				System.out.println(list);

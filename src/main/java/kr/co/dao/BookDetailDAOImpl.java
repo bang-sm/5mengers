@@ -121,11 +121,11 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 	}
 
 	//글 수정 글등록시 DB(bsr_update) 값 변경
-	@Override
-	public void bookupdatecheckout(int bsr_id) throws Exception {
-		sqlSession.update("BookDetailMapper.bookupdatecheckout", bsr_id);
-
-	}
+//	@Override
+//	public void bookupdatecheckout(int bsr_id) throws Exception {
+//		sqlSession.update("BookDetailMapper.bookupdatecheckout", bsr_id);
+//
+//	}
 	
 	//구매하기시 구매자 DB 상태 업데이트   by-방석민
 	@Override
@@ -174,6 +174,12 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 	public int bookactivecount(int bsr_id) throws Exception {
 
 		return sqlSession.selectOne("BookDetailMapper.book_update_check",bsr_id);
+	}
+
+	//파일 첨부 삭제
+	@Override
+	public void deleteimagefile(int bsr_img_id) throws Exception {
+		sqlSession.delete("BookDetailMapper.deleteimagefile",bsr_img_id);
 	}
 
 }

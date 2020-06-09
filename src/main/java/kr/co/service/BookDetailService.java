@@ -2,9 +2,12 @@ package kr.co.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.json.simple.JSONObject;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-
+import kr.co.util.FileUtils;
 import kr.co.vo.BookCategoryDTO;
 import kr.co.vo.BookDetailDTO;
 
@@ -62,7 +65,7 @@ public interface BookDetailService {
 	public void bookupdateend(BookDetailDTO bookDetailDTO) throws Exception;
 
 	//글 수정 등록시 DB(bsr_status) 값 변경
-	public void bookupdatecheckout(int bsr_id) throws Exception;
+//	public void bookupdatecheckout(int bsr_id) throws Exception;
 
 	//글 삭제 
 	public void book_delete(int bsr_id) throws Exception;
@@ -72,5 +75,10 @@ public interface BookDetailService {
 	
 	//상세페이지 접속시 bsr_status 는 비활성화
 	public void bsrstatuscheck(int bsr_id) throws Exception;
+	
+	//사진 첨부 삭제
+	public void deleteimagefile(int bsr_img_id) throws Exception;
+	
+
 	
 }

@@ -27,6 +27,20 @@ public class BookSellRegistDAOImpl implements BookSellRegistDAO {
 		sqlSession.insert("boardMapper.insertFile", map);
 		
 	}
+
+	//수정된 db 값 넣기(파일 제외 나머지 ) by.김성원
+	@Override
+	public void detailupdate(BookSellRegistDTO bookSellRegistDTO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update("BookSellRegistDAO.detailupdate",bookSellRegistDTO);
+		
+	}
+
+	//수정된 db 값 넣기 (첨부 파일 업로드 ) by.김성원
+	@Override
+	public void imageinsert(Map<String, Object> map) throws Exception {
+		 sqlSession.insert("BookSellRegistDAO.imageinsert",map);
+	}
 	
 	
 	
