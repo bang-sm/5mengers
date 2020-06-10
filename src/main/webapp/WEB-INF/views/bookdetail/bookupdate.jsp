@@ -70,7 +70,11 @@
 							<span style="font-size: 16px; color: #555555;">등록된 사진</span></th>
 						<td>
 							<c:forEach var="item" items="${bookupdate}">
-								 <div class="img${item.bsr_img_id} deletediv"><span>${item.bi_user_file_name }</span><button class="deletebtn"type="button" onclick="deleteimg(${item.bsr_img_id},${item.bi_file_name})">삭제</button></div>
+								 <div class="img${item.bsr_img_id} deletediv">
+									 <span>${item.bi_user_file_name }</span>
+									 <button class="deletebtn"type="button" value="${item.bsr_img_id}">삭제</button>
+									 <input class="file_name" type="hidden" value="${item.bi_file_name}">
+								 </div>
 							</c:forEach>
 					    </td>
 					</tr>
@@ -377,20 +381,28 @@ geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 
 </script>
 <script>
+$(document).ready(function(){
+	$(".deletebtn").on("click",function(){
+		var img_id=$(this).val();
+		var img_filename=$(this).next(".file_name").val();
+		console.log("deleteimg클릭");
+		$.ajax({
+			  url:"/deleteimagefile",
+			  type:"GET",
+			  data :{  
+				  "bsr_img_id" : img_id,
+				  "bi_file_name" : img_filename
+			  },
+			  success : function(){
+					$('.img'+img_id).remove();
+					
+			  }
+		  });
+	});
+});
+
 function deleteimg(id,filename){
-	
-	 $.ajax({
-		  url:"/deleteimagefile",
-		  type:"GET",
-		  data :{  
-			  "bsr_img_id" : id,
-			  "bi_file_name" : filename
-		  },
-		  success : function(){
-				$('.img'+id).remove();
-				
-		  }
-	  });
+	 
 	
 }
 var count=0;
