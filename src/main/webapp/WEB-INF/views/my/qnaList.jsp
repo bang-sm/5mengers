@@ -27,13 +27,10 @@
 					<tbody>
 						<c:forEach items="${qnaList}" var="qnaList" varStatus="i">
 							<tr style="color: #555555;">
-<<<<<<< HEAD
 								<td class="text_center">${qnaList.qb_id}</td>
 								<td class="text_center">${qnaList.uuid}</td>
-=======
 								<td class="text_center">${i.count}</td>
 								<td class="text_center">${login.userid}</td>
->>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers
 								<td class="text_center">
 									<a href="/qna/readView?qb_id=${qnaList.qb_id}">${qnaList.qb_title}</a> 
 								</td>
