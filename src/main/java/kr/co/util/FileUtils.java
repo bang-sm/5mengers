@@ -23,7 +23,8 @@ import kr.co.vo.BookSellRegistDTO;
 public class FileUtils {
 
 		String filePath="C:\\bookimg\\";
-//	String filePath="";
+	
+	
 	public List<Map<String, Object>> parseInsertFileInfo(BookSellRegistDTO bookSellRegistDTO,
 			MultipartHttpServletRequest mpRequest) throws Exception{
 		// 데이터들의 집합체에서 컬렉션으로부터 정보를 얻어올 수 있는 인터페이스 ??????????
@@ -35,11 +36,19 @@ public class FileUtils {
 		String originalFileName = null;
 		String originalFileExtension = null;
 		String storedFileName = null;
+		String bi_root = null;
+		
 		
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 		Map<String, Object> listMap = null;
 		
 		int bsr_id = bookSellRegistDTO.getBsr_id(); // Bsr_id 값을 bsr_id에 담는다 
+		
+		String root_path = mpRequest.getSession().getServletContext().getRealPath("/");  
+		String attach_path = "resources/bookimg/";
+		filePath = root_path+attach_path;
+		
+		
 		
 		File file = new File(filePath);
 		if(file.exists() == false) {
@@ -61,6 +70,7 @@ public class FileUtils {
 				listMap.put("bi_file_name", storedFileName);
 				listMap.put("bi_root",filePath);
 				listMap.put("bsr_id", bsr_id);
+
 				list.add(listMap);
 				
 				System.out.println(list);

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.vo.PopupDTO;
+import kr.co.vo.QnADTO;
 
 
 @Repository
@@ -37,6 +38,11 @@ public class AdminDAOImpl implements AdminDAO{
 	public void popup_delete(int np_id) {
 		// TODO Auto-generated method stub
 		sqlsession.delete("AdminMapper.popup_delete",np_id);
+	}
+	@Override
+	public List<QnADTO> userQnaList() {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList("AdminMapper.userqnalist");
 	}
 
 }

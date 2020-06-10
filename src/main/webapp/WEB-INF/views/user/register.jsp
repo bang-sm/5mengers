@@ -116,18 +116,15 @@ function checks(){
 		return false;
 	}
 	
-	// 비밀번호 확인란 공백일 경우
+	// 전화번호 공백일 경우
 	if ($("#phone_input").val() == "") {
 		$("#phone_input").focus();
-		$("#alert_pass_check2").show();
 		return false;
 	}
 
 	return true;
 	
 } // end checks()
-
-
 
 </script>
 <body class = "hold-transition register-page">
@@ -151,7 +148,6 @@ function checks(){
 				<c:if test="${not empty kakao }">
 				<button type="button" id="kakao_auth" disabled="disabled">카카오톡 인증</button>
 				<input type="checkbox" id="kakao" name="auth" value="1" class="form-control" checked="checked" onclick="return false"><br>
-				<span>인증이 필요합니다.</span>
 				</c:if>
 				
 				

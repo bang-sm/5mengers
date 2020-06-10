@@ -5,3 +5,4 @@ function setCookieMobile ( name, value, expiredays ) {
     
     console.log(document.cookie.indexOf("todayCookie=done") , "----setCookieMobile");
 }
+

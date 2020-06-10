@@ -176,6 +176,7 @@ table .txtLess {
 	width: 350px;
 	height: 500px;
 	border: 1px solid #000;
+	overflow: scroll;
 }
 
 .double_roll {
@@ -322,7 +323,10 @@ table .txtLess {
     float: right;
 }
 
-
+.mypage_banner .on{
+	
+	border-bottom: 2px solid red;
+}
 
 
 

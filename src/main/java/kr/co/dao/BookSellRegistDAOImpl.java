@@ -18,13 +18,13 @@ public class BookSellRegistDAOImpl implements BookSellRegistDAO {
 
 	@Override
 	public void write(BookSellRegistDTO bookSellRegistDTO) throws Exception {
-		sqlSession.insert("book_sell_registMapper", bookSellRegistDTO);
+		sqlSession.insert("BookSellRegistDAO.book_sell_registMapper", bookSellRegistDTO);
 		
 	}
 
 	@Override
-	public void insertFile(Map<String, Object> map) {
-		sqlSession.insert("boardMapper.insertFile", map);
+	public void insertFile(Map<String, Object> map) throws Exception{
+		sqlSession.insert("BookSellRegistDAO.insertFile", map);
 		
 	}
 

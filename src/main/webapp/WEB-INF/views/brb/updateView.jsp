@@ -11,7 +11,8 @@
 </head>
 <body>
 <section id="container">
-	<form role="form" method="post" action="/brb/update">
+	<form role="updateForm" method="post" action="/brb/update">
+	<input type="hidden" name="brb_id" value="${update.brb_id}" readonly="readonly"/>
 		<table>
 			<tbody>
 				<tr>

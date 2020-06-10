@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.service.AdminService;
 import kr.co.service.UserService;
@@ -87,5 +86,12 @@ public class AdminController {
 		logger.info("popup_status_update_서비스 다녀왔습니다");
 		
 		return "OK";
+	}
+	//회원들의 판매개수 구매개수 리스트 표출하는 페이지
+	@RequestMapping(value ="/admin/qnalist", method = RequestMethod.GET)
+	public String userQnaList(Model model) throws Exception {
+		logger.info("/admin/qnalist");
+		model.addAttribute("userqnalist",adminService.userQnaList());
+		return "admin/userQnaList";
 	}
 }

@@ -208,8 +208,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	WHERE
    	     bsr_img_id = #{bsr_img_id}
    </delete>
-   
-  
- 
+      <!--  파일 첨부 삭제 -->
+   <select id="autoSearch" resultType="String">
+	   	SELECT 
+	   		bsr_name
+	   	FROM 
+	   		book_sell_regist
+   </select>
+   <select id="serachBook" parameterType="String" resultType="kr.co.vo.BookDetailDTO">
+		SELECT 
+			* 
+		FROM
+			book_sell_regist 
+		WHERE bsr_name =#{bsr_name};
+   </select>
    
 </mapper>

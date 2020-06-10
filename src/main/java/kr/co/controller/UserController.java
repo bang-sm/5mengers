@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
+import com.fasterxml.jackson.annotation.JacksonInject.Value;
+
 import commons.interceptor.AuthInterceptor;
 import kr.co.service.UserService;
 import kr.co.vo.LoginDTO;
@@ -67,6 +69,7 @@ public class UserController {
 		userService.register(userVO);
 		redirectAttributes.addFlashAttribute("msg", "REGISTERED");
 		
+		userService.kakaoLogout((String)httpSession.getAttribute("accessToken"));
 		httpSession.invalidate();				
 		return "redirect:/user/login";
 	}
@@ -112,12 +115,14 @@ public class UserController {
 		
 		
 		Object destination = httpSession.getAttribute("destination");
+//		httpSession.removeAttribute("destination");
 		
 		if(destination != null || destination != "/") {
 			
 			return (String) destination;
 		}
 		return "/";
+		
 	}
 	
 	// loginPost 창 (로그인 틀렸을 경우 알림 띄우기 및 return)
@@ -128,11 +133,11 @@ public class UserController {
 	}
 	
 	// noAuth 창 (auth 0 인 계정인 경우 알림 및 return)
-		@RequestMapping(value = "/noAuth" , method = RequestMethod.GET)
-		public String noAuthGET() throws Exception {
-			
-			return "/user/noAuth";
-		}
+	@RequestMapping(value = "/noAuth" , method = RequestMethod.GET)
+	public String noAuthGET() throws Exception {
+		
+		return "/user/noAuth";
+	}
 	
 	// 로그아웃 처리!! 
 	@ResponseBody
@@ -162,7 +167,7 @@ public class UserController {
 		} // session 초기화 if end 
 		
 	}// logout() end
-		
+	
 	// 카카오 API 로그인
 	@RequestMapping(value = "/auth", method = RequestMethod.GET)
 	public String kakaoLogin(@RequestParam("code") String code, HttpSession session) throws Exception {
@@ -179,6 +184,64 @@ public class UserController {
 		
 		return "redirect:/user/register";
 	}
+	
+	// 비밀번호 찾기 페이지 
+	@RequestMapping(value = "/findingPass", method = RequestMethod.GET)
+	public String findingPassGET() throws Exception{
+		return "user/findingPass";
+	}
+	
+	// 비밀번호 변경 페이지
+	@RequestMapping(value = "/updatePass", method = RequestMethod.GET)
+	public String updatePassGET(HttpSession httpSession ) throws Exception{
+		
+		if(httpSession.getAttribute("kakaofindingPass") == "confirmed") {
+			return "user/updatePass";
+		}
+		
+		return "user/findingPass";
+	}
+	
+	// 비밀번호 찾기 id 매칭 처리 
+	@ResponseBody
+	@RequestMapping(value = "/findingPass" , method = RequestMethod.POST)
+	public int findingPassPOST(UserVO userVO, HttpSession session) throws Exception {
+		
+		int result = userService.idCheck(userVO);
+		String userid = userVO.getUserid();
+		session.setAttribute("changePassId", userid);
+		
+		return result;
+	}
+	
+	// 카카오 API - 비밀번호 찾기 (AccessToken 유무 확인)
+	@RequestMapping(value = "/findingPassAuth", method = RequestMethod.GET)
+	public String kakaoFindingPass(@RequestParam("code") String code, HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
+		
+		String accessToken = userService.getAccessToken(code);
+		
+		if(accessToken != "" || accessToken != null ) { 
+			session.setAttribute("kakaofindingPass", "confirmed");
+			return "redirect:/user/updatePass";
+			
+		}
+		
+		redirectAttributes.addAttribute("msg", "UNAUTHORIZED");
+		return "redirect:/user/findingPass";
+	}
+	
+	// 비밀번호 변경! POST!! 처리
+	@RequestMapping(value = "/updatePass", method = RequestMethod.POST)
+	public String updatePassPOST(String userid, String pass, HttpSession httpSession) throws Exception {
+		String hashedPw = BCrypt.hashpw(pass, BCrypt.gensalt());
+		userService.updatePass(userid, hashedPw);
+		userService.kakaoLogout((String)httpSession.getAttribute("accessToken"));
+		return "user/login";
+	}
+	
+	
+	
+	
 	
 	
 }

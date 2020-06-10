@@ -11,8 +11,8 @@ function my_list(data,stat) {
 	    	var confirm;
 	    	var ok;
 	    	if(data[i].bsr_confirm =='Y'){
-	    		confirm="구매요청이 있습니다";
-	    		ok="<button value='"+data[i].bsr_id+"'>수락하기</button>";
+	    		confirm="구매요청";
+	    		ok="<button class='confirm' value='"+data[i].bsr_id+"'>수락하기</button>";
 	    	}else{
 	    		confirm="-";
 	    		ok="";
@@ -27,7 +27,7 @@ function my_list(data,stat) {
 	    		''+ok+'</div></div></div></div>'+
 	    		'<div class="general">'+
 	    		'<h1>'+data[i].bsr_name+'</h1>'+
-	    		'<div class="" style="font-size:12px;color: red;text-align: center;">'+confirm+'</div>'+
+	    		'<div class="" style="font-size:30px;font-weight:bold;color: red;text-align: center;">'+confirm+'</div>'+
 	    		'<span class="more">'+
 	    		''+data[i].bsr_price+'원'+
 	    		'</span>';
@@ -36,14 +36,14 @@ function my_list(data,stat) {
 		}
 	}
 	else if(stat=="Z"){
+		var path="\/my\/zzimDelete";
 		$("#zzim_book").empty();	
 		for (var i = 0; i < data.length; i++) {
 	    	var confirm;
 	    	var ok;
 	    	console.log(data[i].bsr_check +" -----------------------------------");
 	    	if(data[i].bsr_check==1){
-	    		confirm="판매 되었습니다";
-	    		ok="<button value='"+data[i].bsr_id+"'>목록제거</button>";
+	    		confirm="판매완료";
 	    	}else{
 	    		confirm="-";
 	    		ok="";
@@ -54,17 +54,24 @@ function my_list(data,stat) {
 	    		'<div class="stats">'+
 	    		'<div>'+
 	    		'<div class="value"></div>'+
-	    		'</div><div>'+
+	    		'</div><div><button type="button" class="zzimDelete" value="'+data[i].bsr_id+'">찜해제</button>'+
 	    		''+ok+'</div></div></div></div>'+
 	    		'<div class="general">'+
 	    		'<h1>'+data[i].bsr_name+'</h1>'+
-	    		'<div class="" style="font-size:12px;color: red;text-align: center;">'+confirm+'</div>'+
+	    		'<div class="" style="font-size:30px;font-weight:bold;color: red;text-align: center;">'+confirm+'</div>'+
 	    		'<span class="more">'+
 	    		''+data[i].bsr_price+'원'+
 	    		'</span>';
 	    		
 	    	 $("#zzim_book").append(zzimbox);	
 		}
+		
+		$(".zzimDelete").on("click",function(){
+			location.href="/my/zzimDelete?bsr_id="+$(this).val()+"";
+		});
+		$(".confirm").on("click",function(){
+			location.href="/my/confirm?bsr_id="+$(this).val()+"";
+		});
 	}
 	else if(stat=="R"){
 		$("#request_book").empty();	
@@ -73,12 +80,13 @@ function my_list(data,stat) {
 	    	var ok;
 	    	console.log(data[i].bsr_check +" -----------------------------------");
 	    	if(data[i].bsr_confirm=="Z"){
-	    		confirm="수락대기중입니다";
+	    		confirm="수락대기중";
 	    		ok="<button value='"+data[i].bsr_id+"'>수락대기중</button>";
 	    	}else{
 	    		confirm="-";
 	    		ok="";
 	    	}
+	    	
 	    	var request_book='<div class="card">'+
 	    		'<div class="additional">'+
 	    		'<div class="more-info">'+
@@ -89,7 +97,7 @@ function my_list(data,stat) {
 	    		''+ok+'</div></div></div></div>'+
 	    		'<div class="general">'+
 	    		'<h1>'+data[i].bsr_name+'</h1>'+
-	    		'<div class="" style="font-size:12px;color: red;text-align: center;">'+confirm+'</div>'+
+	    		'<div class="" style="font-size:30px;font-weight:bold;color: red;text-align: center;">'+confirm+'</div>'+
 	    		'<span class="more">'+
 	    		''+data[i].bsr_price+'원'+
 	    		'</span>';
@@ -189,6 +197,15 @@ $(document).ready(function(){
 		console.log(startDate,endDate);
   		location.href="/my/buycomplete?startDate="+startDate+"&endDate="+endDate;
 	});
+	
+	$(".selldataSearch").click(function(){
+		console.log("누르눈중");
+		var startDate=$("#Start_DatePicker").val();
+		var endDate=$("#End_DatePicker").val();
+		console.log(startDate,endDate);
+  		location.href="/my/sellHistory?startDate="+startDate+"&endDate="+endDate;
+	});
+
 });
 
 

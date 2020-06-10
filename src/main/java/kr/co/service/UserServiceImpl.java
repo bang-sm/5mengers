@@ -3,6 +3,7 @@ package kr.co.service;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -17,7 +18,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -39,10 +39,7 @@ public class UserServiceImpl implements UserService {
 	// 회원가입 처리
 	@Override
 	public void register(UserVO userVO) throws Exception {
-		// TODO 기능 구현
-				//  카카오 (API)
-				// 	중복아이디 체크 
-				
+					
 		userDAO.register(userVO);
 	}
 	
@@ -193,6 +190,40 @@ public class UserServiceImpl implements UserService {
 		
 	} // 카카오 API 사용자 정보 받아오기 end 
 	
+	// 카카오 API 사용 후 로그아웃  (안하니까 계속 남아있음;)
+	@Override
+	public void kakaoLogout(String accessToken) throws Exception {
+		String reqURL = "https://kapi.kakao.com/v1/user/logout";
+		
+		
+		try {
+		URL url = new URL(reqURL);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Authorization", "Bearer " + accessToken);
+		
+		int responseCode = conn.getResponseCode();
+		System.out.println("responseCode : " + responseCode);
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		String result = "";
+		String line = "";
+		
+		while ((line = br.readLine()) != null) {
+			result += line;
+		}
+		System.out.println(result);
+		
+		br.close();
+		conn.disconnect();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	
 	// 로그인시 auth check!
@@ -202,4 +233,36 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 	
+	// 비밀번호 변경
+	@Override
+	public void updatePass(String userid, String pass) throws Exception {
+		
+		userDAO.updatePass(userid, pass);
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,19 +12,22 @@
 <script type="text/javascript">
 </script>
 <body>
-	<header>
-		<h1>QnA 수정페이지</h1>
-	</header>
-	<section id="container">
-		<form role="form" method="post" action="/qna/update">
-			<div><label for="userid">작성자 :&nbsp;</label><input type="text" value="${login.userid}" id="userid" name="userid" readonly="readonly"/></div>
-			<div><label for="qb_title">제목 :&nbsp;</label><input type="text" value="${update.qb_title}" id="qb_title" name="qb_title"/></div>
-			<div>문의내용<br>
-			<textarea id="qb_comment" name="qb_comment">${update.qb_comment}</textarea>
-			</div>
-			<button type="submit">QnA 등록</button>
-		</form>
-			<div><a href="/my/qnaList">목록으로</a></div><%-- 목록으로 클릭시 confirm --%>
-	</section>
+	<div id="root">
+		<header>
+			<h1>QnA 수정페이지</h1>
+		</header>
+		<section id="container">
+			<form role="updateForm" method="post" action="/qna/update">
+			<input type="hidden" name="qb_id" value="${update.qb_id}" readonly="readonly"/>
+				<div><label for="userid">작성자 :&nbsp;</label><input type="text" value="${login.userid}" id="userid" name="userid" readonly="readonly"/></div>
+				<div><label for="qb_title">제목 :&nbsp;</label><input type="text" value="${update.qb_title}" id="qb_title" name="qb_title"/></div>
+				<div>문의내용<br>
+				<textarea id="qb_comment" name="qb_comment">${update.qb_comment}</textarea>
+				</div>
+				<button type="submit">수정</button>
+			</form>
+				<div><a href="/my/qnaList">목록</a></div><%-- 목록으로 클릭시 confirm --%>
+		</section>
+	</div>
 </body>
 </html>
