@@ -198,9 +198,16 @@ public class BookDetailServiceImpl implements BookDetailService {
 	//사진 첨부 삭제
 	@Override
 	public void deleteimagefile(int bsr_img_id,String bi_file_name) throws Exception {
-		
-		File file = new File("C:\\bookimg\\"+bi_file_name+"");
-		file.delete();
+		String filepath="C:\\bookimg\\"+bi_file_name;
+		System.out.println(filepath);
+		File file = new File(filepath);
+		if(file.exists()) {
+			System.out.println("삭제완료");
+			file.delete();
+		}else {
+			System.out.println("삭제 실패");
+		}
+
 		dao.deleteimagefile(bsr_img_id);
 	}
 
