@@ -4,16 +4,21 @@
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+ 
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <meta charset="UTF-8">
 <title>거래 상세 페이지</title>
 <link rel="stylesheet" href="../resources/css/detail.css?v1">
+<link rel="stylesheet" href="../resources/css/slick.css">
+<link rel="stylesheet" href="../resources/css/slick-theme.css">
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
-	<script src="../resources/js/bookdetail.js"></script>
+	
+	<style>
+	
+	</style>
 </head>
 <body >
 
@@ -44,16 +49,23 @@
 			</div>
 		</div>
 		<div id="contents">
-		<div id="map" style="width: 490px; height: 230px;position: absolute;bottom:-400px"></div>
+		<div id="map" style="width: 700px; height: 300px;position: absolute;bottom:-600px;"></div>
 			<div class="xans-element- xans-product xans-product-detail">
 				<div class="detailArea">
 
 					<!-- IMAGE 영역 -->
 					<div class="xans-element- xans-product xans-product-image imgArea ">
-						<div class="keyImg">
-							<a href="/product/image_zoom2.html?product_no=11&amp;cate_no=42&amp;display_group=1">
-								<img src="//ecudemo79218.cafe24.com/web/product/big/201712/11_shop1_464973.jpg" class="BigImage ">
-							</a>
+						<div class="swiper-body">
+									<div class="slider slider-single">
+										<c:forEach var="topimg" items="${bookimg}">
+										<div><img src="http://localhost:8080/bookimg/${topimg.bi_file_name}" alt="사진 X" style="width:400px;height:400px;"></div>
+										</c:forEach>
+								    </div>
+									<div class="slider slider-nav">
+									 	<c:forEach var="topimg" items="${bookimg}">
+										<div><img src="http://localhost:8080/bookimg/${topimg.bi_file_name}" alt="사진 X" style="width:100px;height:100px;"></div>
+										</c:forEach>
+								   </div>
 						</div>
 						<div class="zzim">
 							<img class="zzim_img" alt=""
@@ -208,13 +220,16 @@
 	</div>	
 	<br>
 </body>
+<script src="../resources/js/bookdetail.js"></script>
+<script src="../resources/js/slick.min.js"></script>
+
 <c:choose>
 	<c:when test="${empty login}">
 		<script>
 	 $('.book_zzim_img').click(function(){
 		 alert("로그인 하세요");
 		  location.href="${path}/user/login";
-	 })
+	 }) 
 	  $('.info').click(function(){
 		 alert("로그인 하세요");
 		  location.href="${path}/user/login";
@@ -325,7 +340,7 @@
 		  });
 			  
 		  
-		  
+		   
          </script>
 	</c:otherwise>
 </c:choose>
@@ -435,6 +450,13 @@ geocoder.coord2RegionCode(def, abc, callback);
 var new_map =$('.map_border').parent().parent();
 new_map.css("border","1px solid blue");
 new_map.css("border-radius","10px");
+
+var swiper = new Swiper('.swiper-container', {
+    pagination: {
+      el: '.swiper-pagination',
+    },
+  });
 </script>
+
 
 </html>

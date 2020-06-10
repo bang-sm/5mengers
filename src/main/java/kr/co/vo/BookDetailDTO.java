@@ -3,28 +3,28 @@ package kr.co.vo;
 import java.sql.Date;
 
 public class BookDetailDTO {
-	int uuid;
-	String name;
-	String bsr_name;
-	String bsr_price;
-	String bsr_comment;
-	Date bsr_regdate;
-	int bsr_category;
-	int bsr_check;
-	int bsr_status;
-	String bsr_fixed_price;
-	String bsr_confirm;
-	String phonenum;
-	String bc_name;
-	int zzim;
-	int auth;
-	int bsr_id;
-	double map_x;
-	double map_y;
-	int bsr_img_id;
-	String bi_user_file_name;
-	String bi_file_name;
-	String bi_root;
+	private int uuid;
+	private String name;
+	private String bsr_name;
+	private String bsr_price;
+	private String bsr_comment;
+	private Date bsr_regdate;
+	private int bsr_category;
+	private int bsr_check;
+	private int bsr_status;
+	private String bsr_fixed_price;
+	private String bsr_confirm;
+	private String phonenum;
+	private String bc_name;
+	private int zzim;
+	private int auth;
+	private int bsr_id;
+	private double map_x;
+	private double map_y;
+	private int bsr_img_id;
+	private String bi_user_file_name;
+	private String bi_file_name;
+	private String bi_root;
 	
 	
 	

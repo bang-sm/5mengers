@@ -72,4 +72,7 @@ public interface BookDetailDAO {
 	//파일 첨부 삭제
 	public void deleteimagefile(int bsr_img_id) throws Exception;
 	
+	//DB에서 판매자 사진 이름 가져오기
+	public List<BookDetailDTO> bookimg(int bsr_id) throws Exception;
+	
 }

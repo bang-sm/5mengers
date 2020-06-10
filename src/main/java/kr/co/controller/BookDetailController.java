@@ -61,6 +61,7 @@ public class BookDetailController {
 	    //판매자가 DB에 등록한 책 값들
 	    logger.info("시작 ");
    		model.addAttribute("detail",service.detail(bsr_id,uuid));
+   		model.addAttribute("bookimg",service.bookimg(bsr_id));
    		logger.info("끝");
    		
    		//찜개수

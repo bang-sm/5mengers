@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
+
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -19,13 +22,14 @@ import kr.co.vo.BookSellRegistDTO;
 // 첨부파일의 정보를 이용하여 여러 조작을 할 클래스 
 public class FileUtils {
 
-	private static final String filePath = "/resources/bookimg"; // 경로 확인!
-	
-	
+		String filePath="C:\\bookimg\\";
+//	String filePath="";
 	public List<Map<String, Object>> parseInsertFileInfo(BookSellRegistDTO bookSellRegistDTO,
 			MultipartHttpServletRequest mpRequest) throws Exception{
 		// 데이터들의 집합체에서 컬렉션으로부터 정보를 얻어올 수 있는 인터페이스 ??????????
+		
 		Iterator<String> iterator = mpRequest.getFileNames();
+		
 		
 		MultipartFile multipartFile = null;
 		String originalFileName = null;

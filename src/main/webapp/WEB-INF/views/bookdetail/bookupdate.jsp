@@ -5,110 +5,106 @@
 <head>
 <meta charset="UTF-8">
 <title>글 수정 페이지</title>
+<link rel="stylesheet" href="../resources/css/bookupdate.css?v1">
  <style>
-.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
-.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-.map_wrap {position:relative;width:100%;height:500px;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
-.bg_white {background:#fff;}
-#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
-#menu_wrap .option{text-align: center;}
-#menu_wrap .option p {margin:10px 0;}  
-#menu_wrap .option button {margin-left:5px;}
-#placesList li {list-style: none;}
-#placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
-#placesList .item span {display: block;margin-top:4px;}
-#placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-#placesList .item .info{padding:10px 0 10px 55px;}
-#placesList .info .gray {color:#8a8a8a;}
-#placesList .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
-#placesList .info .tel {color:#009900;}
-#placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
-#placesList .item .marker_1 {background-position: 0 -10px;}
-#placesList .item .marker_2 {background-position: 0 -56px;}
-#placesList .item .marker_3 {background-position: 0 -102px}
-#placesList .item .marker_4 {background-position: 0 -148px;}
-#placesList .item .marker_5 {background-position: 0 -194px;}
-#placesList .item .marker_6 {background-position: 0 -240px;}
-#placesList .item .marker_7 {background-position: 0 -286px;}
-#placesList .item .marker_8 {background-position: 0 -332px;}
-#placesList .item .marker_9 {background-position: 0 -378px;}
-#placesList .item .marker_10 {background-position: 0 -423px;}
-#placesList .item .marker_11 {background-position: 0 -470px;}
-#placesList .item .marker_12 {background-position: 0 -516px;}
-#placesList .item .marker_13 {background-position: 0 -562px;}
-#placesList .item .marker_14 {background-position: 0 -608px;}
-#placesList .item .marker_15 {background-position: 0 -654px;}
-#pagination {margin:10px auto;text-align: center;}
-#pagination a {display:inline-block;margin-right:10px;}
-#pagination .on {font-weight: bold; cursor: default;color:#777;}
+
 </style>
 </head>
 <body>
 <%@ include file="../common/head.jsp"%>
 
 
-<div>
-	<div>글 수정</div>
+<div class="update-table">
 	<form  method="post" action="/bookupdate_end" enctype="multipart/form-data">
-	<input type='hidden' name="bsr_id" value="${bookupdate[0].bsr_id }"/>
-	<div>책 이름 </div>
-	<div>${bookupdate[0].bsr_name}</div>
-	<div>카테고리</div>
-	<div>${bookupdate[0].bsr_category}</div>
-	<div>정가</div>
-	<div>${bookupdate[0].bsr_fixed_price}</div>
-	<div>판매가</div>
-	<input type="text" name="bsr_price" value="${bookupdate[0].bsr_price } " style="width:100px;height:30px;"/>
-	<div>책 소개글</div>
-	<textarea name="bsr_comment">${bookupdate[0].bsr_comment }</textarea>
-	<input type='hidden' name="map_x" value="${bookupdate[0].map_x}"/>
-	<input type='hidden' name="map_y" value="${bookupdate[0].map_y}"/>
-	<div>직거래 희망 지역</div>
-	<input type="text" name="want" value=""/>
-	<br>
-	<c:forEach var="item" items="${bookupdate}">
-	 <div class="img${item.bsr_img_id}"><button type="button"onclick="deleteimg(${item.bsr_img_id})">삭제</button><span>${item.bi_user_file_name }</span></div>
-	</c:forEach>
-	<button type="button" class="appendimg">사진 추가</button>
-	<div class="newimg"></div>
-	<input type="file" name="img"/>
-	<button type="submit">글 등록</button>
+		<div class="infoArea">
+			<h3>
+				<div style="width : 800px;color: blue; border: 1px solid blue; padding: 10px;">수정중</div>
+			</h3>
+		<div>
+			<table style="width:800px;">
+				<tbody>
+					<tr class=" xans-record-">
+						<th scope="row">
+							<span style="font-size: 16px; color: #555555;">책이름</span></th>
+						<td>
+							<span style="font-size: 16px; color: #555555;">${bookupdate[0].bsr_name}</span>
+					    </td>
+					</tr>
+					<tr class=" xans-record-">
+						<th scope="row">
+							<span style="font-size: 16px; color: #555555;">카테고리</span></th>
+						<td>
+							<span style="font-size: 16px; color: #555555;">${bookupdate[0].bc_name}</span>
+					    </td>
+					</tr>
+					<tr class=" xans-record-">
+						<th scope="row">
+							<span style="font-size: 16px; color: #555555;">정가</span></th>
+						<td>
+							<span style="font-size: 16px; color: #555555;">${bookupdate[0].bsr_fixed_price}</span>
+					    </td>
+					</tr>
+					<tr class=" xans-record-">
+						<th scope="row">
+							<span style="font-size: 16px; color: #555555;">판매가</span></th>
+						<td>
+							<input type="text" name="bsr_price" value="${bookupdate[0].bsr_price } " style="width:100px;height:30px;"/>
+					    </td>
+					</tr>
+					<tr class=" xans-record-">
+						<th scope="row">
+							<span style="font-size: 16px; color: #555555;">책소개글</span></th>
+						<td>
+							<textarea name="bsr_comment">${bookupdate[0].bsr_comment }</textarea>
+					    </td>
+					</tr>
+					<tr class=" xans-record-">
+						<th scope="row">
+							<span style="font-size: 16px; color: #555555;">직거래 희망 지역</span></th>
+						<td>
+							<input type="text" name="want" value="" style="width:500px;"/>
+					    </td>
+					</tr>
+					<tr class=" xans-record-">
+						<th scope="row">
+							<span style="font-size: 16px; color: #555555;">등록된 사진</span></th>
+						<td>
+							<c:forEach var="item" items="${bookupdate}">
+								 <div class="img${item.bsr_img_id} deletediv"><span>${item.bi_user_file_name }</span><button class="deletebtn"type="button" onclick="deleteimg(${item.bsr_img_id})">삭제</button></div>
+							</c:forEach>
+					    </td>
+					</tr>
+					<tr class=" xans-record-">
+						<th scope="row">
+							<span style="font-size: 16px; color: #555555;">사진 첨부</span><button type="button" class="appendimg">사진 추가</button></th>
+						<td>
+							<div><input type="file" name="img"/></div>
+							<div class="newimg"></div>
+					    </td>
+					</tr>
+
+
+				</tbody>
+			</table>
+		</div>
+		<input type='hidden' name="bsr_id" value="${bookupdate[0].bsr_id }"/>
+		<input type='hidden' name="map_x" value="${bookupdate[0].map_x}"/>
+		<input type='hidden' name="map_y" value="${bookupdate[0].map_y}"/>	
+	</div>
+	<button style="width:100%;margin-top:20px;" type="submit">글 등록</button>
 	</form>
 	
 	
 </div>
-<script>
-function deleteimg(id){
-	
-	 $.ajax({
-		  url:"/deleteimagefile",
-		  type:"GET",
-		  data :{  
-			  "bsr_img_id" : id
-		  },
-		  success : function(){
-				$('.img'+id).remove();
-				
-		  }
-	  });
-	
-}
-var count=0;
-$(".appendimg").click(function(){	
-	$('.newimg').append('<input type="file" name="img'+count+'"/><br>');
-	count++;
-})
-</script>
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
     <div id="menu_wrap" class="bg_white">
         <div class="option">
-            <div>
-                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
-                    <button class="map_btn">검색하기</button> 
+            <div class="keyword-button">
+		         <input type="text" value="이태원 맛집" id="keyword" size="30"> 
             </div>
+            <button class="map_btn">검색하기</button> 
         </div>
         <hr>
         <ul id="placesList"></ul>
@@ -349,7 +345,8 @@ function removeAllChildNods(el) {
  //list 에서 클릭한 주소값 불러오기
 function clicker(id){
 	var juso =  $(id).children("span").first().text();
-	$('input[name=want]').val(juso); //input 창에 입력해주기
+	var bigjuso = $(id).children("h5").text();
+	$('input[name=want]').val(juso+"("+bigjuso+")"); //input 창에 입력해주기
 	
 	 var geocoder1 = new kakao.maps.services.Geocoder();
 	 var callback = function(result, status) {
@@ -367,15 +364,38 @@ function clicker(id){
 var geocoder = new kakao.maps.services.Geocoder();
 var abc=$('input[name=map_x]').val();
 var def=$('input[name=map_y]').val();
+var coord = new kakao.maps.LatLng(abc, def);
 
 var callback = function(result, status) {
     if (status === kakao.maps.services.Status.OK) {
-    	$('input[name=want]').val(result[0].address_name);
+    	$('input[name=want]').val(result[0].address.address_name+"("+result[0].road_address.building_name+")");
     }
 };
 
-geocoder.coord2RegionCode(def, abc, callback);
+geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
  
 
+</script>
+<script>
+function deleteimg(id){
+	
+	 $.ajax({
+		  url:"/deleteimagefile",
+		  type:"GET",
+		  data :{  
+			  "bsr_img_id" : id
+		  },
+		  success : function(){
+				$('.img'+id).remove();
+				
+		  }
+	  });
+	
+}
+var count=0;
+$(".appendimg").click(function(){	
+	$('.newimg').append('<input class="appendpic" type="file" name="img'+count+'"/><br>');
+	count++;
+})
 </script>
 </html>

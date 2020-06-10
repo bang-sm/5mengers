@@ -264,129 +264,173 @@ body {
 	background-color: white;
 }
 
+/*글삭제/수정/비활성화 시키기 css*/
+#bookactive{float:left;}
+#bookactive button{
+	width:160px;
+    margin-right: 14px;}
+
+/*카카오 맵 위 말풍선css*/
 .map_address {
 	color: red;
 }
 
+/*썸네일 슬라이드 css*/
 
+.js .slider-single > div:nth-child(1n+2) { display: none }
 
+.js .slider-single.slick-initialized > div:nth-child(1n+2) { display: block }
 
+h3 {
+	background: #f0f0f0;
+	color: #3498db;
+	font-size: 2.25rem;
+	margin: .5rem;
+	padding: 2%;
+	position: relative;
+	text-align: center;
+}
 
+.slider-single h3 {
+	line-height: 10rem;
+}
 
+.slider-nav h3::before {
+	content: "";
+	display: block;
+	padding-top: 75%;
+}
 
+.slider-nav h3 span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
 
+.slider-nav .slick-slide { cursor: pointer; }
 
-
-
-
-
-
+.slick-slide.is-active h3 {
+	color: #c00;
+	background-color: #fff
+}
+.slider-single img{
+	margin-left:200px;
+}
+.slider-single{
+	margin-bottom:40px;
+}
 
 /******************************************방석민**************************************************/
 xans-product-detail .detailArea {
-    *zoom: 1;
-    width: 1200px;
-    margin: 0 auto;
+	*zoom: 1;
+	width: 1200px;
+	margin: 0 auto;
 }
 
 .xans-product-detail .imgArea {
-    float: left;
-    width: 800px;
+	float: left;
+	width: 800px;
 }
-.xans-product-detail .imgArea .keyImg {
-    width: 800px;
-    margin: 0 auto;
-    text-align: center;
+
+.xans-product-detail .imgArea {
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
 }
+
 .xans-product-detail .listImg {
-    overflow: hidden;
-    width: 800px;
-    margin: 10px auto 0;
+	overflow: hidden;
+	width: 800px;
+	margin: 10px auto 0;
 }
 
 .xans-product-detail .listImg ul {
-    margin: 0px;
-    font-size: 0;
-    line-height: 0;
+	margin: 0px;
+	font-size: 0;
+	line-height: 0;
 }
+
 .xans-product-detail .listImg li {
-    display: inline-block;
-    margin-left: 4px;
-    font-size: 12px;
-    line-height: 14px;
-    vertical-align: top;
-    *display: inline;
-    *zoom: 1;
+	display: inline-block;
+	margin-left: 4px;
+	font-size: 12px;
+	line-height: 14px;
+	vertical-align: top;
+	*display: inline;
+	*zoom: 1;
 }
 
 .xans-product-detail .listImg li img {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    margin-bottom: 20px;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	margin-bottom: 20px;
 }
+
 .xans-product-detail .infoArea {
-    float: right;
-    width: 360px;
+	float: right;
+	width: 360px;
 }
 
 .xans-product-detail .infoArea #sangse_name {
-    clear: both;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #dedede;
+	clear: both;
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #dedede;
 }
+
 .xans-product-detail .infoArea h3 {
-    padding-bottom: 10px;
-    font-size: 14px;
-    color: #000;
+	padding-bottom: 10px;
+	font-size: 14px;
+	color: #000;
 }
 
 .xans-product-detail .infoArea table {
-    border: 0;
-    font-size: 12px;
-    margin-top: 10px;
+	border: 0;
+	font-size: 12px;
+	margin-top: 10px;
 }
 
 .xans-product-detail .infoArea th {
-    font-weight: normal;
-    color: #555;
-    width: 115px;
-    padding: 7px 0 8px;
-    text-align: left;
-    vertical-align: top;
+	font-weight: normal;
+	color: #555;
+	width: 115px;
+	padding: 7px 0 8px;
+	text-align: left;
+	vertical-align: top;
 }
 
 .xans-product-detail .infoArea td {
-    padding: 7px 0px 8px;
-    vertical-align: top;
+	padding: 7px 0px 8px;
+	vertical-align: top;
 }
 
 .xans-product-action .btnArea {
-    overflow: hidden;
-    margin: 0px;
-    text-align: center;
-    line-height: 0;
+	overflow: hidden;
+	margin: 0px;
+	text-align: center;
+	line-height: 0;
 }
 
-.xans-product-action .btnArea .buy span{
-    width: 100%;
-    cursor: pointer;
-    color: #fff;
-    line-height: 40px;
+.xans-product-action .btnArea .buy span {
+	width: 100%;
+	cursor: pointer;
+	color: #fff;
+	line-height: 40px;
 }
 
 .xans-product-action .btnArea span {
-    float: left;
-    line-height: 40px;
-    margin-bottom:5px;
-
+	float: left;
+	line-height: 40px;
+	margin-bottom: 5px;
 }
+
 .roll span {
-    display: inline;
-}
-.xans-product-action {
-    width: 100%;
-    padding-top: 50px;
+	display: inline;
 }
 
+.xans-product-action {
+	width: 100%;
+	padding-top: 50px;
+}

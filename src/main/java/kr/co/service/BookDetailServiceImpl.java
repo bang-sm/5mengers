@@ -207,5 +207,11 @@ public class BookDetailServiceImpl implements BookDetailService {
 		dao.deleteimagefile(bsr_img_id);
 	}
 
+	//DB에서 판매자 사진 이름 가져오기
+	@Override
+	public List<BookDetailDTO> bookimg(int bsr_id) throws Exception {
+		return dao.bookimg(bsr_id);
+	}
+
 
 }
