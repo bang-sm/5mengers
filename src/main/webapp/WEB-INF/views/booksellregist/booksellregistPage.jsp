@@ -220,6 +220,7 @@
 	});
 </script>
 
+<!-- 필수요소 체크  -->
 <script type="text/javascript" >
 
 function check(){
@@ -241,9 +242,14 @@ function check(){
 		return false;
 	}
 	
+	if ($("#place").val() == ""){
+		alert("거래 위치를 선택해 주세요")
+		return false;
+	}
+	
 	if ($("#content").val() == ""){
 		alert("책 소개글을 입력해주세요")
-		("#content").focus();
+		$("#content").focus();
 		return false;
 	}
 	
@@ -328,8 +334,9 @@ function check(){
 									id="price" name="bsr_price" ></textarea>
 						</tr>
 						<tr>
-							<td><label for="place">희망 거래 위치 : </label> <span
-								id="place"    class="map_juso" ></span>
+							<td><label for="place">희망 거래 위치 : </label> <input type="text"
+								id="place"    class="map_juso"  readonly/>
+								
 						</tr>
 						<tr>
 							<td><label for="content">소개글</label> <textarea  id="content"
@@ -337,6 +344,8 @@ function check(){
 						</tr>
 						<tr>
 							<td><input type="file" name="img" id="image"></td>
+							<td><button type="button" class="appendimg">사진 추가</button></td>
+							<td><div class="newimg"></div>
 						</tr>
 						<tr>
 							<td>
@@ -361,7 +370,7 @@ function check(){
 						</tr>
 						<tr>
 							<td>
-								<button type="submit">작성</button>
+								<button type="submit" value="regist" onclick="checkFile()">작성</button>
 							</td>
 						</tr>
 						
@@ -665,6 +674,7 @@ function removeAllChildNods(el) {
 function clicker(id){
 	var juso =  $(id).children("span").first().text();
 	$('.map_juso').text(juso); //input 창에 입력해주기
+	$('.map_juso').val(juso)
 	
 	 var geocoder1 = new kakao.maps.services.Geocoder();
 	 var callback = function(result, status) {
@@ -684,8 +694,30 @@ function clicker(id){
 
 
 </script>
+<!-- 파일 추가 -->
+<script type="text/javascript">
+var count=0;
+$(".appendimg").click(function(){	
+	$('.newimg').append('<input class="appendpic" type="file" name="img'+count+'"/><br>');
+	count++;
+});
+</script>
+<!-- 파일 업로드시 확장자 파일 종류 제한 -->
+<script type="text/javascript">
+function checkFile(){
+	var fm = document.fileForm;
+	var fnm = fm.regist;
+	var ext = fnm.value;
+	
+	if(!(ext.substr(ext.length-3)=='jsp' || ext.substr(ext.length-3)=='jpg')||ext.substr(est.length-3)=='png')
+	{
+		alert("사진 파일만 올릴 수 있습니다");
+		return false;
+	}
+	fm.submit();
+}
 
-
+</script>
 
 
 
