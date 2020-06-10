@@ -13,12 +13,9 @@
 	<div id="container">
 		<div id="contents">
 			<%@ include file="../common/myNav.jsp"%>
-			
 			<div id="myStatus">
 				<div class="myStatus_box" id="sell_book"></div>
-				<form name="data_form" method="post" action="./">
-					<div class="myStatus_box" id="zzim_book"></div>
-				</form>
+				<div class="myStatus_box" id="zzim_book"></div>
 				<div class="myStatus_box" id="request_book"></div>
 			</div>
 			<script>
