@@ -48,9 +48,10 @@ public class BookSellRegistController {
 		
 		service.write(bookSellRegistDTO, mpRequest);
 		// 데이터 전송 후 보여줄 page를 return함(현재페이지를 새로고침함)
-		
-		return "redirect:/";
+			return "redirect:/";
 	}
+	
+	
 	
 	//수정 페이지 에서 사진첨부 insert by.김성원
 	@RequestMapping(value ="/bookupdate_end", method = RequestMethod.POST)
@@ -59,7 +60,7 @@ public class BookSellRegistController {
 		service.imageinsert(bookSellRegistDTO,mpRequest);
 		
 		
-		return "redirect:/my/nav";
+		return "redirect:/";
 	}
 
 	

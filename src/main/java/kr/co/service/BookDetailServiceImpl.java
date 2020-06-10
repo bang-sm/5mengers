@@ -1,6 +1,7 @@
 package kr.co.service;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -199,10 +200,19 @@ public class BookDetailServiceImpl implements BookDetailService {
 
 	//사진 첨부 삭제
 	@Override
-	public void deleteimagefile(int bsr_img_id) throws Exception {
+	public void deleteimagefile(int bsr_img_id,String bi_file_name) throws Exception {
+		
+		File file = new File("C:\\bookimg\\"+bi_file_name+"");
+		file.delete();
 		dao.deleteimagefile(bsr_img_id);
 	}
 
+	//DB에서 판매자 사진 이름 가져오기
+	@Override
+	public List<BookDetailDTO> bookimg(int bsr_id) throws Exception {
+		return dao.bookimg(bsr_id);
+	}
+	
 	//autoSearch()
 	@Override
 	public List<String> autoSearch() throws Exception {

@@ -60,8 +60,6 @@ public interface BookDetailService {
 	//글 수정 데이터 넣기
 	public void bookupdateend(BookDetailDTO bookDetailDTO) throws Exception;
 
-	//글 수정 등록시 DB(bsr_status) 값 변경
-//	public void bookupdatecheckout(int bsr_id) throws Exception;
 
 	//글 삭제 
 	public void book_delete(int bsr_id) throws Exception;
@@ -73,8 +71,10 @@ public interface BookDetailService {
 	public void bsrstatuscheck(int bsr_id) throws Exception;
 	
 	//사진 첨부 삭제
-	public void deleteimagefile(int bsr_img_id) throws Exception;
+	public void deleteimagefile(int bsr_img_id,String bi_file_name) throws Exception;
 	
+	//DB에서 판매자 사진 이름 가져오기
+	public List<BookDetailDTO> bookimg(int bsr_id) throws Exception;
 	//autoSearch
 	public List<String> autoSearch() throws Exception;
 

@@ -17,6 +17,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 		     bsr_id=#{bsr_id} and uuid=#{uuid};
 	</select>
+	<!-- DB에서 파일명 가지고 오기 -->
+	<select id="book_detail_img" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
+	 	SELECT
+	 	      *
+	 	FROM
+	 	      book_img
+	 	WHERE
+	 	      bsr_id =#{bsr_id}
+	</select>
 	
    <!-- 찜 개수  -->
    <select id ="zzim" parameterType ="int" resultType="kr.co.vo.BookDetailDTO">
@@ -126,15 +135,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <!-- 글 수정  DB 값 가져오기-->
    <select id="bookupdate" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
 		SELECT 
-		     bsr.*,bi.bsr_img_id ,bi.bi_user_file_name ,bi.bi_file_name ,bi.bi_root 
-		FROM 
-			 book_sell_regist bsr
+				bsri.*,bc.bc_name
+		From 
+				book_sell_regist_img bsri
 		INNER JOIN 
-		     book_img  bi
+				book_category bc
 		ON 
-		     bsr.bsr_id  = bi.bsr_id
+				bsri.bsr_category = bc.bc_code 
 		WHERE 
-			bsr.bsr_id = #{bsr_id};
+				bsri .bsr_id =#{bsr_id};
    
    </select>
    
