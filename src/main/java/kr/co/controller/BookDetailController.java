@@ -215,9 +215,9 @@ public class BookDetailController {
 	//사진 첨부 삭제
 	@ResponseBody
 	@RequestMapping(value ="/deleteimagefile",method =RequestMethod.GET)
-	public void deleteimagefile(int bsr_img_id) throws Exception{
+	public void deleteimagefile(int bsr_img_id,String bi_file_name) throws Exception{
 		logger.info("상세페이지 접속시 bsr_status 는 비활성화");
-		service.deleteimagefile(bsr_img_id);
+		service.deleteimagefile(bsr_img_id,bi_file_name);
     }
 	
 }

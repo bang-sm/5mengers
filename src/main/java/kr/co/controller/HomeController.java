@@ -24,9 +24,11 @@ public class HomeController {
 		public String home(Model model,String bsr_name) throws Exception {
 			logger.info("home");
 			if(bsr_name==null) {
+				logger.info("너가 문제냐 1");
 				model.addAttribute("list",service.category());
 				model.addAttribute("booklist",service.mainBookList());
 			}else {
+				logger.info("너가 문제냐 2");
 				model.addAttribute("list",service.category());
 				model.addAttribute("booklist",service.mainBookSearchList(bsr_name));
 			}

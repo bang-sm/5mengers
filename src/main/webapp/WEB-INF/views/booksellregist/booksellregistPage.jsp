@@ -303,16 +303,21 @@
 						</tr>
 						<tr>
 							<td>
-							<input type="text"
-								class="map_x" name="map_x" value="" hidden/>
+								<input type="hidden"
+									class="uuid" name="uuid" value="${login.uuid}" />
+							
+							</td>
+							<td>
+							<input type="hidden"
+								class="map_x" name="map_x" value="" />
 							
 							</td>
 						</tr>
 						<tr>
 							<td >
 							
-							<input type="text"
-								class="map_y" name="map_y" value="" hidden/>
+							<input type="hidden"
+								class="map_y" name="map_y" value="" />
 							
 							</td>
 						</tr>

@@ -71,7 +71,7 @@ public interface BookDetailService {
 	public void bsrstatuscheck(int bsr_id) throws Exception;
 	
 	//사진 첨부 삭제
-	public void deleteimagefile(int bsr_img_id) throws Exception;
+	public void deleteimagefile(int bsr_img_id,String bi_file_name) throws Exception;
 	
 	//DB에서 판매자 사진 이름 가져오기
 	public List<BookDetailDTO> bookimg(int bsr_id) throws Exception;

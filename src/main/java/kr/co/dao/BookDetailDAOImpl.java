@@ -23,9 +23,9 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 	public BookDetailDTO detail(int bsr_id, int uuid) throws Exception {
 		System.out.println("확인");
 		HashMap<String, Integer> dmap = new HashMap<String, Integer>();
-		dmap.put("bsr_id",bsr_id);
-		dmap.put("uuid",uuid);
-        System.out.println(dmap);
+		dmap.put("bsr_id", bsr_id);
+		dmap.put("uuid", uuid);
+		System.out.println(dmap);
 		return sqlSession.selectOne("BookDetailMapper.book_detail", dmap);
 	}
 
@@ -59,20 +59,20 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 	// 찜 등록 AJAX
 	@Override
 	public void check_on(int uuid, int bsr_id) throws Exception {
-		System.out.println("찜등록 매개변수uuid   "+uuid);
-		System.out.println("찜등록 매개변수bsr_id  "+bsr_id);
+		System.out.println("찜등록 매개변수uuid   " + uuid);
+		System.out.println("찜등록 매개변수bsr_id  " + bsr_id);
 		HashMap<String, Integer> hmap = new HashMap<String, Integer>();
 		hmap.put("uuid", uuid);
 		hmap.put("bsr_id", bsr_id);
 
 		sqlSession.insert("BookDetailMapper.check_on", hmap);
 	}
+
 	// 찜 개수 AJAX 표현
 	@Override
 	public int check_count(int bsr_id) throws Exception {
 		return sqlSession.selectOne("check_count", bsr_id);
 	}
-
 
 	// 책 카테고리 리스트
 	@Override
@@ -120,73 +120,74 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 		sqlSession.update("BookDetailMapper.bookactiveoff", bsr_id);
 	}
 
-	//글 수정 글등록시 DB(bsr_update) 값 변경
+	// 글 수정 글등록시 DB(bsr_update) 값 변경
 //	@Override
 //	public void bookupdatecheckout(int bsr_id) throws Exception {
 //		sqlSession.update("BookDetailMapper.bookupdatecheckout", bsr_id);
 //
 //	}
-	
-	//구매하기시 구매자 DB 상태 업데이트   by-방석민
+
+	// 구매하기시 구매자 DB 상태 업데이트 by-방석민
 	@Override
 	public void buying_book(int uuid, int bsr_id) throws Exception {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("uuid", uuid);
 		map.put("bsr_id", bsr_id);
-		sqlSession.insert("BookDetailMapper.buying_book",map);
+		sqlSession.insert("BookDetailMapper.buying_book", map);
 	}
 
-	//상세페이지 접속시 bsr_status 는 비활성화
+	// 상세페이지 접속시 bsr_status 는 비활성화
 	@Override
 	public void bsrstatusbook(int bsr_id) throws Exception {
-		sqlSession.update("BookDetailMapper.bsrstatusbook",bsr_id);
-		
+		sqlSession.update("BookDetailMapper.bsrstatusbook", bsr_id);
+
 	}
 
-	//글 수정버튼 클릭시 db(bsr_update) 값 변경
+	// 글 수정버튼 클릭시 db(bsr_update) 값 변경
 	@Override
 	public void bookactiveon(int bsr_id) throws Exception {
-		sqlSession.update("BookDetailMapper.bookactiveon",bsr_id);
-		
+		sqlSession.update("BookDetailMapper.bookactiveon", bsr_id);
+
 	}
 
-	//책 수정중 상태값 가져오기
+	// 책 수정중 상태값 가져오기
 	@Override
-	public void bookactive(int bsr_id,int bsr_status) throws Exception {
+	public void bookactive(int bsr_id, int bsr_status) throws Exception {
 		HashMap<String, Integer> bamap = new HashMap<String, Integer>();
 		bamap.put("bsr_id", bsr_id);
 		bamap.put("bsr_status", bsr_status);
-	    sqlSession.update("BookDetailMapper.bookactive",bamap);
+		sqlSession.update("BookDetailMapper.bookactive", bamap);
 	}
 
-	//구매요청 클릭시 DB 값 변경
+	// 구매요청 클릭시 DB 값 변경
 	@Override
-	public void book_check(int bsr_check,int bsr_id) throws Exception {
+	public void book_check(int bsr_check, int bsr_id) throws Exception {
 		HashMap<String, Integer> bkmap = new HashMap<String, Integer>();
 		bkmap.put("bsr_check", bsr_check);
 		bkmap.put("bsr_id", bsr_id);
-		sqlSession.update("BookDetailMapper.book_check",bkmap);
-		
+		sqlSession.update("BookDetailMapper.book_check", bkmap);
+
 	}
 
-	//bsr_status 값 가져오기
+	// bsr_status 값 가져오기
 	@Override
 	public int bookactivecount(int bsr_id) throws Exception {
 
-		return sqlSession.selectOne("BookDetailMapper.book_update_check",bsr_id);
+		return sqlSession.selectOne("BookDetailMapper.book_update_check", bsr_id);
 	}
 
-	//파일 첨부 삭제
+	// 파일 첨부 삭제
 	@Override
 	public void deleteimagefile(int bsr_img_id) throws Exception {
-		sqlSession.delete("BookDetailMapper.deleteimagefile",bsr_img_id);
+		sqlSession.delete("BookDetailMapper.deleteimagefile", bsr_img_id);
 	}
 
-	//DB에서 판매자 사진 이름 가져오기
+	// DB에서 판매자 사진 이름 가져오기
 	@Override
 	public List<BookDetailDTO> bookimg(int bsr_id) throws Exception {
-		return sqlSession.selectList("BookDetailMapper.book_detail_img",bsr_id);
+		return sqlSession.selectList("BookDetailMapper.book_detail_img", bsr_id);
 	}
+
 	@Override
 	public List<String> autoSearch() throws Exception {
 		// TODO Auto-generated method stub
@@ -196,8 +197,7 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 	@Override
 	public Object mainBookSearchList(String bsr_name) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("BookDetailMapper.serachBook",bsr_name);
+		return sqlSession.selectList("BookDetailMapper.serachBook", bsr_name);
 	}
-
 
 }

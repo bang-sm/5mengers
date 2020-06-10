@@ -81,13 +81,13 @@
 								<c:choose>
 									<c:when test="${detail.bsr_status == 0 }">
 										<div class="book_confirm"
-											style="color: blue; border: 1px solid blue; padding: 10px;">
+											style="color: red; border: 1px solid blue; padding: 10px;">
 											게시글 비활성화</div>
 									</c:when>
-									<c:when test="${detail.bsr_check == 3 && detail.bsr_status == 1 }">
+									<c:when test="${detail.bsr_check == 0 && detail.bsr_status == 1 }">
 										<div class="book_confirm"
 											style="color: blue; border: 1px solid blue; padding: 10px;">
-											판매중</div>
+											예약중</div>
 									</c:when>
 									<c:when test="${detail.bsr_check == 2 && detail.bsr_status == 0}">
 										<div class="book_confirm" style="color: blue">삭제됨</div>
@@ -97,8 +97,8 @@
 									</c:when>
 									<c:otherwise>
 										<div class="book_confirm"
-											style="color: red; border: 1px solid red; padding: 10px;">
-											예약중</div>
+											style="color: blue; border: 1px solid red; padding: 10px;">
+											판매중</div>
 									</c:otherwise>
 								</c:choose>
 							</h3>

@@ -70,7 +70,7 @@
 							<span style="font-size: 16px; color: #555555;">등록된 사진</span></th>
 						<td>
 							<c:forEach var="item" items="${bookupdate}">
-								 <div class="img${item.bsr_img_id} deletediv"><span>${item.bi_user_file_name }</span><button class="deletebtn"type="button" onclick="deleteimg(${item.bsr_img_id})">삭제</button></div>
+								 <div class="img${item.bsr_img_id} deletediv"><span>${item.bi_user_file_name }</span><button class="deletebtn"type="button" onclick="deleteimg(${item.bsr_img_id},${item.bi_file_name})">삭제</button></div>
 							</c:forEach>
 					    </td>
 					</tr>
@@ -377,13 +377,14 @@ geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 
 </script>
 <script>
-function deleteimg(id){
+function deleteimg(id,filename){
 	
 	 $.ajax({
 		  url:"/deleteimagefile",
 		  type:"GET",
 		  data :{  
-			  "bsr_img_id" : id
+			  "bsr_img_id" : id,
+			  "bi_file_name" : filename
 		  },
 		  success : function(){
 				$('.img'+id).remove();

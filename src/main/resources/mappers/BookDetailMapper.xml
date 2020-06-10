@@ -134,7 +134,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!-- 글 수정  DB 값 가져오기-->
    <select id="bookupdate" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
-			SELECT 
+		SELECT 
 				bsri.*,bc.bc_name
 		From 
 				book_sell_regist_img bsri
