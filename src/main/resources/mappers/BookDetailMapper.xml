@@ -117,6 +117,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         ORDER BY
               bsr_regdate desc;
    </select>
+   <select id="main_ct_book_list" resultType="kr.co.vo.BookDetailDTO">
+        SELECT
+	          bsr_id,
+	          uuid,
+	          bsr_price,
+	          bsr_name,
+	          bsr_category
+        FROM
+              book_sell_regist
+        WHERE 
+        	  bsr_status = 1 and bsr_category=#{bc_code}
+        ORDER BY
+              bsr_regdate desc;
+   </select>
    
    <!-- 같은 연관 장르 목록 -->
    <select id="side_same_category" parameterType="map" resultType="kr.co.vo.BookDetailDTO">

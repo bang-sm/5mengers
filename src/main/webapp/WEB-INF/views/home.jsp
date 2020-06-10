@@ -31,7 +31,9 @@ $(document).ready(function(){
 					<div class="position">
 						<ul>
 							<c:forEach var="list" items="${list}">
-								<li class="xans-record-"><a href="" class='${list.bc_code}'>${list.bc_name}</a></li>
+								<li class="xans-record-">
+									<a href="/?bc_code=${list.bc_code}" class='${list.bc_code}'>${list.bc_name}</a>
+								</li>
 							</c:forEach>
 						</ul>
 					</div>

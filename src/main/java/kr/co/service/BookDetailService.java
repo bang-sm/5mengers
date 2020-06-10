@@ -80,6 +80,8 @@ public interface BookDetailService {
 
 	//검색 책
 	public Object mainBookSearchList(String bsr_name);
+
+	public List<BookDetailDTO> mainCateBookList(String bc_code);
 	
 
 	
