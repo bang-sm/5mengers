@@ -220,6 +220,43 @@
 	});
 </script>
 
+<script type="text/javascript" >
+
+function check(){
+	
+	if ($("#booktitle").val() == ""){
+		alert("책을 검색해주세요")
+		$("#booktitle").focus();
+		return false;
+	}
+	
+	if ($("#bsr_category").val() == ""){
+		alert("책 카테고리를 확인해주세요")
+		return false;
+	}
+	
+	if ($("#price").val() == ""){
+		alert("희망 가격을 입력해주세요")
+		$("#price").focus();
+		return false;
+	}
+	
+	if ($("#content").val() == ""){
+		alert("책 소개글을 입력해주세요")
+		("#content").focus();
+		return false;
+	}
+	
+	
+	
+	
+	return true
+	
+}
+
+
+</script>
+
 <!-- 책 API list style -->
 <style>
 #bookajax .booktr:hover {
@@ -245,7 +282,7 @@
 		<div id="container">
 			<!-- Controller의 value값과 동일하게 해줄것 -->
 			<form name="form" method="post" action="/booksellregistPage"
-				enctype="multipart/form-data">
+				enctype="multipart/form-data" onsubmit="return check()">
 				<!-- action 변경할 것 -->
 				<table>
 					<tbody>
@@ -288,22 +325,22 @@
 						</tr>
 						<tr>
 							<td><label for="price">판매 희망가격 : </label> <textarea
-									id="price" name="bsr_price"></textarea>
+									id="price" name="bsr_price" ></textarea>
 						</tr>
 						<tr>
 							<td><label for="place">희망 거래 위치 : </label> <span
-									class="map_juso" ></span>
+								id="place"    class="map_juso" ></span>
 						</tr>
 						<tr>
-							<td><label for="content">소개글</label> <textarea id="content"
+							<td><label for="content">소개글</label> <textarea  id="content"
 									name="bsr_comment"></textarea></td>
 						</tr>
 						<tr>
-							<td><input type="file" name="img"></td>
+							<td><input type="file" name="img" id="image"></td>
 						</tr>
 						<tr>
 							<td>
-							<input type="text"
+							<input type="text" 
 								class="map_x" name="map_x" value="" hidden/>
 							
 							</td>
