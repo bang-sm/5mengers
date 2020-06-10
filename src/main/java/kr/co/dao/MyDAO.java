@@ -26,14 +26,10 @@ public interface MyDAO {
 	public List<BookDetailDTO> RequestList(int uuid) throws Exception;
 	//나의 책 구매 히스토리
 	public List<MyhistoryDTO> mybookhistory(int uuid,String startDate,String endDate) throws Exception;
-<<<<<<< HEAD
 	
 	public List<Map<String, Object>> qnaList(Criteria cri);
 	//qna 리스트 카운트
 	public int qnaListCount(int uuid);
-=======
-	//나의qna리스트
-	public List<QnADTO> qnaList(int uuid) throws Exception;
 
 	//찜해제
 	public void zzimDelete(int bsr_id, int uuid);
@@ -46,6 +42,5 @@ public interface MyDAO {
 	public void sellBookUpdate(int bsr_id, int uuid);
 	//판매가 완료된 리스트
 	public List<MyhistoryDTO> mySellhistory(int getuuid, String startDate, String endDate);
->>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers
 	
 }

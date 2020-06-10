@@ -74,14 +74,12 @@ public class MyDAOImpl implements MyDAO {
 		return sqlSession.selectOne("userMapper.my_qna_count",uuid);
 	}
 	
-<<<<<<< HEAD
 	//나의 qna리스트
 	@Override
 	public List<Map<String, Object>> qnaList(Criteria cri) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("userMapper.my_qnaList",cri);
 	}
-=======
 	//찜해제
 	@Override
 	public void zzimDelete(int bsr_id, int uuid) {
@@ -125,5 +123,4 @@ public class MyDAOImpl implements MyDAO {
 		return sqlSession.selectList("userMapper.my_sell_history",map);
 	}
 
->>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers
 }
