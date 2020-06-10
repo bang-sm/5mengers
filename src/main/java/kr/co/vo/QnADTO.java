@@ -12,6 +12,7 @@ public class QnADTO {
 	private String qb_comment;
 	private Date qb_date;
 	private String userid;
+	private String qb_replyYN;
 	
 	// qna reply
 	
@@ -52,8 +53,15 @@ public class QnADTO {
 		this.qb_date = qb_date;
 	}
 	
+	
 	// qna reply getter & setter
 	
+	public String getQb_replyYN() {
+		return qb_replyYN;
+	}
+	public void setQb_replyYN(String qb_replyYN) {
+		this.qb_replyYN = qb_replyYN;
+	}
 	public int getQbr_id() {
 		return qbr_id;
 	}
