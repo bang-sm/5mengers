@@ -1,10 +1,11 @@
 package kr.co.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.vo.BookDetailDTO;
+import kr.co.vo.Criteria;
 import kr.co.vo.MyhistoryDTO;
-import kr.co.vo.QnADTO;
 
 public interface MyService {
 	//찜카운트
@@ -22,7 +23,9 @@ public interface MyService {
 	//나의 책 구매 히스토리
 	public List<MyhistoryDTO> mybookhistory(int uuid,String startDate,String endDate) throws Exception;
 	//나의qna리스트
-	public List<QnADTO> qnaList(int uuid) throws Exception;
+	List<Map<String, Object>> qnaList(Criteria cri);
+	//qna리스트 카운트
+	public int qnaListCount(int uuid);
 	//찜해제
 	public void zzimDelete(int bsr_id, int uuid);
 	//수락하기

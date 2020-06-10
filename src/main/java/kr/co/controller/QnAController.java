@@ -36,7 +36,6 @@ public class QnAController {
 			
 			logger.info("/qna/write");
 			
-			
 			UserVO userVO = (UserVO) httpSession.getAttribute("login");
 					
 			qnaDTO.setUuid(userVO.getUuid());
@@ -103,4 +102,6 @@ public class QnAController {
 			
 			return "redirect:/qna/readView?qb_id=" + qnaDTO.getQb_id();
 		}
+		
+		
 }

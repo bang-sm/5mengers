@@ -27,6 +27,8 @@
 					<tbody>
 						<c:forEach items="${qnaList}" var="qnaList" varStatus="i">
 							<tr style="color: #555555;">
+								<td class="text_center">${qnaList.qb_id}</td>
+								<td class="text_center">${qnaList.uuid}</td>
 								<td class="text_center">${i.count}</td>
 								<td class="text_center">${login.userid}</td>
 								<td class="text_center">
@@ -39,8 +41,32 @@
 					</tbody>
 				</table>
 			</div>
-			<button onclick="location='/qna/writeView'">작성하기</button>
-
+			<div class="box-footer">
+				<div class="text-center">
+					<ul id="pagination">
+						<c:if test="${pageMaker.prev }">
+						    <li>
+						        <a href='<c:url value="/my/qnaList?page=${pageMaker.startPage-1 }"/>'>이전</i></a>
+						    </li>
+					    </c:if>
+					    
+					    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+						    <li>
+						        <a href='<c:url value="/my/qnaList?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
+						    </li>
+					    </c:forEach>
+					  
+					    <c:if test="${pageMaker.next}">
+						    <li>
+						        <a href='<c:url value="/my/qnaList?page=${pageMaker.endPage+1 }"/>'>다음</a>
+						    </li>
+					    </c:if>
+							<li>
+								<button onclick="location='/qna/writeView'">작성하기</button>
+							</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
