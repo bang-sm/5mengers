@@ -3,6 +3,7 @@ package kr.co.service;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -189,9 +190,37 @@ public class UserServiceImpl implements UserService {
 		
 	} // 카카오 API 사용자 정보 받아오기 end 
 	
+	// 카카오 API 사용 후 로그아웃  (안하니까 계속 남아있음;)
 	@Override
 	public void kakaoLogout(String accessToken) throws Exception {
-		// TODO Auto-generated method stub
+		String reqURL = "https://kapi.kakao.com/v1/user/logout";
+		
+		
+		try {
+		URL url = new URL(reqURL);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Authorization", "Bearer " + accessToken);
+		
+		int responseCode = conn.getResponseCode();
+		System.out.println("responseCode : " + responseCode);
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		String result = "";
+		String line = "";
+		
+		while ((line = br.readLine()) != null) {
+			result += line;
+		}
+		System.out.println(result);
+		
+		br.close();
+		conn.disconnect();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		
 	}
 	

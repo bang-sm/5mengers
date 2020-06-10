@@ -70,7 +70,7 @@
 			<div><span id="alert_pass_check2" style="display: none;" >비밀번호 확인란은 입력해주세요.</span></div>
 		</div>
 		
-		<button type="submit"></button>
+		<button type="submit">비밀번호 변경</button>
 	</form>
 
 </div>

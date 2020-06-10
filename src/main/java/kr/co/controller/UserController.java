@@ -69,6 +69,7 @@ public class UserController {
 		userService.register(userVO);
 		redirectAttributes.addFlashAttribute("msg", "REGISTERED");
 		
+		userService.kakaoLogout((String)httpSession.getAttribute("accessToken"));
 		httpSession.invalidate();				
 		return "redirect:/user/login";
 	}
@@ -231,12 +232,14 @@ public class UserController {
 	
 	// 비밀번호 변경! POST!! 처리
 	@RequestMapping(value = "/updatePass", method = RequestMethod.POST)
-	public String updatePassPOST(String userid, String pass) throws Exception {
+	public String updatePassPOST(String userid, String pass, HttpSession httpSession) throws Exception {
 		String hashedPw = BCrypt.hashpw(pass, BCrypt.gensalt());
 		userService.updatePass(userid, hashedPw);
-		
+		userService.kakaoLogout((String)httpSession.getAttribute("accessToken"));
 		return "user/login";
 	}
+	
+	
 	
 	
 	
