@@ -1,13 +1,14 @@
 package kr.co.service;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.dao.MyDAO;
 import kr.co.vo.BookDetailDTO;
+import kr.co.vo.Criteria;
 import kr.co.vo.MyhistoryDTO;
 import kr.co.vo.QnADTO;
 
@@ -62,10 +63,18 @@ public class MyServiceImpl implements MyService{
 		return dao.mybookhistory(uuid,startDate,endDate);
 	}
 
+
 	@Override
-	public List<QnADTO> qnaList(int uuid) throws Exception {
+	public int qnaListCount(int uuid) {
 		// TODO Auto-generated method stub
-		return dao.qnaList(uuid);
+		return dao.qnaListCount(uuid);
+	}
+	
+    //나의 qna리스트
+	@Override
+	public List<Map<String, Object>> qnaList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return dao.qnaList(cri);
 	}
 
 	//찜해제

@@ -34,7 +34,7 @@ public class BookSellRegistController {
 	public String writeView() throws Exception {
 		logger.info("booksellregist");
 		
-		return "booksellregist/booksellregistPage";
+		return "/booksellregist/booksellregistPage";
 	}
 	
 	//게시판 글 작성
@@ -48,7 +48,7 @@ public class BookSellRegistController {
 		
 		service.write(bookSellRegistDTO, mpRequest);
 		// 데이터 전송 후 보여줄 page를 return함(현재페이지를 새로고침함)
-		return "redirect:/";
+			return "redirect:/";
 	}
 	
 	

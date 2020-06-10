@@ -409,6 +409,6 @@ var count=0;
 $(".appendimg").click(function(){	
 	$('.newimg').append('<input class="appendpic" type="file" name="img'+count+'"/><br>');
 	count++;
-})
+});
 </script>
 </html>

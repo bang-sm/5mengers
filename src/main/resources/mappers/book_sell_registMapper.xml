@@ -36,7 +36,7 @@
 	</insert>
 
 <!-- 책 이미지  -->
-	<insert id="insertFile" parameterType="hashMap">
+	<insert id="insertFile" parameterType="kr.co.vo.BookSellRegistDTO">
 		INSERT INTO book_img 
 				(
 				bsr_img_id, <!-- 이미지 고유값 -->

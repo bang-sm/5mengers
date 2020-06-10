@@ -5,6 +5,7 @@ import java.util.List;
 import org.json.simple.JSONObject;
 
 import kr.co.vo.BookRequestDTO;
+import kr.co.vo.Criteria;
 
 public interface BookRequestService {
 	
@@ -12,8 +13,9 @@ public interface BookRequestService {
 	public void write(BookRequestDTO bRequestDTO) throws Exception;
 	
 	// 게시물 목록 조회
-	public List<BookRequestDTO> list() throws Exception;
-	
+	public List<BookRequestDTO> list(Criteria cri) throws Exception;
+	// 게시물 총 갯수
+	public int brbListCount();
 	// 게시물 조회
 	public BookRequestDTO read(int brb_id) throws Exception;
 

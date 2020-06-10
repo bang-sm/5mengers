@@ -32,10 +32,9 @@ public class QnAController {
 			
 		}
 		@RequestMapping(value = "/qna/write", method = RequestMethod.POST)
-		public String write(HttpSession httpSession, QnADTO qnaDTO) throws Exception {			
+		public String write(HttpSession httpSession, QnADTO qnaDTO) throws Exception {
 			
 			logger.info("/qna/write");
-			
 			
 			UserVO userVO = (UserVO) httpSession.getAttribute("login");
 					
@@ -103,4 +102,6 @@ public class QnAController {
 			
 			return "redirect:/qna/readView?qb_id=" + qnaDTO.getQb_id();
 		}
+		
+		
 }

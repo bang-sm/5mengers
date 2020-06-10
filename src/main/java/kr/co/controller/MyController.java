@@ -1,8 +1,8 @@
 package kr.co.controller;
 
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.service.MyService;
 import kr.co.vo.BookDetailDTO;
+import kr.co.vo.Criteria;
+import kr.co.vo.PageMaker;
 import kr.co.vo.UserVO;
 
 
@@ -48,15 +50,27 @@ public class MyController {
 	
 	// 나의 QnA리스트
 	@RequestMapping(value = "/my/qnaList", method = RequestMethod.GET)
-	public String myQnaList(Model model,HttpSession hs,UserVO uv) throws Exception {
+	public String myQnaList(Model model,HttpSession hs,UserVO uv,Criteria cri) throws Exception {
 		logger.info("myQnaList");
-		uv = (UserVO) hs.getAttribute("login");
-		int getuuid = uv.getUuid();
-		model.addAttribute("qnaList",myService.qnaList(getuuid));
 		
-		return "my/qnaList";
+		uv = (UserVO) hs.getAttribute("login");
+		int getuuid = uv.getUuid();  //나의아이디
+		
+		//나의 qna총 카운트
+		PageMaker pageMaker = new PageMaker();
+	    pageMaker.setCri(cri);
+	    
+	    int qnacount=myService.qnaListCount(getuuid);
+	    pageMaker.setTotalCount(qnacount);
+	    
+	    
+	    List<Map<String,Object>> list = myService.qnaList(cri);
+
+		model.addAttribute("qnaList",list);
+		model.addAttribute("pageMaker",pageMaker);
+		
+		return "/my/qnaList";
 	}
-	
 	
 	// 거래요청게시판 목록
 	@RequestMapping(value = "/my/boardList", method = RequestMethod.GET)
