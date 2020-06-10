@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.service.BookRequestService;
 import kr.co.vo.BookDetailDTO;
 import kr.co.vo.BookRequestDTO;
+import kr.co.vo.Criteria;
 import kr.co.vo.UserVO;
 
 @Controller
@@ -48,10 +49,10 @@ public class BookRequestController {
 		
 		// 게시판 목록
 		@RequestMapping(value ="brb/list", method = RequestMethod.GET)
-		public String list(Model model) throws Exception {
+		public String list(Model model,Criteria criteria) throws Exception {
 			logger.info("brb/list");
 			
-			model.addAttribute("list", service.list());
+			model.addAttribute("list", service.list(criteria));
 			
 			return "/brb/list";
 		}
