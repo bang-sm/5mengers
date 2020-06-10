@@ -2,6 +2,7 @@ package kr.co.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.vo.BookDTO;
 import kr.co.vo.BookDetailDTO;
+import kr.co.vo.Criteria;
 import kr.co.vo.MyhistoryDTO;
 import kr.co.vo.QnADTO;
 
@@ -65,12 +67,21 @@ public class MyDAOImpl implements MyDAO {
 		map.put("endDate",endDate);
 		return sqlSession.selectList("userMapper.my_book_history",map);
 	}
+	//나의 qna카운트
 	@Override
-	public List<QnADTO> qnaList(int uuid) {
+	public int qnaListCount(int uuid) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("userMapper.my_qnaList",uuid);
+		return sqlSession.selectOne("userMapper.my_qna_count",uuid);
 	}
 	
+<<<<<<< HEAD
+	//나의 qna리스트
+	@Override
+	public List<Map<String, Object>> qnaList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("userMapper.my_qnaList",cri);
+	}
+=======
 	//찜해제
 	@Override
 	public void zzimDelete(int bsr_id, int uuid) {
@@ -114,4 +125,5 @@ public class MyDAOImpl implements MyDAO {
 		return sqlSession.selectList("userMapper.my_sell_history",map);
 	}
 
+>>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers
 }

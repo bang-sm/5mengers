@@ -16,23 +16,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			     FROM qna_board
 			     WHERE qb_id = #{qb_id};
 	</select>
-	<select id="select">
-		SELECT 	 qb_id
-			   , uuid
-			   , qb_title			   
-			   , qb_comment
-			     FROM qna_board WHERE qb_id = #{qb_id};
-	</select>
 	<update id="update" parameterType="kr.co.vo.QnADTO">
 		UPDATE qna_board set qb_title = #{qb_title}, qb_comment = #{qb_comment} WHERE qb_id = #{qb_id};
 	</update>
 	<delete id="delete">
-		DELETE FROM qna_board where qb_id = #{qb_id};
+		DELETE FROM qna_board where qb_id = #{qb_id}; <!-- 작성자와 관리자만 삭제가능하게 -->
 	</delete>
 	<insert id="writeReply">
 		INSERT INTO qna_board_reply (qb_id, qbr_comment, qbr_regdate) VALUE (#{qb_id}, #{qbr_comment}, now());
 	</insert>
 	<select id="readReply" resultType="kr.co.vo.QnADTO">
 		SELECT qbr_id, qb_id, qbr_comment, qbr_regdate FROM qna_board_reply WHERE qb_id = #{qb_id};
+	</select>
+	<!-- 총 게시글 갯수 출력 -->
+	<select id="qnaCnt" resultType="int" parameterType="kr.co.vo.QnADTO">
+		SELECT COUNT(*) FROM qna_board WHERE uuid = #{uuid};
 	</select>
 </mapper>

@@ -23,5 +23,4 @@ public interface QnADAO {
 	
 	// qna reply 작성
 	public void writeReply(QnADTO qnaDTO) throws Exception;
-	
 }

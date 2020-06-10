@@ -151,12 +151,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 나의 qna리스트 -->
 	<select id="my_qnaList" parameterType="map" resultType="kr.co.vo.QnADTO">
-		SELECT
-		 *
+		SELECT *
 		FROM
-			qna_board
-		WHERE uuid=#{uuid};
+		 	qna_board
+		ORDER BY 
+			qb_id DESC
+		LIMIT #{pageStart}, #{perPageNum}
 	</select>
+<<<<<<< HEAD
+	<!-- 나의 qna등록 갯수 -->
+	<select id="my_qna_count" parameterType="int" resultType="int">
+    	SELECT
+    		COUNT(*)
+    	FROM
+    		qna_board
+    	WHERE uuid=#{uuid};
+	</select>
+=======
 	
 	<!-- 나의 판매 책 히스토리 -->
 	<select id="my_sell_history" parameterType="map" resultType="kr.co.vo.MyhistoryDTO">
@@ -172,6 +183,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			 and bsr_regdate between #{startDate} and #{endDate};
 	</select>
 	
+>>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers
 	<!-- 중복 id check! -->
 	<select id="idCheck" resultType="int">
 		SELECT 
