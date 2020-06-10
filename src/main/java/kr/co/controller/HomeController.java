@@ -1,5 +1,7 @@
 package kr.co.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,14 +23,18 @@ public class HomeController {
 		private BookDetailService service;
 		
 		@RequestMapping(value = "/", method = RequestMethod.GET)
-		public String home(Model model,String bsr_name) throws Exception {
+		public String home(Model model,String bsr_name,HttpServletRequest request) throws Exception {
 			logger.info("home");
+			
+			String bc_code=request.getParameter("bc_code");
 			if(bsr_name==null) {
-				logger.info("너가 문제냐 1");
 				model.addAttribute("list",service.category());
-				model.addAttribute("booklist",service.mainBookList());
+				if(bc_code!=null) {
+					model.addAttribute("booklist",service.mainCateBookList(bc_code));
+				}else {
+					model.addAttribute("booklist",service.mainBookList());
+				}
 			}else {
-				logger.info("너가 문제냐 2");
 				model.addAttribute("list",service.category());
 				model.addAttribute("booklist",service.mainBookSearchList(bsr_name));
 			}
@@ -42,14 +48,14 @@ public class HomeController {
 			return "join/join";
 		}
 		
+		
+		//홈에서 자동완성을 위한 ajax 컨트롤러
 		@ResponseBody
 		@RequestMapping(value = "/home/autoSerach", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
 		public String autoSerach() throws Exception {
 			logger.info("autoSerach");
+			//디비에서 책제목을 제이슨 형식으로 받아온다.
 			String autolist = JSONArray.toJSONString(service.autoSearch());
-			
-			System.out.println(autolist);
-			
 			return autolist;
 		}
 }

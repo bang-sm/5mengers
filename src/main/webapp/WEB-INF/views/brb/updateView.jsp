@@ -6,9 +6,18 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>구매 요청 작성페이지</title>
-<script src="/resources/ckeditor/ckeditor.js"></script>
 </head>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// 목록
+		$(".btn_list").on("click", function(){
+			
+			location.href = "/brb/list";
+		})
+	})
+</script>
 <body>
 <section id="container">
 	<form role="updateForm" method="post" action="/brb/update">
@@ -46,15 +55,14 @@
 				</tr>
 				<tr>
 					<td>
-						<label for="brd_comment">내용</label>
+						<label for="brd_comment">내용</label><br>
 						<textarea id="brd_comment" name="brd_comment">${read.brd_comment}</textarea>				
-						<script>CKEDITOR.replace('brd_comment', {allowedContent: true});</script>
 						
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<button type="submit">수정</button><button>목록</button><%-- 목록으로 클릭시 confirm --%>
+						<button type="submit">수정</button><button class="btn_list">목록</button><%-- 목록으로 클릭시 confirm --%>
 					</td>
 				</tr>
 			</tbody>

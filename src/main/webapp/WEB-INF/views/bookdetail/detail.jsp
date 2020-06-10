@@ -56,6 +56,21 @@
 					<!-- IMAGE 영역 -->
 					<div class="xans-element- xans-product xans-product-image imgArea ">
 						<div class="swiper-body">
+							<div class="zzim">
+								<a href="#none" class="roll buy">
+									<c:set value='<%=request.getParameter("bsr_id")%>' var="bsr_id" />
+									<c:choose>
+										<c:when
+											test="${zzim_check.uuid == login.uuid and  zzim_check.bsr_id == bsr_id}">
+											<img class="book_zzim_img" alt="" src="../resources/site_img/zzim_on.png"/>
+										</c:when>
+										<c:otherwise>
+											<img class="book_zzim_img" alt="" src="../resources/site_img/zzim_off.png">
+										</c:otherwise>
+								   </c:choose>
+								</a>
+								<div class="zzim_count">${zzim.zzim}</div>
+							</div>
 									<div class="slider slider-single">
 										<c:forEach var="topimg" items="${bookimg}">
 										<div><img src="http://localhost:8080/bookimg/${topimg.bi_file_name}" alt="사진 X" style="width:400px;height:400px;"></div>
@@ -67,11 +82,7 @@
 										</c:forEach>
 								   </div>
 						</div>
-						<div class="zzim">
-							<img class="zzim_img" alt=""
-								src="/resources/site_img/total_heart.png">
-							<div class="zzim_count">${zzim.zzim}</div>
-						</div>
+						
 					</div>
 					<div class="infoArea">
 
@@ -196,21 +207,7 @@
 								<a href="#none" class="roll buy info">
 									<span style="background-color:red">구매요청</span>
 								</a> 
-								<a href="#none" class="roll buy">
-									<span style="background-color:red">관심목록에 찜하기 아래클릭</span>
-								</a> 
-								<a href="#none" class="roll buy">
-									<c:set value='<%=request.getParameter("bsr_id")%>' var="bsr_id" />
-									<c:choose>
-										<c:when
-											test="${zzim_check.uuid == login.uuid and  zzim_check.bsr_id == bsr_id}">
-											<img class="book_zzim_img" alt="" src="../resources/site_img/zzim_on.png"/>
-										</c:when>
-										<c:otherwise>
-											<img class="book_zzim_img" alt="" src="../resources/site_img/zzim_off.png">
-										</c:otherwise>
-									</c:choose>
-								</a>
+								
 							</div>
 						</div>
 					</div>
@@ -240,60 +237,66 @@
 	<c:otherwise>
 		<script>
 		$('.book_zzim_img').click(function(){
-	        var allowsrc = $(this).attr('src');
-	        if(allowsrc.match('on')){
-	           //찜이 이미 눌러져있다  -> 찜 해제
-	           $.ajax({
-	              url: "/zzimoff", //매핑
-	              type: "GET",
-	              data :  {
-	                 "uuid" : ${login.uuid}, 
-	                 "bsr_id" : <%=request.getParameter("bsr_id")%>
-	              },
-	              success : function(){
-	            	
-	            	  $.ajax({
-	            		  url:"/zzimcount",
-	            		  type:"GET",
-	            		  data :{  
-	            			  "bsr_id" : <%=request.getParameter("bsr_id")%>
-	            		  },
-	            		  success : function(data){
-	            			  $('.zzim_count').text(""+data);
-	            			 
-	            		  }
-	            	  });
+			if(${login.uuid}==${detail.uuid}){
+				alert("자신의 게시글을 찜할수 없습니다.!");
+			}else{
+				   var allowsrc = $(this).attr('src');
+			        if(allowsrc.match('on')){
+			           //찜이 이미 눌러져있다  -> 찜 해제
+			           $.ajax({
+			              url: "/zzimoff", //매핑
+			              type: "GET",
+			              data :  {
+			                 "uuid" : ${login.uuid}, 
+			                 "bsr_id" : <%=request.getParameter("bsr_id")%>
+			              },
+			              success : function(){
+			            	
+			            	  $.ajax({
+			            		  url:"/zzimcount",
+			            		  type:"GET",
+			            		  data :{  
+			            			  "bsr_id" : <%=request.getParameter("bsr_id")%>
+			            		  },
+			            		  success : function(data){
+			            			  $('.zzim_count').text(""+data);
+			            			 
+			            		  }
+			            	  });
 
-	              }
-	           });
-	           $(this).attr('src','../resources/site_img/zzim_off.png');
-	        }else{
-	           //찜이 안눌러 져있다  ->찜 등록
-	           $.ajax({
-	              url: "/zzimon", //매핑
-	              type: "GET",
-	              data :  {
-	            	  "uuid" : ${login.uuid}, 
-	                  "bsr_id" : <%=request.getParameter("bsr_id")%>
-	              },
-	              success : function(){
-	            	  $.ajax({ 
-	            		  url:"/zzimcount",
-	            		  type:"GET",
-	            		  data :{ 
-	            			  "bsr_id" : <%=request.getParameter("bsr_id")%>
-	            		  },
-	            		  success : function(data){
-	            			  $('.zzim_count').text(""+data);
-	            			  
-	            		  }
-	            	  });
-	              }
-	           });  
-	           $(this).attr('src','../resources/site_img/zzim_on.png');
-	        }
-	     });
+			              }
+			           });
+			           $(this).attr('src','../resources/site_img/zzim_off.png');
+			        }else{
+			           //찜이 안눌러 져있다  ->찜 등록
+			           $.ajax({
+			              url: "/zzimon", //매핑
+			              type: "GET",
+			              data :  {
+			            	  "uuid" : ${login.uuid}, 
+			                  "bsr_id" : <%=request.getParameter("bsr_id")%>
+			              },
+			              success : function(){
+				            	  $.ajax({ 
+				            		  url:"/zzimcount",
+				            		  type:"GET",
+				            		  data :{ 
+				            			  "bsr_id" : <%=request.getParameter("bsr_id")%>
+				            		  },
+				            		  success : function(data){
+				            			  $('.zzim_count').text(""+data);
+				            			  
+				            		  }
+				            	  });
+			              }
+			           });  
+			           $(this).attr('src','../resources/site_img/zzim_on.png');
+			        }
+			     }
+			});
 
+			  
+	     
 		
 		//구매하기 버튼 클릭시 ajax 
 		  $('.info').click(function(){

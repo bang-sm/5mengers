@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.dao.BookRequestDAO;
 import kr.co.vo.BookRequestDTO;
+import kr.co.vo.Criteria;
 
 @Service
 public class BookRequestServiceImpl implements BookRequestService {
@@ -22,10 +23,13 @@ public class BookRequestServiceImpl implements BookRequestService {
 	}
 
 	@Override
-	public List<BookRequestDTO> list() throws Exception {
-		return dao.list();
+	public List<BookRequestDTO> list(Criteria cri) throws Exception {
+		return dao.list(cri);
 	}
-
+	@Override
+	public int brbListCount() {
+	return dao.brbListCount();
+}
 	public BookRequestDTO read(int brb_id) throws Exception {
 		return dao.read(brb_id);
 	}

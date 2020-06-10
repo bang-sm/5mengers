@@ -11,11 +11,6 @@
 	<%@ include file="../common/head.jsp"%>
 	<div id="container">
 		<div id="contents">
-			<div class="title_top">
-				<h2>
-					MY PAGE <span class="title_sub">${login.name } 님 어세오세요!</span>
-				</h2>
-			</div>
 			<%@ include file="../common/myNav.jsp"%>
 			<!-- .mypage_banner -->
 			<div class="xans-element- xans-myshop xans-myshop-bankbook">

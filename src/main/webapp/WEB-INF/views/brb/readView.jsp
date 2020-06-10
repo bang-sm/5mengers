@@ -74,8 +74,8 @@
 					</tr>					
 				</table>
 				<button type="submit" class="btn_update">수정</button>
-				<button type="submit" class="btn_delete">삭제</button>
-				<button type="submit" class="btn_list">목록</button>
+				<button class="btn_delete">삭제</button>
+				<button class="btn_list">목록</button>
 		</section>
 	</div>
 </body>

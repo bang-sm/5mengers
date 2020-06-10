@@ -56,10 +56,10 @@ public class MyController {
 		uv = (UserVO) hs.getAttribute("login");
 		int getuuid = uv.getUuid();  //나의아이디
 		
+		//나의 qna총 카운트
 		PageMaker pageMaker = new PageMaker();
 	    pageMaker.setCri(cri);
 	    
-	    //나의 qna총 카운트
 	    int qnacount=myService.qnaListCount(getuuid);
 	    pageMaker.setTotalCount(qnacount);
 	    

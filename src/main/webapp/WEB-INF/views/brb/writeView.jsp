@@ -8,11 +8,11 @@
 <meta charset="UTF-8">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>구매 요청 작성페이지</title>
-<script src="/resources/ckeditor/ckeditor.js"></script>
 </head>
 <script>
 	$(document).ready(function(){
 		var formObj = $("form[name='writeForm']");
+		// 등록
 		$(".btn_write").on("click", function(){
 			if(fn_valichk()){
 				return false;
@@ -22,13 +22,10 @@
 			formObj.submit();
 			location.href("/brb/list")
 		})
-		$(".btn_search").on("click", function(){
-			var keyword = $("#keyword").val().trim();
-			$.ajax({
-				url: "/bSearch",
-				type: "GET",
-				data: "keyword", keyword
-			})
+		// 목록
+		$(".btn_list").on("click", function(){
+			
+			location.href = "/brb/list";
 		})
 
 		function fn_valichk(){
@@ -49,22 +46,22 @@
 			<tbody>
 				<tr>
 					<td>
-						<label for="writer">작성자(수정요)</label><input type="text" id="writer" name="writer" value="${login.userid}" readonly="readonly"/>
+						<label for="writer">작성자</label><input type="text" id="writer" name="writer" value="${login.userid}" readonly="readonly"/>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="bname">도서명(수정요)</label><input type="text" id="bname" name="bname"/><div><a href="#">도서검색</a></div>
+						<label for="brb_isbn">도서명</label><input type="text" id="brb_isbn" name="brb_isbn" readonly="readonly"/><button type="button">도서검색</button>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="brb_title">게시물제목</label><input type="text" id="brb_title" name="brb_title" class="chk"/>
+						<label for="brb_title">게시물 제목</label><input type="text" id="brb_title" name="brb_title" class="chk"/>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="brb_price">가격</label><input type="text" id="brb_price" name="brb_price" class="chk"/>
+						<label for="brb_price">구매 희망가</label><input type="text" id="brb_price" name="brb_price" class="chk"/>
 					</td>
 				</tr>
 				<tr>
@@ -83,14 +80,14 @@
 				</tr>
 				<tr>
 					<td>
-						<label for="brd_comment">내용</label>
+						<label for="brd_comment">내용</label><br>
 						<textarea id="brd_comment" name="brd_comment"></textarea>
-						<script>CKEDITOR.replace('brd_comment', {allowedContent: true});</script>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<button type="submit" class="btn_write">등록</button><button>목록</button><%-- 목록으로 클릭시 confirm --%>
+						<button type="submit" class="btn_write">등록</button>
+						<button type="button" class="btn_list">목록</button><%-- 목록으로 클릭시 confirm --%>
 					</td>
 				</tr>
 			</tbody>

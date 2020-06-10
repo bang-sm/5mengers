@@ -32,7 +32,7 @@ public class QnAController {
 			
 		}
 		@RequestMapping(value = "/qna/write", method = RequestMethod.POST)
-		public String write(HttpSession httpSession, QnADTO qnaDTO) throws Exception {			
+		public String write(HttpSession httpSession, QnADTO qnaDTO) throws Exception {
 			
 			logger.info("/qna/write");
 			

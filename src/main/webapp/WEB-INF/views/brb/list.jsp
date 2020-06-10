@@ -31,9 +31,32 @@
 						</tr>
 						</c:forEach>
 					</table>
-					<button onclick="location='/brb/writeView'">작성하기</button>
 			</section>
 		</header>
+		<div class="box-footer">
+				<div class="text-center">
+					<ul id="pagination">
+						<c:if test="${pageMaker.prev }">
+						    <li>
+						        <a href='<c:url value="/brb/list?page=${pageMaker.startPage-1 }"/>'>이전</i></a>
+						    </li>
+					    </c:if>
+					    
+					    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+						    <li>
+						        <a href='<c:url value="/brb/list?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
+						    </li>
+					    </c:forEach>
+					  
+					    <c:if test="${pageMaker.next}">
+						    <li>
+						        <a href='<c:url value="/brb/list?page=${pageMaker.endPage+1 }"/>'>다음</a>
+						    </li>
+					    </c:if>
+					</ul>
+				</div>
+			</div>
+			<button onclick="location='/brb/writeView'">작성하기</button>
 	</div>
 </body>
 </html>
