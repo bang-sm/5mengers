@@ -26,22 +26,27 @@
 			<tbody>
 				<tr>
 					<td>
-						<label for="writer">작성자(수정요)</label><input type="text" id="writer" name="writer" value="${login.userid}" readonly="readonly"/>
+						<label for="userid">작성자</label><input type="text" id="userid" name="userid" value="${login.userid}" readonly="readonly"/>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="bname">도서명(수정요)</label><input type="text" id="bname" name="bname"/><div><a href="#">도서검색</a></div>
+						<label for="brb_isbn">도서명</label><input type="text" id="brb_isbn" name="brb_isbn" readonly="readonly"/><button type="button">도서검색</button>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="price">가격(수정요)</label><input type="text" id="price" name="price" class="chk"/>
+						<label for="brb_title">게시물 제목</label><input type="text" id="brb_title" name="brb_title" class="chk" value="${update.brb_title}"/>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="category">카테고리</label>
+						<label for="brb_price">구매 희망가</label><input type="text" id="brb_price" name="brb_price" class="chk" value="${update.brb_price}"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="bk_category">카테고리</label> <!-- null check?? -->
 						<select id="bk_category" name="bk_category">
 							<option value="01">인문</option><option value="02">역사</option><option value="03">예술</option>
 							<option value="04">종교</option><option value="05">사회</option><option value="06">과학</option>
@@ -56,13 +61,13 @@
 				<tr>
 					<td>
 						<label for="brd_comment">내용</label><br>
-						<textarea id="brd_comment" name="brd_comment">${read.brd_comment}</textarea>				
+						<textarea id="brd_comment" name="brd_comment">${update.brd_comment}</textarea>
 						
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<button type="submit">수정</button><button class="btn_list">목록</button><%-- 목록으로 클릭시 confirm --%>
+						<button type="submit">수정</button><button type="button" class="btn_list">목록</button><%-- 목록으로 클릭시 confirm --%>
 					</td>
 				</tr>
 			</tbody>

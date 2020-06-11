@@ -1,5 +1,7 @@
 package kr.co.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.service.BookRequestService;
 import kr.co.vo.BookDetailDTO;
 import kr.co.vo.BookRequestDTO;
+import kr.co.vo.Criteria;
+import kr.co.vo.PageMaker;
 import kr.co.vo.UserVO;
+
+
 
 @Controller
 public class BookRequestController {
@@ -48,22 +54,40 @@ public class BookRequestController {
 		
 		// 게시판 목록
 		@RequestMapping(value ="brb/list", method = RequestMethod.GET)
-		public String list(Model model) throws Exception {
+		public String list(Model model,Criteria cri, PageMaker pageMaker) throws Exception {
 			logger.info("brb/list");
 			
-			model.addAttribute("list", service.list());
+			// 구매 요청 게시물 총 갯수
+			pageMaker.setCri(cri);
+			int brbcount=service.brbListCount();
+			pageMaker.setTotalCount(brbcount);
+			
+			
+			model.addAttribute("list", service.list(cri));
+			model.addAttribute("pageMaker", pageMaker);
 			
 			return "/brb/list";
 		}
 		
 		// 게시판 상세페이지
 		@RequestMapping(value = "brb/readView", method = RequestMethod.GET)
-		public String read(BookRequestDTO bRequestDTO, Model model) throws Exception {
-			logger.info("brb/readView");			
-			
+		public String readView(BookRequestDTO bRequestDTO, Model model,HttpSession hs,UserVO uv) throws Exception {
+			logger.info("brb/readView");
+			uv = (UserVO) hs.getAttribute("login");
+			int uuid = uv.getUuid();
 			model.addAttribute("read", service.read(bRequestDTO.getBrb_id()));
+			model.addAttribute("user", uuid);
 			
 			return "/brb/readView";
+		}
+		
+		@ResponseBody
+		@RequestMapping(value = "brb/mybooklist", method = RequestMethod.GET)
+		public List<BookDetailDTO> readMyBook(int uuid) throws Exception {
+			logger.info("brb/mybooklist");
+			//내가 팔고있는 나의 책 리스트
+			
+			return 	service.myBuyingBookList(uuid);
 		}
 		
 		// 수정페이지 수정 화면
@@ -94,6 +118,16 @@ public class BookRequestController {
 			service.delete(bRequestDTO.getBrb_id());
 			
 			return "redirect:/brb/list";
+		}
+		
+		// 댓글 작성하기
+		
+		public String replyWrite(BookRequestDTO bRequestDTO) throws Exception {
+			logger.info("/brb/replyWrite");
+			
+			service.writeReply(bRequestDTO);
+			
+			return "redirect:/brb/readView?brb_id=" + bRequestDTO.getBrb_id();
 		}
 		
 		// 네이버 책 API 가져오기(ajax)

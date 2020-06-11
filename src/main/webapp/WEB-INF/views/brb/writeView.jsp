@@ -6,7 +6,9 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="../resources/css/book.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../resources/js/booksearch.js"></script>
 <title>구매 요청 작성페이지</title>
 </head>
 <script>
@@ -40,6 +42,13 @@
 	})
 </script>
 <body>
+	<div id="booklist">
+		<div id="booklist_div">
+
+			<table id="bookajax"></table>
+
+		</div>
+	</div>
 <section id="container">
 	<form name="writeForm" role="form" method="post" action="/brb/write">
 		<table>
@@ -51,12 +60,13 @@
 				</tr>
 				<tr>
 					<td>
-						<label for="brb_isbn">도서명</label><input type="text" id="brb_isbn" name="brb_isbn" readonly="readonly"/><button type="button">도서검색</button>
+						<label for="brb_isbn">도서명</label><input type="text" id="brb_bookname" name="brb_bookname" readonly="readonly"/>
+						<button type="button" class="bookbtn" onclick="booksearch()">책검색</button>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="brb_title">게시물 제목</label><input type="text" id="brb_title" name="brb_title" class="chk"/>
+						<label for="brb_title">게시물 제목</label><input type="text" id="brb_title" name="brb_title" class="chk" value="제목을 입력하세요"/>
 					</td>
 				</tr>
 				<tr>

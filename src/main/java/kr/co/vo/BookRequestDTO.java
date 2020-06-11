@@ -3,6 +3,8 @@ package kr.co.vo;
 import java.util.Date;
 
 public class BookRequestDTO {
+	
+	// brb
 	private int brb_id;
 	private String bk_category;
 	private String brd_comment;
@@ -13,13 +15,28 @@ public class BookRequestDTO {
 	private String brb_title;
 	private String brb_price;
 	private String keyword;
+	private String brb_bookname;
+	private String name;
+	// brb reply
 	
-
+	private int brbr_id;
+	private String uuid_book_url;
+	private Date brbr_regdate;
+	
 	public BookRequestDTO() {
 		super();
-		System.out.println("BookRequestDTO");
+		System.out.println("BookRequestDTO()");
+	}
+	
+	// brb getter & setter
+	
+	public String getName() {
+		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public int getBrb_id() {
 		return brb_id;
@@ -100,4 +117,39 @@ public class BookRequestDTO {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
+	
+	public String getBrb_bookname() {
+		return brb_bookname;
+	}
+
+	public void setBrb_bookname(String brb_bookname) {
+		this.brb_bookname = brb_bookname;
+	}
+	
+	// brb reply getter & setter
+	
+	public int getBrbr_id() {
+		return brbr_id;
+	}
+
+	public void setBrbr_id(int brbr_id) {
+		this.brbr_id = brbr_id;
+	}
+
+	public String getUuid_book_url() {
+		return uuid_book_url;
+	}
+
+	public void setUuid_book_url(String uuid_book_url) {
+		this.uuid_book_url = uuid_book_url;
+	}
+
+	public Date getBrbr_regdate() {
+		return brbr_regdate;
+	}
+
+	public void setBrbr_regdate(Date brbr_regdate) {
+		this.brbr_regdate = brbr_regdate;
+	}
+
 }
