@@ -105,17 +105,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <!-- 메인 책 리스트 -->
    <select id="main_book_list" resultType="kr.co.vo.BookDetailDTO">
         SELECT
-	          bsr_id,
+	          a.bsr_id,
+	          (select bi_file_name from book_img where bsr_id =a.bsr_id LIMIT 1) as img,
 	          uuid,
-	          bsr_price,
-	          bsr_name,
-	          bsr_category
+	          a.bsr_price,
+	          a.bsr_name,
+	          a.bsr_category
         FROM
-              book_sell_regist
+              book_sell_regist a
         WHERE 
-        	  bsr_status = 1 
+        	  a.bsr_status = 1 
         ORDER BY
-              bsr_regdate desc;
+              a.bsr_regdate desc;
    </select>
    <select id="main_ct_book_list" resultType="kr.co.vo.BookDetailDTO">
         SELECT
