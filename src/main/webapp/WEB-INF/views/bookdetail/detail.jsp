@@ -442,14 +442,14 @@ content : iwContent
 infowindow.open(map, marker); 
 
 var geocoder = new kakao.maps.services.Geocoder();
-
+var coord = new kakao.maps.LatLng(abc, def);
 var callback = function(result, status) {
     if (status === kakao.maps.services.Status.OK) {
-	    $("#map_detail").html("<div style='font-size:20px;font-weight:bold;'>판매자 직거래 희망 지역</div>   <br><div class='map_address'>"+result[0].address_name+"</div>");
+	    $("#map_detail").html("<div style='font-size:20px;font-weight:bold;'>판매자 직거래 희망 지역</div><br><div></div><br><div class='map_address'>"+result[0].address.address_name+"</div>");
     }
 };
 
-geocoder.coord2RegionCode(def, abc, callback);
+geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 
 var new_map =$('.map_border').parent().parent();
 new_map.css("border","1px solid blue");
