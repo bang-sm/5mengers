@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.vo.BookDetailDTO;
+import kr.co.vo.LoginDTO;
 import kr.co.vo.Criteria;
 import kr.co.vo.MyhistoryDTO;
 
@@ -32,4 +33,7 @@ public interface MyService {
 	public void confirm(int bsr_id, int uuid);
 	//판매완료된 리스트
 	public List<MyhistoryDTO> mySellhistory(int getuuid, String startDate, String endDate);
+	//회원탈퇴 PROTOCOL - 비밀번호 확인
+	public void dropUser(String userid) throws Exception;
+	
 }

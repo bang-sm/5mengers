@@ -122,5 +122,12 @@ public class MyDAOImpl implements MyDAO {
 		map.put("endDate",endDate);
 		return sqlSession.selectList("userMapper.my_sell_history",map);
 	}
+	
+	@Override
+	public void dropUser(String userid) throws Exception {
+		HashMap<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("userid", userid);
+		sqlSession.update("userMapper.userDrop", paramMap);
+	}
 
 }

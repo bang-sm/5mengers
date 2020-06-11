@@ -18,6 +18,7 @@ public class MyServiceImpl implements MyService{
 	@Autowired
 	MyDAO dao;
 	
+	
 	//찜카운트
 	@Override
 	public int zzimCount(int uuid) throws Exception {
@@ -99,6 +100,13 @@ public class MyServiceImpl implements MyService{
 	public List<MyhistoryDTO> mySellhistory(int getuuid, String startDate, String endDate) {
 		// TODO Auto-generated method stub
 		return dao.mySellhistory(getuuid,startDate,endDate);
+	}
+	
+	// 회원탈퇴 프로토콜 
+	@Override
+	public void dropUser(String userid) throws Exception {
+		
+		dao.dropUser(userid);
 	}
 
 }
