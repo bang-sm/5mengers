@@ -40,7 +40,7 @@
    </div>
 
 <div class="insert-table">   
-   <form name="form" method="post" action="/booksellregistPage" enctype="multipart/form-data" onsubmit="return check()">
+   <form name="form" method="post" action="/booksellregistPage" enctype="multipart/form-data" onsubmit="return check()" >
    <div class="insert_title">글 작성</div>
    <table style="width:800px;">
       <tbody>
@@ -132,7 +132,7 @@
             </th>
             <td>
                <span style="font-size: 16px; color: #555555;">
-                  <input type="text" id="place"    class="map_juso" onkeypress="InpuOnlyNumber(obj)" readonly/>
+                  <input type="text" id="place"  placeholder="지도에서 희망 거래 위치를 클릭해주세요!"  class="map_juso" onkeypress="InpuOnlyNumber(obj)" readonly/>
                </span>
              </td>
          </tr>
@@ -163,12 +163,11 @@
             
       </tbody>
    </table>
-   <button class="insert_btn" type="submit" value="regist" >글 등록</button>
+   <button class="insert_btn" type="submit" value="regist">글 등록</button> 
    </form>
-</div>
+</div> 
    <div class="map_wrap">
-      <div id="map"
-         style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+      <div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 
       <div id="menu_wrap" class="bg_white">
          <div class="option">
@@ -208,7 +207,6 @@ function removeChar(event) {
 }
 </script>
 
-</script>
 
 
 <!-- 지도 API 이용 -->

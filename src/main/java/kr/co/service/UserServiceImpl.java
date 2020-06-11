@@ -25,6 +25,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import common.mail.MailAlert;
 import common.mail.MailHandler;
 import common.mail.TempKey;
 import kr.co.dao.UserDAO;
@@ -256,6 +257,8 @@ public class UserServiceImpl implements UserService {
 		String newPass = new TempKey().generateKey(10);
 		String scNewPass = BCrypt.hashpw(newPass, BCrypt.gensalt());
 		userDAO.updatePass(userid, scNewPass);
+		
+		String mailAlert = new MailAlert().mailAlert(userDAO.emailSend(userid));
 		
 		// 메일 전송
 		MailHandler sendMail = new MailHandler(mailSender);

@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.core.io.ResourceLoader;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import kr.co.vo.BookSellRegistDTO;
 
 @Component("fileUtils")
@@ -22,8 +22,9 @@ import kr.co.vo.BookSellRegistDTO;
 // 첨부파일의 정보를 이용하여 여러 조작을 할 클래스 
 public class FileUtils {
 
-	String filePath="C:\\bookimg\\";
-	
+
+	@Autowired
+	HttpSession session;
 	
 	public List<Map<String, Object>> parseInsertFileInfo(BookSellRegistDTO bookSellRegistDTO,
 			MultipartHttpServletRequest mpRequest) throws Exception{
@@ -44,7 +45,7 @@ public class FileUtils {
 		
 		int bsr_id = bookSellRegistDTO.getBsr_id(); // Bsr_id 값을 bsr_id에 담는다 
 		
-		
+		String filePath=session.getServletContext().getRealPath("/");
 		
 		
 		File file = new File(filePath);
