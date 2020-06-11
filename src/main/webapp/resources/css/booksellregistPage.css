@@ -106,3 +106,12 @@
 	resize:none;
 }
 
+/*input 타입들 사이즈 */
+#booktitle ,#author, #fixedprice ,#place{
+	width:600px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	
+}
+

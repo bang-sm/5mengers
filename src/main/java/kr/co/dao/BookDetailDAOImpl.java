@@ -200,4 +200,10 @@ public class BookDetailDAOImpl implements BookDetailDAO {
 		return sqlSession.selectList("BookDetailMapper.serachBook", bsr_name);
 	}
 
+	@Override
+	public List<BookDetailDTO> mainCateBookList(String bc_code) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("BookDetailMapper.main_ct_book_list", bc_code);
+	}
+
 }

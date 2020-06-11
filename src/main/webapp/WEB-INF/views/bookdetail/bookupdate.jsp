@@ -432,7 +432,7 @@ $(document).on("click",".del",function(){
 
 function check(){
 	var imgnum=0;
-	
+	var undefinenum=0;
 	if ($("#price").val() == ""){
 		alert("희망 가격을 입력해주세요")
 		$("#price").focus();
@@ -457,14 +457,24 @@ function check(){
 		}else{
 			imgnum++;
 		}
+		if(!($("input[name=img"+i+"]").val().match(reg)) ){
+			alert("업로드한 파일은 이미지 파일이 아닙니다")
+			return false;
+		}
 	} 
 	if(imgnum<3 || imgnum >5 || undefinenum !=0){
 		alert("사진은 3장부터 5장까지 첨부 하셔야 합니다!");
 		return false;
 	}
+	var reg = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
 	
 	
+	if(!($(".appendpic").val().match(reg)) ){
+		alert("업로드한 파일은 이미지 파일이 아닙니다")
+		return false;
+	}
 	
+	alert("책 등록에 성공하셨습니다.");
 	
 	return true;
 	

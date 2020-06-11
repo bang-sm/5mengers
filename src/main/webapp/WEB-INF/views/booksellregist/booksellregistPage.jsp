@@ -27,9 +27,7 @@
 </script>
 
 <!-- 필수요소 체크  -->
-<script type="text/javascript" >
-
-
+<script type="text/javascript">
 function check(){
 	var imgnum=0;
 	var undefinenum=0;
@@ -68,19 +66,29 @@ function check(){
 		}else{
 			imgnum++;
 		}
+		if(!($("input[name=img"+i+"]").val().match(reg)) ){
+			alert("업로드한 파일은 이미지 파일이 아닙니다")
+			return false;
+		}
 	} 
 	if(imgnum<3 || imgnum >5 || undefinenum !=0){
 		alert("사진은 3장부터 5장까지 첨부 하셔야 합니다!");
 		return false;
 	}
+	var reg = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
 	
+	
+	if(!($(".appendpic").val().match(reg)) ){
+		alert("업로드한 파일은 이미지 파일이 아닙니다")
+		return false;
+	}
+	
+	alert("책 등록에 성공하셨습니다.");
 	
 	
 	return true
 	
 }
-
-
 </script>
 
 <!-- 책 API list style -->
@@ -174,7 +182,6 @@ function check(){
 									<option value="17">IT</option>
 									<option value="18">자격증</option>
 									<option value="19">참고서</option>
-
 						</select>
 					</span>
 			    </td>
@@ -195,7 +202,7 @@ function check(){
 				</th>
 				<td>
 					<span style="font-size: 16px; color: #555555;">
-						<input type="text" id="place"    class="map_juso"  readonly/>
+						<input type="text" id="place"    class="map_juso" onkeypress="InpuOnlyNumber(obj)" readonly/>
 					</span>
 			    </td>
 			</tr>
@@ -301,28 +308,32 @@ function InpuOnlyNumber(obj)
 </script>
 
 <!-- 지도 API 이용 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
 <script>
-// 마커를 담을 배열입니다
-var markers = [];
+	// 마커를 담을 배열입니다
+	var markers = [];
 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	mapOption = {
+		center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+		level : 3
+	// 지도의 확대 레벨
+	};
 
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption);
 
-// 장소 검색 객체를 생성합니다
-var ps = new kakao.maps.services.Places();  
+	// 장소 검색 객체를 생성합니다
+	var ps = new kakao.maps.services.Places();
 
-// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
-var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+	var infowindow = new kakao.maps.InfoWindow({
+		zIndex : 1
+	});
 
-// 키워드로 장소를 검색합니다
-searchPlaces();
+	// 키워드로 장소를 검색합니다
+	searchPlaces();
 
 map.setDraggable(false); //맵 이동 금지    
 map.setZoomable(false); //맵 드래그 금지
@@ -330,13 +341,12 @@ map.setZoomable(false); //맵 드래그 금지
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
 
-    var keyword = document.getElementById('keyword').value;
+		var keyword = document.getElementById('keyword').value;
 
-    if (!keyword.replace(/^\s+|\s+$/g, '')) {
-        alert('키워드를 입력해주세요!');
-        return false;
-    }
-
+		if (!keyword.replace(/^\s+|\s+$/g, '')) {
+			alert('키워드를 입력해주세요!');
+			return false;
+		}
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch( keyword, placesSearchCB); 
 }
@@ -570,8 +580,6 @@ $(document).on("click",".del",function(){
 	count--;
 }); 
 </script>
-
-
 
 
 </html>

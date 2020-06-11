@@ -7,13 +7,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
-
 import kr.co.dao.BookDetailDAO;
 import kr.co.vo.BookCategoryDTO;
 import kr.co.vo.BookDetailDTO;
@@ -231,6 +228,12 @@ public class BookDetailServiceImpl implements BookDetailService {
 	public Object mainBookSearchList(String bsr_name) {
 		// TODO Auto-generated method stub
 		return dao.mainBookSearchList(bsr_name);
+	}
+
+	@Override
+	public List<BookDetailDTO> mainCateBookList(String bc_code) {
+		// TODO Auto-generated method stub
+		return dao.mainCateBookList(bc_code);
 	}
 
 
