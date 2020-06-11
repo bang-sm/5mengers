@@ -93,16 +93,16 @@
 								<c:choose>
 									<c:when test="${detail.bsr_status == 0 }">
 										<div class="book_confirm"
-											style="color: red; border: 1px solid blue; padding: 10px;">
+											style="color: red; border: 1px solid red; padding: 10px;">
 											게시글 비활성화</div>
 									</c:when>
 									<c:when test="${detail.bsr_check == 0 && detail.bsr_status == 1 }">
 										<div class="book_confirm"
-											style="color: blue; border: 1px solid blue; padding: 10px;">
+											style="color: red; border: 1px solid red; padding: 10px;">
 											예약중</div>
 									</c:when>
 									<c:when test="${detail.bsr_check == 2 && detail.bsr_status == 0}">
-										<div class="book_confirm" style="color: blue">삭제됨</div>
+										<div class="book_confirm" style="color: red; border: 1px solid red;">삭제됨</div>
 									</c:when>
 									<c:when test="${detail.bsr_check == 1 && detail.bsr_status == 0}">
 										<div class="book_confirm" style="color: blue">판매완료</div>
@@ -306,7 +306,7 @@
 				  if(${login.uuid} != ${detail.uuid}){ 
 					  
 					  $.ajax({
-								url:"/bookactivecount",
+								url:"/bookactivecount", 
 								type:"GET",
 								data:{
 									"bsr_id":${detail.bsr_id}
@@ -442,14 +442,14 @@ content : iwContent
 infowindow.open(map, marker); 
 
 var geocoder = new kakao.maps.services.Geocoder();
-
+var coord = new kakao.maps.LatLng(abc, def);
 var callback = function(result, status) {
     if (status === kakao.maps.services.Status.OK) {
-	    $("#map_detail").html("<div style='font-size:20px;font-weight:bold;'>판매자 직거래 희망 지역</div>   <br><div class='map_address'>"+result[0].address_name+"</div>");
+	    $("#map_detail").html("<div style='font-size:20px;font-weight:bold;'>판매자 직거래 희망 지역</div><br><div></div><br><div class='map_address'>"+result[0].address.address_name+"</div>");
     }
 };
 
-geocoder.coord2RegionCode(def, abc, callback);
+geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 
 var new_map =$('.map_border').parent().parent();
 new_map.css("border","1px solid blue");

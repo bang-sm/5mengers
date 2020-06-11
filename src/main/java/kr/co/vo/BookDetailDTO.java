@@ -25,9 +25,16 @@ public class BookDetailDTO {
 	private String bi_user_file_name;
 	private String bi_file_name;
 	private String bi_root;
+	private String img;
 	
 	
 	
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 	public int getBsr_status() {
 		return bsr_status;
 	}
