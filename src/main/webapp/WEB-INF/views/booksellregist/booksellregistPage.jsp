@@ -222,6 +222,8 @@
 
 <!-- 필수요소 체크  -->
 <script type="text/javascript">
+	
+	//유효성 검사 
 	function check() {
 
 		if ($("#booktitle").val() == "") {
@@ -250,20 +252,23 @@
 			$("#content").focus();
 			return false;
 		}
-		
+
 		var reg = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
+		// 파일 확장자명 유효성 검사
+		
+	
+			if (!($(".appendpic"+count).val().match(reg))) {
+				alert("업로드한 파일은 이미지 파일이 아닙니다")
+				return false;
+			}
+
 		
 		
-		if(!($(".appendpic").val().match(reg)) ){
-			alert("업로드한 파일은 이미지 파일이 아닙니다")
-			return false;
-		}
-		
-		if($(".appendpic").length < 3){
+		if (count < 3) {
 			alert("이미지는 3개 이상 등록 하셔야 합니다.")
 			return false;
 		}
-		
+
 		alert("책 등록에 성공하셨습니다.")
 
 		return true
@@ -350,24 +355,26 @@
 									name="bsr_comment"></textarea></td>
 						</tr>
 						<tr>
-							<td><input type="file" name="img" id="imgFile" class="appendpic"/></td>
-						</tr>
-						<tr>
 							<td><button type="button" class="appendimg">파일 추가</button></td>
 						<tr>
-							<td><div class="newimg"></div>
+						<tr>
+							<td><input type="file" name="img" id="imgFile"
+								class="appendpic1" /></td>
 						</tr>
 						<tr>
-							<td><input type="text" class="map_x" name="map_x" value=""
-								hidden /> <input type="hidden" class="uuid" name="uuid"
+
+						<td><div class="newimg"></div></td>
+						</tr>
+						<tr>
+							<td>
+							 <input type="hidden" class="uuid" name="uuid"
 								value="${login.uuid}" /></td>
 							<td><input type="hidden" class="map_x" name="map_x" value="" />
 
 							</td>
 						</tr>
 						<tr>
-							<td><input type="hidden" class="map_y" name="map_y"
-								value="" /></td>
+							<td><input type="hidden" class="map_y" name="map_y" value="" /></td>
 						</tr>
 						<tr>
 							<td>
@@ -696,21 +703,27 @@
 </script>
 <!-- 파일 추가!  성공! -->
 <script type="text/javascript">
-	var count = 0;
-	$(".appendimg").click(
-					function() {
-						if (count < 4) {
-							$('.newimg').append('<input class="appendpic" type="file" name="img'+count+'"/><br>');
-							count++;
-						} else {
-							alert("더 이상 파일을 추가 할 수 없습니다. ")
-						}
-					});
+	
 </script>
+<script type="text/javascript">
+var count = 1;
+	// 파일 생성
+	$(function() {
+		
+		$(".appendimg")
+				.click(
+						function() {
+							if (count < 6) {
+								$('.newimg')
+										.append(
+												'<input class="appendpic"type="file" name="img'+(count+1)+'"/><br>');
+								count++;
+							} else {
+								alert("더 이상 파일을 추가 할 수 없습니다. ")
+							}
+						});
 
-
-
-
+</script>
 
 
 </html>
