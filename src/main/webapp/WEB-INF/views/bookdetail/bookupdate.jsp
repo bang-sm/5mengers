@@ -15,7 +15,7 @@
 
 
 <div class="update-table">
-	<form  method="post" action="/bookupdate_end" enctype="multipart/form-data">
+	<form  method="post" action="/bookupdate_end" enctype="multipart/form-data" onsubmit="return check()">
 		<div class="infoArea">
 			<h3>
 				<div style="width : 800px;color: blue; border: 1px solid blue; padding: 10px;">수정중</div>
@@ -48,21 +48,21 @@
 						<th scope="row">
 							<span style="font-size: 16px; color: #555555;">판매가</span></th>
 						<td>
-							<input type="text" name="bsr_price" value="${bookupdate[0].bsr_price } " style="width:100px;height:30px;"/>
+							<input id="price" type="text" name="bsr_price" value="${bookupdate[0].bsr_price } " style="width:100px;height:30px;"/>
 					    </td>
 					</tr>
 					<tr class=" xans-record-">
 						<th scope="row">
 							<span style="font-size: 16px; color: #555555;">책소개글</span></th>
 						<td>
-							<textarea name="bsr_comment">${bookupdate[0].bsr_comment }</textarea>
+							<textarea id="content" name="bsr_comment">${bookupdate[0].bsr_comment }</textarea>
 					    </td>
 					</tr>
 					<tr class=" xans-record-">
 						<th scope="row">
 							<span style="font-size: 16px; color: #555555;">직거래 희망 지역</span></th>
 						<td>
-							<input type="text" name="want" value="" style="width:500px;"/>
+							<input type="text" id="place"name="want" value="" style="width:500px;"/>
 					    </td>
 					</tr>
 					<tr class=" xans-record-">
@@ -70,7 +70,7 @@
 							<span style="font-size: 16px; color: #555555;">등록된 사진</span></th>
 						<td>
 							<c:forEach var="item" items="${bookupdate}">
-								 <div class="img${item.bsr_img_id} deletediv">
+								 <div class="img${item.bsr_img_id} deletediv appendpic">
 									 <span>${item.bi_user_file_name }</span>
 									 <button class="deletebtn"type="button" value="${item.bsr_img_id}">삭제</button>
 									 <input class="file_name" type="hidden" value="${item.bi_file_name}">
@@ -82,7 +82,6 @@
 						<th scope="row">
 							<span style="font-size: 16px; color: #555555;">사진 첨부</span><button type="button" class="appendimg">사진 추가</button></th>
 						<td>
-							<div><input type="file" name="img"/></div>
 							<div class="newimg"></div>
 					    </td>
 					</tr>
@@ -95,7 +94,7 @@
 		<input type='hidden' name="map_x" value="${bookupdate[0].map_x}"/>
 		<input type='hidden' name="map_y" value="${bookupdate[0].map_y}"/>	
 	</div>
-	<button style="width:100%;margin-top:20px;" type="submit">글 등록</button>
+	<button style="width:100%;margin-top:20px;" type="submit" onclick="checkFile()" value="regist">글 등록</button>
 	</form>
 	
 	
@@ -123,6 +122,20 @@
 function update(){
 	location.href="http://localhost:8080";
 }
+</script>
+<script>
+var count=0;
+$(".appendimg").click(function(){	
+	//3개 이상 5개 이하만 추가 할수 있다
+	var imgcount = $('.appendpic').length;
+	if(imgcount<5){
+		$('.newimg').append('<div class="fileappend"><input class="appendpic" type="file" name="img'+count+'"/><button type="button" class="del">삭제</button>');
+		count++;
+	}else{
+		alert("최대 5까지 사진을 첨부할 수 있습니다!")
+	}
+	
+});
 </script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
 <script>
@@ -362,7 +375,8 @@ function clicker(id){
 
 	 geocoder1.addressSearch(juso, callback);
 }
- 
+map.setDraggable(false); //맵 이동 금지    
+map.setZoomable(false); //맵 드래그 금지
  
  
 var geocoder = new kakao.maps.services.Geocoder();
@@ -378,9 +392,16 @@ var callback = function(result, status) {
 
 geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
  
+ 
+
+
 
 </script>
+
 <script>
+
+
+
 $(document).ready(function(){
 	$(".deletebtn").on("click",function(){
 		var img_id=$(this).val();
@@ -399,16 +420,68 @@ $(document).ready(function(){
 			  }
 		  });
 	});
+	
+	
+	
 });
+$(document).on("click",".del",function(){
+	$(this).parent('.fileappend').remove();
+}); 
 
-function deleteimg(id,filename){
-	 
+
+
+function check(){
+	var imgnum=0;
+	
+	if ($("#price").val() == ""){
+		alert("희망 가격을 입력해주세요")
+		$("#price").focus();
+		return false;
+	}
+	
+	if ($("#place").val() == ""){
+		alert("거래 위치를 선택해 주세요")
+		return false;
+	}
+	
+	if ($("#content").val() == ""){
+		alert("책 소개글을 입력해주세요")
+		$("#content").focus();
+		return false;
+	}
+	
+	var imgcount = $('.appendpic').length; //인풋의 개수
+	for(i=0;i<imgcount;i++){
+		if($("input[name=img"+i+"]").val() =="" ){
+		 	undefinenum++;
+		}else{
+			imgnum++;
+		}
+	} 
+	if(imgnum<3 || imgnum >5 || undefinenum !=0){
+		alert("사진은 3장부터 5장까지 첨부 하셔야 합니다!");
+		return false;
+	}
+	
+	
+	
+	
+	return true;
 	
 }
-var count=0;
-$(".appendimg").click(function(){	
-	$('.newimg').append('<input class="appendpic" type="file" name="img'+count+'"/><br>');
-	count++;
-});
+
+function checkFile(){
+	var fm = document.fileForm;
+	var fnm = fm.regist;
+	var ext = fnm.value;
+	
+	if(!(ext.substr(ext.length-3)=='jsp' || ext.substr(ext.length-3)=='jpg')||ext.substr(est.length-3)=='png')
+	{
+		alert("사진 파일만 올릴 수 있습니다");
+		return false;
+	}
+	fm.submit();
+} 
 </script>
+
 </html>

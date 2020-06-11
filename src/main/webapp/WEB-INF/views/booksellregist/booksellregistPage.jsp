@@ -4,206 +4,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>게시판</title>
-
-
+<title>글 등록 게시판</title>
+<link >
+<link rel="stylesheet" href="../resources/css/booksellregistPage.css">
 </head>
-<style>
-.map_wrap, .map_wrap * {
-	margin: 0;
-	padding: 0;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-	font-size: 12px;
-}
-
-.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
-	color: #000;
-	text-decoration: none;
-}
-
-.map_wrap {
-	position: relative;
-	width: 100%;
-	height: 500px;
-}
-
-#menu_wrap {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 250px;
-	margin: 10px 0 30px 10px;
-	padding: 5px;
-	overflow-y: auto;
-	background: rgba(255, 255, 255, 0.7);
-	z-index: 1;
-	font-size: 12px;
-	border-radius: 10px;
-}
-
-.bg_white {
-	background: #fff;
-}
-
-#menu_wrap hr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 2px solid #5F5F5F;
-	margin: 3px 0;
-}
-
-#menu_wrap .option {
-	text-align: center;
-}
-
-#menu_wrap .option p {
-	margin: 10px 0;
-}
-
-#menu_wrap .option button {
-	margin-left: 5px;
-}
-
-#placesList li {
-	list-style: none;
-}
-
-#placesList .item {
-	position: relative;
-	border-bottom: 1px solid #888;
-	overflow: hidden;
-	cursor: pointer;
-	min-height: 65px;
-}
-
-#placesList .item span {
-	display: block;
-	margin-top: 4px;
-}
-
-#placesList .item h5, #placesList .item .info {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-#placesList .item .info {
-	padding: 10px 0 10px 55px;
-}
-
-#placesList .info .gray {
-	color: #8a8a8a;
-}
-
-#placesList .info .jibun {
-	padding-left: 26px;
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
-		no-repeat;
-}
-
-#placesList .info .tel {
-	color: #009900;
-}
-
-#placesList .item .markerbg {
-	float: left;
-	position: absolute;
-	width: 36px;
-	height: 37px;
-	margin: 10px 0 0 10px;
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
-		no-repeat;
-}
-
-#placesList .item .marker_1 {
-	background-position: 0 -10px;
-}
-
-#placesList .item .marker_2 {
-	background-position: 0 -56px;
-}
-
-#placesList .item .marker_3 {
-	background-position: 0 -102px
-}
-
-#placesList .item .marker_4 {
-	background-position: 0 -148px;
-}
-
-#placesList .item .marker_5 {
-	background-position: 0 -194px;
-}
-
-#placesList .item .marker_6 {
-	background-position: 0 -240px;
-}
-
-#placesList .item .marker_7 {
-	background-position: 0 -286px;
-}
-
-#placesList .item .marker_8 {
-	background-position: 0 -332px;
-}
-
-#placesList .item .marker_9 {
-	background-position: 0 -378px;
-}
-
-#placesList .item .marker_10 {
-	background-position: 0 -423px;
-}
-
-#placesList .item .marker_11 {
-	background-position: 0 -470px;
-}
-
-#placesList .item .marker_12 {
-	background-position: 0 -516px;
-}
-
-#placesList .item .marker_13 {
-	background-position: 0 -562px;
-}
-
-#placesList .item .marker_14 {
-	background-position: 0 -608px;
-}
-
-#placesList .item .marker_15 {
-	background-position: 0 -654px;
-}
-
-#pagination {
-	margin: 10px auto;
-	text-align: center;
-}
-
-#pagination a {
-	display: inline-block;
-	margin-right: 10px;
-}
-
-#pagination .on {
-	font-weight: bold;
-	cursor: default;
-	color: #777;
-}
-</style>
-
-
-
-
 <%@ include file="../common/head.jsp"%>
 
-<!-- jquery 사용을 위한 src -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- none -> block -->
 <script type="text/javascript">
 	$(document).on('click', '.searchTitle', function() {
@@ -223,8 +29,10 @@
 <!-- 필수요소 체크  -->
 <script type="text/javascript" >
 
+
 function check(){
-	
+	var imgnum=0;
+	var undefinenum=0;
 	if ($("#booktitle").val() == ""){
 		alert("책을 검색해주세요")
 		$("#booktitle").focus();
@@ -253,6 +61,18 @@ function check(){
 		return false;
 	}
 	
+	var imgcount = $('.appendpic').length; //인풋의 개수
+	for(i=0;i<imgcount;i++){
+		if($("input[name=img"+i+"]").val() =="" ){
+		 	undefinenum++;
+		}else{
+			imgnum++;
+		}
+	} 
+	if(imgnum<3 || imgnum >5 || undefinenum !=0){
+		alert("사진은 3장부터 5장까지 첨부 하셔야 합니다!");
+		return false;
+	}
 	
 	
 	
@@ -269,11 +89,10 @@ function check(){
 	background-color: #CEE3F6;
 }
 </style>
+
+
 <body>
-	<h1>책 등록</h1>
-	<hr />
-	<input class="book" type="text" name="title" value="책 이름 " />
-	<button class="bookbtn" onclick="booksearch()">책 검색</button>
+<!--책 검색 버튼 클릭시 해당 div 나옴  -->
 	<div id="booklist">
 		<div id="booklist_div">
 
@@ -282,114 +101,143 @@ function check(){
 		</div>
 	</div>
 
-	<div id="root">
+<div class="insert-table">	
+	<form name="form" method="post" action="/booksellregistPage" enctype="multipart/form-data" onsubmit="return check()">
+	<div class="insert_title">글 작성</div>
+	<table style="width:800px;">
+		<tbody>
+			<tr class=" xans-record-">
+				<th scope="row">
+					<span style="font-size: 16px; color: #555555;">책 등록</span>
+				</th>
+				<td>
+					<span style="font-size: 16px; color: #555555;">
+						<input class="book" type="text" name="title" placeholder="책 이름을 입력해주세요!" />
+						<button type ="button"class="bookbtn" onclick="booksearch()">책 검색</button>
+					</span>
+			    </td>
+			</tr>
+			
+			<tr class=" xans-record-">
+				<th scope="row">
+					<span style="font-size: 16px; color: #555555;">책 이름 :</span>
+				</th>
+				<td>
+					<span style="font-size: 16px; color: #555555;">
+						<input type="text" id="booktitle" name="bsr_name" value="" readonly />
+					</span>
+			    </td>
+			</tr>
+			<tr class=" xans-record-">
+				<th scope="row">
+					<span style="font-size: 16px; color: #555555;">작가 :</span>
+				</th>
+				<td>
+					<span style="font-size: 16px; color: #555555;">
+						<input type="text" id="author" value="" readonly/>
+					</span>
+			    </td>
+			</tr>
+			<tr class=" xans-record-">
+				<th scope="row">
+					<span style="font-size: 16px; color: #555555;">정가 :</span>
+				</th>
+				<td>
+					<span style="font-size: 16px; color: #555555;">
+						<input type="text" id="fixedprice" name="bsr_fixed_price" value="" readonly />
+					</span>
+			    </td>
+			</tr>
+			<tr class=" xans-record-">
+				<th scope="row">
+					<span style="font-size: 16px; color: #555555;">카테고리 :</span>
+				</th>
+				<td>
+					<span style="font-size: 16px; color: #555555;">
+						<select id="bookcategory" name="bsr_category">
+									<option value="1">인문</option>
+									<option value="2">역사</option>
+									<option value="3">예술</option>
+									<option value="4">종교</option>
+									<option value="5">사회</option>
+									<option value="6">과학</option>
+									<option value="7">경제경영</option>
+									<option value="8">자기계발</option>
+									<option value="9">만화</option>
+									<option value="10">라이트노벨</option>
+									<option value="11">여행</option>
+									<option value="12">잡지</option>
+									<option value="13">어린이</option>
+									<option value="14">요리</option>
+									<option value="15">육아</option>
+									<option value="16">건강</option>
+									<option value="17">IT</option>
+									<option value="18">자격증</option>
+									<option value="19">참고서</option>
 
-
-		<div id="container">
-			<!-- Controller의 value값과 동일하게 해줄것 -->
-			<form name="form" method="post" action="/booksellregistPage"
-				enctype="multipart/form-data" onsubmit="return check()">
-				<!-- action 변경할 것 -->
-				<table>
-					<tbody>
-						<tr>
-							<td><label for="title">책 이름 :</label> <input type="text"
-								id="booktitle" name="bsr_name" value="" readonly />
-						</tr>
-						<tr>
-							<td><label for="title">작가 :</label> <input type="text"
-								id="author" value="" readonly/>
-						</tr>
-						<tr>
-							<td><label for="fix_price">정가 : </label> <input type="text"
-								id="fixedprice" name="bsr_fixed_price" value="" readonly />
-						</tr>
-						<tr>
-							<td><label for="bsr_category">카테고리 : </label> <select
-								id="bookcategory" name="bsr_category">
-									<option value="0">인문</option>
-									<option value="1">역사</option>
-									<option value="2">예술</option>
-									<option value="3">종교</option>
-									<option value="4">사회</option>
-									<option value="5">과학</option>
-									<option value="6">경제경영</option>
-									<option value="7">자기계발</option>
-									<option value="8">만화</option>
-									<option value="9">라이트노벨</option>
-									<option value="10">여행</option>
-									<option value="11">잡지</option>
-									<option value="12">어린이</option>
-									<option value="13">요리</option>
-									<option value="14">육아</option>
-									<option value="15">건강</option>
-									<option value="16">IT</option>
-									<option value="17">자격증</option>
-									<option value="18">참고서</option>
-
-							</select>
-						</tr>
-						<tr>
-							<td><label for="price">판매 희망가격 : </label> <textarea
-									id="price" name="bsr_price" ></textarea>
-						</tr>
-						<tr>
-							<td><label for="place">희망 거래 위치 : </label> <input type="text"
-								id="place"    class="map_juso"  readonly/>
-								
-						</tr>
-						<tr>
-							<td><label for="content">소개글</label> <textarea  id="content"
-									name="bsr_comment"></textarea></td>
-						</tr>
-						<tr>
-							<td><input type="file" name="img" id="image"></td>
-							<td><button type="button" class="appendimg">사진 추가</button></td>
-							<td><div class="newimg"></div>
-						</tr>
-						<tr>
-							<td>
-							<input type="text" 
-								class="map_x" name="map_x" value="" hidden/>
-								<input type="hidden"
-									class="uuid" name="uuid" value="${login.uuid}" />
-							</td>
-							<td>
-							<input type="hidden"
-								class="map_x" name="map_x" value="" />
-							
-							</td>
-						</tr>
-						<tr>
-							<td >
-							
-							<input type="hidden"
-								class="map_y" name="map_y" value="" />
-							
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<button type="submit" value="regist" onclick="checkFile()">작성</button>
-							</td>
-						</tr>
-						
-						
-					</tbody>
-				</table>
-			</form>
-		</div>
-		<hr/>
-	</div>
+						</select>
+					</span>
+			    </td>
+			</tr>
+			<tr class=" xans-record-">
+				<th scope="row">
+					<span style="font-size: 16px; color: #555555;">판매 희망가격 :</span>
+				</th>
+				<td>
+					<span style="font-size: 16px; color: #555555;">
+						<textarea id="price" name="bsr_price" onkeyPress="InpuOnlyNumber(this)"></textarea>
+					</span>
+			    </td>
+			</tr>
+			<tr class=" xans-record-">
+				<th scope="row">
+					<span style="font-size: 16px; color: #555555;">희망 거래 위치 :</span>
+				</th>
+				<td>
+					<span style="font-size: 16px; color: #555555;">
+						<input type="text" id="place"    class="map_juso"  readonly/>
+					</span>
+			    </td>
+			</tr>
+			<tr class=" xans-record-">
+				<th scope="row">
+					<span style="font-size: 16px; color: #555555;">소개글</span>
+				</th>
+				<td>
+					<span style="font-size: 16px; color: #555555;">
+						<textarea  id="content" name="bsr_comment"></textarea>
+					</span>
+			    </td>
+			</tr>
+			<tr class=" xans-record-">
+				<th scope="row">
+					<span style="font-size: 16px; color: #555555;">사진 첨부</span>
+					<button type="button" class="appendimg">사진 추가</button></th>
+				<td>
+					<div class="newimg"></div>
+			    </td>
+			</tr>
+			<tr>
+				<input type="hidden" class="map_x" name="map_x" value="" />
+				<input type="hidden" class="uuid" name="uuid" value="${login.uuid}" />
+				<input type="hidden" class="map_x" name="map_x" value="" />
+				<input type="hidden" class="map_y" name="map_y" value="" />
+			</tr>
+				
+		</tbody>
+	</table>
+	<button class="insert_btn" type="submit" value="regist" >글 등록</button>
+	</form>
+</div>
 	<div class="map_wrap">
 		<div id="map"
 			style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 
 		<div id="menu_wrap" class="bg_white">
 			<div class="option">
-				<div>
+				<div class="keyword-button">
 					<form onsubmit="searchPlaces(); return false;">
-						키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15">
+						<input type="text" value="이태원 맛집" id="keyword" size="30">
 						<button class="map_btn" type="submit">검색하기</button>
 					</form>
 				</div>
@@ -398,23 +246,25 @@ function check(){
 			<ul id="placesList"></ul>
 			<div id="pagination"></div>
 		</div>
-
-		<div class="map_juso"
-			style="width: 300px; height: 200px; font-size: 10px;"></div>
-		<div class="map_x"></div>
-		<div class="map_y"></div>
-	</div>
-
-
-
 </body>
 
+<script>
+function InpuOnlyNumber(obj)
+{
+    if (event.keyCode >= 48 && event.keyCode <= 57) { //숫자키만 입력
+        return true;
+    } else {
+        event.returnValue = false;
+    }
+}
+
+</script>
 <!-- 책 API 이용 -->
 <script>
 	function booksearch() {
 		var keyword = $('.book').val();
-		$
-				.ajax({
+		
+				$.ajax({
 					url : "/booksellregistajax", // controller에서 받는다
 					type : "GET",
 					data : {
@@ -473,6 +323,9 @@ var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
 // 키워드로 장소를 검색합니다
 searchPlaces();
+
+map.setDraggable(false); //맵 이동 금지    
+map.setZoomable(false); //맵 드래그 금지
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
@@ -689,36 +542,34 @@ function clicker(id){
 	 geocoder1.addressSearch(juso, callback);
 }
  
- //주소로 좌표값 불러오기
+
  
 
 
 </script>
 <!-- 파일 추가 -->
-<script type="text/javascript">
+<script>
 var count=0;
 $(".appendimg").click(function(){	
-	$('.newimg').append('<input class="appendpic" type="file" name="img'+count+'"/><br>');
-	count++;
+	//3개 이상 5개 이하만 추가 할수 있다
+	
+	if(count<5){
+		$('.newimg').append('<div class="fileappend"><input class="appendpic" type="file" name="img'+count+'"/><button type="button" class="del">삭제</button>');
+		count++;
+	}else{
+		alert("최대 5까지 사진을 첨부할 수 있습니다!")
+	}
+	
+	
 });
 </script>
 <!-- 파일 업로드시 확장자 파일 종류 제한 -->
-<script type="text/javascript">
-function checkFile(){
-	var fm = document.fileForm;
-	var fnm = fm.regist;
-	var ext = fnm.value;
-	
-	if(!(ext.substr(ext.length-3)=='jsp' || ext.substr(ext.length-3)=='jpg')||ext.substr(est.length-3)=='png')
-	{
-		alert("사진 파일만 올릴 수 있습니다");
-		return false;
-	}
-	fm.submit();
-}
-
+<script>
+$(document).on("click",".del",function(){
+	$(this).parent('.fileappend').remove();
+	count--;
+}); 
 </script>
-
 
 
 
