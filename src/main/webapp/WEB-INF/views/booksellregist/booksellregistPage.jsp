@@ -245,12 +245,26 @@
 			alert("거래 위치를 선택해 주세요")
 			return false;
 		}
-
 		if ($("#content").val() == "") {
 			alert("책 소개글을 입력해주세요")
 			$("#content").focus();
 			return false;
 		}
+		
+		var reg = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
+		
+		
+		if(!($(".appendpic").val().match(reg)) ){
+			alert("업로드한 파일은 이미지 파일이 아닙니다")
+			return false;
+		}
+		
+		if($(".appendpic").length < 3){
+			alert("이미지는 3개 이상 등록 하셔야 합니다.")
+			return false;
+		}
+		
+		alert("책 등록에 성공하셨습니다.")
 
 		return true
 
@@ -336,13 +350,10 @@
 									name="bsr_comment"></textarea></td>
 						</tr>
 						<tr>
-							<td><input type="file" name="img" id="imgFile"/></td>
+							<td><input type="file" name="img" id="imgFile" class="appendpic"/></td>
 						</tr>
 						<tr>
 							<td><button type="button" class="appendimg">파일 추가</button></td>
-						<tr>
-						<tr>
-							<td><button type="button" onClick="confirmFileExtension(imgFile.value);" value="업로드 확인">업로드 확인</button></td>
 						<tr>
 							<td><div class="newimg"></div>
 						</tr>
@@ -696,36 +707,7 @@
 						}
 					});
 </script>
-<!-- 파일 업로드시 확장자 파일 종류 제한 -->
-<script type="text/javascript">
-	function confirmFileExtension(file) {
 
-		console.log(file);
-
-		// 정규식을 사용히여 jpg, jpeg, png, gif, bmp등 이미지파일의 확장자를 가진것을 추려낸다.
-
-		var reg = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
-
-		if (file.match(reg)) {
-
-			alert("해당 파일은 이미지 파일입니다.");
-
-		} else {
-
-			alert("해당 파일은 이미지 파일이 아닙니다.");
-
-		}
-
-	}
-</script>
-
-<script>
-
-var checkbuttonclick = 0;
-
-	
-
-</script>
 
 
 
