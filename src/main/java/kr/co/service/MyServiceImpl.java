@@ -101,4 +101,10 @@ public class MyServiceImpl implements MyService{
 		return dao.mySellhistory(getuuid,startDate,endDate);
 	}
 
+	@Override
+	public void bookStatusChange(int bsr_id, int bsr_status) {
+		dao.bookStatusChange(bsr_id,bsr_status);
+		
+	}
+
 }

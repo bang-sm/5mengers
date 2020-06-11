@@ -42,5 +42,7 @@ public interface MyDAO {
 	public void sellBookUpdate(int bsr_id, int uuid);
 	//판매가 완료된 리스트
 	public List<MyhistoryDTO> mySellhistory(int getuuid, String startDate, String endDate);
+	//책상태변경
+	public void bookStatusChange(int bsr_id, int bsr_status);
 	
 }

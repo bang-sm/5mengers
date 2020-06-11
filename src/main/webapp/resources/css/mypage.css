@@ -328,7 +328,13 @@ table .txtLess {
 	border-bottom: 2px solid red;
 }
 
-
+.book_title{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 190px;
+    display: inline-block;
+}
 
 
 

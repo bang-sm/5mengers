@@ -32,4 +32,6 @@ public interface MyService {
 	public void confirm(int bsr_id, int uuid);
 	//판매완료된 리스트
 	public List<MyhistoryDTO> mySellhistory(int getuuid, String startDate, String endDate);
+	//책 상태 변경
+	public void bookStatusChange(int bsr_id, int bsr_status);
 }

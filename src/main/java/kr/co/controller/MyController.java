@@ -107,6 +107,14 @@ public class MyController {
 		return "redirect:/my/status";
 	}
 	
+	//비활성화
+	@RequestMapping(value = "/my/bookstatus", method = RequestMethod.GET)
+	public String bookstatus(int bsr_id,int bsr_status) throws Exception {
+		logger.info("bookstatus");
+		myService.bookStatusChange(bsr_id,bsr_status);
+		return "redirect:/my/status";
+	}
+	
 	//구매완료된 리스트
 	@RequestMapping(value = "/my/buycomplete", method = RequestMethod.GET)
 	public String myBuyBookComplete(Model model,HttpSession hs,UserVO uv,String startDate,String endDate) throws Exception {
