@@ -93,16 +93,16 @@
 								<c:choose>
 									<c:when test="${detail.bsr_status == 0 }">
 										<div class="book_confirm"
-											style="color: red; border: 1px solid blue; padding: 10px;">
+											style="color: red; border: 1px solid red; padding: 10px;">
 											게시글 비활성화</div>
 									</c:when>
 									<c:when test="${detail.bsr_check == 0 && detail.bsr_status == 1 }">
 										<div class="book_confirm"
-											style="color: blue; border: 1px solid blue; padding: 10px;">
+											style="color: red; border: 1px solid red; padding: 10px;">
 											예약중</div>
 									</c:when>
 									<c:when test="${detail.bsr_check == 2 && detail.bsr_status == 0}">
-										<div class="book_confirm" style="color: blue">삭제됨</div>
+										<div class="book_confirm" style="color: red; border: 1px solid red;">삭제됨</div>
 									</c:when>
 									<c:when test="${detail.bsr_check == 1 && detail.bsr_status == 0}">
 										<div class="book_confirm" style="color: blue">판매완료</div>
@@ -306,7 +306,7 @@
 				  if(${login.uuid} != ${detail.uuid}){ 
 					  
 					  $.ajax({
-								url:"/bookactivecount",
+								url:"/bookactivecount", 
 								type:"GET",
 								data:{
 									"bsr_id":${detail.bsr_id}

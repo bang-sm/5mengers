@@ -111,7 +111,7 @@ function check(){
    </div>
 
 <div class="insert-table">   
-   <form name="form" method="post" action="/booksellregistPage" enctype="multipart/form-data" onsubmit="return check()">
+   <form name="form" method="post" action="/booksellregistPage" enctype="multipart/form-data" onsubmit="return check()" >
    <div class="insert_title">글 작성</div>
    <table style="width:800px;">
       <tbody>
@@ -234,7 +234,7 @@ function check(){
             
       </tbody>
    </table>
-   <button class="insert_btn" type="submit" value="regist" >글 등록</button>
+   <button class="insert_btn" type="submit" value="regist" onclick="/upload/connectFtp">글 등록</button>
    </form>
 </div>
    <div class="map_wrap">

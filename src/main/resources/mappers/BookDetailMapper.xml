@@ -61,7 +61,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE 
 				book_sell_regist  
 		SET 
-				bsr_check =#{bsr_check} 
+				bsr_check =#{bsr_check},
+				bsr_confirm ='Y' 
 		WHERE 
 				bsr_id = #{bsr_id}	
 	
@@ -140,7 +141,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     FROM 
 	   	       book_sell_regist 
 	     WHERE 
-	    	   bsr_category =#{bsr_category} and bsr_id != #{bsr_id}
+	    	   bsr_category =#{bsr_category} and bsr_id != #{bsr_id} and bsr_status= 1
 	     ORDER BY  
 	    	   bsr_regdate 
 	     DESC  
