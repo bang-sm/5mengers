@@ -109,4 +109,10 @@ public class MyServiceImpl implements MyService{
 		dao.dropUser(userid);
 	}
 
+	@Override
+	public void bookStatusChange(int bsr_id, int bsr_status) {
+		dao.bookStatusChange(bsr_id,bsr_status);
+		
+	}
+
 }
