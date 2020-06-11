@@ -179,64 +179,61 @@ public class UserController {
 		// nickname이 존재할 때, 토큰 등록
 		if(userInfo.get("nickname") != null) {
 			session.setAttribute("kakao", userInfo.get("nickname"));
+			session.setAttribute("kakao_email", userInfo.get("email"));
 			session.setAttribute("accessToken", accessToken);
 		}
 		
 		return "redirect:/user/register";
 	}
 	
+	
+	// 비밀번호 변경 페이지
+	@RequestMapping(value = "/updatePass", method = RequestMethod.GET)
+	public String updatePassGET(HttpSession httpSession ) throws Exception{
+		
+		if(httpSession.getAttribute("login") != null) {
+			return "user/updatePass";
+		}
+		
+		return "user/findingPass";
+	}
 	// 비밀번호 찾기 페이지 
 	@RequestMapping(value = "/findingPass", method = RequestMethod.GET)
 	public String findingPassGET() throws Exception{
 		return "user/findingPass";
 	}
 	
-	// 비밀번호 변경 페이지
-	@RequestMapping(value = "/updatePass", method = RequestMethod.GET)
-	public String updatePassGET(HttpSession httpSession ) throws Exception{
-		
-		if(httpSession.getAttribute("kakaofindingPass") == "confirmed") {
-			return "user/updatePass";
-		}
-		
-		return "user/findingPass";
-	}
-	
 	// 비밀번호 찾기 id 매칭 처리 
 	@ResponseBody
 	@RequestMapping(value = "/findingPass" , method = RequestMethod.POST)
-	public int findingPassPOST(UserVO userVO, HttpSession session) throws Exception {
+	public String findingPassPOST(UserVO userVO,String userid) throws Exception {
 		
 		int result = userService.idCheck(userVO);
-		String userid = userVO.getUserid();
-		session.setAttribute("changePassId", userid);
 		
-		return result;
-	}
-	
-	// 카카오 API - 비밀번호 찾기 (AccessToken 유무 확인)
-	@RequestMapping(value = "/findingPassAuth", method = RequestMethod.GET)
-	public String kakaoFindingPass(@RequestParam("code") String code, HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
-		
-		String accessToken = userService.getAccessToken(code);
-		
-		if(accessToken != "" || accessToken != null ) { 
-			session.setAttribute("kakaofindingPass", "confirmed");
-			return "redirect:/user/updatePass";
-			
+		if(result==1) {
+			userService.emailSend(userid);
+			return "user/login";
 		}
 		
-		redirectAttributes.addAttribute("msg", "UNAUTHORIZED");
-		return "redirect:/user/findingPass";
+		
+		return "/";
 	}
+	
 	
 	// 비밀번호 변경! POST!! 처리
 	@RequestMapping(value = "/updatePass", method = RequestMethod.POST)
 	public String updatePassPOST(String userid, String pass, HttpSession httpSession) throws Exception {
+		
+		System.out.println("pass: " + pass);
+		System.out.println("userid" + userid);
+		
 		String hashedPw = BCrypt.hashpw(pass, BCrypt.gensalt());
+		
 		userService.updatePass(userid, hashedPw);
-		userService.kakaoLogout((String)httpSession.getAttribute("accessToken"));
-		return "user/login";
+		
+		
+		
+		return "redirect:/" ;
 	}
 	
 	

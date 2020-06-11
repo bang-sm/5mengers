@@ -37,4 +37,7 @@ public interface UserDAO {
 	// 비밀번호 변경
 	public void updatePass (String userid, String pass) throws Exception;
 	
+	// 이메일 찾기
+	public String emailSend (String userid) throws Exception;
+	
 }
