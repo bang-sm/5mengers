@@ -9,33 +9,35 @@ function my_list(data,stat) {
 	    	var confirm;
 	    	var ok;
 	    	var st;
-	    	if(data[i].bsr_confirm =='Y'){
+	    	if(data[i].bsr_check ==0){
 	    		confirm="구매요청옴";
 	    		ok="<button type='button' class='confirm' value='"+data[i].bsr_id+"'>수락하기</button>";
 	    	}else{
 	    		confirm="-";
 	    		ok="";
 	    	}
-	    	if(data[i].bsr_status ==1){
-	    		st="<button type='button' class='st_off' style='background:red' value='"+data[i].bsr_id+"'>활성화중</button>";
-	    	}else{
-	    		st="<button type='button' class='st_on' value='"+data[i].bsr_id+"'>비활성화중</button>";
+	    	if(data[i].bsr_check ==0){
+	    		if(data[i].bsr_status ==1){
+		    		st="<button type='button' class='st_off' style='background:red' value='"+data[i].bsr_id+"'>활성화중</button>";
+		    	}else{
+		    		st="<button type='button' class='st_on' value='"+data[i].bsr_id+"'>비활성화중</button>";
+		    	}
+		    	var sellbox='<div class="card">'+
+		    		'<div class="more-info">'+
+		    		'<div class="stats">'+
+		    		'<div>'+
+		    		'<div class="value"></div>'+
+		    		'<div>'+
+		    		''+ok+'</div>'+st+'</div></div></div>'+
+		    		'<div class="general">'+
+		    		'<a href="/bookdetail?bsr_id='+data[i].bsr_id+'&uuid='+data[i].uuid+'&bsr_category='+data[i].bsr_category+'" class="book_title">'+data[i].bsr_name+'</a>'+
+		    		'<div class="" style="font-size:30px;font-weight:bold;color: red;text-align: center;">'+confirm+'</div>'+
+		    		'<span class="more">'+
+		    		''+data[i].bsr_price+'원'+
+		    		'</span>';
+		    	 $("#sell_book").append(sellbox);	
 	    	}
-	    	var sellbox='<div class="card">'+
-	    		'<div class="more-info">'+
-	    		'<div class="stats">'+
-	    		'<div>'+
-	    		'<div class="value"></div>'+
-	    		'<div>'+
-	    		''+ok+'</div>'+st+'</div></div></div>'+
-	    		'<div class="general">'+
-	    		'<a href="/bookdetail?bsr_id='+data[i].bsr_id+'&uuid='+data[i].uuid+'&bsr_category='+data[i].bsr_category+'" class="book_title">'+data[i].bsr_name+'</a>'+
-	    		'<div class="" style="font-size:30px;font-weight:bold;color: red;text-align: center;">'+confirm+'</div>'+
-	    		'<span class="more">'+
-	    		''+data[i].bsr_price+'원'+
-	    		'</span>';
-	    		
-	    	 $("#sell_book").append(sellbox);	
+	    	
 		}
 		$(".confirm").on("click",function(){
 			location.href="/my/confirm?bsr_id="+$(this).val()+"";
@@ -53,13 +55,11 @@ function my_list(data,stat) {
 		$("#zzim_book").empty();	
 		for (var i = 0; i < data.length; i++) {
 	    	var confirm;
-	    	var ok;
 	    	console.log(data[i].bsr_check +" -----------------------------------");
 	    	if(data[i].bsr_check==1){
 	    		confirm="판매완료";
 	    	}else{
 	    		confirm="-";
-	    		ok="";
 	    	}
 	    	var zzimbox='<div class="card">'+
 	    		'<div class="more-info">'+

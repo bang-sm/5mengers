@@ -62,7 +62,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				book_sell_regist  
 		SET 
 				bsr_check =#{bsr_check},
-				bsr_confirm ='Y' 
 		WHERE 
 				bsr_id = #{bsr_id}	
 	
