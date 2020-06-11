@@ -120,7 +120,7 @@
 </body>
 <script>
 function update(){
-	location.href="http://localhost:8080";
+	location.href="/";
 }
 </script>
 <script>
