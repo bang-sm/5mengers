@@ -20,21 +20,21 @@
 						<strong class="data use">
 							<c:out value="${sellingbook}"/>개
 						</strong> 
-						<a href="#">조회</a>
+						<a href="/my/status">조회</a>
 					</li>
 					<li class="">
 						<strong class="title">구매중인 책</strong>
 					 	<strong class="data">
 					 		<c:out value="${buyingbook}"/>개
 					 	</strong>
-					 	<a href="#">조회</a>
+					 	<a href="/my/status">조회</a>
 				 	</li>
 					<li class="">
 						<strong class="title">찜 중인 책</strong>
 					 	<strong class="data">
 					 		<c:out value="${zzim}"/>개
 					 	</strong>
-					 	<a href="#">조회</a>
+					 	<a href="/my/status">조회</a>
 				 	</li>
 				</ul>
 			</div>

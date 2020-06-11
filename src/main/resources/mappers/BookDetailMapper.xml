@@ -58,12 +58,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </delete>
 	<!--  구매요청 db 값 변경 -->
 	<update id ="book_check" parameterType="map">
-	UPDATE 
-			book_sell_regist  
-	SET 
-			bsr_check =#{bsr_check} 
-	WHERE 
-			bsr_id = #{bsr_id}	
+		UPDATE 
+				book_sell_regist  
+		SET 
+				bsr_check =#{bsr_check} 
+		WHERE 
+				bsr_id = #{bsr_id}	
 	
 	</update>
    <!-- 찜 등록 AJAX -->
@@ -137,7 +137,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     SELECT 
 	   		   * 
 	     FROM 
-	   	       book_sell_regist_user 
+	   	       book_sell_regist 
 	     WHERE 
 	    	   bsr_category =#{bsr_category} and bsr_id != #{bsr_id}
 	     ORDER BY  

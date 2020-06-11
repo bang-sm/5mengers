@@ -31,15 +31,16 @@
 	<div id="container">
 		<div id="aside">
 			<!--같은 장르 추천 책-->
+			<div class="side_category">${detail.bc_name}</div>
 			<div class="aside_book">
+			
 				<ul id="book_ul">
+				
 					<c:forEach var="side" items="${side_book}">
 					<li class="book_li">
 						<a href="http://localhost:8080/bookdetail?bsr_id=${side.bsr_id }&uuid=${side.uuid}&bsr_category=${side.bsr_category}">
-							<img style="width: 100%; height: 200px;" class="side_book_img" alt=""
-								src="http://imgnews.naver.net/image/112/2013/05/02/20130502000285_0_59_20130502093112.jpg">
 							<div class="side_name">${side.bsr_name }</div>
-							<div class="side_fixed_price">정가 : ${side.bsr_fixed_price }원</div>
+							<div class="side_fixed_price">정가 : ${side.bsr_fixed_price }</div>
 							<div class="side_price">판매가 : ${side.bsr_price }원</div>
 						</a>
 					</li>

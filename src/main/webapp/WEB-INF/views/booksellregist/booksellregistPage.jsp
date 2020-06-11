@@ -223,6 +223,24 @@
 <!-- 필수요소 체크  -->
 <script type="text/javascript">
 	
+	var count = 0;
+	// 파일 생성
+	$(function() {
+		
+		$(".appendimg")
+				.click(
+						function() {
+							if (count < 5) {
+								$('.newimg')
+										.append(
+												'<input class="appendpic" type="file" name="img'+(count+1)+'"/><br>');
+								count++;
+							} else {
+								alert("더 이상 파일을 추가 할 수 없습니다. ")
+							}
+						});
+
+	});
 	//유효성 검사 
 	function check() {
 
@@ -255,14 +273,16 @@
 
 		var reg = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
 		// 파일 확장자명 유효성 검사
-		
-	
+		for (i=0; i <= count; i++)
+		$(".appendpic"+count).each()
+		{
+
 			if (!($(".appendpic"+count).val().match(reg))) {
 				alert("업로드한 파일은 이미지 파일이 아닙니다")
 				return false;
 			}
 
-		
+		}
 		
 		if (count < 3) {
 			alert("이미지는 3개 이상 등록 하셔야 합니다.")
@@ -355,19 +375,17 @@
 									name="bsr_comment"></textarea></td>
 						</tr>
 						<tr>
+							<td><input type="file" name="img" id="imgFile"
+								class="appendpic" /></td>
+						</tr>
+						<tr>
 							<td><button type="button" class="appendimg">파일 추가</button></td>
 						<tr>
-						<tr>
-							<td><input type="file" name="img" id="imgFile"
-								class="appendpic1" /></td>
+							<td><div class="newimg"></div>
 						</tr>
 						<tr>
-
-						<td><div class="newimg"></div></td>
-						</tr>
-						<tr>
-							<td>
-							 <input type="hidden" class="uuid" name="uuid"
+							<td><input type="text" class="map_x" name="map_x" value=""
+								hidden /> <input type="hidden" class="uuid" name="uuid"
 								value="${login.uuid}" /></td>
 							<td><input type="hidden" class="map_x" name="map_x" value="" />
 
@@ -702,28 +720,11 @@
 	//주소로 좌표값 불러오기
 </script>
 <!-- 파일 추가!  성공! -->
-<script type="text/javascript">
-	
-</script>
-<script type="text/javascript">
-var count = 1;
-	// 파일 생성
-	$(function() {
-		
-		$(".appendimg")
-				.click(
-						function() {
-							if (count < 6) {
-								$('.newimg')
-										.append(
-												'<input class="appendpic"type="file" name="img'+(count+1)+'"/><br>');
-								count++;
-							} else {
-								alert("더 이상 파일을 추가 할 수 없습니다. ")
-							}
-						});
 
-</script>
+
+
+
+
 
 
 </html>
