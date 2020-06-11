@@ -5,206 +5,10 @@
 <html>
 <head>
 <title>게시판</title>
-
-
+<link rel="stylesheet" href="../resources/css/bookupdate.css">
 </head>
-<style>
-.map_wrap, .map_wrap * {
-	margin: 0;
-	padding: 0;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-	font-size: 12px;
-}
-
-.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
-	color: #000;
-	text-decoration: none;
-}
-
-.map_wrap {
-	position: relative;
-	width: 100%;
-	height: 500px;
-}
-
-#menu_wrap {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 250px;
-	margin: 10px 0 30px 10px;
-	padding: 5px;
-	overflow-y: auto;
-	background: rgba(255, 255, 255, 0.7);
-	z-index: 1;
-	font-size: 12px;
-	border-radius: 10px;
-}
-
-.bg_white {
-	background: #fff;
-}
-
-#menu_wrap hr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 2px solid #5F5F5F;
-	margin: 3px 0;
-}
-
-#menu_wrap .option {
-	text-align: center;
-}
-
-#menu_wrap .option p {
-	margin: 10px 0;
-}
-
-#menu_wrap .option button {
-	margin-left: 5px;
-}
-
-#placesList li {
-	list-style: none;
-}
-
-#placesList .item {
-	position: relative;
-	border-bottom: 1px solid #888;
-	overflow: hidden;
-	cursor: pointer;
-	min-height: 65px;
-}
-
-#placesList .item span {
-	display: block;
-	margin-top: 4px;
-}
-
-#placesList .item h5, #placesList .item .info {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-#placesList .item .info {
-	padding: 10px 0 10px 55px;
-}
-
-#placesList .info .gray {
-	color: #8a8a8a;
-}
-
-#placesList .info .jibun {
-	padding-left: 26px;
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
-		no-repeat;
-}
-
-#placesList .info .tel {
-	color: #009900;
-}
-
-#placesList .item .markerbg {
-	float: left;
-	position: absolute;
-	width: 36px;
-	height: 37px;
-	margin: 10px 0 0 10px;
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
-		no-repeat;
-}
-
-#placesList .item .marker_1 {
-	background-position: 0 -10px;
-}
-
-#placesList .item .marker_2 {
-	background-position: 0 -56px;
-}
-
-#placesList .item .marker_3 {
-	background-position: 0 -102px
-}
-
-#placesList .item .marker_4 {
-	background-position: 0 -148px;
-}
-
-#placesList .item .marker_5 {
-	background-position: 0 -194px;
-}
-
-#placesList .item .marker_6 {
-	background-position: 0 -240px;
-}
-
-#placesList .item .marker_7 {
-	background-position: 0 -286px;
-}
-
-#placesList .item .marker_8 {
-	background-position: 0 -332px;
-}
-
-#placesList .item .marker_9 {
-	background-position: 0 -378px;
-}
-
-#placesList .item .marker_10 {
-	background-position: 0 -423px;
-}
-
-#placesList .item .marker_11 {
-	background-position: 0 -470px;
-}
-
-#placesList .item .marker_12 {
-	background-position: 0 -516px;
-}
-
-#placesList .item .marker_13 {
-	background-position: 0 -562px;
-}
-
-#placesList .item .marker_14 {
-	background-position: 0 -608px;
-}
-
-#placesList .item .marker_15 {
-	background-position: 0 -654px;
-}
-
-#pagination {
-	margin: 10px auto;
-	text-align: center;
-}
-
-#pagination a {
-	display: inline-block;
-	margin-right: 10px;
-}
-
-#pagination .on {
-	font-weight: bold;
-	cursor: default;
-	color: #777;
-}
-</style>
-
-
-
-
 <%@ include file="../common/head.jsp"%>
 
-<!-- jquery 사용을 위한 src -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- none -> block -->
 <script type="text/javascript">
 	$(document).on('click', '.searchTitle', function() {
 		var name = $(this).text();
@@ -217,6 +21,7 @@
 		$("#author").text(author);
 		$("#author").val(author)
 		$("#bookajax").children().remove();
+		$("#booklist").hide();
 	});
 </script>
 
@@ -271,12 +76,6 @@
 	}
 </script>
 
-<!-- 책 API list style -->
-<style>
-#bookajax .booktr:hover {
-	background-color: #CEE3F6;
-}
-</style>
 <body>
 	<h1>책 등록</h1>
 	<hr />
@@ -284,9 +83,7 @@
 	<button class="bookbtn" onclick="booksearch()">책 검색</button>
 	<div id="booklist">
 		<div id="booklist_div">
-
 			<table id="bookajax"></table>
-
 		</div>
 	</div>
 
@@ -358,8 +155,7 @@
 							<td><div class="newimg"></div>
 						</tr>
 						<tr>
-							<td><input type="text" class="map_x" name="map_x" value=""
-								hidden /> <input type="hidden" class="uuid" name="uuid"
+							<td><input type="text" class="map_x" name="map_x" value="" /> <input type="hidden" class="uuid" name="uuid"
 								value="${login.uuid}" /></td>
 							<td><input type="hidden" class="map_x" name="map_x" value="" />
 
@@ -413,9 +209,9 @@
 <!-- 책 API 이용 -->
 <script>
 	function booksearch() {
+		
 		var keyword = $('.book').val();
-		$
-				.ajax({
+		$.ajax({
 					url : "/booksellregistajax", // controller에서 받는다
 					type : "GET",
 					data : {
@@ -443,6 +239,10 @@
 						}
 						$('#bookajax').html(info);
 						$("#booklist").show();
+						$("#booklist").draggable({
+							cursor:"pointer",
+							containment: 'window'
+						});
 					},
 					error : function() {
 
@@ -698,19 +498,14 @@
 <script type="text/javascript">
 	var count = 0;
 	$(".appendimg").click(
-					function() {
-						if (count < 4) {
-							$('.newimg').append('<input class="appendpic" type="file" name="img'+count+'"/><br>');
-							count++;
-						} else {
-							alert("더 이상 파일을 추가 할 수 없습니다. ")
-						}
-					});
+		function() {
+			if (count < 4) {
+				$('.newimg').append('<input class="appendpic" type="file" name="img'+count+'"/><br>');
+				count++;
+			} else {
+				alert("더 이상 파일을 추가 할 수 없습니다. ")
+			}
+	});
 </script>
-
-
-
-
-
 
 </html>
