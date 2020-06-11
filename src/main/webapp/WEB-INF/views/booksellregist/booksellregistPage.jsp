@@ -7,7 +7,7 @@
 <title>글 등록 게시판</title>
 <link >
 <link rel="stylesheet" href="../resources/css/booksellregistPage.css">
-<script type="text/javascript" src = "../resources/js/booksellregist.js"></script>
+<script type="text/javascript" src = "../resources/js/booksellregist_book.js"></script>
 </head>
 <%@ include file="../common/head.jsp"%>
 
@@ -122,7 +122,7 @@
             </th>
             <td>
                <span style="font-size: 16px; color: #555555;">
-                  <textarea id="price" name="bsr_price" onkeyPress="InpuOnlyNumber(this)"></textarea>
+                  <textarea id="price" name="bsr_price" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></textarea>
                </span>
              </td>
          </tr>
@@ -185,15 +185,28 @@
       </div>
 </body>
 
+
+
+
 <script>
-function InpuOnlyNumber(obj)
-{
-    if (event.keyCode >= 48 && event.keyCode <= 57) { //숫자키만 입력
-        return true;
-    } else {
-        event.returnValue = false;
-    }
+function onlyNumber(event){
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+        return;
+    else
+        return false;
 }
+ 
+function removeChar(event) {
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+        return;
+    else
+        event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
+</script>
 
 </script>
 
@@ -201,6 +214,7 @@ function InpuOnlyNumber(obj)
 <!-- 지도 API 이용 -->
 <script type="text/javascript"
    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
+   <script type="text/javascript" src = "../resources/js/booksellregist_map.js"></script>
 <script>
    // 마커를 담을 배열입니다
    var markers = [];
