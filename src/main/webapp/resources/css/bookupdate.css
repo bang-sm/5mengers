@@ -67,13 +67,12 @@
 	
 }
 /*사진 추가 버튼 크기*/
-.appendimg, .del{
+.appendimg{
 	margin-left:10px;
 	width:70px;
 	height:30px;
 }
 
-<<<<<<< HEAD
 /*************************************** 글 등록 *****************************************************/
 #booklist{
 	display:none;
@@ -281,7 +280,3 @@
 	color: #777;
 }
 </style>
-=======
-
-
->>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers.git
