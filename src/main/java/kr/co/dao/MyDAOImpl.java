@@ -12,7 +12,6 @@ import kr.co.vo.BookDTO;
 import kr.co.vo.BookDetailDTO;
 import kr.co.vo.Criteria;
 import kr.co.vo.MyhistoryDTO;
-import kr.co.vo.QnADTO;
 
 @Repository
 public class MyDAOImpl implements MyDAO {
@@ -128,7 +127,13 @@ public class MyDAOImpl implements MyDAO {
 		map.put("bsr_id", bsr_id);
 		map.put("bsr_status", bsr_status);
 		sqlSession.update("userMapper.bookStatusChange",map);
-		
+	}
+	
+	@Override
+	public void dropUser(String userid) throws Exception {
+		HashMap<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("userid", userid);
+		sqlSession.update("userMapper.userDrop", paramMap);
 	}
 
 }

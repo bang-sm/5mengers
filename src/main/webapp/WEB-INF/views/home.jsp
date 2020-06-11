@@ -52,7 +52,7 @@ $(document).ready(function(){
 						<li id="" class="item xans-record-">
 							<div class="box" class="${booklist.bsr_category}">
 								<a href="${contextPath}/bookdetail?bsr_id=${booklist.bsr_id}&uuid=${booklist.uuid}&bsr_category=${booklist.bsr_category}">
-									<img src="https://placeimg.com/270/250/any/grayscale" />
+									<img src="http://localhost:8080/bookimg/${booklist.img}" width="270px" height="250px"/>
 								</a> 
 								<a href="${contextPath}/bookdetail?bsr_id=${booklist.bsr_id}&uuid=${booklist.uuid}&bsr_category=${booklist.bsr_category}">
 									<span style="font-size: 12px; color: #000000;">

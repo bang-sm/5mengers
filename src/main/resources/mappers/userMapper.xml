@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		, AUTH
   		, PASS
   		, USERID
-  	
+  		, EMAIL
   	) VALUES (
   		uuid
   		, #{name}
@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		, #{auth}
   		, #{pass}
   		, #{userid}
+  		, #{email}
   	
   	)
   </insert>
@@ -253,6 +254,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 
 			bsr_id = #{bsr_id}	  	
 	 </update>
+	<!-- 회원 탈퇴 -->
+	<update id="userDrop">
+		UPDATE 
+			user
+		SET
+			auth = 0
+		WHERE 
+			userid = #{userid};
+	
+	</update>
+	
+	<!-- 이메일 찾기! -->
+	<select id="emailSend" resultType="String" parameterType="String">
+		
+		SELECT 
+			email
+		FROM 
+			user
+		WHERE
+			userid = #{userid};
+	
+	</select>
+	
  </mapper>
  
   

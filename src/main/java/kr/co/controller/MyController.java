@@ -1,22 +1,30 @@
 package kr.co.controller;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.WebUtils;
 
 import kr.co.service.MyService;
+import kr.co.service.UserService;
 import kr.co.vo.BookDetailDTO;
+import kr.co.vo.LoginDTO;
 import kr.co.vo.Criteria;
 import kr.co.vo.PageMaker;
 import kr.co.vo.UserVO;
@@ -28,6 +36,10 @@ public class MyController {
 	
 	@Autowired
 	private MyService myService;
+	
+	@Autowired
+	private UserService userService;
+	
 	
 	/**
 	 * 나의 Nav 페이지
@@ -178,4 +190,57 @@ public class MyController {
 		}
 		return null;
 	}
+	
+	// 회원 정보 수정 및 회원탈퇴 페이지
+	@RequestMapping(value = "/my/userInfo", method = RequestMethod.GET)
+	public String userInfoGET() throws Exception{
+		
+		return "my/userInfo";
+	}
+	
+	// 회원 정보 수정 및 회원탈퇴 처리 하고 바로 로그아웃! 
+	@RequestMapping(value = "my/userInfo", method = RequestMethod.POST)
+	public String userDropPOST(String userid, String pass,LoginDTO dto, HttpSession httpSession, HttpServletRequest request, HttpServletResponse response ) throws Exception {
+		
+		dto.setUserid(userid);
+		UserVO userVO = userService.login(dto);
+		Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+		
+		if(BCrypt.checkpw(pass, userVO.getPass())) {
+			// auth 0 으로 바꿈
+			myService.dropUser(userid);
+			
+			// 로그아웃 처리 
+			httpSession.removeAttribute("login");
+			httpSession.invalidate();
+			
+			if(loginCookie != null) {
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(0);
+				response.addCookie(loginCookie);
+				
+				userService.keepLogin(userid, "none", new Date());
+			}
+			
+		}
+		else {
+			System.out.println("틀렷습니다");
+			return "/my/userInfo";
+		}
+		
+		return "redirect:/";
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
