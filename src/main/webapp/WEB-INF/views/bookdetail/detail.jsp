@@ -310,7 +310,7 @@
 								success : function(data){
 									if(data == 1 ){
 										 $.ajax({
-											  url:"/book_check",
+											  url:"/book_check", 
 							        		  type:"GET",
 							        		  data :{ 
 							        			  "bsr_check" : 0,
@@ -321,7 +321,7 @@
 							        		  }
 									  	});
 										alert("해당 상품을 예약하셨습니다. 마이페이지로 이동합니다.");
-										location.href="${contextPath}/my/nav" 
+										location.href="${contextPath}/my/status" 
 									}else{
 										 alert("현재 판매자가 게시글을 수정하고 있습니다.");
 									}

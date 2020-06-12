@@ -4,9 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BookSellRegistMapper">
 
-	<!-- 게시판 글 작성 -->											
-	<insert id="book_sell_registMapper" parameterType="kr.co.vo.BookSellRegistDTO">
-		INSERT INTO book_sell_regist( 
+	<!-- 게시판 글 작성 -->
+	<insert id="book_sell_registMapper"
+		parameterType="kr.co.vo.BookSellRegistDTO">
+		INSERT INTO book_sell_regist(
 		bsr_id <!-- 책 고유번호, 자동으로 부여됨 -->
 		, uuid	<!-- 유저 고유값, 회원을 구분하기 위해 지정 -->
 		, bsr_name <!-- 책 이름 -->
@@ -19,84 +20,88 @@
 		, bsr_confirm <!-- Y: 수락 N: 거절 Z: 대기 -->
 		, map_x
 		, map_y )
-		VALUES( 
+		VALUES(
 		bsr_id
 		, #{uuid}
 		, #{bsr_name}
 		, #{bsr_price}
 		, #{bsr_comment}
 		,now()
-		, #{bsr_category}
+		,
+		#{bsr_category}
 		, bsr_check
 		, #{bsr_fixed_price}
 		, 'Z'
 		, #{map_x}
-		, #{map_y} )
+		,
+		#{map_y} )
 
 	</insert>
 
-<!-- 책 이미지  -->
-	<insert id="insertFile" parameterType="kr.co.vo.BookSellRegistDTO">
-		INSERT INTO book_img 
-				(
-				bsr_img_id, <!-- 이미지 고유값 -->
-				bi_user_file_name, <!-- 이미지 고유값 -->
-				bi_file_name,	<!-- 프론트에서 확장자 검수 -->
-				bi_root,	<!-- 관리 파일명 -->
-				bsr_id <!-- 책 고유번호 -->
-				) 
+	<!-- 책 이미지 -->
+	<insert id="insertFile"
+		parameterType="kr.co.vo.BookSellRegistDTO">
+		INSERT INTO book_img
+		(
+		bsr_img_id, <!-- 이미지 고유값 -->
+		bi_user_file_name, <!-- 이미지 고유값 -->
+		bi_file_name,	<!-- 프론트에서 확장자 검수 -->
+		bi_root,	<!-- 관리 파일명 -->
+		bsr_id <!-- 책 고유번호 -->
+		)
 		VALUES (
-				bsr_img_id,
-				#{bi_user_file_name},
-				#{bi_file_name},
-				#{bi_root},
-				#{bsr_id}
-				)
+		bsr_img_id,
+		#{bi_user_file_name},
+		#{bi_file_name},
+		#{bi_root},
+		#{bsr_id}
+		)
 
 	</insert>
-	
-	 <!-- 수정된 db 값 넣기 by.김성원-->
-   <update id ="detailupdate" parameterType="kr.co.vo.BookSellRegistDTO">
-    	 UPDATE 
-	   			book_sell_regist  
-	     SET 
-	            bsr_regdate =now(),
-	   			bsr_price =#{bsr_price},
-	   			bsr_comment =#{bsr_comment},
-	   			map_x = #{map_x},
-	   			map_y= #{map_y}
-	     WHERE 	
-	   			bsr_id = #{bsr_id};
-   
-   </update>
-   
-   <!--수정 페이지 파일 첨부 by.김성원 -->
-   <insert id="imageinsert" parameterType="hashMap">
-     INSERT INTO 
-     		book_img(
-     		bsr_img_id,
-     		bi_user_file_name ,
-     		bi_file_name ,
-     		bi_root ,
-     		bsr_id 
-     		)
-	VALUES(
-		  bsr_img_id,
-		  #{bi_user_file_name},
-		  #{bi_file_name},
-		  #{bi_root},
-		  #{bsr_id}
-	)
-   </insert>
-   
-   <!-- bsr_id 값 가져오기 -->
-	<select id ="bsr_id" parameterType="map" resultType="int">
-		SELECT 
-				bsr_id
+
+	<!-- 수정된 db 값 넣기 by.김성원 -->
+	<update id="detailupdate"
+		parameterType="kr.co.vo.BookSellRegistDTO">
+		UPDATE
+		book_sell_regist
+		SET
+		bsr_regdate =now(),
+		bsr_price =#{bsr_price},
+		bsr_comment =#{bsr_comment},
+		map_x = #{map_x},
+		map_y= #{map_y}
+		WHERE
+		bsr_id = #{bsr_id};
+
+	</update>
+
+	<!--수정 페이지 파일 첨부 by.김성원 -->
+	<insert id="imageinsert" parameterType="hashMap">
+		INSERT INTO
+		book_img(
+		bsr_img_id,
+		bi_user_file_name ,
+		bi_file_name ,
+		bi_root ,
+		bsr_id
+		)
+		VALUES(
+		bsr_img_id,
+		#{bi_user_file_name},
+		#{bi_file_name},
+		#{bi_root},
+		#{bsr_id}
+		)
+	</insert>
+
+	<!-- bsr_id 값 가져오기 -->
+	<select id="bsr_id" parameterType="map" resultType="int">
+		SELECT
+		bsr_id
 		FROM
-				book_sell_regist
-	    WHERE 
-	            bsr_name=#{bsr_name} and uuid =#{uuid} and bsr_price= #{bsr_price}
+		book_sell_regist
+		WHERE
+		bsr_name=#{bsr_name} and uuid =#{uuid} and bsr_price= #{bsr_price}
 	</select>
 </mapper>
 

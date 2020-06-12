@@ -121,6 +121,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="main_ct_book_list" resultType="kr.co.vo.BookDetailDTO">
         SELECT
 	          bsr_id,
+	          (select bi_file_name from book_img where bsr_id =a.bsr_id LIMIT 1) as img,
 	          uuid,
 	          bsr_price,
 	          bsr_name,
@@ -264,9 +265,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         FROM
               book_sell_regist a
         WHERE 
-        	  a.bsr_status = 1 and bsr_name =#{bsr_name};
+        	  a.bsr_status = 1 and bsr_name =#{bsr_name}
         ORDER BY
               a.bsr_regdate desc;
    </select>
-   
 </mapper>
