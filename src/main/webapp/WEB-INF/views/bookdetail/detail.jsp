@@ -321,26 +321,20 @@
 							        		  }
 									  	});
 										alert("해당 상품을 예약하셨습니다. 마이페이지로 이동합니다.");
-										location.href="${contextPath}/my/nav" 
+										location.href="${contextPath}/my/status" 
 									}else{
 										 alert("현재 판매자가 게시글을 수정하고 있습니다.");
 									}
 								}
-					   });	  
-						  
+					   }); 	  
 					  //판매자가 게시글을 수정 하고 있는지 확인 여부  (data : 현재 게시글 번호)
-					 
 					  }else{
 						  alert("판매자는 구매할수 없습니다!");
 					  }
-				
 			  }else{
 				  alert("해당 상품을 구매요청 하실수 없습니다!");
 			  }
 		  });
-			  
-		  
-		   
          </script>
 	</c:otherwise>
 </c:choose>
