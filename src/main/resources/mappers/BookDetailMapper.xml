@@ -126,7 +126,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	          bsr_name,
 	          bsr_category
         FROM
-              book_sell_regist
+              book_sell_regist a
         WHERE 
         	  bsr_status = 1 and bsr_category=#{bc_code}
         ORDER BY

@@ -67,7 +67,7 @@ function my_list(data,stat) {
 	    		'<div>'+
 	    		'<div class="value"></div>'+
 	    		'</div><div><button type="button" class="zzimDelete" value="'+data[i].bsr_id+'">찜해제</button>'+
-	    		''+ok+'</div></div></div>'+
+	    		'</div></div></div>'+
 	    		'<div class="general">'+
 	    		'<a href="/bookdetail?bsr_id='+data[i].bsr_id+'&uuid='+data[i].uuid+'&bsr_category='+data[i].bsr_category+'" class="book_title">'+data[i].bsr_name+'</a>'+
 	    		'<div class="" style="font-size:30px;font-weight:bold;color: red;text-align: center;">'+confirm+'</div>'+
