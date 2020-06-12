@@ -62,7 +62,7 @@
 						<th scope="row">
 							<span style="font-size: 16px; color: #555555;">직거래 희망 지역</span></th>
 						<td>
-							<input type="text" id="place"name="want" value="" style="width:500px;"/>
+							<input type="text" id="place"name="want" placeholder="바꿀 지역을 선택해주세요 !"value="" style="width:500px;"/>
 					    </td>
 					</tr>
 					<tr class=" xans-record-">

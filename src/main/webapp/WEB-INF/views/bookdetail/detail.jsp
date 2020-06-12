@@ -101,11 +101,11 @@
 										<div class="book_confirm" style="color: red; border: 1px solid red;">삭제됨</div>
 									</c:when>
 									<c:when test="${detail.bsr_check == 1 && detail.bsr_status == 0}">
-										<div class="book_confirm" style="color: blue">판매완료</div>
+										<div class="book_confirm" style="color: red; border: 1px solid red;" >판매완료</div>
 									</c:when>
 									<c:otherwise>
 										<div class="book_confirm"
-											style="color: blue; border: 1px solid red; padding: 10px;">
+											style="color: blue; border: 1px solid blue; padding: 10px;">
 											판매중</div>
 									</c:otherwise>
 								</c:choose>
