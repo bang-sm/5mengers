@@ -40,7 +40,7 @@
    </div>
 
 <div class="insert-table">   
-   <form name="form" method="post" action="/booksellregistPage" enctype="multipart/form-data" onsubmit="return check()" >
+   <form name="form" method="post" action="/booksellregist/booksellregistPage" enctype="multipart/form-data" onsubmit="return check()" >
    <div class="insert_title">글 작성</div>
    <table style="width:800px;">
       <tbody>
