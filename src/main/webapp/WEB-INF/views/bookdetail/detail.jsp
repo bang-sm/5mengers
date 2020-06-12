@@ -13,12 +13,7 @@
 <link rel="stylesheet" href="../resources/css/detail.css?v1">
 <link rel="stylesheet" href="../resources/css/slick.css">
 <link rel="stylesheet" href="../resources/css/slick-theme.css">
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
-	
-	<style>
-	
-	</style>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
 </head>
 <body >
 
@@ -455,12 +450,6 @@ geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 var new_map =$('.map_border').parent().parent();
 new_map.css("border","1px solid blue");
 new_map.css("border-radius","10px");
-
-var swiper = new Swiper('.swiper-container', {
-    pagination: {
-      el: '.swiper-pagination',
-    },
-  });
 </script>
 
 

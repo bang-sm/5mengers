@@ -209,6 +209,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       book_sell_regist  
 		 WHERE 
 		       bsr_id =#{bsr_id};
+    	 DELETE 
+		 FROM 
+		       book_img  
+		 WHERE 
+		       bsr_id =#{bsr_id};
 		   
    </delete>
    
