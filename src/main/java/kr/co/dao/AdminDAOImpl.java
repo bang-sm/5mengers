@@ -1,13 +1,14 @@
 package kr.co.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.vo.Criteria;
 import kr.co.vo.PopupDTO;
-import kr.co.vo.QnADTO;
 
 
 @Repository
@@ -39,10 +40,18 @@ public class AdminDAOImpl implements AdminDAO{
 		// TODO Auto-generated method stub
 		sqlsession.delete("AdminMapper.popup_delete",np_id);
 	}
+	//유저들의 총qna카운트
 	@Override
-	public List<QnADTO> userQnaList() {
+	public int userqnaListCount() {
 		// TODO Auto-generated method stub
-		return sqlsession.selectList("AdminMapper.userqnalist");
+		return sqlsession.selectOne("AdminMapper.userqnaListCount");
+	}
+	
+	//유저들의 qna리스트
+	@Override
+	public List<Map<String, Object>> userQnaList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList("AdminMapper.userqnalist",cri);
 	}
 
 }

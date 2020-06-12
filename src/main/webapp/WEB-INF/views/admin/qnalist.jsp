@@ -44,6 +44,29 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="box-footer">
+				<div class="text-center">
+					<ul id="pagination">
+						<c:if test="${pageMaker.prev}">
+						    <li>
+						        <a href='<c:url value="/admin/qnalist?page=${pageMaker.startPage - 1}"/>'>이전</a>
+						    </li>
+					    </c:if>
+					    
+					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
+						    <li>
+						        <a href='<c:url value="/admin/qnalist?page=${pageNum }"/>'><i class="fa">${pageNum}</i></a>
+						    </li>
+					    </c:forEach>
+					  
+					    <c:if test="${pageMaker.next}">
+						    <li>
+						        <a href='<c:url value="/admin/qnalist?page=${pageMaker.endPage + 1}"/>'>다음</a>
+						    </li>
+					    </c:if>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 

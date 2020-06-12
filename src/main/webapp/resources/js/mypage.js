@@ -16,7 +16,7 @@ function my_list(data,stat) {
 	    		confirm="-";
 	    		ok="";
 	    	}
-	    	if(data[i].bsr_check ==0){
+	    	if(data[i].bsr_check ==3){
 	    		if(data[i].bsr_status ==1){
 		    		st="<button type='button' class='st_off' style='background:red' value='"+data[i].bsr_id+"'>활성화중</button>";
 		    	}else{
