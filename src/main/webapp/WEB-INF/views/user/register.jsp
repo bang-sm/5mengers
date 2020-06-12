@@ -147,7 +147,7 @@ function checks(){
 				SNS 인증<br>
 				
 				<c:if test="${empty kakao}">
-				<button type="button" id="kakao_auth"><a href="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://localhost:8080/user/auth&response_type=code">카카오톡 인증</a></button>
+				<button type="button" id="kakao_auth"><a href="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=/user/auth&response_type=code">카카오톡 인증</a></button>
 				<input type="checkbox" id="kakao" name="auth" value="1" class="form-control" onclick="return false"><br>
 				<span>인증이 필요합니다.</span>
 				</c:if>

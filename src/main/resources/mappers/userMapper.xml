@@ -222,27 +222,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--구매 요청한 유저는 누구?? -->
 	<select id="whoAreYou" parameterType="int" resultType="int">
 		SELECT
-			(select uuid from my_buy_book where bsr_id =18) as whouuid
+			(select uuid from my_buy_book where bsr_id =#{bsr_id}) as whouuid
 		FROM
 			book_sell_regist
 		WHERE
 		 	bsr_id=#{bsr_id};
 	</select>
-	<!--구매 요청한 유저의 테이블 업데이트 -->
+	<!--구매 요청한 유저의  판매수락한 책상태도 업데이트 테이블 업데이트 -->
 	<update id="buyBookUpdate" parameterType="map">
 		UPDATE
 			my_buy_book 
 		SET 
 			bsr_confirm ='Y' 
 		WHERE uuid=#{whoUUid} and bsr_id=#{bsr_id};
-	</update>
-	<!-- 판매수락한 책상태도 업데이트 -->
-	<update id="sellBookUpdate" parameterType="map">
+		
 		UPDATE
 			book_sell_regist 
 		SET 
 			bsr_confirm ='Y',bsr_check=1,bsr_status=0
-		WHERE uuid=#{uuid} and bsr_id=#{bsr_id};
+		WHERE bsr_id=#{bsr_id};
 	</update>
 	
 	<!-- 비밀번호 수정 -->

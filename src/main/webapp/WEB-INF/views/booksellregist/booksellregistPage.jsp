@@ -58,7 +58,7 @@
          
          <tr class=" xans-record-">
             <th scope="row">
-               <span style="font-size: 16px; color: #555555;">책 이름 :</span>
+               <span style="font-size: 16px; color: #555555;">책 이름 </span>
             </th>
             <td>
                <span style="font-size: 16px; color: #555555;">
@@ -68,7 +68,7 @@
          </tr>
          <tr class=" xans-record-">
             <th scope="row">
-               <span style="font-size: 16px; color: #555555;">작가 :</span>
+               <span style="font-size: 16px; color: #555555;">작가 </span>
             </th>
             <td>
                <span style="font-size: 16px; color: #555555;">
@@ -78,7 +78,7 @@
          </tr>
          <tr class=" xans-record-">
             <th scope="row">
-               <span style="font-size: 16px; color: #555555;">정가 :</span>
+               <span style="font-size: 16px; color: #555555;">정가 </span>
             </th>
             <td>
                <span style="font-size: 16px; color: #555555;">
@@ -88,7 +88,7 @@
          </tr>
          <tr class=" xans-record-">
             <th scope="row">
-               <span style="font-size: 16px; color: #555555;">카테고리 :</span>
+               <span style="font-size: 16px; color: #555555;">카테고리 </span>
             </th>
             <td>
                <span style="font-size: 16px; color: #555555;">
@@ -118,7 +118,7 @@
          </tr>
          <tr class=" xans-record-">
             <th scope="row">
-               <span style="font-size: 16px; color: #555555;">판매 희망가격 :</span>
+               <span style="font-size: 16px; color: #555555;">판매 희망가격 </span>
             </th>
             <td>
                <span style="font-size: 16px; color: #555555;">
@@ -128,7 +128,7 @@
          </tr>
          <tr class=" xans-record-">
             <th scope="row">
-               <span style="font-size: 16px; color: #555555;">희망 거래 위치 :</span>
+               <span style="font-size: 16px; color: #555555;">희망 거래 위치 </span>
             </th>
             <td>
                <span style="font-size: 16px; color: #555555;">
@@ -187,7 +187,7 @@
 
 
 
-<script>
+<!-- <script>  //포커스가 가끔 안잡혀서 보류
 function onlyNumber(event){
     event = event || window.event;
     var keyID = (event.which) ? event.which : event.keyCode;
@@ -205,7 +205,7 @@ function removeChar(event) {
     else
         event.target.value = event.target.value.replace(/[^0-9]/g, "");
 }
-</script>
+</script> -->
 
 
 

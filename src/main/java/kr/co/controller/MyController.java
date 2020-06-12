@@ -105,8 +105,7 @@ public class MyController {
 	public String confirm(int bsr_id,HttpSession hs,UserVO uv) throws Exception {
 		logger.info("confirm");
 		uv = (UserVO) hs.getAttribute("login");
-		int uuid = uv.getUuid();
-		myService.confirm(bsr_id,uuid);
+		myService.confirm(bsr_id);
 		return "redirect:/my/status";
 	}
 	//찜해제

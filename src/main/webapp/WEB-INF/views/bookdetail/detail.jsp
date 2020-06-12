@@ -38,7 +38,8 @@
 				
 					<c:forEach var="side" items="${side_book}">
 					<li class="book_li">
-						<a href="http://localhost:8080/bookdetail?bsr_id=${side.bsr_id }&uuid=${side.uuid}&bsr_category=${side.bsr_category}">
+						<a href="${contextPath}/bookdetail?bsr_id=${side.bsr_id }&uuid=${side.uuid}&bsr_category=${side.bsr_category}">
+							<div class="side_img"><img src="${contextPath}/bookimg/${side.img}" width="200px" height="200px"></div>
 							<div class="side_name">${side.bsr_name }</div>
 							<div class="side_fixed_price">정가 : ${side.bsr_fixed_price }</div>
 							<div class="side_price">판매가 : ${side.bsr_price }원</div>
@@ -74,12 +75,12 @@
 							</div>
 									<div class="slider slider-single">
 										<c:forEach var="topimg" items="${bookimg}">
-										<div><img src="http://localhost:8080/bookimg/${topimg.bi_file_name}" alt="사진 X" style="width:400px;height:400px;"></div>
+										<div><img src="${contextPath}/bookimg/${topimg.bi_file_name}" alt="사진 X" style="width:400px;height:400px;"></div>
 										</c:forEach>
 								    </div>
 									<div class="slider slider-nav">
 									 	<c:forEach var="topimg" items="${bookimg}">
-										<div><img src="http://localhost:8080/bookimg/${topimg.bi_file_name}" alt="사진 X" style="width:100px;height:100px;"></div>
+										<div><img src="${contextPath}/bookimg/${topimg.bi_file_name}" alt="사진 X" style="width:100px;height:100px;"></div>
 										</c:forEach>
 								   </div>
 						</div>
@@ -325,7 +326,7 @@
 							        		  }
 									  	});
 										alert("해당 상품을 예약하셨습니다. 마이페이지로 이동합니다.");
-										location.href="http://localhost:8080/my/nav" 
+										location.href="${contextPath}/my/nav" 
 									}else{
 										 alert("현재 판매자가 게시글을 수정하고 있습니다.");
 									}
@@ -362,7 +363,7 @@ function deletebtn(){
 				alert("해당 게시글이 삭제 되었습니다.")
 			}  
 		}); 
-		location.href="http://localhost:8080";
+		location.href="${contextPath}";
 	}
 }
 
@@ -381,7 +382,7 @@ function bookupdate(){
 			}else{
 				var check = confirm("글 수정 하시겠습니까 ? ");
 				if(check){
-					location.href="http://localhost:8080/bookupdate?bsr_id="+${detail.bsr_id};
+					location.href="${contextPath}/bookupdate?bsr_id="+${detail.bsr_id};
 				}
 			}
 		}

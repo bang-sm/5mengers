@@ -2,7 +2,7 @@
 	contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="contextPath" value="http://localhost:8080"></c:set>
+<c:set var="contextPath" value="http://localhost:8080"></c:set> 
 <%-- <c:set var="contextPath" value="http://gksfk6165.cafe24.com"></c:set> --%>
 <%-- 프로젝트용 / 로컬용 패스--%>
 <html>
@@ -25,11 +25,11 @@
 <script>
 	$(document).ready(function(){
 		var path=$(location).attr('pathname');
-		var cookieName=path;
+		var cookieName=path+""+data[i].np_id;
 		db_pop_check();
 	    $("#po_btn_close").click(function () {
 	    	//닫기 버튼을 클릭시 세션 부여 각페이지마다 다른 세션생성
-	        //setCookieMobile( cookieName, "done" , 1);
+	        setCookieMobile( cookieName, "done" , 1);
 	        $("#popup_box").css("display","none");
 	    });
 	    function db_pop_check(){

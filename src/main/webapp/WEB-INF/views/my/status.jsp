@@ -21,7 +21,7 @@
 			<script>
 				$(document).ready(function(){
 					goAjax();
-					setInterval(goAjax, 30000);
+					setInterval(goAjax, 3000);
 				});
 			</script>
 		</div>

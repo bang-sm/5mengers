@@ -246,7 +246,7 @@ body {
 	list-style: none;
 	margin: 20px 0 20px 0;
 	width: 200px;
-	height: 120px;
+	height: 300px;
 	border-bottom: 1px solid black;	
 }
 .book_li:visited{
@@ -279,7 +279,7 @@ body {
 .aside_book {
 	overflow-y: scroll;
 	width: 350px;
-	height: 500px;
+	height: 700px;
 	background-color: white;
 }
 
