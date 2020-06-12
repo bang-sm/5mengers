@@ -138,26 +138,29 @@ function checks(){
 <body class = "hold-transition register-page">
 
 	<div class = "register-box">
-		<div class = "register-logo"></div>
-		
+		<div class="site__container">
 		<div class = "register-box body">
 			<p class ="login-box-msg">회원가입 페이지</p>
-			<form action="${path}/user/register" method="post" onsubmit="return checks()">
+			<form action="${path}/user/register" method="post" onsubmit="return checks()" class="form form--register">
 			
 			<label>
 				SNS 인증<br>
 				
 				<c:if test="${empty kakao}">
-				<button type="button" id="kakao_auth">
-					<a href="${kakao_uri}/user/auth&response_type=code">카카오톡 인증</a>
-				</button>
-				<input type="checkbox" id="kakao" name="auth" value="1" class="form-control" onclick="return false"><br>
-				<span>인증이 필요합니다.</span>
+					<div class="form__field">
+						<button type="button" id="kakao_auth">
+							<a href="${kakao_uri}/user/auth&response_type=code">카카오톡 인증</a>
+						</button>
+					</div>
+					<input type="checkbox" id="kakao" name="auth" value="1" class="form-control" onclick="return false" class="form__input"><br>
+					<span>인증이 필요합니다.</span>
 				</c:if>
 				
 				<c:if test="${not empty kakao }">
-				<button type="button" id="kakao_auth" disabled="disabled">카카오톡 인증</button>
-				<input type="checkbox" id="kakao" name="auth" value="1" class="form-control" checked="checked" onclick="return false"><br>
+					<div class="form__field">
+						<button type="button" id="kakao_auth" disabled="disabled">카카오톡 인증</button>
+					</div>
+					<input type="checkbox" id="kakao" name="auth" value="1" class="form-control" checked="checked" onclick="return false" class="form__input"><br>
 				</c:if>
 				
 				
@@ -166,36 +169,39 @@ function checks(){
 			
 			<div id="afterAuth" <c:if test="${empty kakao}">hidden="hidden"</c:if> >
 				<div class="form-group has feedback">
-					<input id="id_input" type="text" name="userid" class="form-control" placeholder="아이디">
+					<label class="fontawesome-user" for="login__username"><span class="hidden">Username</span></label>
+					<input id="id_input" type="text" name="userid" class="form-control" placeholder="아이디" class="form__input">
 					<span class="glyphicon glyphicon-sign form-control-feedback"></span>
 					<button type="button" id="idCheckBtn">중복 확인</button>
-					<input type="checkbox" id="idCheck_pass" value="pass" onclick="return false">	
+					<input type="checkbox" id="idCheck_pass" value="pass" onclick="return false" class="form__input">	
 				</div>
 			
 				<div><span id="alert_id">필수 입력입니다.(영문 4자 이상 12자 이하)</span></div>
 					<div class="checkbox icheck">
 								
 						<div class="form-group has feedback">
-							<input type="password" id="pw_input" name="pass" class="form-control" placeholder="비밀번호">
+							<label class="fontawesome-lock" for="login__password"><span class="hidden">Password</span></label>
+							<input type="password" id="pw_input" name="pass" class="form-control" placeholder="비밀번호" class="form__input">
 							<span class="glyphicon glyphicon-lock form-control-feedback"></span>	
 						</div>
 						<div><span id="alert_pass">필수 입력입니다.(6자 이상 20자 이하)</span></div>
 						<div class="form-group has feedback">
-							<input type="password" id="pw_chk_input" class="form-control" placeholder="비밀번호 확인">
+							<label class="fontawesome-lock" for="login__password"><span class="hidden">Password</span></label>
+							<input type="password" id="pw_chk_input" class="form-control" placeholder="비밀번호 확인" class="form__input">
 							<span class="glyphicon glyphicon-log-in form-control-feedback"></span>	
 						</div>
 						<div><span id="alert_pass_check1" style="display: none;" >비밀번호가 일치하지 않습니다.</span></div>
 						<div><span id="alert_pass_check2" style="display: none;" >비밀번호 확인란은 입력해주세요.</span></div>
 						<div class="form-group has feedback">
-							<input type="text" name="name" class="form-control" placeholder="닉네임" readonly="readonly" value="${kakao }">
+							<input type="text" name="name" class="form-control" placeholder="닉네임" readonly="readonly" value="${kakao }" class="form__input">
 							<span class="glyphicon glyphicon-user form-control-feedback"></span>	
 						</div>
 						<div class="form-group has feedback">
-							<input type="text" name="email" class="form-control" placeholder="이메일" readonly="readonly" value="${kakao_email }">
+							<input type="text" name="email" class="form-control" placeholder="이메일" readonly="readonly" value="${kakao_email }" class="form__input">
 							<span class="glyphicon glyphicon-user form-control-feedback"></span>	
 						</div>
 						<div class="form-group has feedback">
-							<input type="text" name="phonenum" class="form-control" id="phone_input" placeholder="전화번호" >
+							<input type="text" name="phonenum" class="form-control" id="phone_input" placeholder="전화번호" class="form__input" >
 							<span class="glyphicon glyphicon-phone form-control-feedback"></span>	
 						</div>
 						<div>
@@ -205,7 +211,7 @@ function checks(){
 					</div>
 				</div>	
 			</form>
-		
+		</div>	
 		</div>
 		<!-- /.login-box-body -->
 	</div>
