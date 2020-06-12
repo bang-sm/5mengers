@@ -135,7 +135,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!-- 같은 연관 장르 목록 -->
    <select id="side_same_category" parameterType="map" resultType="kr.co.vo.BookDetailDTO">
-	     SELECT 
+	<!--      SELECT 
 	   		   * 
 	     FROM 
 	   	       book_sell_regist 
@@ -145,6 +145,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    	   bsr_regdate 
 	     DESC  
 	     LIMIT 0,10;
+ -->	    
+ 		SELECT 
+	   		   b.bsr_id,
+	   		   b.uuid,
+	   		   b.bsr_category,
+	   		   b.bsr_name,
+	   		   b.bsr_fixed_price,
+	   		   b.bsr_price,
+	   		   (select bi_file_name from book_img where bsr_id =b.bsr_id LIMIT 1) as img
+	     FROM 
+	   	       book_sell_regist b
+	     WHERE 
+	    	   b.bsr_category =#{bsr_category} and b.bsr_id !=#{bsr_id} and b.bsr_status= 1
+	     ORDER BY  
+	    	   b.bsr_regdate  DESC
+	     LIMIT 0,10;
+  
    </select>
    
    <!-- 글 수정  DB 값 가져오기-->

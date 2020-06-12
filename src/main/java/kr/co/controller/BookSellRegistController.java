@@ -55,7 +55,7 @@ public class BookSellRegistController {
 		service.imageinsert(bookSellRegistDTO,mpRequest);
 		
 		
-		return "redirect:/";
+		return "redirect:/my/status";
 	}
 
 	

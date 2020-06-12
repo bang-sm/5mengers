@@ -72,4 +72,19 @@
 	width:70px;
 	height:30px;
 }
+/*희망 가격 크기 고정  */
+#price{
+	width:150px;
+	height:18px;
+	resize:none;
+	font-size:16px;
+	padding:0;
+}
+/*소개글 textarea 크기  */
+#content{
+	width:350px;
+	height:150px;
+	resize:none;
+	font-size:15px;
+}
 
