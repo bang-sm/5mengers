@@ -58,12 +58,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </delete>
 	<!--  구매요청 db 값 변경 -->
 	<update id ="book_check" parameterType="map">
-	UPDATE 
-			book_sell_regist  
-	SET 
-			bsr_check =#{bsr_check} 
-	WHERE 
-			bsr_id = #{bsr_id}	
+		UPDATE 
+				book_sell_regist  
+		SET 
+				bsr_check =#{bsr_check} 
+		WHERE 
+				bsr_id = #{bsr_id}	
 	
 	</update>
    <!-- 찜 등록 AJAX -->
@@ -117,13 +117,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         ORDER BY
               bsr_regdate desc;
    </select>
+   <select id="main_ct_book_list" resultType="kr.co.vo.BookDetailDTO">
+        SELECT
+	          bsr_id,
+	          uuid,
+	          bsr_price,
+	          bsr_name,
+	          bsr_category
+        FROM
+              book_sell_regist
+        WHERE 
+        	  bsr_status = 1 and bsr_category=#{bc_code}
+        ORDER BY
+              bsr_regdate desc;
+   </select>
    
    <!-- 같은 연관 장르 목록 -->
    <select id="side_same_category" parameterType="map" resultType="kr.co.vo.BookDetailDTO">
 	     SELECT 
 	   		   * 
 	     FROM 
-	   	       book_sell_regist_user 
+	   	       book_sell_regist 
 	     WHERE 
 	    	   bsr_category =#{bsr_category} and bsr_id != #{bsr_id}
 	     ORDER BY  
@@ -208,12 +222,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	WHERE
    	     bsr_img_id = #{bsr_img_id}
    </delete>
-      <!--  파일 첨부 삭제 -->
+   <!--  오토 검색 -->
    <select id="autoSearch" resultType="String">
 	   	SELECT 
 	   		bsr_name
 	   	FROM 
 	   		book_sell_regist
+   		GROUP BY bsr_name;
    </select>
    <select id="serachBook" parameterType="String" resultType="kr.co.vo.BookDetailDTO">
 		SELECT 

@@ -78,4 +78,7 @@ public interface BookDetailDAO {
 	
 	//검색 책
 	public Object mainBookSearchList(String bsr_name);
+
+	//카테고리클릭시 책리스트
+	public List<BookDetailDTO> mainCateBookList(String bc_code);
 }

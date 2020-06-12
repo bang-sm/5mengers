@@ -17,11 +17,17 @@ public class BookRequestDTO {
 	private String keyword;
 	private String brb_bookname;
 	private String name;
-	// brb reply
+	
+	// brbr
 	
 	private int brbr_id;
 	private String uuid_book_url;
 	private Date brbr_regdate;
+	
+	// bc_name
+	private String bc_name;
+	
+	//
 	
 	public BookRequestDTO() {
 		super();
@@ -152,4 +158,13 @@ public class BookRequestDTO {
 		this.brbr_regdate = brbr_regdate;
 	}
 
+	// bc_name getter & setter
+	
+	public String getBc_name() {
+		return bc_name;
+	}
+
+	public void setBc_name(String bc_name) {
+		this.bc_name = bc_name;
+	}
 }

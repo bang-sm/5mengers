@@ -8,11 +8,15 @@
 <meta charset="UTF-8">
 <title>구매 요청 게시판</title>
 </head>
+<style>
+.box-footer > div {
+margin-left : 40%
+}
+</style>
 <body>
 	<%@ include file="../common/head.jsp"%>
 	<div id="container">
 		<div id="contents">
-				
 					<table>
 						<tr>
 							<th>번호</th>
@@ -29,10 +33,11 @@
 								<c:out value="${list.brb_id}"></c:out><!-- 게시물번호 -->
 							</td>
 							<td>
-								<c:out value="${list.brb_title}"></c:out>
+								<a href="/brb/readView?brb_id=${list.brb_id}&uuid=${list.uuid}"><c:out value="${list.brb_title}"></c:out></a>
 							</td>
 							<td>
-								<a href="/brb/readView?brb_id=${list.brb_id}&uuid=${list.uuid}">${list.brb_title}</a>
+								<a href="/brb/readView?brb_id=${list.brb_id}&uuid=${list.uuid}"><c:out value="${list.brb_bookname}"></c:out></a>
+								
 							</td>
 							<td>
 								<c:out value="${list.brb_price}"></c:out>
@@ -48,29 +53,28 @@
 			</div>
 		</div>
 		<div class="box-footer">
-				<div class="text-center">
-					<ul id="pagination">
-						<c:if test="${pageMaker.prev }">
-						    <li>
-						        <a href='<c:url value="/brb/list?page=${pageMaker.startPage-1 }"/>'>이전</a>
-						    </li>
-					    </c:if>
-					    
-					    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-						    <li>
-						        <a href='<c:url value="/brb/list?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
-						    </li>
-					    </c:forEach>
-					  
-					    <c:if test="${pageMaker.next}">
-						    <li>
-						        <a href='<c:url value="/brb/list?page=${pageMaker.endPage+1 }"/>'>다음</a>
-						    </li>
-					    </c:if>
-					</ul>
-				</div>
+			<div class="text-center">
+				<ul id="pagination">
+					<c:if test="${pageMaker.prev }">
+					    <li>
+					        <a href='<c:url value="/brb/list?page=${pageMaker.startPage-1 }"/>'>이전</a>
+					    </li>
+				    </c:if>
+				    
+				    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+					    <li>
+					        <a href='<c:url value="/brb/list?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
+					    </li>
+				    </c:forEach>
+				  
+				    <c:if test="${pageMaker.next}">
+					    <li>
+					        <a href='<c:url value="/brb/list?page=${pageMaker.endPage+1 }"/>'>다음</a>
+					    </li>
+				    </c:if>
+				</ul>
 			</div>
+		</div>
 			<button onclick="location='/brb/writeView'">작성하기</button>
-	</div>
 </body>
 </html>

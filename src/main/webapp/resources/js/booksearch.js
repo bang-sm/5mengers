@@ -29,6 +29,10 @@ function booksearch() {
 						}
 						$('#bookajax').html(info);
 						$("#booklist").show();
+						$("#booklist").draggable({
+							cursor:"pointer",
+							containment: 'window'
+						});
 					},
 					error : function() {
 

@@ -4,7 +4,6 @@
 function my_list(data,stat) {
 	$(".card").draggable({ axis: "y" }); 
 	console.log(stat);
-	 
 	if(stat=="S"){	
 		$("#sell_book").empty();
 		for (var i = 0; i < data.length; i++) {

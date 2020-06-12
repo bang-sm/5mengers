@@ -65,17 +65,23 @@ public class BookRequestDAOImpl implements BookRequestDAO {
 	}
 	
 	@Override
-	public List<BookRequestDTO> readReply(int brbr_id) throws Exception {
+	public List<BookRequestDTO> replyRead(int brb_id) throws Exception {
 		
-		return sqlSession.selectList("bookRequestMapper.readReply", brbr_id);
+		return sqlSession.selectList("bookRequestMapper.replyRead", brb_id);
 	}
 	
 	@Override
-	public void writeReply(BookRequestDTO bRequestDTO) throws Exception {
+	public void replyWrite(BookRequestDTO bRequestDTO) throws Exception {
 		
-		sqlSession.insert("bookRequestMapper.writeReply", bRequestDTO);
+		sqlSession.insert("bookRequestMapper.replyWrite", bRequestDTO);
 	}
+	
+	@Override
+	public void replyDelete(int brbr_id) throws Exception {
 		
+		sqlSession.delete("bookRequestMapper.replyDelete", brbr_id);
+	}
+	
 	@Override
 	public void search(JSONObject keyword) throws Exception {
 		
@@ -86,5 +92,10 @@ public class BookRequestDAOImpl implements BookRequestDAO {
 	public List<BookDetailDTO> myBuyingBookList(int uuid) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("bookRequestMapper.myBuyingBookList", uuid);
+	}
+	
+	@Override
+	public BookRequestDTO category(int brb_id) throws Exception {
+		return sqlSession.selectOne("bookRequestMapper.category", brb_id);
 	}
 }

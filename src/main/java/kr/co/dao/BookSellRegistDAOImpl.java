@@ -49,7 +49,7 @@ public class BookSellRegistDAOImpl implements BookSellRegistDAO {
 	//수정된 db 값 넣기(파일 제외 나머지 ) by.김성원
 	@Override
 	public void detailupdate(BookSellRegistDTO bookSellRegistDTO) throws Exception {
-		// TODO Auto-generated method stub
+		
 		sqlSession.update("BookSellRegistMapper.detailupdate",bookSellRegistDTO);
 		
 	}

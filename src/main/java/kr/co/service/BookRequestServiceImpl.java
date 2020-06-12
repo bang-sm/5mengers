@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import kr.co.dao.BookRequestDAO;
@@ -56,25 +55,30 @@ public class BookRequestServiceImpl implements BookRequestService {
 	}
 	
 	@Override
-	public void writeReply(BookRequestDTO bRequestDTO) throws Exception {
-		dao.writeReply(bRequestDTO);
+	public void replyWrite(BookRequestDTO bRequestDTO) throws Exception {
+		dao.replyWrite(bRequestDTO);
 		
+	}
+	// 댓글 삭제
+	@Override
+	public void replyDelete(int brb_id) throws Exception {
+		dao.replyDelete(brb_id);
 	}
 	
 	@Override
-	public List<BookRequestDTO> readReply(int brbr_id) throws Exception {
-		return dao.readReply(brbr_id);
+	public List<BookRequestDTO> replyRead(int brb_id) throws Exception {
+		return dao.replyRead(brb_id);
 	}
 	
-	@Override
-	public void search(JSONObject keyword) throws Exception {
-		//TODO JSON으로 받아서 필요한 Property 가져와서 리턴?
-		
-	}
 
 	//내가 팔고있는 나의 책 리스트
 	@Override
 	public List<BookDetailDTO> myBuyingBookList(int uuid) {
 		return dao.myBuyingBookList(uuid);
+	}
+	
+	@Override
+	public BookRequestDTO category(int brb_id) throws Exception {
+		return dao.category(brb_id);
 	}
 }

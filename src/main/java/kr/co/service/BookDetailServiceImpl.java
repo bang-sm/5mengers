@@ -7,13 +7,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
-
 import kr.co.dao.BookDetailDAO;
 import kr.co.vo.BookCategoryDTO;
 import kr.co.vo.BookDetailDTO;
@@ -201,9 +198,16 @@ public class BookDetailServiceImpl implements BookDetailService {
 	//사진 첨부 삭제
 	@Override
 	public void deleteimagefile(int bsr_img_id,String bi_file_name) throws Exception {
-		
-		File file = new File("C:\\bookimg\\"+bi_file_name+"");
-		file.delete();
+		String filepath="C:\\bookimg\\"+bi_file_name;
+		System.out.println(filepath);
+		File file = new File(filepath);
+		if(file.exists()) {
+			System.out.println("삭제완료");
+			file.delete();
+		}else {
+			System.out.println("삭제 실패");
+		}
+
 		dao.deleteimagefile(bsr_img_id);
 	}
 
@@ -224,6 +228,12 @@ public class BookDetailServiceImpl implements BookDetailService {
 	public Object mainBookSearchList(String bsr_name) {
 		// TODO Auto-generated method stub
 		return dao.mainBookSearchList(bsr_name);
+	}
+
+	@Override
+	public List<BookDetailDTO> mainCateBookList(String bc_code) {
+		// TODO Auto-generated method stub
+		return dao.mainCateBookList(bc_code);
 	}
 
 

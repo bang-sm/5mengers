@@ -41,9 +41,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 게시물 상세페이지 -->
 	<select id="read" parameterType="int" resultType="kr.co.vo.BookRequestDTO">
+
 		SELECT
-			 	*
-		FROM book_request_board WHERE brb_id = #{brb_id};
+				*,
+				(SELECT bc_name from book_category bc where bc_code = brb.bk_category )
+				as bc_name 
+		FROM 
+				(SELECT *, (SELECT name from user where uuid=brb.uuid ) as name	FROM book_request_board brb) brb
+		where brb_id = #{brb_id};	
 		
 		<!-- 조회수 -->
 		UPDATE	book_request_board set brb_cnt = brb_cnt + 1 WHERE brb_id = #{brb_id};
@@ -57,20 +62,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM book_request_board where brb_id = #{brb_id};
 	</delete>
 	<!-- 책 카테고리 -->
-    <select id="bk_category" resultType="kr.co.vo.BookCategoryDTO">
-        SELECT
-	          bc_code,
+    <select id="category" resultType="kr.co.vo.BookRequestDTO">
+		SELECT
 	          bc_name
         FROM
-      	      book_category;
+      	      book_category
+      	WHERE bc_code = (SELECT bk_category FROM book_request_board WHERE brb_id = #{brb_id});
     </select>
     <!-- 댓글 작성 -->
-   	<insert id="writeReply">
+   	<insert id="replyWrite">
 		INSERT INTO book_request_board_reply (brbr_regdate, uuid, uuid_book_url, brb_id) VALUE (now(), #{uuid}, #{uuid_book_url}, #{brb_id});
 	</insert>
 	<!-- 댓글 읽어오기 -->
-	<select id="readReply" resultType="kr.co.vo.BookRequestDTO">
-		SELECT * FROM book_request_board_reply WHERE brbr_id = #{brbr_id};
+	<select id="replyRead" resultType="kr.co.vo.BookRequestDTO">
+		SELECT * FROM book_request_board_reply WHERE brb_id = #{brb_id};
+	</select>
+	<!-- 댓글 삭제 -->
+	<select id="replyDelete" resultType="kr.co.vo.BookRequestDTO">
+		DELETE FROM book_request_board_reply WHERE brbr_id = #{brbr_id};
 	</select>
 	<!-- 내가 팔고있는 나의 책 리스트 -->
 	<select id="myBuyingBookList" parameterType="int" resultType="kr.co.vo.BookDetailDTO">
