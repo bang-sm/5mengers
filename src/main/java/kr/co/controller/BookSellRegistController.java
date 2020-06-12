@@ -25,7 +25,7 @@ public class BookSellRegistController {
 	
 	
 	//게시판 글 작성 화면
-	@RequestMapping(value = "/booksellregist", method = RequestMethod.GET)
+	@RequestMapping(value = "/booksellregist/booksellregistPage", method = RequestMethod.GET)
 	public String writeView() throws Exception {
 		logger.info("booksellregist");
 		
@@ -34,7 +34,7 @@ public class BookSellRegistController {
 	
 	//게시판 글 작성
 	
-	@RequestMapping(value = "/booksellregistPage", method = RequestMethod.POST)
+	@RequestMapping(value = "/booksellregist/booksellregistPage", method = RequestMethod.POST)
 	// DTO로 보내서 DB에 저장한다 									// 첨부 파일의 파라미터값을 받음
 	public String write(BookSellRegistDTO bookSellRegistDTO, MultipartHttpServletRequest mpRequest) throws Exception{
 		logger.info("booksellregistPage");

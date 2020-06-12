@@ -25,6 +25,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import common.mail.MailAlert;
 import common.mail.MailHandler;
 import common.mail.TempKey;
 import kr.co.dao.UserDAO;
@@ -33,6 +34,7 @@ import kr.co.vo.UserVO;
 
 @Service
 public class UserServiceImpl implements UserService {
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class); 
 	
@@ -112,7 +114,7 @@ public class UserServiceImpl implements UserService {
 			// POST request Parameter 확인  
 			sb.append("grant_type=authorization_code"); // grant_type : authorization_code 로 고정  (required)
 			sb.append("&client_id=fb1d8350db62c7161d16a4c91065256f"); // client_id : REST API 키 (required)
-			sb.append("&redirect_uri=/user/auth"); // redirect_uri : 코드가 리다이렉트 된 URI (required)
+			sb.append("&redirect_uri=http://localhost:8080/user/auth"); // redirect_uri : 코드가 리다이렉트 된 URI (required)
 			sb.append("&code=" + authorize_code); // code : 코드 받기 요청으로 얻은 인증 코드 (required) 
 			bw.write(sb.toString());
 			bw.flush();
@@ -256,6 +258,8 @@ public class UserServiceImpl implements UserService {
 		String newPass = new TempKey().generateKey(10);
 		String scNewPass = BCrypt.hashpw(newPass, BCrypt.gensalt());
 		userDAO.updatePass(userid, scNewPass);
+		
+		String mailAlert = new MailAlert().mailAlert(userDAO.emailSend(userid));
 		
 		// 메일 전송
 		MailHandler sendMail = new MailHandler(mailSender);

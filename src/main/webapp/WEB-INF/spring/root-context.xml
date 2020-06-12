@@ -42,8 +42,7 @@
         </property>
         <property name="username" value="gksfk6165"></property>
         <property name="password" value="dhaoswutm!@"></property>  
-    </bean>     
-     
+    </bean>       
     <!-- Mybatis 연동 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
          <property name="dataSource" ref="dataSource"></property>
