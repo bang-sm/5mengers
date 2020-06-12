@@ -150,12 +150,6 @@ public class BookDetailServiceImpl implements BookDetailService {
 
 	}
 
-	//글 수정 등록시 DB(bsr_status) 값 변경
-//	@Override
-//	public void bookupdatecheckout(int bsr_id) throws Exception {
-//		dao.bookupdatecheckout(bsr_id);
-//
-//	}
 
 	//구매하기시 판매자 DB변경
 	@Override
@@ -198,7 +192,7 @@ public class BookDetailServiceImpl implements BookDetailService {
 	//사진 첨부 삭제
 	@Override
 	public void deleteimagefile(int bsr_img_id,String bi_file_name) throws Exception {
-		String filepath="C:\\bookimg\\"+bi_file_name;
+		String filepath="\\"+bi_file_name;
 		System.out.println(filepath);
 		File file = new File(filepath);
 		if(file.exists()) {

@@ -39,6 +39,7 @@
 					<c:forEach var="side" items="${side_book}">
 					<li class="book_li">
 						<a href="${contextPath}/bookdetail?bsr_id=${side.bsr_id }&uuid=${side.uuid}&bsr_category=${side.bsr_category}">
+							<div class="side_img"><img src="${contextPath}/bookimg/${side.img}" width="200px" height="200px"></div>
 							<div class="side_name">${side.bsr_name }</div>
 							<div class="side_fixed_price">정가 : ${side.bsr_fixed_price }</div>
 							<div class="side_price">판매가 : ${side.bsr_price }원</div>

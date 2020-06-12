@@ -46,16 +46,16 @@
 					</tr>
 					<tr class=" xans-record-">
 						<th scope="row">
-							<span style="font-size: 16px; color: #555555;">판매가</span></th>
+							<span style="font-size: 16px; color: #555555;">희망 거래 위치 </span></th>
 						<td>
-							<input id="price" type="text" name="bsr_price" value="${bookupdate[0].bsr_price } " style="width:100px;height:30px;"/>
+							<textarea id="price" name="bsr_price" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' value="${bookupdate[0].bsr_price }">${bookupdate[0].bsr_price }</textarea>
 					    </td>
 					</tr>
 					<tr class=" xans-record-">
 						<th scope="row">
 							<span style="font-size: 16px; color: #555555;">책소개글</span></th>
 						<td>
-							<textarea id="content" name="bsr_comment">${bookupdate[0].bsr_comment }</textarea>
+							<textarea  id="content" name="bsr_comment">${bookupdate[0].bsr_comment }</textarea>
 					    </td>
 					</tr>
 					<tr class=" xans-record-">
@@ -494,4 +494,23 @@ function checkFile(){
 } 
 </script>
 
+<!-- <script> //포커스가 가끔 안잡혀서 보류
+function onlyNumber(event){
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+        return;
+    else
+        return false;
+}
+ 
+function removeChar(event) {
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+        return;
+    else
+        event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
+</script> -->
 </html>
