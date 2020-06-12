@@ -2,7 +2,7 @@
 
 
 function my_list(data,stat) {
-	console.log(stat);
+	//console.log(stat);
 	if(stat=="S"){	
 		$("#sell_book").empty();
 		for (var i = 0; i < data.length; i++) {
@@ -125,7 +125,7 @@ function goAjax(){
 				"stat" : stat
 			},
 			success: function(data){
-				console.log(data);
+				//console.log(data);
 				stat="S";
 				my_list(data,stat);
 			},
@@ -142,7 +142,7 @@ function goAjax(){
 				"stat" : stat
 			},
 			success: function(data){
-				console.log(data)
+				//console.log(data)
 				stat="Z";
 				my_list(data,stat);
 			},
@@ -158,7 +158,7 @@ function goAjax(){
 				"stat" : stat
 			},
 			success: function(data){
-				console.log(data)
+				//console.log(data)
 				stat="R";
 				my_list(data,stat);
 			},
