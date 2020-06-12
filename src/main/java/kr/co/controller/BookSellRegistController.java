@@ -5,19 +5,14 @@ import javax.inject.Inject;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.dao.BookSellRegistDAO;
 import kr.co.service.BookSellRegistService;
-import kr.co.service.BookSellRegistServiceImpl;
 import kr.co.vo.BookSellRegistDTO;
 
 @Controller
@@ -30,7 +25,7 @@ public class BookSellRegistController {
 	
 	
 	//게시판 글 작성 화면
-	@RequestMapping(value = "/booksellregist", method = RequestMethod.GET)
+	@RequestMapping(value = "/booksellregist/booksellregistPage", method = RequestMethod.GET)
 	public String writeView() throws Exception {
 		logger.info("booksellregist");
 		
@@ -39,7 +34,7 @@ public class BookSellRegistController {
 	
 	//게시판 글 작성
 	
-	@RequestMapping(value = "/booksellregistPage", method = RequestMethod.POST)
+	@RequestMapping(value = "/booksellregist/booksellregistPage", method = RequestMethod.POST)
 	// DTO로 보내서 DB에 저장한다 									// 첨부 파일의 파라미터값을 받음
 	public String write(BookSellRegistDTO bookSellRegistDTO, MultipartHttpServletRequest mpRequest) throws Exception{
 		logger.info("booksellregistPage");
@@ -60,7 +55,7 @@ public class BookSellRegistController {
 		service.imageinsert(bookSellRegistDTO,mpRequest);
 		
 		
-		return "redirect:/";
+		return "redirect:/my/status";
 	}
 
 	

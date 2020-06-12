@@ -17,7 +17,23 @@
         <property name="username" value="dlswn666"/>
         <property name="password" value="dlswn2306"/>
    		</bean> -->
-   
+ 
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="465" />
+        <property name="username" value="hahayatong@gmail.com" />
+        <property name="password" value="5mengogo" />
+        
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="ail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
       <!--   MySQL dataSource -->
     <bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -26,8 +42,7 @@
         </property>
         <property name="username" value="gksfk6165"></property>
         <property name="password" value="dhaoswutm!@"></property>  
-    </bean>     
-     
+    </bean>       
     <!-- Mybatis 연동 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
          <property name="dataSource" ref="dataSource"></property>

@@ -17,6 +17,14 @@ $(document).ready(function(){
 		var bookname=$('#searchInput').val();
 		location.href="/?bsr_name="+bookname+"";
 	});
+	$(".box").slice(0, 8).show(); // 최초 10개 선택
+		$("#load").click(function(e){ // Load More를 위한 클릭 이벤트e
+		e.preventDefault();
+		$(".box:hidden").slice(0, 8).show(); // 숨김 설정된 다음 10개를 선택하여 표시
+		if($(".box:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
+		alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
+		}
+	});
 });
 </script>
 <body>
@@ -50,9 +58,9 @@ $(document).ready(function(){
 				<ul class="prdList column4">
 					<c:forEach var="booklist" items="${booklist}">
 						<li id="" class="item xans-record-">
-							<div class="box" class="${booklist.bsr_category}">
+							<div class="box" class="${booklist.bsr_category}" style="display:none">
 								<a href="${contextPath}/bookdetail?bsr_id=${booklist.bsr_id}&uuid=${booklist.uuid}&bsr_category=${booklist.bsr_category}">
-									<img src="https://placeimg.com/270/250/any/grayscale" />
+									<img src="${contextPath}/bookimg/${booklist.img}" width="270px" height="250px"/>
 								</a> 
 								<a href="${contextPath}/bookdetail?bsr_id=${booklist.bsr_id}&uuid=${booklist.uuid}&bsr_category=${booklist.bsr_category}">
 									<span style="font-size: 12px; color: #000000;">
@@ -70,6 +78,7 @@ $(document).ready(function(){
 						</li>
 					</c:forEach>
 				</ul>
+				<h1 id="load">더보기</h1>
 			</div>
 		</div>
 	</div>

@@ -95,9 +95,10 @@
 /*희망 가격 크기 고정  */
 #price{
 	width:150px;
-	height:30px;
+	height:18px;
 	resize:none;
-	font-size:25px;
+	font-size:16px;
+	padding:0;
 }
 /*소개글 textarea 크기  */
 #content{

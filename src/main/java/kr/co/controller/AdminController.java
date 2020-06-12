@@ -1,6 +1,7 @@
 package kr.co.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.service.AdminService;
 import kr.co.service.UserService;
+import kr.co.vo.Criteria;
+import kr.co.vo.PageMaker;
 import kr.co.vo.PopupDTO;
 
 @Controller
@@ -64,7 +67,7 @@ public class AdminController {
 		logger.info("/admin/popupSubmit");
 		adminService.registPopup(popupDTO);
 		
-		return "admin/popupRegist";
+		return "redirect:/admin/popupregist";
 	}
 	//공통해더에서 요청하여  디비내 팝업체크하는 역할
 	@ResponseBody
@@ -87,11 +90,25 @@ public class AdminController {
 		
 		return "OK";
 	}
-	//회원들의 판매개수 구매개수 리스트 표출하는 페이지
+	
+	//qna 리스트
 	@RequestMapping(value ="/admin/qnalist", method = RequestMethod.GET)
-	public String userQnaList(Model model) throws Exception {
+	public String userQnaList(Model model,Criteria cri) throws Exception {
 		logger.info("/admin/qnalist");
-		model.addAttribute("userqnalist",adminService.userQnaList());
-		return "admin/userQnaList";
+		
+		
+		PageMaker pageMaker = new PageMaker();
+	    pageMaker.setCri(cri);
+	    
+	    //회원들 qna총 카운트
+	    int qnacount=adminService.userqnaListCount();
+	    pageMaker.setTotalCount(qnacount);
+	    
+	    List<Map<String,Object>> list = adminService.userQnaList(cri);
+		
+		model.addAttribute("userqnalist",list);
+		model.addAttribute("pageMaker",pageMaker);
+		
+		return "/admin/qnalist";
 	}
 }

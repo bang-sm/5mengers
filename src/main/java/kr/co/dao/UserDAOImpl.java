@@ -9,8 +9,11 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
+import common.mail.TempKey;
 import kr.co.vo.LoginDTO;
 import kr.co.vo.UserVO;
 
@@ -22,6 +25,7 @@ public class UserDAOImpl implements UserDAO {
 	@Inject
 	private SqlSession sqlSession;
 	
+		
 //	@Inject
 //	public UserDAOImpl(SqlSession sqlSession) {
 //		this.sqlSession = sqlSession;
@@ -96,6 +100,13 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.update("userMapper.updatePass", paramMap);
 		
 	}
+	
+	// 이메일 찾기
+	@Override
+		public String emailSend(String userid) throws Exception {
+		
+			return sqlSession.selectOne("userMapper.emailSend", userid);
+		}
 	
 	
 	

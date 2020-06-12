@@ -18,13 +18,15 @@ import kr.co.service.BookDetailService;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-		
+	
+	
 		@Autowired
 		private BookDetailService service;
 		
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public String home(Model model,String bsr_name,HttpServletRequest request) throws Exception {
 			logger.info("home");
+			
 			
 			String bc_code=request.getParameter("bc_code");
 			if(bsr_name==null) {
@@ -38,6 +40,8 @@ public class HomeController {
 				model.addAttribute("list",service.category());
 				model.addAttribute("booklist",service.mainBookSearchList(bsr_name));
 			}
+			
+		      
 			return "home";
 		}
 		
@@ -59,3 +63,4 @@ public class HomeController {
 			return autolist;
 		}
 }
+		

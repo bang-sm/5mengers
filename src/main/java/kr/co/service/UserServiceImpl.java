@@ -3,7 +3,6 @@ package kr.co.service;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -17,12 +16,18 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import common.mail.MailAlert;
+import common.mail.MailHandler;
+import common.mail.TempKey;
 import kr.co.dao.UserDAO;
 import kr.co.vo.LoginDTO;
 import kr.co.vo.UserVO;
@@ -30,10 +35,14 @@ import kr.co.vo.UserVO;
 @Service
 public class UserServiceImpl implements UserService {
 	
+	
 	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class); 
 	
 	@Inject
 	private UserDAO userDAO;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	
 	// 회원가입 처리
@@ -178,9 +187,12 @@ public class UserServiceImpl implements UserService {
 			JsonElement element = parser.parse(result);
 			
 			JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+			JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
+			String email = kakao_account.getAsJsonObject().get("email").getAsString();
 			
 			userInfo.put("nickname", nickname);
+			userInfo.put("email", email);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -224,8 +236,6 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
-	
-	
 	// 로그인시 auth check!
 	@Override
 	public int authCheck(UserVO userVO) throws Exception {
@@ -240,24 +250,37 @@ public class UserServiceImpl implements UserService {
 		userDAO.updatePass(userid, pass);
 	}
 	
+	// 이메일 검색
+	@Override
+	public void emailSend(String userid) throws Exception {
+		
+		// 임시 비밀번호 생성 및  DB 업데이트
+		String newPass = new TempKey().generateKey(10);
+		String scNewPass = BCrypt.hashpw(newPass, BCrypt.gensalt());
+		userDAO.updatePass(userid, scNewPass);
+		
+		String mailAlert = new MailAlert().mailAlert(userDAO.emailSend(userid));
+		
+		// 메일 전송
+		MailHandler sendMail = new MailHandler(mailSender);
+		sendMail.setSubject("5MEN 임시 비빌번호 발급");
+		sendMail.setContext(
+				new StringBuffer()
+				.append("<h1>임시비밀번호 발급</h1>")
+				.append("<div><span>임시 비밀번호 : </span><span>")
+				.append(newPass)
+				.append("</span><button id=\"paste\">복사하기</button></div>")
+				.append("<span>로그인 후 비밀번호를 바꿔주세요</span>")
+				.toString());
+		
+		sendMail.setFrom("hahayatong@gmail.com", "5MEN");
+		sendMail.setTo(userDAO.emailSend(userid));
+		sendMail.send();		
+	}
+	
+	
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

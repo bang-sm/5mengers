@@ -1,9 +1,37 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="ko">
-<%@ include file="../common/head.jsp"%>
 
 <script type="text/javascript">
+
+/*	$(document).ready(function(){
+		
+		$("#updatePassbtn").click(function(){
+			alert("눌림?");
+			
+			var formdata = $("#form1").serialize();
+			
+			$.ajax({
+				url : "/user/updatePass"
+				, type : "POST"
+				, cache: false
+				, data : formdata
+				, success : function (data) {
+					var jsonObj = JSON.parse(data);
+					
+				} // end ajax success function
+				, error : function name(xhr ,status) {
+					alert(xhr + " : " + status );
+					
+				}  // end ajax error 
+				
+			}) // end ajax
+			
+		}); // click #updatePassbtn
+		
+	}); // end document ready */
+
+
 	
 	function checks() {
 		var pass = $("#newPass_input").val();
@@ -14,6 +42,7 @@
 			$("#newPass_input").focus();
 			return false;
 		}
+		
 		if(!passregex.test(pass)){
 			$("#newPass_input").focus();
 			$("#alert_pass").text("형식이 맞지 않습니다. (영문, 숫자 6자 이상 20자 이하)");
@@ -52,12 +81,12 @@
 
 <body>
 
-<div >
+<div>
 	<h2>비밀번호 변경</h2>
-	<form action="/user/updatePass" method="POST" onsubmit="return checks()" >
+	<form id="form1" action="/user/updatePass" method="POST" onsubmit="return checks()">
 		
 		<div>
-			<input type="text" id="newPass_id" name="userid" value="${changePassId }" hidden="hidden">
+			<input type="text" id="newPass_id" name="userid" value="${login.userid }" hidden="hidden">
 			
 		</div>
 		<div>
@@ -70,7 +99,7 @@
 			<div><span id="alert_pass_check2" style="display: none;" >비밀번호 확인란은 입력해주세요.</span></div>
 		</div>
 		
-		<button type="submit">비밀번호 변경</button>
+		<button type="submit" id="updatePassbtn" >비밀번호 변경</button>
 	</form>
 
 </div>

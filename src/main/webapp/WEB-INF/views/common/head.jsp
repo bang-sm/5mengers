@@ -4,6 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="http://localhost:8080"></c:set>
 <%-- <c:set var="contextPath" value="http://gksfk6165.cafe24.com"></c:set> --%>
+<c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://localhost:8080"></c:set>
+<%-- <c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://gksfk6165.cafe24.com"></c:set> --%>
 <%-- 프로젝트용 / 로컬용 패스--%>
 <html>
 <head>
@@ -29,7 +31,7 @@
 		db_pop_check();
 	    $("#po_btn_close").click(function () {
 	    	//닫기 버튼을 클릭시 세션 부여 각페이지마다 다른 세션생성
-	        //setCookieMobile( cookieName, "done" , 1);
+	        setCookieMobile( cookieName, "done" , 1);
 	        $("#popup_box").css("display","none");
 	    });
 	    function db_pop_check(){
@@ -46,17 +48,17 @@
 	    					if(data[i].np_yes_no == 1){
 	    						console.log("데이터 밀어 넣는중");
 	    						//페이지세션 확인
-	    						//if(document.cookie.indexOf(""+cookieName+"=done")<0){
+	    						if(document.cookie.indexOf(""+cookieName+"=done")<0){
 	    							$("#popup_box").css("display","block");
 	    							$("#np_title").text(data[i].np_title);
 	    							$("#np_comment").text(data[i].np_comment);
 	    							$(".pop-layer").draggable({
 	    								containment: 'window'
 	    							}); 
-	    						//}
-	    						//else{
-	    						//	$("#popup_box").css("display","none");
-	    						//}
+	    						}
+	    						else{
+	    							$("#popup_box").css("display","none");
+	    						}
 	    					}
 	    				}
 	    			}
@@ -78,6 +80,7 @@
 			</div>
 			 <div class="btn-r">
                 <Button id="po_btn_close" style="width: 190px" >오늘 하루동안 열지 않기</Button>
+                <input type="hidden" value="" id="np_id">
             </div>
 		</div>
 	</div>
@@ -90,7 +93,7 @@
 						<ul>
 							<li><a href="${contextPath}/admin/userlist">구매요청게시판</a></li>
 							<li><a
-								href="${contextPath}/booksellregist">나의책등록</a></li>
+								href="${contextPath}/booksellregist/booksellregistPage">나의책등록</a></li>
 							<li>
 								<input id="searchInput" type="text" style="width: 500px;height: 30px;margin-top: 9px;"/>
 								<button id="serachBtn">검색</button>

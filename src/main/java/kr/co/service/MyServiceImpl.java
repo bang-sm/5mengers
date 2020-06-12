@@ -18,6 +18,7 @@ public class MyServiceImpl implements MyService{
 	@Autowired
 	MyDAO dao;
 	
+	
 	//찜카운트
 	@Override
 	public int zzimCount(int uuid) throws Exception {
@@ -85,13 +86,13 @@ public class MyServiceImpl implements MyService{
 	}
 
 	@Override
-	public void confirm(int bsr_id, int uuid) {
+	public void confirm(int bsr_id) {
 		// 구매요청한 유저가 누구인지 알아오기
+		System.out.println(bsr_id + " //bsr_id");
 		int whoUUid=dao.whoAreYou(bsr_id);
-		//그 유저 mybuybook 책값 구매요청한아이디 이용하여 컬럼 업데이트 상태 Y로 바꿔주기
+		System.out.println(whoUUid + " //whoUUid");
+		//그 유저 mybuybook 책값 구매요청한아이디 이용하여 컬럼 업데이트 상태 Y로 바꿔주기 //  판매책 수락상태 업데이트
 		dao.buyBookUpdate(bsr_id,whoUUid);
-		//판매된 책도 바꿔주기
-		dao.sellBookUpdate(bsr_id,uuid);
 	}
 
 	//판매 완료된 리스트
@@ -99,6 +100,19 @@ public class MyServiceImpl implements MyService{
 	public List<MyhistoryDTO> mySellhistory(int getuuid, String startDate, String endDate) {
 		// TODO Auto-generated method stub
 		return dao.mySellhistory(getuuid,startDate,endDate);
+	}
+	
+	// 회원탈퇴 프로토콜 
+	@Override
+	public void dropUser(String userid) throws Exception {
+		
+		dao.dropUser(userid);
+	}
+
+	@Override
+	public void bookStatusChange(int bsr_id, int bsr_status) {
+		dao.bookStatusChange(bsr_id,bsr_status);
+		
 	}
 
 }

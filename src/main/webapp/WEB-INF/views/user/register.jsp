@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
-<%--@ include file ="헤드 경로" --%>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<%@ include file="../common/head.jsp"%>
 <script type="text/javascript">
 	
 $(function(){
@@ -66,9 +62,13 @@ function checks(){
 	var pass = $("#pw_input").val();
 	var userid = $("#id_input").val();
 	
-	//  6자 이상 20자미만	
+	//  6자 이상 20자미만(비밀번호 정규식)
 	var passregex = /^[A-Za-z0-9]{6,20}$/; 
 
+	// 이메일 정규식
+	//var emailregex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+	
 	// 비밀번호 공백 확인 && 비밀번호 유효성 검사
 	if(pass == ""){
 		$("#pw_input").focus();
@@ -116,11 +116,19 @@ function checks(){
 		return false;
 	}
 	
+	// email 정규식 체크
+	/* if(!emailregex.test($("#email").val())){
+		alert("이메일 확인");
+		return false;
+	} */ 
+	
 	// 전화번호 공백일 경우
 	if ($("#phone_input").val() == "") {
 		$("#phone_input").focus();
 		return false;
 	}
+	
+	
 
 	return true;
 	
@@ -140,7 +148,9 @@ function checks(){
 				SNS 인증<br>
 				
 				<c:if test="${empty kakao}">
-				<button type="button" id="kakao_auth"><a href="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://localhost:8080/user/auth&response_type=code">카카오톡 인증</a></button>
+				<button type="button" id="kakao_auth">
+					<a href="${kakao_uri}/user/auth&response_type=code">카카오톡 인증</a>
+				</button>
 				<input type="checkbox" id="kakao" name="auth" value="1" class="form-control" onclick="return false"><br>
 				<span>인증이 필요합니다.</span>
 				</c:if>
@@ -178,6 +188,10 @@ function checks(){
 						<div><span id="alert_pass_check2" style="display: none;" >비밀번호 확인란은 입력해주세요.</span></div>
 						<div class="form-group has feedback">
 							<input type="text" name="name" class="form-control" placeholder="닉네임" readonly="readonly" value="${kakao }">
+							<span class="glyphicon glyphicon-user form-control-feedback"></span>	
+						</div>
+						<div class="form-group has feedback">
+							<input type="text" name="email" class="form-control" placeholder="이메일" readonly="readonly" value="${kakao_email }">
 							<span class="glyphicon glyphicon-user form-control-feedback"></span>	
 						</div>
 						<div class="form-group has feedback">

@@ -59,12 +59,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--  구매요청 db 값 변경 -->
 	<update id ="book_check" parameterType="map">
 		UPDATE 
-				book_sell_regist  
+			book_sell_regist  
 		SET 
-				bsr_check =#{bsr_check} 
+			bsr_check =0
 		WHERE 
-				bsr_id = #{bsr_id}	
-	
+			bsr_id = #{bsr_id}	
 	</update>
    <!-- 찜 등록 AJAX -->
    <insert id="check_on" parameterType="map">
@@ -105,17 +104,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <!-- 메인 책 리스트 -->
    <select id="main_book_list" resultType="kr.co.vo.BookDetailDTO">
         SELECT
-	          bsr_id,
+	          a.bsr_id,
+	          (select bi_file_name from book_img where bsr_id =a.bsr_id LIMIT 1) as img,
 	          uuid,
-	          bsr_price,
-	          bsr_name,
-	          bsr_category
+	          a.bsr_price,
+	          a.bsr_name,
+	          a.bsr_category
         FROM
-              book_sell_regist
+              book_sell_regist a
         WHERE 
-        	  bsr_status = 1 
+        	  a.bsr_status = 1 
         ORDER BY
-              bsr_regdate desc;
+              a.bsr_regdate desc;
    </select>
    <select id="main_ct_book_list" resultType="kr.co.vo.BookDetailDTO">
         SELECT
@@ -134,16 +134,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!-- 같은 연관 장르 목록 -->
    <select id="side_same_category" parameterType="map" resultType="kr.co.vo.BookDetailDTO">
-	     SELECT 
+	<!--      SELECT 
 	   		   * 
 	     FROM 
 	   	       book_sell_regist 
 	     WHERE 
-	    	   bsr_category =#{bsr_category} and bsr_id != #{bsr_id}
+	    	   bsr_category =#{bsr_category} and bsr_id != #{bsr_id} and bsr_status= 1
 	     ORDER BY  
 	    	   bsr_regdate 
 	     DESC  
 	     LIMIT 0,10;
+ -->	    
+ 		SELECT 
+	   		   b.bsr_id,
+	   		   b.uuid,
+	   		   b.bsr_category,
+	   		   b.bsr_name,
+	   		   b.bsr_fixed_price,
+	   		   b.bsr_price,
+	   		   (select bi_file_name from book_img where bsr_id =b.bsr_id LIMIT 1) as img
+	     FROM 
+	   	       book_sell_regist b
+	     WHERE 
+	    	   b.bsr_category =#{bsr_category} and b.bsr_id !=#{bsr_id} and b.bsr_status= 1
+	     ORDER BY  
+	    	   b.bsr_regdate  DESC
+	     LIMIT 0,10;
+  
    </select>
    
    <!-- 글 수정  DB 값 가져오기-->
@@ -191,6 +208,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       book_sell_regist  
 		 WHERE 
 		       bsr_id =#{bsr_id};
+    	 DELETE 
+		 FROM 
+		       book_img  
+		 WHERE 
+		       bsr_id =#{bsr_id};
 		   
    </delete>
    
@@ -231,11 +253,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		GROUP BY bsr_name;
    </select>
    <select id="serachBook" parameterType="String" resultType="kr.co.vo.BookDetailDTO">
-		SELECT 
-			* 
-		FROM
-			book_sell_regist 
-		WHERE bsr_name =#{bsr_name};
+        SELECT
+	          a.bsr_id,
+	          (select bi_file_name from book_img where bsr_id =a.bsr_id LIMIT 1) as img,
+	          uuid,
+	          a.bsr_price,
+	          a.bsr_name,
+	          a.bsr_category
+        FROM
+              book_sell_regist a
+        WHERE 
+        	  a.bsr_status = 1 and bsr_name =#{bsr_name};
+        ORDER BY
+              a.bsr_regdate desc;
    </select>
    
 </mapper>

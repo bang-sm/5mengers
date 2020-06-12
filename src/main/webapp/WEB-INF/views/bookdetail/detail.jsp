@@ -13,12 +13,7 @@
 <link rel="stylesheet" href="../resources/css/detail.css?v1">
 <link rel="stylesheet" href="../resources/css/slick.css">
 <link rel="stylesheet" href="../resources/css/slick-theme.css">
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
-	
-	<style>
-	
-	</style>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c641b7de37b235b224307fbe383e582&libraries=services"></script>
 </head>
 <body >
 
@@ -38,7 +33,8 @@
 				
 					<c:forEach var="side" items="${side_book}">
 					<li class="book_li">
-						<a href="http://localhost:8080/bookdetail?bsr_id=${side.bsr_id }&uuid=${side.uuid}&bsr_category=${side.bsr_category}">
+						<a href="${contextPath}/bookdetail?bsr_id=${side.bsr_id }&uuid=${side.uuid}&bsr_category=${side.bsr_category}">
+							<div class="side_img"><img src="${contextPath}/bookimg/${side.img}" width="200px" height="200px"></div>
 							<div class="side_name">${side.bsr_name }</div>
 							<div class="side_fixed_price">정가 : ${side.bsr_fixed_price }</div>
 							<div class="side_price">판매가 : ${side.bsr_price }원</div>
@@ -74,12 +70,12 @@
 							</div>
 									<div class="slider slider-single">
 										<c:forEach var="topimg" items="${bookimg}">
-										<div><img src="http://localhost:8080/bookimg/${topimg.bi_file_name}" alt="사진 X" style="width:400px;height:400px;"></div>
+										<div><img src="${contextPath}/bookimg/${topimg.bi_file_name}" alt="사진 X" style="width:400px;height:400px;"></div>
 										</c:forEach>
 								    </div>
 									<div class="slider slider-nav">
 									 	<c:forEach var="topimg" items="${bookimg}">
-										<div><img src="http://localhost:8080/bookimg/${topimg.bi_file_name}" alt="사진 X" style="width:100px;height:100px;"></div>
+										<div><img src="${contextPath}/bookimg/${topimg.bi_file_name}" alt="사진 X" style="width:100px;height:100px;"></div>
 										</c:forEach>
 								   </div>
 						</div>
@@ -93,23 +89,23 @@
 								<c:choose>
 									<c:when test="${detail.bsr_status == 0 }">
 										<div class="book_confirm"
-											style="color: red; border: 1px solid blue; padding: 10px;">
+											style="color: red; border: 1px solid red; padding: 10px;">
 											게시글 비활성화</div>
 									</c:when>
 									<c:when test="${detail.bsr_check == 0 && detail.bsr_status == 1 }">
 										<div class="book_confirm"
-											style="color: blue; border: 1px solid blue; padding: 10px;">
+											style="color: red; border: 1px solid red; padding: 10px;">
 											예약중</div>
 									</c:when>
 									<c:when test="${detail.bsr_check == 2 && detail.bsr_status == 0}">
-										<div class="book_confirm" style="color: blue">삭제됨</div>
+										<div class="book_confirm" style="color: red; border: 1px solid red;">삭제됨</div>
 									</c:when>
 									<c:when test="${detail.bsr_check == 1 && detail.bsr_status == 0}">
-										<div class="book_confirm" style="color: blue">판매완료</div>
+										<div class="book_confirm" style="color: red; border: 1px solid red;" >판매완료</div>
 									</c:when>
 									<c:otherwise>
 										<div class="book_confirm"
-											style="color: blue; border: 1px solid red; padding: 10px;">
+											style="color: blue; border: 1px solid blue; padding: 10px;">
 											판매중</div>
 									</c:otherwise>
 								</c:choose>
@@ -306,7 +302,7 @@
 				  if(${login.uuid} != ${detail.uuid}){ 
 					  
 					  $.ajax({
-								url:"/bookactivecount",
+								url:"/bookactivecount", 
 								type:"GET",
 								data:{
 									"bsr_id":${detail.bsr_id}
@@ -325,26 +321,20 @@
 							        		  }
 									  	});
 										alert("해당 상품을 예약하셨습니다. 마이페이지로 이동합니다.");
-										location.href="http://localhost:8080/my/nav" 
+										location.href="${contextPath}/my/status" 
 									}else{
 										 alert("현재 판매자가 게시글을 수정하고 있습니다.");
 									}
 								}
-					   });	  
-						  
+					   }); 	  
 					  //판매자가 게시글을 수정 하고 있는지 확인 여부  (data : 현재 게시글 번호)
-					 
 					  }else{
 						  alert("판매자는 구매할수 없습니다!");
 					  }
-				
 			  }else{
 				  alert("해당 상품을 구매요청 하실수 없습니다!");
 			  }
 		  });
-			  
-		  
-		   
          </script>
 	</c:otherwise>
 </c:choose>
@@ -362,7 +352,7 @@ function deletebtn(){
 				alert("해당 게시글이 삭제 되었습니다.")
 			}  
 		}); 
-		location.href="http://localhost:8080";
+		location.href="${contextPath}";
 	}
 }
 
@@ -381,7 +371,7 @@ function bookupdate(){
 			}else{
 				var check = confirm("글 수정 하시겠습니까 ? ");
 				if(check){
-					location.href="http://localhost:8080/bookupdate?bsr_id="+${detail.bsr_id};
+					location.href="${contextPath}/bookupdate?bsr_id="+${detail.bsr_id};
 				}
 			}
 		}
@@ -442,24 +432,18 @@ content : iwContent
 infowindow.open(map, marker); 
 
 var geocoder = new kakao.maps.services.Geocoder();
-
+var coord = new kakao.maps.LatLng(abc, def);
 var callback = function(result, status) {
     if (status === kakao.maps.services.Status.OK) {
-	    $("#map_detail").html("<div style='font-size:20px;font-weight:bold;'>판매자 직거래 희망 지역</div>   <br><div class='map_address'>"+result[0].address_name+"</div>");
+	    $("#map_detail").html("<div style='font-size:20px;font-weight:bold;'>판매자 직거래 희망 지역</div><br><div></div><br><div class='map_address'>"+result[0].address.address_name+"</div>");
     }
 };
 
-geocoder.coord2RegionCode(def, abc, callback);
+geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 
 var new_map =$('.map_border').parent().parent();
 new_map.css("border","1px solid blue");
 new_map.css("border-radius","10px");
-
-var swiper = new Swiper('.swiper-container', {
-    pagination: {
-      el: '.swiper-pagination',
-    },
-  });
 </script>
 
 

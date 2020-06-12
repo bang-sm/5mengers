@@ -2,61 +2,74 @@
 
 
 function my_list(data,stat) {
-	$(".card").draggable({ axis: "y" }); 
-	console.log(stat);
+	//console.log(stat);
 	if(stat=="S"){	
 		$("#sell_book").empty();
 		for (var i = 0; i < data.length; i++) {
 	    	var confirm;
 	    	var ok;
-	    	if(data[i].bsr_confirm =='Y'){
-	    		confirm="구매요청";
-	    		ok="<button class='confirm' value='"+data[i].bsr_id+"'>수락하기</button>";
+	    	var st;
+	    	if(data[i].bsr_check ==0){
+	    		confirm="구매요청옴";
+	    		ok="<button type='button' class='confirm' value='"+data[i].bsr_id+"'>수락하기</button>";
 	    	}else{
 	    		confirm="-";
 	    		ok="";
 	    	}
-	    	var sellbox='<div class="card">'+
-	    		'<div class="additional">'+
-	    		'<div class="more-info">'+
-	    		'<div class="stats">'+
-	    		'<div>'+
-	    		'<div class="value"></div>'+
-	    		'</div><div>'+
-	    		''+ok+'</div></div></div></div>'+
-	    		'<div class="general">'+
-	    		'<h1>'+data[i].bsr_name+'</h1>'+
-	    		'<div class="" style="font-size:30px;font-weight:bold;color: red;text-align: center;">'+confirm+'</div>'+
-	    		'<span class="more">'+
-	    		''+data[i].bsr_price+'원'+
-	    		'</span>';
-	    		
-	    	 $("#sell_book").append(sellbox);	
+    		if(data[i].bsr_status ==1){
+	    		st="<button type='button' class='st_off' style='background:red' value='"+data[i].bsr_id+"'>활성화중</button>";
+	    	}else{
+	    		st="<button type='button' class='st_on' value='"+data[i].bsr_id+"'>비활성화중</button>";
+	    	}
+    		if(data[i].bsr_confirm =='Z'){
+		    	var sellbox='<div class="card">'+
+		    		'<div class="more-info">'+
+		    		'<div class="stats">'+
+		    		'<div>'+
+		    		'<div class="value"></div>'+
+		    		'<div>'+
+		    		''+ok+'</div>'+st+'</div></div></div>'+
+		    		'<div class="general">'+
+		    		'<a href="/bookdetail?bsr_id='+data[i].bsr_id+'&uuid='+data[i].uuid+'&bsr_category='+data[i].bsr_category+'" class="book_title">'+data[i].bsr_name+'</a>'+
+		    		'<div class="" style="font-size:30px;font-weight:bold;color: red;text-align: center;">'+confirm+'</div>'+
+		    		'<span class="more">'+
+		    		''+data[i].bsr_price+'원'+
+		    		'</span>';
+		    	 $("#sell_book").append(sellbox);	
+    		}
+	    	
 		}
+		$(".confirm").on("click",function(){
+			location.href="/my/confirm?bsr_id="+$(this).val()+"";
+		});
+		$(".st_off").on("click",function(){
+			console.log("클릭중");
+			location.href="/my/bookstatus?bsr_status=0&bsr_id="+$(this).val()+"";
+		});
+		$(".st_on").on("click",function(){
+			location.href="/my/bookstatus?bsr_status=1&bsr_id="+$(this).val()+"";
+		});
 	}
 	else if(stat=="Z"){
 		var path="\/my\/zzimDelete";
 		$("#zzim_book").empty();	
 		for (var i = 0; i < data.length; i++) {
 	    	var confirm;
-	    	var ok;
 	    	console.log(data[i].bsr_check +" -----------------------------------");
 	    	if(data[i].bsr_check==1){
 	    		confirm="판매완료";
 	    	}else{
 	    		confirm="-";
-	    		ok="";
 	    	}
 	    	var zzimbox='<div class="card">'+
-	    		'<div class="additional">'+
 	    		'<div class="more-info">'+
 	    		'<div class="stats">'+
 	    		'<div>'+
 	    		'<div class="value"></div>'+
 	    		'</div><div><button type="button" class="zzimDelete" value="'+data[i].bsr_id+'">찜해제</button>'+
-	    		''+ok+'</div></div></div></div>'+
+	    		''+ok+'</div></div></div>'+
 	    		'<div class="general">'+
-	    		'<h1>'+data[i].bsr_name+'</h1>'+
+	    		'<a href="/bookdetail?bsr_id='+data[i].bsr_id+'&uuid='+data[i].uuid+'&bsr_category='+data[i].bsr_category+'" class="book_title">'+data[i].bsr_name+'</a>'+
 	    		'<div class="" style="font-size:30px;font-weight:bold;color: red;text-align: center;">'+confirm+'</div>'+
 	    		'<span class="more">'+
 	    		''+data[i].bsr_price+'원'+
@@ -67,9 +80,6 @@ function my_list(data,stat) {
 		
 		$(".zzimDelete").on("click",function(){
 			location.href="/my/zzimDelete?bsr_id="+$(this).val()+"";
-		});
-		$(".confirm").on("click",function(){
-			location.href="/my/confirm?bsr_id="+$(this).val()+"";
 		});
 	}
 	else if(stat=="R"){
@@ -87,15 +97,14 @@ function my_list(data,stat) {
 	    	}
 	    	
 	    	var request_book='<div class="card">'+
-	    		'<div class="additional">'+
 	    		'<div class="more-info">'+
 	    		'<div class="stats">'+
 	    		'<div>'+
 	    		'<div class="value"></div>'+
-	    		'</div><div>'+
+	    		'<div>'+
 	    		''+ok+'</div></div></div></div>'+
 	    		'<div class="general">'+
-	    		'<h1>'+data[i].bsr_name+'</h1>'+
+	    		'<a href="/bookdetail?bsr_id='+data[i].bsr_id+'&uuid='+data[i].uuid+'&bsr_category='+data[i].bsr_category+'" class="book_title">'+data[i].bsr_name+'</a>'+
 	    		'<div class="" style="font-size:30px;font-weight:bold;color: red;text-align: center;">'+confirm+'</div>'+
 	    		'<span class="more">'+
 	    		''+data[i].bsr_price+'원'+
@@ -116,7 +125,7 @@ function goAjax(){
 				"stat" : stat
 			},
 			success: function(data){
-				console.log(data);
+				//console.log(data);
 				stat="S";
 				my_list(data,stat);
 			},
@@ -133,7 +142,7 @@ function goAjax(){
 				"stat" : stat
 			},
 			success: function(data){
-				console.log(data)
+				//console.log(data)
 				stat="Z";
 				my_list(data,stat);
 			},
@@ -149,7 +158,7 @@ function goAjax(){
 				"stat" : stat
 			},
 			success: function(data){
-				console.log(data)
+				//console.log(data)
 				stat="R";
 				my_list(data,stat);
 			},

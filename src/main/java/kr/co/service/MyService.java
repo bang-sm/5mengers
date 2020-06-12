@@ -29,7 +29,12 @@ public interface MyService {
 	//찜해제
 	public void zzimDelete(int bsr_id, int uuid);
 	//수락하기
-	public void confirm(int bsr_id, int uuid);
+	public void confirm(int bsr_id);
 	//판매완료된 리스트
 	public List<MyhistoryDTO> mySellhistory(int getuuid, String startDate, String endDate);
+	//책 상태 변경
+	public void bookStatusChange(int bsr_id, int bsr_status);
+	//회원탈퇴 PROTOCOL - 비밀번호 확인
+	public void dropUser(String userid) throws Exception;
+	
 }

@@ -1,7 +1,5 @@
 package kr.co.vo;
 
-import java.util.Date;
-
 public class UserVO {
 
 	private String name;
@@ -12,12 +10,19 @@ public class UserVO {
 	private String userid;
 	private int sell_count;
 	private int buy_count;
+	private String email;
 //	private String session_key;
 //	private Date session_limit;
 	
 	
 	
-//	public String getSession_key() {
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	//	public String getSession_key() {
 //		return session_key;
 //	}
 //	public void setSession_key(String session_key) {
