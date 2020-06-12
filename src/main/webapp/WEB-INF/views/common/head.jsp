@@ -28,7 +28,7 @@
 <script>
 	$(document).ready(function(){
 		var path=$(location).attr('pathname');
-		var cookieName=path+""+$("#id").val();
+		var cookieName=path;
 		db_pop_check();
 	    $("#po_btn_close").click(function () {
 	    	//닫기 버튼을 클릭시 세션 부여 각페이지마다 다른 세션생성
@@ -52,15 +52,14 @@
 	    						if(document.cookie.indexOf(""+cookieName+"=done")<0){
 	    							$("#popup_box").css("display","block");
 	    							$("#np_title").text(data[i].np_title);
-	    							$("#np_id").val(data[i].np_id);
 	    							$("#np_comment").text(data[i].np_comment);
 	    							$(".pop-layer").draggable({
 	    								containment: 'window'
 	    							}); 
 	    						}
-	    						//else{
-	    						//	$("#popup_box").css("display","none");
-	    						//}
+	    						else{
+	    							$("#popup_box").css("display","none");
+	    						}
 	    					}
 	    				}
 	    			}

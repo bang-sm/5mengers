@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			np_id=#{np_id}
 	</delete>
-	<select id="userqnalist" resultType="kr.co.vo.QnADTO">
+	<select id="userqnalist" parameterType="map" resultType="kr.co.vo.QnADTO">
 		SELECT 
 			qb.qb_id,
 			u.userid,
@@ -39,6 +39,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 			qna_board qb INNER JOIN user u
 		ON u.uuid = qb.uuid 
-		
+		ORDER BY 
+			qb_date DESC
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	<select id="userqnaListCount" resultType="int">
+		SELECT 
+			count(*)
+		FROM
+			qna_board 
+		WHERE
+			qb_replyYN='N';
 	</select>
 </mapper>
