@@ -310,7 +310,7 @@
 								success : function(data){
 									if(data == 1 ){
 										 $.ajax({
-											  url:"/book_check",
+											  url:"/book_check", 
 							        		  type:"GET",
 							        		  data :{ 
 							        			  "bsr_check" : 0,
