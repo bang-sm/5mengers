@@ -1,9 +1,10 @@
 package kr.co.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import kr.co.vo.Criteria;
 import kr.co.vo.PopupDTO;
-import kr.co.vo.QnADTO;
 
 public interface AdminDAO {
 	
@@ -15,6 +16,8 @@ public interface AdminDAO {
 	public void popup_status_update(PopupDTO popupDTO);
 	//팝업삭제
 	public void popup_delete(int np_id);
+	//유저 qna총 카운트
+	public int userqnaListCount();
 	//유저들의 qna리스트
-	public List<QnADTO> userQnaList();
+	public List<Map<String, Object>> userQnaList(Criteria cri);
 }

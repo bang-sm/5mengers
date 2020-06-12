@@ -1,13 +1,14 @@
 package kr.co.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.dao.AdminDAO;
+import kr.co.vo.Criteria;
 import kr.co.vo.PopupDTO;
-import kr.co.vo.QnADTO;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -39,11 +40,17 @@ public class AdminServiceImpl implements AdminService{
 		adminDAO.popup_delete(np_id);
 	}
 
-	//유저들의 qna리스트
+
 	@Override
-	public List<QnADTO> userQnaList() {
+	public int userqnaListCount() {
 		// TODO Auto-generated method stub
-		return adminDAO.userQnaList();
+		return adminDAO.userqnaListCount();
+	}
+
+	@Override
+	public List<Map<String, Object>> userQnaList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return adminDAO.userQnaList(cri);
 	}
 
 }

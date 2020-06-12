@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.vo.BookDetailDTO;
-import kr.co.vo.LoginDTO;
 import kr.co.vo.Criteria;
 import kr.co.vo.MyhistoryDTO;
 

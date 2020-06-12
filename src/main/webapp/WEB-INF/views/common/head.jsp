@@ -2,10 +2,10 @@
 	contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="contextPath" value="http://localhost:8080"></c:set>
-<%-- <c:set var="contextPath" value="http://gksfk6165.cafe24.com"></c:set> --%>
-<c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://localhost:8080"></c:set>
-<%-- <c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://gksfk6165.cafe24.com"></c:set> --%>
+<%-- <c:set var="contextPath" value="http://localhost:8080"></c:set> --%>
+<c:set var="contextPath" value="http://gksfk6165.cafe24.com"></c:set>
+<%-- <c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://localhost:8080"></c:set> --%>
+<c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://gksfk6165.cafe24.com"></c:set>
 <%-- 프로젝트용 / 로컬용 패스--%>
 <html>
 <head>
@@ -27,7 +27,7 @@
 <script>
 	$(document).ready(function(){
 		var path=$(location).attr('pathname');
-		var cookieName=path+""+$("#id").val();
+		var cookieName=path;
 		db_pop_check();
 	    $("#po_btn_close").click(function () {
 	    	//닫기 버튼을 클릭시 세션 부여 각페이지마다 다른 세션생성
@@ -51,15 +51,14 @@
 	    						if(document.cookie.indexOf(""+cookieName+"=done")<0){
 	    							$("#popup_box").css("display","block");
 	    							$("#np_title").text(data[i].np_title);
-	    							$("#np_id").val(data[i].np_id);
 	    							$("#np_comment").text(data[i].np_comment);
 	    							$(".pop-layer").draggable({
 	    								containment: 'window'
 	    							}); 
 	    						}
-	    						//else{
-	    						//	$("#popup_box").css("display","none");
-	    						//}
+	    						else{
+	    							$("#popup_box").css("display","none");
+	    						}
 	    					}
 	    				}
 	    			}
@@ -92,7 +91,7 @@
 				<div class="box_1200">
 					<div class="topbar_left">
 						<ul>
-							<li><a href="${contextPath}/admin/userlist">구매요청게시판</a></li>
+							<li><a href="${contextPath}/brb/list">구매요청게시판</a></li>
 							<li><a
 								href="${contextPath}/booksellregist/booksellregistPage">나의책등록</a></li>
 							<li>

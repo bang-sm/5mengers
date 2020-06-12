@@ -59,12 +59,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--  구매요청 db 값 변경 -->
 	<update id ="book_check" parameterType="map">
 		UPDATE 
-				book_sell_regist  
+			book_sell_regist  
 		SET 
-				bsr_check =#{bsr_check},
+			bsr_check =0
 		WHERE 
-				bsr_id = #{bsr_id}	
-	
+			bsr_id = #{bsr_id}	
 	</update>
    <!-- 찜 등록 AJAX -->
    <insert id="check_on" parameterType="map">

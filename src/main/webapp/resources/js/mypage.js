@@ -16,12 +16,12 @@ function my_list(data,stat) {
 	    		confirm="-";
 	    		ok="";
 	    	}
-	    	if(data[i].bsr_check ==0){
-	    		if(data[i].bsr_status ==1){
-		    		st="<button type='button' class='st_off' style='background:red' value='"+data[i].bsr_id+"'>활성화중</button>";
-		    	}else{
-		    		st="<button type='button' class='st_on' value='"+data[i].bsr_id+"'>비활성화중</button>";
-		    	}
+    		if(data[i].bsr_status ==1){
+	    		st="<button type='button' class='st_off' style='background:red' value='"+data[i].bsr_id+"'>활성화중</button>";
+	    	}else{
+	    		st="<button type='button' class='st_on' value='"+data[i].bsr_id+"'>비활성화중</button>";
+	    	}
+    		if(data[i].bsr_confirm =='Z'){
 		    	var sellbox='<div class="card">'+
 		    		'<div class="more-info">'+
 		    		'<div class="stats">'+
@@ -36,7 +36,7 @@ function my_list(data,stat) {
 		    		''+data[i].bsr_price+'원'+
 		    		'</span>';
 		    	 $("#sell_book").append(sellbox);	
-	    	}
+    		}
 	    	
 		}
 		$(".confirm").on("click",function(){
