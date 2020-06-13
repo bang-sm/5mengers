@@ -182,6 +182,9 @@
          <ul id="placesList"></ul>
          <div id="pagination"></div>
       </div>
+   </div>
+   <%@ include file="../common/footer.jsp"%>
+     
 </body>
 
 
@@ -226,7 +229,6 @@ function removeChar(event) {
 
    // 지도를 생성합니다    
    var map = new kakao.maps.Map(mapContainer, mapOption);
-
    // 장소 검색 객체를 생성합니다
    var ps = new kakao.maps.services.Places();
 

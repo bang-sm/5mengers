@@ -2,10 +2,10 @@
 	contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%-- <c:set var="contextPath" value="http://localhost:8080"></c:set> --%>
-<c:set var="contextPath" value="http://gksfk6165.cafe24.com"></c:set>
-<%-- <c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://localhost:8080"></c:set> --%>
-<c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://gksfk6165.cafe24.com"></c:set>
+<c:set var="contextPath" value="http://localhost:8080"></c:set> 
+<%-- <c:set var="contextPath" value="http://gksfk6165.cafe24.com"></c:set> --%>
+<c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://localhost:8080"></c:set> 
+<%-- <c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://gksfk6165.cafe24.com"></c:set> --%>
 <%-- 프로젝트용 / 로컬용 패스--%>
 <html>
 <head>
@@ -23,7 +23,6 @@
 <script src="../resources/js/home.js"></script>
 <script src="../resources/js/popup.js"></script>
 </head>
-<body>
 <script>
 	$(document).ready(function(){
 		var path=$(location).attr('pathname');
@@ -40,7 +39,6 @@
 	    		url: "/admin/popupCheck",
 	    		type: "POST",
 	    		success: function(data){
-	    			console.log(data);
 	    			for (var i = 0; i < data.length; i++) {
 	    				//현재페이지에 팝업창이 있는지 체크
 	    				if(data[i].np_page_name == path){
@@ -143,6 +141,7 @@
 
 		</div>
 	</div>
+	
 </body>
 <script type="text/javascript">
 	$('#logoutbtn').on('click', function(){
