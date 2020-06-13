@@ -264,7 +264,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         FROM
               book_sell_regist a
         WHERE 
-        	  a.bsr_status = 1 and bsr_name =#{bsr_name}
+        	  a.bsr_status = 1 and bsr_name like CONCAT('%',#{bsr_name},'%')
         ORDER BY
               a.bsr_regdate desc;
    </select>
