@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
+
+body {
+  min-width: 1200px;
+}
+
+body, code {
+  font-size: 12px;
+  font-family: 'Nanum Gothic','arial','Verdana',Dotum,AppleGothic,sans-serif;
+  color: #333;
+  background: #fff;
+}
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, img {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  -webkit-text-size-adjust: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+user agent stylesheet
+body {
+  display: block;
+  margin: 8px;
+}
+
+xans-member-join .boardWrite td {
+  width: auto;
+  padding: 10px 0 8px 10px;
+  border-top: 1px solid #dedede;
+}
+
+th, td {
+  border: 0;
+  vertical-align: top;
+}
+
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+
+table {
+  width: 100%;
+  border: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+
+div.site__container {
+  width: 40%;
+  margin: auto;
+  
+}
+
+input {
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  color: -internal-light-dark-color(black, white);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  -webkit-appearance: textfield;
+  background-color: -internal-light-dark-color(white, black);
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  margin: 0em;
+  font: 400 13.3333px Arial;
+  padding: 1px 0px;
+  border-width: 2px;
+  border-style: inset;
+  border-color: initial;
+  border-image: initial;
+}
+
+div #submitBtn {
+	width: 30%;
+  border-left: 10%;
+  float: right;
+}
+
+button #id_confirm_btn{
+	width: 30%;
+  border-left: 10%;
+  float: right;
+}
+
+button #dropBtn {
+	width: 100%;
+  
+  
+}
+
+button #updatePassbtn {
+	width: 100%
+}
+
+ h2 {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    line-height: 50px;
+    border-bottom: 2px solid #000;
+    font-family: 'Lato','Nanum Gothic',sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+}
+
+td.noPadding {
+	padding: 0px;
+}
+

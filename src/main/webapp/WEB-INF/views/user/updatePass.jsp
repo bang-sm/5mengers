@@ -82,14 +82,12 @@
 <body>
 
 <div>
-	<h2>비밀번호 변경</h2>
+	<h2>회원 정보 변경</h2>
 	<form id="form1" action="/user/updatePass" method="POST" onsubmit="return checks()">
-		
-		<div>
-			<input type="text" id="newPass_id" name="userid" value="${login.userid }" hidden="hidden">
-			
-		</div>
-		<div>
+	<div hidden="hidden"> 		
+	<input type="text" id="newPass_id" name="userid" value="${login.userid }"  visible="hidden">
+	</div>		
+	<%-- 	<div>
 		<input type="password" id="newPass_input" name="pass" placeholder="새로운 비밀번호">
 			<div><span id="alert_pass">필수 입력입니다.(6자 이상 20자 이하)</span></div>
 		</div>
@@ -97,9 +95,38 @@
 		<input type="password" id="newPass_confirm" placeholder="새로운 비밀번호 확인">
 			<div><span id="alert_pass_check1" style="display: none;" >비밀번호가 일치하지 않습니다.</span></div>
 			<div><span id="alert_pass_check2" style="display: none;" >비밀번호 확인란은 입력해주세요.</span></div>
-		</div>
+		</div> --%>
 		
-		<button type="submit" id="updatePassbtn" >비밀번호 변경</button>
+		<!-- ------------------------------------------------------------------------- -->
+	<table>	
+		<tr>
+			<th scope="row">비밀번호 <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/member/ico_required.gif"
+				alt="필수"></th>
+			<td><input id="newPass_input" name="pass"
+				fw-filter="isFill&amp;isMin[4]&amp;isMax[16]" fw-label="비밀번호"
+				fw-msg="" autocomplete="off" maxlength="16"
+				0="disabled" value="" type="password" placeholder="새로운 비밀번호"> 
+				<span id="alert_pass">필수 입력입니다.(영문,숫자 6자 이상 20자 이하)</span></td>
+		</tr>
+		<tr>
+			<th scope="row">비밀번호 확인 <img
+				src="http://img.echosting.cafe24.com/skin/base_ko_KR/member/ico_required.gif"
+				alt="필수"></th>
+			<td><input id="newPass_confirm" placeholder="새로운 비밀번호 확인"
+				fw-filter="isFill&amp;isMatch[passwd]" fw-label="비밀번호 확인"
+				fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16"
+				0="disabled" value="" type="password">
+				<span id="alert_pass_check1" style="display: none;">비밀번호가
+					일치하지 않습니다.</span>
+				<span id="alert_pass_check2" style="display: none;">비밀번호
+					확인란은 입력해주세요.</span>
+			</td>
+		</tr>
+	</table>
+		
+		<button type="submit" id="updatePassbtn" >비밀번호 변경</button> 
+		<!-- 회원탈퇴 modal open!-->
+		<button id="dropBtn"> 회원 탈퇴 </button>
 	</form>
 
 </div>

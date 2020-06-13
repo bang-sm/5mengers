@@ -2,8 +2,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../resources/css/modal.css">
+
 <%@ include file="../common/head.jsp"%>
+<link rel="stylesheet" href="../resources/css/register.css">
+<link rel="stylesheet" href="../resources/css/modal.css">
 
 <script type="text/javascript">
 
@@ -19,7 +21,7 @@ $(document).ready(function(){
     });
 
     close.on("click", function(){
-        modal.style
+        modal.css("display", "none");
     });
 
     window.onclick = function(event) {
@@ -52,11 +54,12 @@ function check(){
 </script>
 
 <body>
+<div class="site__container">
 <%@ include file="../user/updatePass.jsp" %>
 
 <!-- 회원탈퇴 modal open!-->
-<button id="dropBtn"> 회원 탈퇴 </button>
-
+<%-- <button id="dropBtn"> 회원 탈퇴 </button>
+--%>
 <!-- 모달!! -->
 <div id="dropModal" class="modal">
 
@@ -65,37 +68,36 @@ function check(){
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2> 회원 탈퇴</h2>
+            <hr><br>
             <span class="warning"> * 탈퇴하시면 다시 계정을 사용하실수 없습니다.</span>
 
         </div>
-        <div class="modal-content">
+        <div id="modelinnercontent">
             <form id="modal-form" action="/my/userInfo" method="POST" onsubmit="return check()">
-                
+                <br>
                 <div class="userid_check">
-                    <span id="userid_display"> 탈퇴할 회원의 아이디 : </span>
+                    <span id="userid_display"> &nbsp&nbsp탈퇴할 회원의 아이디 : </span>
                     <input id="user_id_confrim" value="${login.userid}" name="userid" readonly="readonly"><br>
                     <%-- <input type="text" id="uuid" name="uuid" value="${login.uuid}" hidden="hidden"><br> --%> 
-                    <span class="warning"> 탈퇴할 아이디를 확인해 주세요. </span>
+                    <br><div class="warningDiv"><span class="warning"> * 탈퇴할 아이디를 확인해 주세요. </span></div>
                 </div>
-
+				<br>
                 <div class="pw">
-                    <input type="password" id="pw_input" name="pass" placeholder="비밀번호 입력">
+                    &nbsp<input type="password" id="pw_input" name="pass" placeholder="비밀번호 입력">
                     
                 </div>
-
+				<br>
                 <div class="submitBtn">
-                    <button type="submit">탈퇴하기</button>
+                    <button type="submit" id="ModaldropBtn">탈퇴하기</button>
                 </div>
             </form>
         </div>
-        <div class="modal-footer">
-            
-        </div>
+       
     </div>
 
 
 </div>
 
-
+</div>
 </body>
 </html>

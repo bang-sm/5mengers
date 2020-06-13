@@ -14,20 +14,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 
 	// 페이지 요청 정보 저장
 	private void saveDestination(HttpServletRequest request) {
-		String uri = "";
+		String uri = request.getRequestURI();
 		String query = request.getQueryString();
-		
-		if(request.getRequestURI() == "/booksellregist") {
-			
-			logger.info("걸림");
-			uri = "/";
-			query = "";
-			
-		} else {
-			logger.info("안걸림");
-			uri = request.getRequestURI();
-		}
-		
 		
 		if(query == null || query.equals("null")) {
 			query = "";
