@@ -28,7 +28,16 @@ public class BookRequestDTO {
 	private String bc_name;
 	
 	//
+	private int bsr_id;
 	
+	public int getBsr_id() {
+		return bsr_id;
+	}
+
+	public void setBsr_id(int bsr_id) {
+		this.bsr_id = bsr_id;
+	}
+
 	public BookRequestDTO() {
 		super();
 		System.out.println("BookRequestDTO()");

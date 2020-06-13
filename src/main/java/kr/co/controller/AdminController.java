@@ -71,7 +71,7 @@ public class AdminController {
 	}
 	//공통해더에서 요청하여  디비내 팝업체크하는 역할
 	@ResponseBody
-	@RequestMapping(value ="/admin/popupCheck", method = RequestMethod.POST)
+	@RequestMapping(value ="/popupCheck", method = RequestMethod.POST)
 	public List<PopupDTO> popupCheck() throws Exception {
 		logger.info("/admin/popupCheck");
 		List<PopupDTO> pd=adminService.popupList();

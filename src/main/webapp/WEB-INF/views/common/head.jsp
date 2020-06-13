@@ -2,11 +2,8 @@
 	contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<<<<<<< HEAD
 <c:set var="contextPath" value="http://localhost:8080"></c:set>
-=======
 <c:set var="contextPath" value="http://localhost:8080"></c:set> 
->>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers.git
 <%-- <c:set var="contextPath" value="http://gksfk6165.cafe24.com"></c:set> --%>
 <c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://localhost:8080"></c:set> 
 <%-- <c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://gksfk6165.cafe24.com"></c:set> --%>
@@ -40,7 +37,7 @@
 	    function db_pop_check(){
 	    	//페이지 마다 팝업창 체크하는 스크립트입니다.
 	    		$.ajax({
-	    		url: "/admin/popupCheck",
+	    		url: "/popupCheck",
 	    		type: "POST",
 	    		success: function(data){
 	    			for (var i = 0; i < data.length; i++) {

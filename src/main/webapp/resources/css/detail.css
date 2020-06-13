@@ -142,7 +142,7 @@ body {
 
 .aside_book {
 	width: 250px;
-	height: 700px;
+	height: 1000px;
 	border-radius: 10px;
 }
 
@@ -279,7 +279,7 @@ body {
 .aside_book {
 	overflow-y: scroll;
 	width: 350px;
-	height: 700px;
+	height: 1000px;
 	background-color: white;
 }
 

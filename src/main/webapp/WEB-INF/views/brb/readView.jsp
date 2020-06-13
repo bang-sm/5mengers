@@ -128,6 +128,7 @@
 					<button type="button" class="uuid_book_search">나의 책 등록 하기</button>
 					<input type="text" id="uuid_book_url" name="uuid_book_url"/>
 				</div>
+				<input type="hidden" id="bsr_id" name="bsr_id" value="">
 				<input type="hidden" id="brb_id" name="brb_id" value="${read.brb_id}">
 				<button type="button" class="btn_replyWrite">등록</button>
 			</form>
@@ -138,7 +139,7 @@
 						<td>
 							<div>
 								<%-- <button type="button" class="btn_replyDelete" value="${replyRead.brbr_id}">삭제</button> --%>
-								<button style="140px" type="button" class="" value="">등록된 책으로 이동</button>
+								<button style="140px" type="button" class="" value="${replyRead.bsr_id}">등록된 책으로 이동</button>
 								<span>${replyRead.uuid_book_url }</span>
 							</div>
 						</td>
@@ -161,9 +162,9 @@ $(document).on('click', '.bsr_name', function() {
 	console.log("클릭되는중");
 	console.log($(this).text());
 	var name = $(this).text();
+	var bsr_id=$(this).prev().text();
     $("#uuid_book_url").val(name);
-    $("#bookajax").children().remove();
-    $("#booklist").hide();
+    $("#bsr_id").val(bsr_id);
 });
 </script>
 </html>

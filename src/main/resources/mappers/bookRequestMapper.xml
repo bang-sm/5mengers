@@ -71,7 +71,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     <!-- 댓글 작성 -->
    	<insert id="replyWrite">
-		INSERT INTO book_request_board_reply (brbr_regdate, uuid, uuid_book_url, brb_id) VALUE (now(), #{uuid}, #{uuid_book_url}, #{brb_id});
+		INSERT INTO book_request_board_reply
+		 	(brbr_regdate, uuid, uuid_book_url, brb_id,bsr_id) 
+	 	VALUE 
+	 		(now(), #{uuid}, #{uuid_book_url}, #{brb_id} ,#{bsr_id});
 	</insert>
 	<!-- 댓글 읽어오기 -->
 	<select id="replyRead" resultType="kr.co.vo.BookRequestDTO">
