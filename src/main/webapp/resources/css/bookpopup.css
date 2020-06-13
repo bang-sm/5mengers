@@ -1,0 +1,12 @@
+#mybookpopupBox{
+	display:none;
+	width: 400px;
+    height: 500px;
+    position: absolute;
+    border: 1px solid #000;
+    top: 0;
+    left: 500px;
+    overflow: scroll;
+    z-index:1000;
+    background: #ccc;
+}

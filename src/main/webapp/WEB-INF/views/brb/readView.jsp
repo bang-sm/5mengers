@@ -6,30 +6,37 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../resources/css/bookpopup.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>구매 요청 상세페이지</title>
 </head>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$("#mybookpopupBox").draggable({
+			cursor:"pointer",
+			containment: 'window'
+		});
+		$("#my_book_close_btn").on("click", function() {
+			$("#mybookpopupBox").hide();
+		});
 		var formObj = $("form[name='readForm']");
 		// 수정
 		$(".btn_update").on("click", function() {
 			formObj.attr("action", "/brb/updateView");
 			formObj.attr("method", "get");
 			formObj.submit();
-		})
+		});
 		// 삭제
 		$(".btn_delete").on("click", function() {
 			formObj.attr("action", "/brb/delete");
 			formObj.attr("method", "post");
 			formObj.submit();
-		})
+		});
 		// 목록
 		$(".btn_list").on("click", function() {
 
 			location.href = "/brb/list";
-		})
+		});
 		// 댓글 등록
 		var formObj = $("form[name='replyForm']");
 		$(".btn_replyWrite").on("click", function(){
@@ -37,7 +44,7 @@
 			formObj.attr("action", "/brb/replyWrite");
 			formObj.attr("method", "post");
 			formObj.submit();
-		})
+		});
 		// 댓글 삭제 ///brb/replyDelete
 		$(".btn_replyDelete").on("click", function() {
 			var brbr_id=$(this).val();
@@ -46,6 +53,7 @@
 		///////////////////////////////////////////
 		////////댓글 클릭시 나의 등록된 책 등록///////////////
 		$(".uuid_book_search").click(function(){
+			$("#mybookpopupBox").show();
 			$.ajax({
 				url : "/brb/mybooklist", // controller에서 받는다
 				type : "GET",
@@ -59,8 +67,9 @@
 							'<td class="bsr_name">'+data[i].bsr_name+'</td>'+
 							'<td class="bsr_price">'+data[i].bsr_price+'</td>'+
 							'</tr>';
-						$("#my_buying_book_list").append(book);
+						
 					}
+					$("#my_buying_book_list").html(book);
 				},
 				error : function() {
 
@@ -89,7 +98,7 @@
 				<tr>
 					<td><label for="brb_id">도서명(수정요)</label> <input type="text"
 						id="brb_id" name="brb_id" value="${read.brb_bookname}"
-						disabled="disabled" /></td>
+						disabled="disabled" style="width:80%"/></td>
 				</tr>
 				<tr>
 					<td><label for="brb_title">게시물 제목</label> <input type="text"
@@ -111,38 +120,39 @@
 						<div>${read.brd_comment}</div></td>
 				</tr>
 			</table>
-			<div>
-				<button type="submit" class="btn_update">수정</button>
-				<button class="btn_delete">삭제</button>
-				<button type="button" class="btn_list">목록</button>
-			</div>
 			<form name="replyForm" role="form" method="post">
-				<input type="hidden" id="brb_id" name="brb_id"
-					value="${read.brb_id}">
 				<div>
+					<button type="submit" class="btn_update">수정</button>
+					<button class="btn_delete">삭제</button>
+					<button type="button" class="btn_list">목록</button>
 					<button type="button" class="uuid_book_search">나의 책 등록 하기</button>
 					<input type="text" id="uuid_book_url" name="uuid_book_url"/>
-					<button type="button" class="btn_replyWrite">등록</button>
 				</div>
+				<input type="hidden" id="brb_id" name="brb_id" value="${read.brb_id}">
+				<button type="button" class="btn_replyWrite">등록</button>
 			</form>
-		</div>
-		<div id="replyRead">
+			<div id="replyRead">
 			<table>
 				<c:forEach items="${replyRead}" var="replyRead">
 					<tr>
 						<td>
-							<div>${replyRead.uuid_book_url }
-								<button type="button" class="btn_replyDelete" value="${replyRead.brbr_id}">삭제</button>
+							<div>
+								<%-- <button type="button" class="btn_replyDelete" value="${replyRead.brbr_id}">삭제</button> --%>
+								<button style="140px" type="button" class="" value="">등록된 책으로 이동</button>
+								<span>${replyRead.uuid_book_url }</span>
 							</div>
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
-		<div style="width:500px;height: 700px;border: 1px solid #000" id="mybookpopupBox">
+			
+		</div>
+		<div id="mybookpopupBox">
 			<table id="my_buying_book_list">
 				
 			</table>
+			<button type="button" id="my_book_close_btn">닫기</button>
 		</div>
 	</div>
 </body>
