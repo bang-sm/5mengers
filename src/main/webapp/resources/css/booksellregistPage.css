@@ -48,7 +48,7 @@
 /* 글 작성 테이블  */
 .insert-table{
 	float:left;
-	margin-left:50px;
+	margin:0 0 100px 50px;
 }
 /*글 등록 버튼  */
 .insert_btn{

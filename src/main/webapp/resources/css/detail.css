@@ -121,7 +121,7 @@ body {
 }
 
 #map {
-	float: left;
+	margin:400px auto 0 auto;
 }
 
 .hope_map {

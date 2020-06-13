@@ -46,7 +46,6 @@
 			</div>
 		</div>
 		<div id="contents">
-		<div id="map" style="width: 700px; height: 300px;position: absolute;bottom:-600px;"></div>
 			<div class="xans-element- xans-product xans-product-detail">
 				<div class="detailArea">
 
@@ -133,7 +132,7 @@
 											<span style="font-size: 12px; color: #555555;">판매가격</span>
 										</th>
 										<td><span style="font-size: 12px; color: #555555;"><span
-												id="span_product_price_custom">${detail.bsr_price}</span></span></td>
+												id="span_product_price_custom">${detail.bsr_price}원</span></span></td>
 									</tr>
 									<tr class=" xans-record-">
 										<th scope="row"><span
@@ -211,8 +210,10 @@
 				</div>
 			</div>
 		</div>
+		<div id="map" style="width: 1200px; height: 400px;"></div>
 	</div>	
 	<br>
+	<%@ include file="../common/footer.jsp"%>	
 </body>
 <script src="../resources/js/bookdetail.js"></script>
 <script src="../resources/js/slick.min.js"></script>
@@ -269,7 +270,7 @@
 			           $.ajax({
 			              url: "/zzimon", //매핑
 			              type: "GET",
-			              data :  {
+			              data :  { 
 			            	  "uuid" : ${login.uuid}, 
 			                  "bsr_id" : <%=request.getParameter("bsr_id")%>
 			              },

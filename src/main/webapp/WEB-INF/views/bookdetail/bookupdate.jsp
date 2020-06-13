@@ -116,7 +116,7 @@
     
     <div class="map_juso"style="width:300px;height:200px;font-size:10px;"></div>
 </div>
-
+<%@ include file="../common/footer.jsp"%>
 </body>
 <script>
 function update(){

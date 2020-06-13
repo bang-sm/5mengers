@@ -70,7 +70,7 @@ $(document).ready(function(){
 									<strong class="title">
 										<span style="font-size: 12px; color: #000000; font-weight: bold;">판매가</span>
 										<span style="font-size: 12px; color: #000000; font-weight: bold;">
-											<c:out value="${booklist.bsr_price }"/>
+											<c:out value="${booklist.bsr_price }"/>원
 										</span>
 									</strong>
 								</a>
@@ -82,5 +82,6 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+	<%@ include file="common/footer.jsp"%>
 </body>
 </html>

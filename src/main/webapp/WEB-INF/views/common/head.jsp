@@ -2,7 +2,11 @@
 	contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<<<<<<< HEAD
 <c:set var="contextPath" value="http://localhost:8080"></c:set>
+=======
+<c:set var="contextPath" value="http://localhost:8080"></c:set> 
+>>>>>>> branch 'coding_source' of https://github.com/bang-sm/5mengers.git
 <%-- <c:set var="contextPath" value="http://gksfk6165.cafe24.com"></c:set> --%>
 <c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://localhost:8080"></c:set> 
 <%-- <c:set var="kakao_uri" value="https://kauth.kakao.com/oauth/authorize?client_id=fb1d8350db62c7161d16a4c91065256f&redirect_uri=http://gksfk6165.cafe24.com"></c:set> --%>
@@ -23,7 +27,6 @@
 <script src="../resources/js/home.js"></script>
 <script src="../resources/js/popup.js"></script>
 </head>
-<body>
 <script>
 	$(document).ready(function(){
 		var path=$(location).attr('pathname');
@@ -142,6 +145,7 @@
 
 		</div>
 	</div>
+	
 </body>
 <script type="text/javascript">
 	$('#logoutbtn').on('click', function(){
