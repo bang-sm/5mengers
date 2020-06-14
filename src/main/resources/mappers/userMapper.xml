@@ -116,7 +116,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  	z.bsr_id,
 		  	b.bsr_name,
 		  	b.bsr_price,
-		  	b.bsr_check
+		  	b.bsr_check,
+		  	b.uuid as buuid,
+		  	b.bsr_category 
 		FROM
 		 	zzim z  inner join book_sell_regist b
 		ON

@@ -26,9 +26,16 @@ public class BookDetailDTO {
 	private String bi_file_name;
 	private String bi_root;
 	private String img;
+	private int buuid;
 	
 	
 	
+	public int getBuuid() {
+		return buuid;
+	}
+	public void setBuuid(int buuid) {
+		this.buuid = buuid;
+	}
 	public String getImg() {
 		return img;
 	}

@@ -69,7 +69,7 @@ function my_list(data,stat) {
 	    		'</div><div><button type="button" class="zzimDelete" value="'+data[i].bsr_id+'">찜해제</button>'+
 	    		'</div></div></div>'+
 	    		'<div class="general">'+
-	    		'<a href="/bookdetail?bsr_id='+data[i].bsr_id+'&uuid='+data[i].uuid+'&bsr_category='+data[i].bsr_category+'" class="book_title">'+data[i].bsr_name+'</a>'+
+	    		'<a href="/bookdetail?bsr_id='+data[i].bsr_id+'&uuid='+data[i].buuid+'&bsr_category='+data[i].bsr_category+'" class="book_title">'+data[i].bsr_name+'</a>'+
 	    		'<div class="" style="font-size:30px;font-weight:bold;color: red;text-align: center;">'+confirm+'</div>'+
 	    		'<span class="more">'+
 	    		''+data[i].bsr_price+'원'+
