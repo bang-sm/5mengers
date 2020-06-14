@@ -30,6 +30,7 @@
 	     	 		 <input type="text" readonly="readonly" class="form__input" placeholder="로그인 유지하기" required>
 				</div>
 	     	</form>
+	     	
       		<p class="text--center">Not a member? <a href="${path}/user/register">Sign up now</a> <span class="fontawesome-arrow-right"></span></p>
       		<br>
       		<p class="text--center">Can't remember password? <a href="${path}/user/findingPass">Click for help</a> <span class="fontawesome-arrow-right"></span></p>

@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="ko">
  <%@ include file="../common/head.jsp"%>
+ <link rel="stylesheet" href="../resources/css/register.css">
+ 
  <script type="text/javascript">
  
 	$(function(){
@@ -18,7 +20,7 @@
 					"userid" : userid
 				},
 				success : function(data){
-					
+					alert("회원가입시 등록된 이메일로 임시 비밀번호를 발급하였습니다.");
 /* 					if(data == 1){
 						alert("")
 						
@@ -49,16 +51,21 @@
 
 </script> 
 <body>
-
-<form action="${path }/user/findingPass" method="post" onsubmit="return checks()">
-	<div><h2>비밀번호 변경</h2></div>
-	
-	<div><span>계정의 아이디를 입력해 주세요</span></div>
-	<input type="text" id="id_confirm" name="userid" placeholder="아이디"/>
-	<br><br>
-	
-	<button id="id_confirm_btn" type="submit">비밀번호 찾기</button>
-	
-</form>
+	<div class="site__container">
+		<form action="${path }/user/findingPass" method="post" onsubmit="return checks()">
+			<div><h2>비밀번호 변경</h2></div>
+			<table>
+			<tr>
+				<td>	
+					<div><span>계정의 아이디를 입력해 주세요</span></div>
+					<input type="text" id="id_confirm" name="userid" placeholder="아이디"/>
+				</td>
+			</tr>
+			</table>
+			
+			<button id="id_confirm_btn" type="submit">비밀번호 찾기</button>
+			
+		</form>
+	</div>
 </body>
 </html>

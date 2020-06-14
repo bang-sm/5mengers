@@ -115,6 +115,7 @@ public class UserServiceImpl implements UserService {
 			sb.append("grant_type=authorization_code"); // grant_type : authorization_code 로 고정  (required)
 			sb.append("&client_id=fb1d8350db62c7161d16a4c91065256f"); // client_id : REST API 키 (required)
 			sb.append("&redirect_uri=http://gksfk6165.cafe24.com/user/auth"); // redirect_uri : 코드가 리다이렉트 된 URI (required)
+//			sb.append("&redirect_uri=http://localhost:8080/user/auth"); // redirect_uri : 코드가 리다이렉트 된 URI (required)
 			sb.append("&code=" + authorize_code); // code : 코드 받기 요청으로 얻은 인증 코드 (required) 
 			bw.write(sb.toString());
 			bw.flush();
@@ -267,9 +268,9 @@ public class UserServiceImpl implements UserService {
 		sendMail.setContext(
 				new StringBuffer()
 				.append("<h1>임시비밀번호 발급</h1>")
-				.append("<div><span>임시 비밀번호 : </span><span>")
+				.append("<div><span>임시 비밀번호 : </span><input type='text' readonly='readonly' id='newPass' value='")
 				.append(newPass)
-				.append("</span><button id=\"paste\">복사하기</button></div>")
+				.append("'/>")
 				.append("<span>로그인 후 비밀번호를 바꿔주세요</span>")
 				.toString());
 		
