@@ -28,7 +28,6 @@
 			
 			location.href = "/brb/list";
 		})
-
 		function fn_valichk(){
 			var regForm = $("form[name='writeForm'] .chk").length;
 			for(var i = 0; i < regForm; i++) {
