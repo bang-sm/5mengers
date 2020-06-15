@@ -131,7 +131,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			bs.bsr_name,
 			bs.bsr_price,
 			bs.uuid,
-			bs.bsr_confirm 
+			bs.bsr_confirm,
+			bs.bsr_id,
+			bs.bsr_category 
 		FROM 
 			my_buy_book mb inner join book_sell_regist bs
 		ON
