@@ -26,7 +26,6 @@
 		});
 		// 목록
 		$(".btn_list").on("click", function(){
-			
 			location.href = "/my/qnaList";
 		});
 		$(".btn_replyWrite").on("click", function(){
@@ -37,61 +36,56 @@
 	})
 </script>
 <body>
-	<div id="root">
-	<header>
-		<h1>QnA 상세페이지</h1>
-	</header>
-	<hr>
-		<section>
+<%@ include file="../common/head.jsp"%>
+	<div id="container">
+		<div id="contents">
 			<form name="readForm" role="form" method="post">
 				<input type="hidden" id="qb_id" name="qb_id" value="${read.qb_id}">
 			</form>
-				<table>
-					<tr>
-						<td>
-							<label for="qb_id">작성자</label>
-							<input type="text" value="${login.userid}" disabled="disabled"/>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="qb_title">제목</label>
-							<input type="text" id="qb_title" name="qb_title" value="${read.qb_title}" disabled="disabled"/>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="qb_comment">내용</label>							
-							<div>${read.qb_comment}</div>
-						</td>
-					</tr>					
-				</table>
+			<table>
+				<tr>
+					<td>
+						<label for="qb_id">작성자</label>
+						<input type="text" value="${login.userid}" disabled="disabled"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="qb_title">제목</label>
+						<input type="text" id="qb_title" name="qb_title" value="${read.qb_title}" disabled="disabled"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="qb_comment">내용</label>							
+						<div>${read.qb_comment}</div>
+					</td>
+				</tr>					
+			</table>
+			<div>
+				<button type="submit" class="btn_update">수정</button>
+				<button type="submit" class="btn_delete">삭제</button>
+				<button type="submit" class="btn_list">목록</button>
+			</div>
+			<div id="reply">
+				<ol class="replyList">
+					<c:forEach items="${replyList}" var="replyList">
+						<li>
+							${replyList.qbr_comment}
+						</li>
+					</c:forEach>
+				</ol>				
+			</div>
+			<form name="replyForm" role="form" method="post">
+				<input type="hidden" id="qb_id" name="qb_id" value="${read.qb_id}">
 				<div>
-					<button type="submit" class="btn_update">수정</button>
-					<button type="submit" class="btn_delete">삭제</button>
-					<button type="submit" class="btn_list">목록</button>
+					<label for="qbr_comment">답변</label><input type="text" id="qbr_comment" name="qbr_comment"/>
 				</div>
-				<div id="reply">
-					<ol class="replyList">
-						<c:forEach items="${replyList}" var="replyList">
-							<li>
-								<p>
-									${replyList.qbr_comment}
-								</p>
-							</li>
-						</c:forEach>
-					</ol>				
+				<div>
+					<button type="button" class="btn_replyWrite">등록</button>
 				</div>
-				<form name="replyForm" role="form" method="post">
-					<input type="hidden" id="qb_id" name="qb_id" value="${read.qb_id}">
-					<div>
-						<label for="qbr_comment">답변</label><input type="text" id="qbr_comment" name="qbr_comment"/>
-					</div>
-					<div>
-						<button type="button" class="btn_replyWrite">등록</button>
-					</div>
-				</form>
-		</section>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
